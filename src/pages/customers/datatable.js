@@ -33,16 +33,12 @@ import {
     const [selectionType, setSelectionType] = useState('checkbox');
 
   
-  const [page, setPage] = useState(1);
+  
   const [visibleLicense, setVisibleModal] = useState(false);
   const [curr_company, setCompany] = useState(null);
 
   
-
-
-  const [visible, setVisible] = useState(false);
-
-  
+console.log(current_customers);
 
   const dispatch = useDispatch()
 
@@ -52,18 +48,24 @@ import {
      
     }
 
-    const cancel = (e) =>{
-        return null
-      }
-    
+  
 
-
- 
       const handleClickEdit = (e, isvisible, id) =>{
         e.preventDefault()
         setcustomers(id)
-        setEditModal(isvisible)
+        setVisible(true);
         }
+
+   
+  const [page, setPage] = useState(1);
+
+
+  const [visible, setVisible] = useState(false);
+
+  const cancel = (e) =>{
+    return null
+  }
+
 
         const closeModal = () => {
           setEditModal(false)
@@ -123,9 +125,9 @@ import {
           <Space size="middle">
             
           <h5 className="text-secondary" >
-          <Link to={`/dashboard/database-management/edit-customers/${id._id}`} >
+          
             <FaRegEdit  onClick={(e)=>handleClickEdit(e, true, id)} className="text-secondary mt-2"  /> 
-             </Link>             
+                      
             
             </h5>
         <h5 className="text-danger">
@@ -202,8 +204,6 @@ import {
       </>
     );
   }
-  
- 
   
 
   // <div className="uploadfile pb-15 shadow-none">

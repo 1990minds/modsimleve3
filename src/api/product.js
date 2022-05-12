@@ -76,7 +76,6 @@ export const fetchAllproduct = () => async dispatch => {
 
   }
  };
-
  export const fetchProjectProducts = (id) => async dispatch => {
   dispatch(getproduct())
  
@@ -94,6 +93,8 @@ export const fetchAllproduct = () => async dispatch => {
 
   }
  };
+
+
 
 
  export const deleteproduct = (id, product) => async dispatch => {

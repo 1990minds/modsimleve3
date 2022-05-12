@@ -1,11 +1,11 @@
 
 import React, { useState, useLayoutEffect} from 'react'
 import Layout from '../../components/layout/Main'
-import ProjectTable from './datatable'
-import {fetchAllproject, projectSelector} from '../../api/project'
+import PanelTable from './paneltable'
+import {fetchAllpanel,fetchProductPanels,panelSelector} from '../../api/panel'
 import {useDispatch, useSelector} from 'react-redux'
 import { useEffect } from 'react'
-import Createproject from './createproject'
+import Createpanel from './createpanel'
 import ExcelBtn from './exportexcel'
 import axios from 'axios'
 import {authenticateSelector} from '../../api/authSlice';
@@ -15,51 +15,62 @@ import { keyUri, config } from '../../key'
 import styled from 'styled-components'
 import { Tabs, Button, Input,Upload } from 'antd';
 import { Row, Col } from 'antd';
+import {useParams} from 'react-router-dom'
+import {fetchOneproduct, productSelector} from '../../api/product'
+
+
 // import './index.css'
 
 
 const { Search } = Input;
 
-export default function Project() {
+export default function Panel() {
 
+  
     const dispatch = useDispatch()
-    const {all_project} = useSelector(projectSelector) 
+    const {product_panels } = useSelector(panelSelector) 
+    const { current_product,} = useSelector(productSelector) 
+ 
+    const {all_panel} = useSelector(panelSelector) 
     const [search, setSearch] = useState('')
-  
-   
-    const { user} = useSelector(authenticateSelector) 
-  
-    const [projectAddVisible, SetProjectAddVisible] = useState(false)
-    const [searchvalue, setSearchvalue] = useState('')
-
-   
     const [loading, setLoading] = useState(false)
     const [filter,setFilter]=useState([])
     const [debouncedText] = useDebounce(search, 2000);
+   
+    const { user} = useSelector(authenticateSelector) 
   
-  console.log(all_project);
+    const { panel_id } = useSelector(authenticateSelector) 
+  const {id}= useParams()
+
+  const [panelAddVisible, SetPanelAddVisible] = useState(false)
+  // const [searchvalue, setSearchvalue] = useState('')
+
+console.log({all_panel});
+  
   
 
   useEffect(()=>{
 
-    dispatch(fetchAllproject(user?.company))
-       
-       
-        }, [user])
+    dispatch(fetchOneproduct(id))
+    dispatch(fetchAllpanel()) 
+   
+  }, [dispatch])
   
      const handleCancel = () => {
-       SetProjectAddVisible(false)
+       SetPanelAddVisible(false)
      };
    
 
 console.log(filter);
+  
+ 
 useEffect(()=>{
 
-  axios.get(keyUri.BACKEND_URI +`/project?search=${debouncedText}`).then(({data})=>{
+  axios.get(keyUri.BACKEND_URI +`/panel?search=${debouncedText}`).then(({data})=>{
     
     console.log({data})
 
-    setFilter(data?.filterproject)
+    setFilter(data?.filterpanel)
      })
 setLoading(false)
  }, [dispatch, debouncedText])
@@ -67,7 +78,7 @@ setLoading(false)
 console.log(filter);
 
 useEffect(()=>{
-  dispatch(fetchAllproject())
+  dispatch(fetchAllpanel())
       }, [dispatch])
 
       useEffect(()=>{     
@@ -82,16 +93,13 @@ useEffect(()=>{
         setSearch(e.target.value)
       
       }
-        
-        
-
 
   return (
     <Layout>
 
 <Row>
       <Col span={8}>
-      <Createproject />
+      <Createpanel/>
       </Col>
       <Col span={3} offset={10} >
       <SearchWrap>
@@ -104,10 +112,10 @@ placeholder="Search" onChange={onSearch}  />
  
         </Col>
         <Col span={3} className='' style={{ display: 'flex', justifyContent: 'end' }}>
-        <ExcelBtn data={all_project} />
+        <ExcelBtn data={all_panel} />
       </Col>
       </Row>
-        <ProjectTable data={all_project}/>
+        <PanelTable data={all_panel}/>
     </Layout>
   )
 
