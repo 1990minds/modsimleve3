@@ -209,9 +209,22 @@ import {deleteproject,deleteManyproject} from '../../api/project'
                       setPage(current)
                     }
                   }}
-                    columns={columns}
-                    dataSource={data}
-                    className="ant-border-space "
+                  rowKey={record => record._id}
+                  columns={columns}
+                  dataSource={data} 
+ 
+ // expandable={{
+ //   expandedRowRender: record => <p style={{ margin: 0 }}>{record.contact_person}</p>,
+   
+ // }}
+ 
+
+                 onRow={(record, rowIndex) => {
+                 return {
+                 onClick: event => {  history.push(`/auth/product/${record._id}`) }, // click row
+                 };
+                 }}
+                   
                   >
                     </Table>
                 </div>

@@ -43,16 +43,8 @@ import Login from './pages/SignIn'
 import Customers from '../src/pages/customers'
 import Project from "./pages/projects";
 import Product from "./pages/product";
-// import {  useRouteMatch } from 'react-router-dom';
-// import './index.css'
-// import License from "./pages/Customer/License";
-// import Users from './pages/Users'
-// import Editusers from './pages/Users/Editusers'
-// import Products from './pages/Products'
-// import Parts from './pages/Parts'
-// import Broadcast from './pages/Broadcasts'
-// import Chats from './pages/Chats'
-// import Logs from './pages/Logs'
+import Panel from './pages/panel'
+import Panelpage from './pages/panelpage'
 
 function App() {
 
@@ -69,7 +61,9 @@ function App() {
     
     <Route path="/auth/customers" component={Customers} exact/>
     <Route path="/auth/projects" component={Project} exact/>
-    <Route path="/product/:id` " component={Product} exact/>
+    <Route path="/auth/product/:id" component={Product} exact/>
+    <Route path="/auth/panel/:id"  component={Panel} exact />
+    <Route path="/auth/panelpage/:id"  component={Panelpage} exact />
 
      </main>
     </Router>

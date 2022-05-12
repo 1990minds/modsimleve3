@@ -2,7 +2,7 @@ import React, {useEffect, useState, useLayoutEffect} from 'react'
 import Layout  from '../../components/layout/Main'
 import {useDispatch, useSelector} from 'react-redux'
 import CustomersTable from './datatable'
-// import ExcelBtn from './exportexcel'
+import ExcelBtn from './expoertexcel'
 import axios from 'axios'
 import {SearchOutlined,SyncOutlined} from '@ant-design/icons'
 import { useDebounce } from "use-debounce";
@@ -23,11 +23,15 @@ const { Search } = Input;
   export default function Database() {
 
     const dispatch = useDispatch()
-    const { loading, all_customers} = useSelector(customersSelector) 
+    const { all_customers} = useSelector(customersSelector) 
     const { user} = useSelector(authenticateSelector) 
+    const [search, setSearch] = useState('')
+    const [loading, setLoading] = useState(false)
+    const [filter,setFilter]=useState([])
+    const [debouncedText] = useDebounce(search, 2000);
    
   
-    const [customersAddVisible, SetPustomersAddVisible] = useState(false)
+    const [customersAddVisible, SetCustomersAddVisible] = useState(false)
 
     console.log(user);
     useEffect(()=>{
@@ -40,8 +44,35 @@ const { Search } = Input;
 
 
   const handleCancel = () => {
-    SetPustomersAddVisible(false)
+    SetCustomersAddVisible(false)
   };
+  useEffect(()=>{
+
+    axios.get(keyUri.BACKEND_URI +`/customers?search=${debouncedText}`).then(({data})=>{
+      console.log(
+        'text'
+      );
+      console.log({data})
+
+      setFilter(data?.filtercustomers)
+       })
+  setLoading(false)
+   }, [dispatch, debouncedText])
+
+console.log(filter);
+
+useEffect(()=>{     
+  if(filter?.length < 1) {
+    setSearch('')
+  }
+   }, [filter])
+
+
+const onSearch = (e) => {
+  setLoading(true)
+  setSearch(e.target.value)
+
+}
 
 
   return (
@@ -52,16 +83,16 @@ const { Search } = Input;
       <Createcustomers />
       </Col>
       <Col span={3} offset={10} >
-      {/* <SearchWrap className="mx-4 " style={{borderRadius:"4px"}}>
+      <SearchWrap className="mx-4 " style={{borderRadius:"4px"}}>
 
 <Input value={search}  className="px-4 py-2 focus:outline-none"
 prefix ={  <SearchOutlined  style={{color:'#3e79f7', fontWeight:'bold'}} />
 }
 placeholder="Search" onChange={onSearch}  />
-</SearchWrap> */}
+</SearchWrap>
         </Col>
         <Col span={3} className='' style={{ display: 'flex', justifyContent: 'end' }}>
-       {/* <ExcelBtn data={all_admin} /> */}
+       <ExcelBtn data={all_customers} />
       </Col>
       </Row>
         <CustomersTable data={all_customers} />

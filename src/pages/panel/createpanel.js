@@ -6,16 +6,17 @@ import { Divider } from 'antd';
 import {fetchAllproduct, productSelector, } from '../../api/product'
 import { fetchAllcompanycustomers,customersSelector } from '../../api/customers';
 import {authenticateSelector} from '../../api/authSlice';
-import {createproject} from '../../api/project'
+import {createpanel} from '../../api/panel'
 import { Upload } from 'antd';
 import { UploadOutlined } from '@ant-design/icons';
 import {useParams} from 'react-router-dom'
+import moment from 'moment';
 
 const { Option } = Select;
 
- 
-export default function CreateProject({cancel}) {
+export default function CreatePanel({cancel,current_product}) {
   
+ 
     const [loading, setLoading] = useState(false)
     const { user } = useSelector(authenticateSelector) 
     console.log(user);
@@ -35,24 +36,24 @@ export default function CreateProject({cancel}) {
   const onFinish = (values) => {
     
   console.log(values);
-      const data = {
-
-        project_location:values.project_location,
-        phone_number:values.phone_number,
-        email:values.email,
-         project_name:values.project_name,
-         project_coordiantor:values.project_coordiantor,
-        customerId:values.customerId,
-        companyId:user?.company
-         
-      }
+  const data = {
 
 
-   dispatch(createproject(data,user?.company))
-   form.resetFields()
-   cancel()
-  
-  };
+    panel_category:values.panel_category,
+    rated_voltage:values.rated_voltage,
+    ambient_temperature:values.ambient_temperature,
+     panel_name:values.panel_name,
+     busbar_material:values.busbar_material,
+     productId:current_product?._id
+     
+  }
+
+
+  dispatch(createpanel(data, current_product?._id))
+  form.resetFields()
+  cancel()
+ 
+ };
   
 
   const onFinishFailed = (errorInfo) => {
@@ -74,6 +75,7 @@ export default function CreateProject({cancel}) {
     console.log(`selected ${value}`)
 
   }
+
 
 
 const { TextArea } = Input;
@@ -108,94 +110,104 @@ const { TextArea } = Input;
             <Row gutter={16}>
               <Col span={12}>
               <Form.Item
-          label={<p className="  w-36 text-left m-0">Customer Name</p>}
-          name="customerId"
-          rules={[{ required: true, message: 'Please Input Customer Name!' }]}
+          label={<p className="  w-36 text-left m-0"> Panel Name</p>}
+          name="panel_name"
+          rules={[{ required: true, message: 'Please Input Panel Name!' }]}
         >
+          <Input/>
 
-           <Select 
-                           showSearch
-                           placeholder="Customer name"  
-                           
-             optionFilterProp="children"
-             filterOption={(input, option) =>
-               option.children.toLowerCase().indexOf(input.toLowerCase()) >= 0
-            }
-                          
-                           onChange={handleChangeSelect}>
-                    {
-                        all_customers.map((item, i)=>{     
-                                                
-                        return <option key={i} value={item._id} >{item.customers_name}</option>
-
-                    })
-                    }
-                            
-                    </Select>
-       
         </Form.Item>
                
               </Col>
               <Col span={12}>
                 
               <Form.Item
-          label={<p className="  w-36 text-left m-0"> Project Name</p>}
-          name="project_name"
-          rules={[{ required: true, message: 'Please Input Project Name!' }]}
+          label={<p className="  w-36 text-left m-0">Panel Category</p>}
+          name="panel_category"
+          rules={[{ required: true, message: 'Please Select Panel category!' }]}
         >
-          <Input/>
-
+                        <Select
+          placeholder="Select Panel category"
+          onChange={onChange}
+          style={{ width: '100%' }}
+          allowClear
+        >
+          <Option value="Power Control Center">Power Control Center</Option>
+          <Option value="Motor Control Center">Motor Control Center</Option>
+          <Option value="Main Distribution Boards">Main Distribution Boards</Option>
+          <Option value="Sub Distribution Boards">Sub Distribution Boards</Option>
+          <Option value="Power Factor control Panel">Power Factor control Panel</Option>
+          <Option value="Synchronising Panel">Synchronising Panel</Option>
+          <Option value="Others">Others</Option>
+        </Select>
+ 
         </Form.Item>
-
-
-
 
               </Col>
             </Row>
 
+           
+
             <Row gutter={16}>
               <Col span={12}>
+
               <Form.Item
-          label={<p className="  w-36 text-left m-0">Project Coordinator</p>}
-          name="project_coordiantor"
-          rules={[{ required: true, message: 'Please select Project Coordinator!' }]}
+          label={<p className="  w-36 text-left m-0">Rated voltage</p>}
+          name="rated_voltage"
+          rules={[{ required: true, message: 'Please Select Rated Voltage!' }]}
         >
-  <Input/>
+                           <Select
+          placeholder="Select Rated Voltage"
+          onChange={onChange}
+          style={{ width: '100%' }}
+          allowClear
+        >
+          <Option value="415V">415V</Option>
+          <Option value="440V">440V</Option>
+        </Select>
+
         </Form.Item>
-
-
-        <Form.Item
-          label={<p className="  w-36 text-left m-0">Project Location</p>}
-          name="project_location"
-          rules={[{ required: true, message: 'Please select Project Location!' }]}
+        </Col>
+        <Col span={12}>
+              <Form.Item
+          label={<p className="w-36 text-left m-0">Ambient Temperature</p>}
+          name="ambient_temperature"
+          rules={[{ required: true, message: 'Please Input Ambient Temperature!' }]}
         >
-  <Input/>
-        </Form.Item>
-
-        
-
-        <Form.Item
-          label={<p className="w-36 text-left m-0">Phone Number</p>}
-          name="phone_number"
-          rules={[{ required: true, message: 'Please Input Phone Number!' }]}
+                           <Select
+          placeholder="Select Ambient Temperature"
+          onChange={onChange}
+          style={{ width: '100%' }}
+          allowClear
         >
-           <Input/>
+          <Option value="35">35</Option>
+          <Option value="40">40</Option>
+          <Option value="35">45</Option>
+          <Option value="40">50</Option>
+
+        </Select>
 
 </Form.Item>
-
               </Col>
             </Row>
-
-            
 
             <Row gutter={16}>
               <Col span={12}>
               <Form.Item
-          label={<p className="  w-36 text-left m-0">Email</p>}
-          name="email"
-          rules={[{ required: true, message: 'Please Input Email!' }]}
+          label={<p className="  w-36 text-left m-0">Busbar Material</p>}
+          name="busbar_material"
+          rules={[{ required: true, message: 'Please Input Busbar Material!' }]}
         >
-           <Input/>
+                              <Select
+          placeholder="Select Busbar Material"
+          onChange={onChange}
+          style={{ width: '100%' }}
+          allowClear
+        >
+          <Option value="Copper">Copper</Option>
+          <Option value="Aluminium">Aluminium</Option>
+
+        </Select>
 
 </Form.Item>
               </Col>

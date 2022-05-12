@@ -14,7 +14,8 @@ import { keyUri, config } from '../../key'
 import styled from 'styled-components'
 import { Tabs, Button, Input,Upload } from 'antd';
 import { Row, Col } from 'antd';
-import { fetchOneproduct, fetchProjectProducts } from '../../api/product'
+import { fetchOneproduct, fetchAllproduct,productSelector} from '../../api/product'
+import { fetchProjectProducts } from '../../api/product'
 import {useParams} from 'react-router-dom'
 import {useLocation, Link} from 'react-router-dom'
 import { Card, Avatar } from 'antd';
@@ -25,17 +26,17 @@ const { Meta } = Card;
 
 const { Search } = Input;
 
-export default function Product() {
+export default function Product(item) {
 
     const dispatch = useDispatch()
-    const { loading ,all_product,current_project    , } = useSelector(projectSelector) 
-    const { project_products } = useSelector(projectSelector) 
-    const { product_id } = useSelector(authenticateSelector) 
+    const { loading ,current_project    , } = useSelector(projectSelector) 
+    const { all_product } = useSelector(productSelector) 
+    const { project_products } = useSelector(productSelector) 
     const {id}= useParams()
     const [filter,setFilter]=useState([])
     const [search, setSearch] = useState('')
   
-    console.log(project_products)
+    console.log(all_product)
   
   console.log(id)
     const [productAddVisible, SetProductAddVisible] = useState(false)
@@ -47,8 +48,6 @@ export default function Product() {
         dispatch(fetchProjectProducts(id)) 
       }, [dispatch])
   
-  
- 
   
   
      const handleCancel = () => {
@@ -77,25 +76,28 @@ console.log(filter);
   return (
     <Layout>
 
-<div className='grid grid-cols-4 gap-x-28'>
+      <div>
 
+{/* <div style={{display:'grid', gridColumn: '4', gap:'6'}} className='grid grid-cols-4 gap-x-28'> */}
+<div style={{display: 'flex'}}>
 {
- project_products.map((item)=>{
-   return  <Link to={`/dashboard/panel/${item._id}`}  >
+ project_products.map((item)=>{ 
+   return  <Link to={`/auth/panel/${item?._id}`}  >
 
    <Card
-    style={{}}
+    
     cover={
       <img
         alt="example"
-        src="https://gw.alipayobjects.com/zos/rmsportal/JiqGstEfoWAOHiTxclqi.png"
+        src={item?.product_image} 
       />
     }
    
   >
     <Meta
      
-      title="MODSIM"
+      title={item?.product_name}
+      description={item?.product_description}
       
     />
   </Card>
@@ -106,7 +108,7 @@ console.log(filter);
 
 <Row>
       <Col span={8}>
-      <Createproduct cancel={()=>SetProductAddVisible(!productAddVisible)} current_project={current_project}/>
+      {/* <Createproduct  current_project={current_project}/> */}
       </Col>
       <Col span={3} offset={10} >
       {/* <SearchWrap>
@@ -122,6 +124,8 @@ placeholder="Search" onChange={onSearch}  />
         {/* <ExcelBtn data={all_product} /> */}
       </Col>
       </Row>
+
+      </div>
        
     </Layout>
   )
