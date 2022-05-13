@@ -7,7 +7,6 @@ import { keyUri, config } from '../key'
 const initialState = {
 
     all_product:[],
-    project_products:[],
     loading:false,
     hasError:false,
     current_product:null,
@@ -29,12 +28,7 @@ export const productSlice = createSlice({
         state.all_product = payload.product
 
     },
-    get_project_products_success: (state, {payload})  =>{
 
-      state.loading = false
-      state.project_products = payload.product
-
-  },
 
     getCurrentSuccess: (state, {payload}) =>{
         state.loading = false
@@ -52,7 +46,7 @@ export const productSlice = createSlice({
 })
 
 
-export const { getproduct ,getAll_product_success,get_project_products_success, getCurrentSuccess, get_product_Failure } = productSlice.actions;
+export const { getproduct ,getAll_product_success, getCurrentSuccess, get_product_Failure } = productSlice.actions;
 
 
 
@@ -76,24 +70,6 @@ export const fetchAllproduct = () => async dispatch => {
 
   }
  };
- export const fetchProjectProducts = (id) => async dispatch => {
-  dispatch(getproduct())
- 
-  console.log("testing  ");
-  try {
- 
-   const {data} = await axios.get(keyUri.BACKEND_URI +`/project-products/${id}`)
-   console.log(data);
-   
-   dispatch(get_project_products_success(data));
-    
-  } catch (error) {
- 
- dispatch(get_product_Failure())
-
-  }
- };
-
 
 
 

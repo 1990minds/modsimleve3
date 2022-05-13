@@ -105,20 +105,7 @@ export default function CreateCustomer({cancel}) {
 
 </Form.Item>
               </Col>
-              {/* <Col span={12}>
-                <Form.Item
-                  name="url"
-                  label="Url"
-                  rules={[{ required: true, message: 'Please enter url' }]}
-                >
-                  <Input
-                    style={{ width: '100%' }}
-                    addonBefore="http://"
-                    addonAfter=".com"
-                    placeholder="Please enter url"
-                  />
-                </Form.Item>
-              </Col> */}
+          
             </Row>
 
             <Row gutter={16}>

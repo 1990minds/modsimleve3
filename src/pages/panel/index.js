@@ -15,12 +15,9 @@ import { keyUri, config } from '../../key'
 import styled from 'styled-components'
 import { Tabs, Button, Input,Upload } from 'antd';
 import { Row, Col } from 'antd';
-import {useParams} from 'react-router-dom'
-import {fetchOneproduct, productSelector} from '../../api/product'
-
+import {useParams,  useLocation} from 'react-router-dom'
 
 // import './index.css'
-
 
 const { Search } = Input;
 
@@ -28,10 +25,8 @@ export default function Panel() {
 
   
     const dispatch = useDispatch()
-    const {product_panels } = useSelector(panelSelector) 
-    const { current_product,} = useSelector(productSelector) 
- 
-    const {all_panel} = useSelector(panelSelector) 
+
+    const {product_panels} = useSelector(panelSelector) 
     const [search, setSearch] = useState('')
     const [loading, setLoading] = useState(false)
     const [filter,setFilter]=useState([])
@@ -40,19 +35,18 @@ export default function Panel() {
     const { user} = useSelector(authenticateSelector) 
   
     const { panel_id } = useSelector(authenticateSelector) 
-  const {id}= useParams()
+
+    const project =   new URLSearchParams(useLocation().search).get(`project`)
+    console.log(project);
+    const {id}= useParams()
 
   const [panelAddVisible, SetPanelAddVisible] = useState(false)
   // const [searchvalue, setSearchvalue] = useState('')
 
-console.log({all_panel});
   
-  
-
   useEffect(()=>{
 
-    dispatch(fetchOneproduct(id))
-    dispatch(fetchAllpanel()) 
+    dispatch(fetchProductPanels({id,project})) 
    
   }, [dispatch])
   
@@ -99,7 +93,7 @@ useEffect(()=>{
 
 <Row>
       <Col span={8}>
-      <Createpanel/>
+      <Createpanel project_id ={project} product_id={id}/>
       </Col>
       <Col span={3} offset={10} >
       <SearchWrap>
@@ -112,10 +106,10 @@ placeholder="Search" onChange={onSearch}  />
  
         </Col>
         <Col span={3} className='' style={{ display: 'flex', justifyContent: 'end' }}>
-        <ExcelBtn data={all_panel} />
+        <ExcelBtn data={product_panels} />
       </Col>
       </Row>
-        <PanelTable data={all_panel}/>
+        <PanelTable data={product_panels}/>
     </Layout>
   )
 

@@ -99,6 +99,7 @@ export const fetchAllpanel = () => async dispatch => {
 
  export const createpanel = ( values,id) => async dispatch => {
 console.log( values);
+console.log( {id});
 
 
   dispatch(getpanel())
@@ -119,13 +120,12 @@ response.data && message.error({ content: response.data.msg, key, duration: 2 })
   }
  };
 
- export const fetchProductPanels = (id) => async dispatch => {
+ export const fetchProductPanels = (values) => async dispatch => {
   dispatch(getpanel())
- 
-  console.log("testing  ");
+  console.log(values);
   try {
  
-   const {data} = await axios.get(keyUri.BACKEND_URI +`/product-panels/${id}`)
+   const {data} = await axios.post(keyUri.BACKEND_URI +`/product-panels`, values, config)
    console.log(data);
    
    dispatch(get_product_panels_success(data));
@@ -171,7 +171,6 @@ try {
 } catch ({response}) {
 console.log(response.data);
     dispatch(get_panel_Failure())
-   
 
 }
 }

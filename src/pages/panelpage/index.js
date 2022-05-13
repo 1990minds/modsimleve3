@@ -49,6 +49,7 @@ console.log({current_panel});
     dispatch(fetchOnepanel(id))
    
   }, [dispatch])
+  
 
   const [isModalVisible, setIsModalVisible] = useState(false);
 

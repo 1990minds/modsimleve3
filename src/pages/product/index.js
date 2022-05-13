@@ -14,7 +14,7 @@ import { keyUri, config } from '../../key'
 import styled from 'styled-components'
 import { Tabs, Button, Input,Upload } from 'antd';
 import { Row, Col } from 'antd';
-import { fetchOneproduct, fetchAllproduct,productSelector} from '../../api/product'
+import {  fetchAllproduct,productSelector} from '../../api/product'
 import { fetchProjectProducts } from '../../api/product'
 import {useParams} from 'react-router-dom'
 import {useLocation, Link} from 'react-router-dom'
@@ -31,7 +31,6 @@ export default function Product(item) {
     const dispatch = useDispatch()
     const { loading ,current_project    , } = useSelector(projectSelector) 
     const { all_product } = useSelector(productSelector) 
-    const { project_products } = useSelector(productSelector) 
     const {id}= useParams()
     const [filter,setFilter]=useState([])
     const [search, setSearch] = useState('')
@@ -44,8 +43,7 @@ export default function Product(item) {
 
     useEffect(()=>{
 
-        dispatch(fetchOneproduct(id))
-        dispatch(fetchProjectProducts(id)) 
+        dispatch(fetchAllproduct()) 
       }, [dispatch])
   
   
@@ -81,8 +79,8 @@ console.log(filter);
 {/* <div style={{display:'grid', gridColumn: '4', gap:'6'}} className='grid grid-cols-4 gap-x-28'> */}
 <div style={{display: 'flex'}}>
 {
- project_products.map((item)=>{ 
-   return  <Link to={`/auth/panel/${item?._id}`}  >
+ all_product.map((item)=>{ 
+   return  <Link to={`/auth/panel/${item?._id}?project=${id}`}  >
 
    <Card
     
