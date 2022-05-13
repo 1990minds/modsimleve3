@@ -14,7 +14,7 @@ import moment from 'moment';
 
 const { Option } = Select;
 
-export default function CreatePanel({cancel,current_product}) {
+export default function CreatePanel({cancel,project_id,product_id}) {
   
  
     const [loading, setLoading] = useState(false)
@@ -44,12 +44,13 @@ export default function CreatePanel({cancel,current_product}) {
     ambient_temperature:values.ambient_temperature,
      panel_name:values.panel_name,
      busbar_material:values.busbar_material,
-     productId:current_product?._id
-     
+     project_id:project_id,
+     product_id:product_id
   }
 
 
-  dispatch(createpanel(data, current_product?._id))
+
+  dispatch(createpanel(data, {id:product_id,project:project_id}))
   form.resetFields()
   cancel()
  
