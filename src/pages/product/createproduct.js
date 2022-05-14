@@ -1,167 +1,144 @@
-import React, {useState,useEffect} from 'react'
+
+import React, { useState, useLayoutEffect} from 'react'
+import Layout from '../../components/layout/Main'
+import {fetchAllproject, projectSelector} from '../../api/project'
 import {useDispatch, useSelector} from 'react-redux'
-import { Drawer, Form, Button, Col, Row, Input, Select, TextArea , Space } from 'antd';
-import { PlusOutlined } from '@ant-design/icons';
-import { Divider } from 'antd';
-import {fetchAllproduct, productSelector,fetchProjectProducts } from '../../api/product'
-import { fetchAllcompanycustomers,customersSelector } from '../../api/customers';
+import { useEffect } from 'react'
+import Createproduct from './createproduct'
+// import ExcelBtn from './exportexcel'
+import axios from 'axios'
 import {authenticateSelector} from '../../api/authSlice';
-import createproduct from '../../api/product'
-import { Upload } from 'antd';
-import { UploadOutlined } from '@ant-design/icons';
+import {SearchOutlined,SyncOutlined} from '@ant-design/icons'
+import { useDebounce } from "use-debounce";
+import { keyUri, config } from '../../key'
+import styled from 'styled-components'
+import { Tabs,Skeleton, Button , Input,Upload } from 'antd';
+import { Row, Col } from 'antd';
+import {  fetchAllproduct,productSelector} from '../../api/product'
+import { fetchProjectProducts } from '../../api/product'
+import {useParams} from 'react-router-dom'
+import {useLocation, Link} from 'react-router-dom'
+import { Card, Avatar } from 'antd';
+// import './index.css'
 
-const { Option } = Select;
+const { Meta } = Card;
 
- 
-export default function CreateProduct({cancel,current_project,project_products}) {
+
+const { Search } = Input;
+
+
+// state = {
+//   loading: false,
+// };
+
+// showSkeleton = () => {
+//   this.setState({ loading: true });
+//   setTimeout(() => {
+//     this.setState({ loading: false });
+//   }, 3000);
+// };
+
+export default function Product(item) {
+
+
+
+    const dispatch = useDispatch()
+    const { loading ,current_project    , } = useSelector(projectSelector) 
+    const { all_product } = useSelector(productSelector) 
+    const {id}= useParams()
+    const [filter,setFilter]=useState([])
+    const [search, setSearch] = useState('')
   
-    const [loading, setLoading] = useState(false)
-    const { user } = useSelector(authenticateSelector) 
-    console.log(user);
-    const { all_customers} = useSelector(customersSelector) 
-    
-    const dispatch = useDispatch();
+    console.log(all_product)
+  
+  console.log(id)
+    const [productAddVisible, SetProductAddVisible] = useState(false)
+  
 
-    console.log(current_project);
-    
     useEffect(()=>{
 
-      dispatch(fetchAllcompanycustomers(user?.company))
-
-     }, [dispatch])
-
-    //  useEffect(()=>{
-
-    //   dispatch(fetchProjectProducts (user?.product))
-
-    //  }, [dispatch])
-        
+        dispatch(fetchAllproduct()) 
+      }, [dispatch])
   
-  const onFinish = (values) => {
-    
   
-  console.log(values);
-      const data = {
-
-         product_name:values.product_name,
-         projectId:current_project?._id
-      }
-
- 
-      dispatch(createproduct(data,current_project?._id))
-      form.resetFields()
-      cancel()
-     
+  
+     const handleCancel = () => {
+       SetProductAddVisible(false)
      };
+   
+
+console.log(filter);
   
-
-  const onFinishFailed = (errorInfo) => {
-    console.log('Failed:', errorInfo);
-  };
-
  
 
-  const handleChangeSelect = (value) =>{
+        useEffect(()=>{     
+          if(filter?.length < 1) {
+            setSearch('')
+          }
+           }, [filter])
+        
+        
+        const onSearch = (e) => {
+          
+          setSearch(e.target.value)
+        
+        }
 
-    // console.log(value);
-    // setLoading(value)
+
+        
+
+  return (
+    <Layout>
+
+<Row>
+
+{
+ all_product.map((item)=>{ 
+   return<Col span={6}> 
+    {/* <Skeleton  loading={this.state.loading} > */}
+    <Link to={`/auth/panel/${item?._id}?project=${id}`}  >
+   <Card
+   
+    hoverable
+    style={{ width: 100, paddingTop: '30px', marginTop: '20px' }}
+    cover={
+      <img
+        alt="example"
+        src={item?.product_image} 
+      />
+    }
+   
+  >
+    <Meta
+     
+      title={item?.product_name}
+      description={item?.product_description}
+      
+    />
+  </Card>
+  </Link>
+  {/* </Skeleton> */}
+   </Col>
+})}
+
+
+</Row>
+       
+    </Layout>
+  )
+
 
 }
- 
-  const [form] = Form.useForm();
 
-  const onChange = (value)=> {
-    console.log(`selected ${value}`)
-
-  }
-
-
-const { TextArea } = Input;
-
-    const [visible, setVisible] = useState(false);
-
-    const showDrawer = () => {
-      setVisible(true);
-    };
+ const SearchWrap = styled.div`
   
-    const onClose = () => {
-      setVisible(false);
-    };
 
-    return (
-      <>
-        <Button type="primary" onClick={showDrawer} icon={<PlusOutlined />} style={{fontSize: "14px"}}>
-          Create
-        </Button>
-        
-        <Drawer
-          title="Create a new Product" placement="right" onClose={onClose} visible={visible} width={720}
-        >
-          <Form layout="vertical" hideRequiredMark
-           form={form}
-           name="basic"
-           initialValues={{ remember: false }}
-           onFinish={onFinish}
-           onFinishFailed={onFinishFailed}
-           autoComplete={false}
-          >
-            <Row gutter={16}>
-              <Col span={12}>
-              <Form.Item
-          label={<p className="  w-36 text-left m-0"> Product Name</p>}
-          name="product_name"
-          rules={[{ required: true, message: 'Please Input Product Name!' }]}
-        >
-         <Select
-          placeholder="Select license type"
-          onChange={onChange}
-          allowClear
-        >
-          <Option value="MODSIM">MODSIM</Option>
-          
-        </Select>
-
-
-        </Form.Item>
-               
-              </Col>
-              <Col span={12}>
-                
-              <Form.Item
-          label={<p className="  w-36 text-left m-0"> Project Name</p>}
-          name="project_name"
-          rules={[{ required: true, message: 'Please Input Project Name!' }]}
-        >
-          <Input/>
-
-        </Form.Item>
-
-
-
-
-              </Col>
-            </Row>
-
-           
-
-            {/* <Row gutter={16}>
-              <Col span={20}>
-              <Upload>
-            <Button icon={<UploadOutlined />}>Upload Product Image</Button>
-            </Upload>
-              </Col>
-              
-            </Row> */}
-            <br/>
-            <Divider />
-<Button type="primary" htmlType="submit"
-onClick={() => setVisible(false)}
-block style={{ fontSize: '14px' }}>
-      Submit
-    </Button>
-          </Form>
-        </Drawer>
-      </>
-    );
+  .ant-input-affix-wrapper{
+  padding: 0px !important;
+  padding-left: 12px !important;
+  padding-right: 8px !important;
+  border-radius: 10px !important;
+  border-color: transparent !important;
+  box-shadow: 6px 6px 5px #F1F1F1;  
   }
-
+`
