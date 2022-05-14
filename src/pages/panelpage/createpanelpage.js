@@ -1,6 +1,6 @@
 import React, {useState,useEffect} from 'react'
 import {useDispatch, useSelector} from 'react-redux'
-import { Drawer, Form, Button, Col, Row, Input, Select, DatePicker, Space } from 'antd';
+import { Drawer, Form, Button, Col, Row, Input, Select, DatePicker, Space,Descriptions } from 'antd';
 import { PlusOutlined } from '@ant-design/icons';
 import { Divider } from 'antd';
 import { EyeInvisibleOutlined, EyeTwoTone } from '@ant-design/icons';
@@ -131,18 +131,20 @@ export default function CreatePanelsettings({current_panel}) {
            onFinishFailed={onFinishFailed}
           >
 
-<div className='grid grid-cols-2 gap-1 mx-auto'>
+<div>
 <div>
 
-            <Row gutter={16}>
-              <Col span={12}>
+           <Col>
+            <Row gutter={64}>
+
+              <Col span={10}  >
               <Form.Item
                     label={<p className="  text-left m-0">Panel Type</p>}
                     name= "panel_type"
                     rules={[{ required: true, message: 'required!'}]}
                   >
                      <Select
-          placeholder="Select panel_type"
+          placeholder="Select Panel Type"
           onChange={onChange}
           style={{ width: '100%' }}
           allowClear
@@ -153,14 +155,22 @@ export default function CreatePanelsettings({current_panel}) {
 
                   </Form.Item>
               </Col>
-              <Col span={12}>
+
+            <p style={{ marginTop:'2rem', marginLeft:'2rem'}}>Frame Bar | Cross Bar</p>
+              </Row>
+
+
+
+
+              <Row gutter={64}>
+              <Col span={10}>
               <Form.Item
                     label={<p className=" text-left m-0">Compliance With IEC61439</p>}
                     name= "compliance_with_IEC61439"
                     rules={[{ required: true, message: 'required!'}]}
                   >
                      <Select
-          placeholder="Select compliance_with_IEC61439"
+          placeholder="Select Compliance With IEC61439"
           onChange={onChange}
           style={{ width: '100%' }}
           allowClear
@@ -171,9 +181,34 @@ export default function CreatePanelsettings({current_panel}) {
 
                   </Form.Item>
               </Col>
-            </Row>
 
-            <Row gutter={16}>
+              <Col span={10}>
+                     <Form.Item
+                
+                    label={<p className="  text-left m-0">Material</p>}
+                    name= "frame_material"  
+                  >
+         <Select
+          placeholder="Frame Material"  
+        >
+          <Option value="Aluzn">Aluzn</Option>
+          <Option value="GI">GI</Option>
+          <Option value="GI275 GSM">GI275 GSM</Option>
+          <Option value="CRCA">CRCA</Option>
+         
+          
+          </Select>
+          </Form.Item> 
+           </Col>
+                </Row>
+
+
+
+
+
+
+
+            <Row gutter={64}>
               <Col span={10}>
               <Form.Item
                     label={<p className="  text-left m-0">Ingress Protection</p>}
@@ -181,7 +216,7 @@ export default function CreatePanelsettings({current_panel}) {
                     rules={[{ required: true, message: 'required!'}]}
                   >
                      <Select
-          placeholder="Select ingress_protection"
+          placeholder="Select Ingress Protection"
           onChange={onChange}
           style={{ width: '100%' }}
           allowClear
@@ -192,11 +227,29 @@ export default function CreatePanelsettings({current_panel}) {
 
                   </Form.Item>
               </Col>
-            </Row>
+              <Col span={10}>
+                  <Form.Item
+                    label={<p className="  text-left m-0">Powdercoating</p>}
+                    name= "frame_powdercoating"
+                  >
+                  <Select
+                   placeholder="Frame Powdercoating"
+          
+                  >
+                <Option value="Yes">Yes</Option>
+                   <Option value="No">No</Option>
 
-            <Divider />
+                  </Select>
+                 </Form.Item>
+                  </Col>
 
-            <Row gutter={16}>
+                     </Row>
+
+
+
+
+
+            <Row gutter={64}>
               <Col span={10}>
               <Form.Item
                     label={<p className="  text-left m-0">Form of Construction</p>}
@@ -216,14 +269,16 @@ export default function CreatePanelsettings({current_panel}) {
                   </Form.Item>
 
               </Col>
+        
+              <p style={{ marginTop:'2rem', marginLeft:'2rem'}}>Doors |  Covers | Partitions</p>
               
-            </Row>
-
-<Row gutter={16}>
-<Col span={10}>
+               </Row>
 
 
-<Form.Item
+
+             <Row gutter={64}>
+            <Col span={10}>
+           <Form.Item
                     
                     label={<p className="  text-left m-0">Panel Colour</p>}
                     name="panel_colour"
@@ -245,20 +300,40 @@ export default function CreatePanelsettings({current_panel}) {
 
                   </Form.Item>
               </Col>
-            
-</Row>
+              <Col span={10}>
 
-<Row gutter={16}>
-<Col span={10}>
+           <Form.Item
+
+         label={<p className="  text-left m-0">Material</p>}
+         name= "cover_material"
+  
+          >
+          <Select
+           placeholder="Cover Material"
+
+            >
+           <Option value="Aluzn">Aluzn</Option>
+           <Option value="GI">GI</Option>
+           <Option value="GI275 GSM">GI275 GSM</Option>
+           <Option value="CRCA">CRCA</Option>
+
+          </Select>
+          </Form.Item>
+           </Col>
+           
+           </Row>
+
+           <Row gutter={64}>
+           <Col span={10}>
 
 
-<Form.Item
+            <Form.Item
                     label={<p className="  text-left m-0">Powder Coating Finish</p>}
                     name= "powder_coating_finish"
                     rules={[{ required: true, message: 'required!'}]}
                   >
                      <Select
-          placeholder="Select powder coating finish"
+          placeholder="Select Powder Coating Finish"
           onChange={onChange}
           style={{ width: '100%' }}
           allowClear
@@ -270,20 +345,37 @@ export default function CreatePanelsettings({current_panel}) {
 
                   </Form.Item>
               </Col>
+              <Col span={10}>
+
+           <Form.Item
+           label={<p className="  text-left m-0">Powdercoating</p>}
+            name= "cover_powdercoating"  
+            >
+         <Select
+         placeholder="Cover Powdercoating"
+
+          >
+          <Option value="Yes">Yes</Option>
+            <Option value="No">No</Option>  
+          </Select>
+          </Form.Item>
+
+           </Col>
             
-</Row>
-
-<Row gutter={16}>
-<Col span={10}>
+          </Row>
 
 
-<Form.Item
+
+           <Row gutter={64}>
+           <Col span={10}>
+
+            <Form.Item
                     label={<p className="  text-left m-0">Panel Short Circuit Rating</p>}
                     name= "panel_short_circuit_rating"
                     rules={[{ required: true, message: 'required!'}]}
                   >
                      <Select
-          placeholder="Select Panel short circuit rating"
+          placeholder="Select Panel short Circuit Rating"
           onChange={onChange}
           style={{ width: '100%' }}
           allowClear
@@ -294,28 +386,26 @@ export default function CreatePanelsettings({current_panel}) {
           <Option value="50kA for 3 Sec">50kA for 3 Sec</Option>
           <Option value="65kA for 1 Sec">65kA for 1 Sec</Option>
           <Option value="100kA for 1 Sec">100kA for 1 Sec</Option>
-          
-
 
         </Select>
 
                   </Form.Item>
               </Col>
-            
-</Row>
+           
+             </Row>
 
 
-<Row gutter={16}>
-<Col span={10}>
+            <Row gutter={64}>
+            <Col span={10}>
 
 
-<Form.Item
+            <Form.Item
                     label={<p className="  text-left m-0">Required Busbar Support</p>}
                     name= "required_busbar_support"
                     rules={[{ required: true, message: 'required!'}]}
                   >
                      <Select
-          placeholder="Select required_busbar_support"
+          placeholder="Select Required Busbar Support"
           onChange={onChange}
           style={{ width: '100%' }}
           allowClear
@@ -326,14 +416,14 @@ export default function CreatePanelsettings({current_panel}) {
 
                   </Form.Item>   
               </Col>
-            
-</Row>
+          
+             </Row>
 
-<Row gutter={16}>
-<Col span={10}>
+            <Row gutter={64}>
+            <Col span={10}>
 
 
-<Form.Item
+             <Form.Item
                     label={<p className="  text-left m-0">Required Base Plinth</p>}
                     name="required_base_plinth"
                     rules={[{ required: true, message: 'required!'}]}
@@ -351,154 +441,69 @@ export default function CreatePanelsettings({current_panel}) {
                   </Form.Item>            
             
               </Col>
+              <div id='addlis'>
+            <Button type="primary" htmlType="submit"
+             onClick={() => setVisible(false)}
+             block style={{ fontSize: '14px', width:'10rem' , marginLeft:'25rem' }}>
+               Save
+             </Button>
+         
+            </div>
             
-</Row>
-</div>
+            </Row>
 
-<div>
-
-<Row gutter={16}>
-<Col span={10}>
+          </Col>
+           </div>
 
 
-<p className='flex justify-center'>Frame Bar | Cross Bar</p>
-                  <Form.Item
-                
-                    label={<p className="  text-left m-0">Material</p>}
-                    name= "frame_material"
-                    
-                  >
-  <Select
-          placeholder="frame material"
-          
+
+              </div>
+
+  <div id='addlis' >
+
+
+  <Descriptions style={{marginTop:'2rem'}}
+       horizontal 
+       Row={1}
         >
-          <Option value="Aluzn">Aluzn</Option>
-          <Option value="GI">GI</Option>
-         
-          
-        </Select>
-  </Form.Item>
-              </Col>
-            
-</Row>
 
-<Row gutter={16}>
-<Col span={10}>
-
-
-<Form.Item
-                    label={<p className="  text-left m-0">Powdercoating</p>}
-                    name= "frame_powdercoating"
-
-                   
-                  >
-   <Select
-          placeholder="frame powdercoating"
-          
-        >
-          <Option value="Yes">Yes</Option>
-          <Option value="No">No</Option>
-         
-          
-        </Select>
-  </Form.Item>
-              </Col>
-            
-</Row>
-
-<Row gutter={16}>
-<Col span={10}>
-
-
-<p className='flex justify-center'>Doors |  Covers | Partitions</p>
-                  <Form.Item
-                
-                    label={<p className="  text-left m-0">Material</p>}
-                    name= "cover_material"
-                    
-                  >
-  <Select
-          placeholder="cover material"
-          
-        >
-          <Option value="Aluzn">Aluzn</Option>
-          <Option value="GI">GI</Option>
-         
-          
-        </Select>
-  </Form.Item>
-              </Col>
-            
-</Row>
-
-<Row gutter={16}>
-<Col span={10}>
-
-
-<Form.Item
-                    label={<p className="  text-left m-0">Powdercoating</p>}
-                    name= "cover_powdercoating"
-                    
-                  >
-   <Select
-          placeholder="cover powdercoating"
-          
-        >
-          <Option value="Yes">Yes</Option>
-          <Option value="No">No</Option>
-         
-          
-        </Select>
-  </Form.Item>
-
-              </Col>
-            
-</Row>
-
-
-<div id='addlis' className='flex justify-center mt-20 '>
-<Button type="primary" htmlType="submit"
-onClick={() => setVisible(false)}
-block style={{ fontSize: '14px' }}>
-     Save
-    </Button>
-         
-          </div>
-          </div>
-
-  </div>
-  <div id='addlis' className='grid grid-cols-4 gap-4 mt-12'  >
-
-
-
-  <Form.Item  wrapperCol={{ span: 12, offset: 9}}>
-    <Button type="primary" htmlType="submit">
-      <span className='px-5 customspan'> View BOM</span>
+  <Form.Item >
+    <Button type="primary" htmlType="submit"
+    block style={{ fontSize: '14px', width:'10rem' , }}>
+      
+      <span className='px-5 '> View BOM</span>
     </Button>
   </Form.Item>
 
-  <Form.Item  wrapperCol={{ span: 12, offset: 9}}>
-    <Button type="primary" htmlType="submit">
-      <span className='px-5 customspan'> Download BOM</span>
+  <Form.Item >
+    <Button type="primary" htmlType="submit"
+    block style={{ fontSize: '14px', width:'10rem' ,  }}>
+      <span className='px-5 '> Download BOM</span>
     </Button>
   </Form.Item>
 
-  <Form.Item  wrapperCol={{ span: 12, offset: 9}}>
-    <Button disabled type="primary" htmlType="submit">
-      <span className='px-5 customspan'> Request Drawing</span>
-    </Button >
-  </Form.Item  >
+ 
 
-  <Form.Item  wrapperCol={{ span: 12, offset: 9}}>
-    <Button type="primary" htmlType="submit">
+  <Form.Item  >
+    <Button type="primary" htmlType="submit"
+    block style={{ fontSize: '14px', width:'10rem' , }}>
 
     <a  target='_blank' href={`https://modsimcanvas.web.app/panel/${current_panel?._id}`}> Configure Now</a>
     </Button>
   </Form.Item>
 
 
-</div>
+  <Form.Item  >
+    <Button disabled type="primary" htmlType="submit">
+      <span className='px-5 '> Request Drawing</span>
+    </Button >
+  </Form.Item  >
 
+
+
+</Descriptions>
+
+</div>
 
           </Form>
         

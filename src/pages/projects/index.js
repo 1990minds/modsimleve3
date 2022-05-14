@@ -15,7 +15,7 @@ import { keyUri, config } from '../../key'
 import styled from 'styled-components'
 import { Tabs, Button, Input,Upload } from 'antd';
 import { Row, Col } from 'antd';
-// import './index.css'
+import './index.css'
 
 
 const { Search } = Input;
@@ -55,11 +55,13 @@ export default function Project() {
 console.log(filter);
 useEffect(()=>{
 
-  axios.get(keyUri.BACKEND_URI +`/project?search=${debouncedText}`).then(({data})=>{
-    
+  axios.get(keyUri.BACKEND_URI +`/parts?search=${debouncedText}`).then(({data})=>{
+    console.log(
+      'text'
+    );
     console.log({data})
 
-    setFilter(data?.filterproject)
+    setFilter(data?.filterparts)
      })
 setLoading(false)
  }, [dispatch, debouncedText])
@@ -80,11 +82,7 @@ useEffect(()=>{
       const onSearch = (e) => {
         setLoading(true)
         setSearch(e.target.value)
-      
       }
-        
-        
-
 
   return (
     <Layout>

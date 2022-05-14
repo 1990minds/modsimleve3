@@ -10,7 +10,7 @@ import { keyUri, config } from '../../key'
 import styled from 'styled-components'
 import { Tabs, Button, Input,Upload } from 'antd';
 import { Row, Col } from 'antd';
-// import './index.css'
+import './index.css'
 import {fetchAllcompanycustomers,customersSelector} from '../../api/customers'
 import Createcustomers from './createcustomers'
 import {authenticateSelector} from '../../api/authSlice'
