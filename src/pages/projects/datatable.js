@@ -1,5 +1,7 @@
 
 import { Pagination } from 'antd';
+import styled from 'styled-components'
+
 import {
     Row,
     Col,
@@ -185,7 +187,7 @@ import {deleteproject,deleteManyproject} from '../../api/project'
   
     return (
       <>
-        <div className="tabled">
+        <div className="tabled" >
           <Row gutter={[24, 0]}>
             <Col xs="24" xl={24}>
             <Card
@@ -218,7 +220,7 @@ import {deleteproject,deleteManyproject} from '../../api/project'
    
  // }}
  
-
+ style={{ cursor: 'pointer' }}
                  onRow={(record, rowIndex) => {
                  return {
                  onClick: event => {  history.push(`/auth/product/${record._id}`) }, // click row
@@ -244,4 +246,9 @@ import {deleteproject,deleteManyproject} from '../../api/project'
   
   export default ProjectTable;
   
- 
+  const SearchWrap = styled.div`
+
+  .ant-table-row ant-table-row-level-0{
+    cursor: pointer !important;
+  }
+  `

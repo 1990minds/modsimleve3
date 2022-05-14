@@ -203,7 +203,7 @@ import Editpanel from './editpanel';
                     columns={columns}
                     dataSource={data}
                     className="ant-border-space "
-
+                    style={{ cursor: 'pointer' }}
                     onRow={(record, rowIndex) => {
                         return {
                         onClick: event => {  history.push(`/auth/panelpage/${record._id}`) }, // click row
