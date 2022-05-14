@@ -123,4 +123,6 @@ placeholder="Search" onChange={onSearch}  />
   border-color: transparent !important;
   box-shadow: 6px 6px 5px #F1F1F1;  
   }
+
+  
 `

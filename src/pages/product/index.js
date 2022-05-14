@@ -12,7 +12,7 @@ import {SearchOutlined,SyncOutlined} from '@ant-design/icons'
 import { useDebounce } from "use-debounce";
 import { keyUri, config } from '../../key'
 import styled from 'styled-components'
-import { Tabs, Button, Input,Upload } from 'antd';
+import { Tabs,Skeleton, Button , Input,Upload } from 'antd';
 import { Row, Col } from 'antd';
 import {  fetchAllproduct,productSelector} from '../../api/product'
 import { fetchProjectProducts } from '../../api/product'
@@ -26,7 +26,21 @@ const { Meta } = Card;
 
 const { Search } = Input;
 
+
+// state = {
+//   loading: false,
+// };
+
+// showSkeleton = () => {
+//   this.setState({ loading: true });
+//   setTimeout(() => {
+//     this.setState({ loading: false });
+//   }, 3000);
+// };
+
 export default function Product(item) {
+
+
 
     const dispatch = useDispatch()
     const { loading ,current_project    , } = useSelector(projectSelector) 
@@ -71,19 +85,22 @@ console.log(filter);
         }
 
 
+        
+
   return (
     <Layout>
 
-      <div>
+<Row>
 
-{/* <div style={{display:'grid', gridColumn: '4', gap:'6'}} className='grid grid-cols-4 gap-x-28'> */}
-<div style={{display: 'flex'}}>
 {
  all_product.map((item)=>{ 
-   return  <Link to={`/auth/panel/${item?._id}?project=${id}`}  >
-
+   return<Col span={6}> 
+    {/* <Skeleton  loading={this.state.loading} > */}
+    <Link to={`/auth/panel/${item?._id}?project=${id}`}  >
    <Card
-    
+   
+    hoverable
+    style={{ width: 300, paddingTop: '30px', marginTop: '20px' }}
     cover={
       <img
         alt="example"
@@ -99,31 +116,13 @@ console.log(filter);
       
     />
   </Card>
-  </Link> 
+  </Link>
+  {/* </Skeleton> */}
+   </Col>
 })}
-</div>
 
 
-<Row>
-      <Col span={8}>
-      {/* <Createproduct  current_project={current_project}/> */}
-      </Col>
-      <Col span={3} offset={10} >
-      {/* <SearchWrap>
-
-<Input value={search}  className="px-4 py-2 focus:outline-none"
-prefix ={  <SearchOutlined  style={{color:'#3e79f7', fontWeight:'bold' ,padding:'0px'}} />
-}
-placeholder="Search" onChange={onSearch}  />
-</SearchWrap> */}
- 
-        </Col>
-        <Col span={3} className='' style={{ display: 'flex', justifyContent: 'end' }}>
-        {/* <ExcelBtn data={all_product} /> */}
-      </Col>
-      </Row>
-
-      </div>
+</Row>
        
     </Layout>
   )

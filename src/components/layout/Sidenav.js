@@ -939,7 +939,7 @@ c-0.01-0.42-0.32-0.5-0.66-0.51C-57.1,15.18-57.68,15.19-58.26,15.19z"fill={color}
             {/* <span className="label">Broadcast</span>
           </NavLink>
         </Menu.Item> */}
-        <Menu.Item key="7">
+        {/* <Menu.Item key="7">
           <NavLink to="/auth/chats">
             <span className="icon">{chats}</span>
             <span className="label">Chats</span>
@@ -950,7 +950,7 @@ c-0.01-0.42-0.32-0.5-0.66-0.51C-57.1,15.18-57.68,15.19-58.26,15.19z"fill={color}
             <span className="icon">{logs}</span>
             <span className="label">Logs</span>
           </NavLink>
-        </Menu.Item>
+        </Menu.Item> */}
       </Menu>
       <div className="aside-footer">
         <div
