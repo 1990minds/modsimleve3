@@ -1,0 +1,44 @@
+.ant-input{
+    background-color: transparent !important;
+}
+
+/* .ant-input-affix-wrapper{
+    padding: 0px !important;
+    padding-left: 12px !important;
+    padding-right: 8px !important;
+    border-radius: 10px !important;
+    border-color: transparent !important;
+    box-shadow: 6px 6px 5px #F1F1F1;
+} */
+
+.ant-input-prefix{
+    padding-right: 8px!important;
+}
+
+
+.topnav .search-container {
+    float: right;
+  }
+  
+  .topnav input[type=text] {
+    padding: 6px;
+    margin-top: 8px;
+    font-size: 17px;
+    border: none;
+  }
+  
+  .topnav .search-container button {
+    float: right;
+    padding: 6px 10px;
+    margin-top: 8px;
+    margin-right: 16px;
+    background: #ddd;
+    font-size: 17px;
+    border: none;
+    cursor: pointer;
+  }
+  
+  .topnav .search-container button:hover {
+    background: #ccc;
+  }
+  

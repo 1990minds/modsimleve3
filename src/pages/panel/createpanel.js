@@ -1,6 +1,6 @@
 import React, {useState,useEffect} from 'react'
 import {useDispatch, useSelector} from 'react-redux'
-import { Drawer, Form, Button, Col, Row, Input, Select, TextArea , Space } from 'antd';
+import { Drawer, Form, Button, Col, Row, Input, Select, TextArea , Space,InputNumber } from 'antd';
 import { PlusOutlined } from '@ant-design/icons';
 import { Divider } from 'antd';
 import {fetchAllproduct, productSelector, } from '../../api/product'
@@ -44,6 +44,7 @@ export default function CreatePanel({cancel,project_id,product_id}) {
     ambient_temperature:values.ambient_temperature,
      panel_name:values.panel_name,
      busbar_material:values.busbar_material,
+     panel_quntity:values.panel_quntity,
      project_id:project_id,
      product_id:product_id
   }
@@ -211,6 +212,21 @@ const { TextArea } = Input;
         </Select>
 
 </Form.Item>
+
+
+              </Col>
+            </Row>
+
+            <Row gutter={16}>
+              <Col span={12}>
+              <Form.Item
+          label={<p className="  w-36 text-left m-0">Panel Quntity</p>}
+          name="panel_quntity"
+          rules={[{ required: true, message: 'Please Input Panel Quntity!' }]}
+        >
+              <InputNumber min={1} max={25} defaultValue={1} onChange={onChange} />
+</Form.Item>
+
               </Col>
             </Row>
  

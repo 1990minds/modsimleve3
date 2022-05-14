@@ -1,6 +1,6 @@
 import React, {useState,useEffect} from 'react'
 import {useDispatch, useSelector} from 'react-redux'
-import { Drawer, Form, Button, Col, Row, Input, Select, DatePicker, Space } from 'antd';
+import { Drawer, Form, Button, Col, Row, Input, Select, DatePicker, Space,InputNumber } from 'antd';
 import { PlusOutlined } from '@ant-design/icons';
 import { Divider } from 'antd';
 import { EyeInvisibleOutlined, EyeTwoTone } from '@ant-design/icons';
@@ -41,7 +41,7 @@ export default function EditPanel({current_panel,}) {
                 ambient_temperature:current_panel&& current_panel. ambient_temperature,
                 busbar_material:current_panel && current_panel.busbar_material,
                 rated_voltage:current_panel && current_panel.rated_voltage,
-            
+                panel_quntity:current_panel && current_panel.panel_quntity,
                 });
           }, [current_panel])
                   
@@ -55,6 +55,7 @@ export default function EditPanel({current_panel,}) {
                 ambient_temperature:values.ambient_temperature,
                  panel_name:values.panel_name,
                  busbar_material:values.busbar_material,
+                 panel_quntity:values.panel_quntity,
                 
               }
           dispatch(updatePanel(current_panel._id, paneldata))
@@ -197,6 +198,20 @@ export default function EditPanel({current_panel,}) {
         </Select>
 
 </Form.Item>
+
+
+              </Col>
+            </Row>
+            <Row gutter={16}>
+              <Col span={12}>
+              <Form.Item
+          label={<p className="  w-36 text-left m-0">Panel Quntity</p>}
+          name="panel_quntity"
+          rules={[{ required: true, message: 'Please Input Panel Quntity!' }]}
+        >
+              <InputNumber min={1} max={25} defaultValue={1} onChange={onChange} />
+</Form.Item>
+
               </Col>
             </Row>
 

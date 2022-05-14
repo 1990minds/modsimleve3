@@ -1,6 +1,6 @@
 import React, {useState,useEffect} from 'react'
 import {useDispatch, useSelector} from 'react-redux'
-import { Drawer, Form, Button, Col, Row, Input, Select, DatePicker, Space } from 'antd';
+import { Drawer, Form, Button, Col, Row, Input, Select, DatePicker, Space,Descriptions } from 'antd';
 import { PlusOutlined } from '@ant-design/icons';
 import { Divider } from 'antd';
 import { EyeInvisibleOutlined, EyeTwoTone } from '@ant-design/icons';
@@ -98,36 +98,29 @@ export default function EditPanel({current_panel,}) {
 
 <div >
 
-<div> 
-<p>Created Date : </p>
-{/* <p>Project Name {current_panel?.}</p> */}
-<p>Panel Name  : </p>
-<p>Panel Category: </p>
-<p>Rated Voltage : </p>
-<p>Ambient Temperature : </p>
-<p>Busbar Material : </p>
-</div>
+<div>
+        <Descriptions
+       horizontal 
+       column={1} 
+       
+        >
+          <Descriptions.Item label="Created Date "> { moment(current_panel?.createdAt).format('DD/MM/YYYY')}</Descriptions.Item>
+          <Descriptions.Item label="Panel Name "> {current_panel?.panel_name}</Descriptions.Item>
+          <Descriptions.Item label="Panel Category"> {current_panel?.panel_category}</Descriptions.Item>
+          <Descriptions.Item label="Rated Voltage">{current_panel?.rated_voltage}</Descriptions.Item>
+          <Descriptions.Item label="Ambient Temperature ">{current_panel?.ambient_temperature}</Descriptions.Item>
+          <Descriptions.Item label="Busbar Material">{current_panel?.busbar_material}</Descriptions.Item>
+          
+        </Descriptions>
+      </div>
 
-<div> 
 
-<p> { moment(current_panel?.createdAt).format('DD/MM/YYYY')} </p>
-{/* <p> {current_panel?.}</p> */}
-<p> {current_panel?.panel_name}</p>
-<p> {current_panel?.panel_category}</p>
-<p> {current_panel?.rated_voltage}</p>
-<p> {current_panel?.ambient_temperature}</p>
-<p> {current_panel?.busbar_material}</p>
-</div>
 
 </div>
            
 
         
-<Button type="primary" htmlType="submit"
-onClick={() => setVisible(false)}
-block style={{ fontSize: '14px' }}>
-      Update
-    </Button>
+
           </Form>
         
       </>

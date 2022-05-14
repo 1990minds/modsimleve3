@@ -17,7 +17,7 @@ import { Tabs, Button, Input,Upload } from 'antd';
 import { Row, Col } from 'antd';
 import {useParams,  useLocation} from 'react-router-dom'
 
-// import './index.css'
+import './index.css'
 
 const { Search } = Input;
 

@@ -17,7 +17,7 @@ import {useParams} from 'react-router-dom'
 import {fetchOneproduct, productSelector} from '../../api/product'
 import CreatePanelpage from './createpanelpage';
 import EditPanel from './editpanel';
-// import './index.css'
+import './index.css'
 
 
 const { Search } = Input;
@@ -49,6 +49,8 @@ console.log({current_panel});
     dispatch(fetchOnepanel(id))
    
   }, [dispatch])
+
+  
   
 
   const [isModalVisible, setIsModalVisible] = useState(false);
@@ -91,8 +93,7 @@ console.log(filter);
       <Col span={24} >
      
 <div className='max-w-xl sm:mx-auto lg:max-w-7xl'>
-      <h1 className='text-lg underline underline-offset-1 uppercase inline-block align-middle decoration-sky-500 font-semibold'>Project  </h1>
-      <p className='text-lg font-semibold '>Panel</p>
+      <h1 style={{ fontSize:'20px'}}>Panel  </h1>
        <EditPanel current_panel={current_panel}/>
        
 
@@ -100,7 +101,7 @@ console.log(filter);
     </div>
 
     <div className='max-w-xl sm:mx-auto lg:max-w-7xl'>
-      <h1 className='text-lg underline underline-offset-1 uppercase inline-block align-middle decoration-sky-500 font-semibold'> Panel details  </h1>
+      <h1  style={{marginTop:'3rem', marginBottom:"2rem", fontSize:'20px'}}> Panel Settings  </h1>
        {/* <Editpanel all_panel={all_panel} /> */}
        <CreatePanelpage current_panel={current_panel}/>
        
