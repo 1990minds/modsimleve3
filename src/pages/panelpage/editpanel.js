@@ -119,8 +119,6 @@ export default function EditPanel({current_panel,}) {
 </div>
            
 
-        
-
           </Form>
         
       </>

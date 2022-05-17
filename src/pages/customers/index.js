@@ -16,8 +16,6 @@ import Createcustomers from './createcustomers'
 import {authenticateSelector} from '../../api/authSlice'
 
 
-
-
 const { Search } = Input;
 
   export default function Database() {
