@@ -25,6 +25,7 @@ import {
 import { useHistory} from 'react-router-dom'
 import {deletepanel,deleteManypanel} from '../../api/panel'
 import Editpanel from './editpanel';
+import moment from 'moment';
   
   function PanelTable({data,current_product}) {
 
@@ -102,6 +103,16 @@ import Editpanel from './editpanel';
         title: ' Panel Category',
         dataIndex: 'panel_category',
         key: 'panel_category',
+        
+      },
+
+      {
+        title: 'Created Date',
+        dataIndex: 'createdDate',
+        key: 'createdDate',
+        render:(item)=>{
+          return <p > {moment(item).format('DD/MM/YYYY')}</p>
+        }
         
       },
 
@@ -209,9 +220,6 @@ import Editpanel from './editpanel';
                         onClick: event => {  history.push(`/auth/panelpage/${record._id}`) }, // click row
                         };
                         }}
-
-
-
 
 
                   >
