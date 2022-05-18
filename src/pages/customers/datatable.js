@@ -4,7 +4,7 @@ import {
     Row,
     Col,
     Card,
-    Radio,
+    Tooltip,
     Table,
     Space,
     Drawer,
@@ -123,19 +123,18 @@ console.log(current_customers);
         key: 'action',
         render: (id) => (
           <Space size="middle">
-            
+             <Tooltip placement="topLeft" title="Edit existing user" arrowPointAtCenter>
           <h5 className="text-secondary" >
-          
-            <FaRegEdit  onClick={(e)=>handleClickEdit(e, true, id)} className="text-secondary mt-2"  /> 
-                      
-            
+            <FaRegEdit style={{cursor:"pointer"}} onClick={(e)=>handleClickEdit(e, true, id)} className="text-secondary mt-2"  /> 
             </h5>
+            </Tooltip>
+            <Tooltip placement="topLeft" title="Delete existing user" arrowPointAtCenter>
         <h5 className="text-danger">
             <DeleteConfirm confirm={(e)=>confirm(e, id)} title="customers" cancel={cancel} >
                 <FaRegTrashAlt style={{cursor:"pointer"}}className="text-secondary mt-2"  />
             </DeleteConfirm>
         </h5>
-
+        </Tooltip>
         </Space>
         ),
       },
@@ -196,11 +195,13 @@ console.log(current_customers);
             </Col>
           </Row>
         </div>
+       
                    <Drawer
           title="Update a existing user" placement="right" onClose={onClose} visible={visible} width={720}
         >
           <Editcustomers current_customers={current_customers} cancel={onClose}/>
         </Drawer>
+       
       </>
     );
   }

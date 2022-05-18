@@ -8,6 +8,7 @@ import {
     Table,
     Space,
     Drawer,
+    Menu, Dropdown, Button 
   } from "antd";
   import { useState } from "react";
   import { ToTopOutlined } from "@ant-design/icons";
@@ -69,13 +70,41 @@ import moment from 'moment';
 
   const dispatch = useDispatch()
 
+  const handleMenuClick = e => {
+    if (e.key === '3') {
+      setVisible(false);
+    }
+  };
+
+  const handleVisibleChange = flag => {
+    setVisible(flag);
+  };
+
+  const menu = (
+    <Menu
+      onClick={handleMenuClick}
+      items={[
+        {
+          label: 'Clicking me will not close the menu.',
+          key: '1',
+        },
+        {
+          label: 'Clicking me will not close the menu also.',
+          key: '2',
+        },
+        {
+          label: 'Clicking me will close the menu.',
+          key: '3',
+        },
+      ]}
+    />
+  );
+
 
   const onClose = () => {
     setVisible(false);
     setpanel(null)
   };
-
-
 
   const columns = [
       
@@ -161,6 +190,18 @@ import moment from 'moment';
                         <DeleteConfirm confirm={(e)=>confirm(e, id)} title="panel" cancel={cancel} >
                             <FaRegTrashAlt style={{cursor:"pointer"}} className="text-secondary text-lg  mt-2"  />
                         </DeleteConfirm>
+                    </h5>
+                    <h5>
+                    <Dropdown overlay={menu} onVisibleChange={handleVisibleChange} visible={visible}>
+      <a onClick={e => e.preventDefault()}>
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-dots-vertical" width="20" height="20" viewBox="0 0 24 24" stroke-width="1.5" stroke="#000000" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <circle cx="12" cy="12" r="1" />
+  <circle cx="12" cy="19" r="1" />
+  <circle cx="12" cy="5" r="1" />
+                    </svg>
+                    </a>
+    </Dropdown>
                     </h5>
                   </Space>
               </a>

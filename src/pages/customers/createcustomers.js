@@ -1,5 +1,5 @@
 
-import { Drawer, Form, Button, Col, Row, Input, Select, DatePicker, Space } from 'antd';
+import { Drawer, Form, Button, Col, Row, Input, Select, DatePicker, Tooltip } from 'antd';
 import { PlusOutlined } from '@ant-design/icons';
 import { Divider } from 'antd';
 import {useDispatch, useSelector} from 'react-redux'
@@ -65,10 +65,11 @@ export default function CreateCustomer({cancel}) {
   
     return (
       <>
+      <Tooltip placement="topLeft" title="Creating a new user" arrowPointAtCenter>
         <Button type="primary" onClick={showDrawer} icon={<PlusOutlined />} style={{fontSize: "14px" }}>
           Create
         </Button>
-        
+        </Tooltip>
           <Drawer
           title="Create Customer" placement="right" onClose={onClose} visible={visible} width={720} style={{ fontWeight: '600'}}
         >

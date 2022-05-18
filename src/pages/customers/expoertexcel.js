@@ -4,6 +4,7 @@ import ReactExport from "react-export-excel";
 import { DownloadOutlined  } from '@ant-design/icons';
 import moment from 'moment'
 import { render } from '@testing-library/react';
+import { Tooltip } from 'antd';
 
 const ExcelFile = ReactExport.ExcelFile;
 const ExcelSheet = ReactExport.ExcelFile.ExcelSheet;
@@ -17,7 +18,11 @@ export default function ExportExcel({data}) {
     return (
 
        
-        <ExcelFile filename="Customer" element={<Button icon={<DownloadOutlined  style={{transform:"translateY(2px)",fontWeight: "700",  fontSize: '20px' }}/>} className="mx-2" type="primary" style={{fontSize: '14px'}}>Download</Button>}>
+        <ExcelFile filename="Customer" element={ 
+        <Button icon={<DownloadOutlined  style={{transform:"translateY(2px)",fontWeight: "700",  fontSize: '20px' }}/>} 
+        className="mx-2" type="primary" style={{fontSize: '14px'}}>Download
+        </Button>
+    }>
                 
         <ExcelSheet data={data} name="Customer" >
 

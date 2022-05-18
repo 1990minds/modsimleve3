@@ -6,7 +6,7 @@ import {
     Row,
     Col,
     Card,
-    Radio,
+    Tooltip,
     Table,
     Space,
     Drawer,
@@ -205,6 +205,7 @@ import {deleteproject,deleteManyproject} from '../../api/project'
                 }
               >
                 <div className="table-responsive" >
+               
                   <Table
                   pagination={{
                     onChange(current) {
@@ -219,16 +220,18 @@ import {deleteproject,deleteManyproject} from '../../api/project'
  //   expandedRowRender: record => <p style={{ margin: 0 }}>{record.contact_person}</p>,
    
  // }}
- 
- style={{ cursor: 'pointer' }}
+                 style={{ cursor: 'pointer' }}
                  onRow={(record, rowIndex) => {
                  return {
                  onClick: event => {  history.push(`/auth/product/${record._id}`) }, // click row
                  };
                  }}
+
                    
+                 
                   >
                     </Table>
+                    
                 </div>
               </Card>
             </Col>
