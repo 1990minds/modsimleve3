@@ -84,9 +84,6 @@ console.log(filter);
         
         }
 
-
-        
-
   return (
     <Layout>
 

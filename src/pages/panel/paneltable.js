@@ -140,7 +140,7 @@ import moment from 'moment';
         dataIndex: 'createdDate',
         key: 'createdDate',
         render:(item)=>{
-          return <p > {moment(item).format('DD/MM/YYYY')}</p>
+          return <p >  { moment(current_panel?.createdAt).format('DD/MM/YYYY')}</p>
         }
         
       },
