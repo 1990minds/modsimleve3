@@ -13,7 +13,7 @@ import {SearchOutlined,SyncOutlined} from '@ant-design/icons'
 import { useDebounce } from "use-debounce";
 import { keyUri, config } from '../../key'
 import styled from 'styled-components'
-import { Tabs, Button, Input,Upload } from 'antd';
+import { Tabs, Tooltip, Input,Upload } from 'antd';
 import { Row, Col } from 'antd';
 import {useParams,  useLocation} from 'react-router-dom'
 
@@ -96,6 +96,7 @@ useEffect(()=>{
       <Createpanel project_id ={project} product_id={id}/>
       </Col>
       <Col span={3} offset={10} >
+      <Tooltip placement="topLeft" title="Search for Name, Email, Phone No" arrowPointAtCenter>
       <SearchWrap>
 
 <Input value={search}  className="px-4 py-2 focus:outline-none"
@@ -103,7 +104,7 @@ prefix ={  <SearchOutlined  style={{color:'#3e79f7', fontWeight:'bold' ,padding:
 }
 placeholder="Search" onChange={onSearch}  />
 </SearchWrap>
- 
+ </Tooltip>
         </Col>
         <Col span={3} className='' style={{ display: 'flex', justifyContent: 'end' }}>
         <ExcelBtn data={product_panels} />

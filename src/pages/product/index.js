@@ -18,7 +18,7 @@ import {  fetchAllproduct,productSelector} from '../../api/product'
 import { fetchProjectProducts } from '../../api/product'
 import {useParams} from 'react-router-dom'
 import {useLocation, Link} from 'react-router-dom'
-import { Card, Avatar } from 'antd';
+import { Card, Tooltip } from 'antd';
 // import './index.css'
 
 const { Meta } = Card;
@@ -96,6 +96,7 @@ console.log(filter);
  all_product.map((item)=>{ 
    return<Col span={6}> 
     {/* <Skeleton  loading={this.state.loading} > */}
+    <Tooltip placement="topLeft" title="Click to enter" arrowPointAtCenter>
     <Link to={`/auth/panel/${item?._id}?project=${id}`}  >
    <Card
    
@@ -117,6 +118,7 @@ console.log(filter);
     />
   </Card>
   </Link>
+  </Tooltip>
   {/* </Skeleton> */}
    </Col>
 })}
