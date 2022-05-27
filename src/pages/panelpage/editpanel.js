@@ -12,7 +12,7 @@ import moment from 'moment';
 import {FaPanelAlt, FaLock} from 'react-icons/fa'
 import Editpanel from './editpanel';
 import {useParams} from 'react-router-dom'
-
+import styled from 'styled-components'
 
 const { Option } = Select;
 
@@ -95,14 +95,11 @@ export default function EditPanel({current_panel,}) {
            onFinishFailed={onFinishFailed}
           >
 
-
-<div >
-
-<div>
+<DataWrap>
         <Descriptions
        horizontal 
-       column={1} 
-       
+       column={3} 
+       size={16}
         >
           <Descriptions.Item label="Created Date "> { moment(current_panel?.createdAt).format('DD/MM/YYYY')}</Descriptions.Item>
           <Descriptions.Item label="Panel Name "> {current_panel?.panel_name}</Descriptions.Item>
@@ -112,12 +109,9 @@ export default function EditPanel({current_panel,}) {
           <Descriptions.Item label="Busbar Material">{current_panel?.busbar_material}</Descriptions.Item>
           
         </Descriptions>
-      </div>
+      </DataWrap>
 
-
-
-</div>
-           
+      <Divider />
 
           </Form>
         
@@ -125,3 +119,14 @@ export default function EditPanel({current_panel,}) {
     );
   }
 
+
+  const DataWrap = styled.div`
+
+.ant-descriptions-item-label{
+  font-size: 16px !important;
+}
+
+.ant-descriptions-item-content {
+  font-size: 16px !important;
+}
+`
