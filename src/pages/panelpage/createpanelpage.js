@@ -135,9 +135,9 @@ export default function CreatePanelsettings({current_panel}) {
 <div>
 
            <Col>
-            <Row gutter={64}>
+            <Row gutter={24}>
 
-              <Col span={10}  >
+              <Col xs={2} sm={4} md={6} lg={8} xl={5}  >
               <Form.Item
                     label={<p className="  text-left m-0">Panel Type</p>}
                     name= "panel_type"
@@ -155,15 +155,7 @@ export default function CreatePanelsettings({current_panel}) {
 
                   </Form.Item>
               </Col>
-
-            <p style={{ marginTop:'2rem', marginLeft:'2rem'}}>Frame Bar | Cross Bar</p>
-              </Row>
-
-
-
-
-              <Row gutter={64}>
-              <Col span={10}>
+              <Col xs={2} sm={4} md={6} lg={8} xl={5}>
               <Form.Item
                     label={<p className=" text-left m-0">Compliance With IEC61439</p>}
                     name= "compliance_with_IEC61439"
@@ -182,7 +174,7 @@ export default function CreatePanelsettings({current_panel}) {
                   </Form.Item>
               </Col>
 
-              <Col span={10}>
+              <Col xs={2} sm={4} md={6} lg={8} xl={5}>
                      <Form.Item
                 
                     label={<p className="  text-left m-0">Material</p>}
@@ -200,16 +192,12 @@ export default function CreatePanelsettings({current_panel}) {
           </Select>
           </Form.Item> 
            </Col>
-                </Row>
 
 
+           
+            {/* <p style={{ marginTop:'2rem', marginLeft:'2rem'}}>Frame Bar | Cross Bar</p> */}
 
-
-
-
-
-            <Row gutter={64}>
-              <Col span={10}>
+            <Col xs={2} sm={4} md={6} lg={8} xl={5}>
               <Form.Item
                     label={<p className="  text-left m-0">Ingress Protection</p>}
                     name="ingress_protection"
@@ -227,7 +215,7 @@ export default function CreatePanelsettings({current_panel}) {
 
                   </Form.Item>
               </Col>
-              <Col span={10}>
+              <Col xs={2} sm={4} md={6} lg={8} xl={5}>
                   <Form.Item
                     label={<p className="  text-left m-0">Powdercoating</p>}
                     name= "frame_powdercoating"
@@ -243,14 +231,7 @@ export default function CreatePanelsettings({current_panel}) {
                  </Form.Item>
                   </Col>
 
-                     </Row>
-
-
-
-
-
-            <Row gutter={64}>
-              <Col span={10}>
+                  <Col xs={2} sm={4} md={6} lg={8} xl={5}>
               <Form.Item
                     label={<p className="  text-left m-0">Form of Construction</p>}
                     name ="form_of_construction"
@@ -270,14 +251,9 @@ export default function CreatePanelsettings({current_panel}) {
 
               </Col>
         
-              <p style={{ marginTop:'2rem', marginLeft:'2rem'}}>Doors |  Covers | Partitions</p>
-              
-               </Row>
+              {/* <p style={{ marginTop:'2rem', marginLeft:'2rem'}}>Doors |  Covers | Partitions</p> */}
 
-
-
-             <Row gutter={64}>
-            <Col span={10}>
+              <Col xs={2} sm={4} md={6} lg={8} xl={5}>
            <Form.Item
                     
                     label={<p className="  text-left m-0">Panel Colour</p>}
@@ -300,7 +276,7 @@ export default function CreatePanelsettings({current_panel}) {
 
                   </Form.Item>
               </Col>
-              <Col span={10}>
+              <Col xs={2} sm={4} md={6} lg={8} xl={5}>
 
            <Form.Item
 
@@ -320,13 +296,7 @@ export default function CreatePanelsettings({current_panel}) {
           </Select>
           </Form.Item>
            </Col>
-           
-           </Row>
-
-           <Row gutter={64}>
-           <Col span={10}>
-
-
+           <Col xs={2} sm={4} md={6} lg={8} xl={5}>
             <Form.Item
                     label={<p className="  text-left m-0">Powder Coating Finish</p>}
                     name= "powder_coating_finish"
@@ -345,8 +315,7 @@ export default function CreatePanelsettings({current_panel}) {
 
                   </Form.Item>
               </Col>
-              <Col span={10}>
-
+              <Col xs={2} sm={4} md={6} lg={8} xl={5}>
            <Form.Item
            label={<p className="  text-left m-0">Powdercoating</p>}
             name= "cover_powdercoating"  
@@ -361,14 +330,7 @@ export default function CreatePanelsettings({current_panel}) {
           </Form.Item>
 
            </Col>
-            
-          </Row>
-
-
-
-           <Row gutter={64}>
-           <Col span={10}>
-
+           <Col xs={2} sm={4} md={6} lg={8} xl={5}>
             <Form.Item
                     label={<p className="  text-left m-0">Panel Short Circuit Rating</p>}
                     name= "panel_short_circuit_rating"
@@ -391,14 +353,7 @@ export default function CreatePanelsettings({current_panel}) {
 
                   </Form.Item>
               </Col>
-           
-             </Row>
-
-
-            <Row gutter={64}>
-            <Col span={10}>
-
-
+              <Col xs={2} sm={4} md={6} lg={8} xl={5}>
             <Form.Item
                     label={<p className="  text-left m-0">Required Busbar Support</p>}
                     name= "required_busbar_support"
@@ -416,13 +371,7 @@ export default function CreatePanelsettings({current_panel}) {
 
                   </Form.Item>   
               </Col>
-          
-             </Row>
-
-            <Row gutter={64}>
-            <Col span={10}>
-
-
+              <Col xs={2} sm={4} md={6} lg={8} xl={5}>
              <Form.Item
                     label={<p className="  text-left m-0">Required Base Plinth</p>}
                     name="required_base_plinth"
@@ -441,32 +390,31 @@ export default function CreatePanelsettings({current_panel}) {
                   </Form.Item>            
             
               </Col>
+            </Row>
               <div id='addlis'>
             <Button type="primary" htmlType="submit"
              onClick={() => setVisible(false)}
-             block style={{ fontSize: '14px', width:'10rem' , marginLeft:'25rem' }}>
+             block style={{ fontSize: '14px', width:'10rem'  }}>
                Save
              </Button>
          
             </div>
-            
-            </Row>
-
           </Col>
            </div>
-
-
-
               </div>
 
-  <div id='addlis' >
+  {/* <div id='addlis' >
 
 
   <Descriptions style={{marginTop:'2rem'}}
        horizontal 
        Row={1}
-        >
-
+        > */}
+        <br/>
+      <Divider />
+      <br/>
+      <Row>
+      <Col xs={2} sm={4} md={6} lg={8} xl={5}>
   <Form.Item >
     <Button type="primary" htmlType="submit"
     block style={{ fontSize: '14px', width:'10rem' , }}>
@@ -474,16 +422,17 @@ export default function CreatePanelsettings({current_panel}) {
       <span className='px-5 '> View BOM</span>
     </Button>
   </Form.Item>
-
+</Col>
+<Col xs={2} sm={4} md={6} lg={8} xl={5}>
   <Form.Item >
     <Button type="primary" htmlType="submit"
     block style={{ fontSize: '14px', width:'10rem' ,  }}>
       <span className='px-5 '> Download BOM</span>
     </Button>
   </Form.Item>
-
+  </Col>
  
-
+  <Col xs={2} sm={4} md={6} lg={8} xl={5}>
   <Form.Item  >
     <Button type="primary" htmlType="submit"
     block style={{ fontSize: '14px', width:'10rem' , }}>
@@ -491,20 +440,19 @@ export default function CreatePanelsettings({current_panel}) {
     <a  target='_blank' href={`https://modsimcanvas.web.app/panel/${current_panel?._id}`}> Configure Now</a>
     </Button>
   </Form.Item>
-
-
+  </Col>
+  {/* <Col xs={2} sm={4} md={6} lg={8} xl={5}>
   <Form.Item  >
     <Button disabled type="primary" htmlType="submit">
       <span className='px-5 '> Request Drawing</span>
     </Button >
   </Form.Item  >
-
-
-
+  </Col> */}
+{/* 
 </Descriptions>
 
-</div>
-
+</div> */}
+</Row>
           </Form>
         
       </>
