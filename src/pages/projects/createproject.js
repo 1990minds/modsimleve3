@@ -40,8 +40,9 @@ export default function CreateProject({cancel}) {
         project_location:values.project_location,
         phone_number:values.phone_number,
         email:values.email,
-         project_name:values.project_name,
-         project_coordiantor:values.project_coordiantor,
+        // project_id:values.project_id,
+        project_name:values.project_name,
+        project_coordiantor:values.project_coordiantor,
         customerId:values.customerId,
         companyId:user?.company
          
@@ -133,10 +134,26 @@ const { TextArea } = Input;
                     }
                             
                     </Select>
+
        
         </Form.Item>
-               
-              </Col>
+
+
+</Col>
+
+               {/* <Col span={12}>
+                 
+               <Form.Item
+           label={<p className="  w-36 text-left m-0"> Project ID</p>}
+           name="project_id"
+           rules={[{ required: true, message: 'Please Input Project ID!' }]}
+         >
+           <Input/>
+ 
+         </Form.Item>
+         </Col> */}
+
+
               <Col span={12}>
                 
               <Form.Item

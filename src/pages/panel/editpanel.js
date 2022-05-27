@@ -16,7 +16,7 @@ import {useParams} from 'react-router-dom'
 
 const { Option } = Select;
 
-export default function EditPanel({current_panel,}) {
+export default function EditPanel({current_panel,project_id,product_id}) {
   
 
   console.log(current_panel)
@@ -49,7 +49,6 @@ export default function EditPanel({current_panel,}) {
           const onFinish = (values) => {
             const paneldata = {
 
-
                 panel_category:values.panel_category,
                 rated_voltage:values.rated_voltage,
                 ambient_temperature:values.ambient_temperature,
@@ -58,7 +57,7 @@ export default function EditPanel({current_panel,}) {
                  panel_quntity:values.panel_quntity,
                 
               }
-          dispatch(updatePanel(current_panel._id, paneldata))
+          dispatch(updatePanel(current_panel._id, paneldata,{id:product_id,project:project_id}))
           form.resetFields()
            };
 
@@ -205,11 +204,11 @@ export default function EditPanel({current_panel,}) {
             <Row gutter={16}>
               <Col span={12}>
               <Form.Item
-          label={<p className="  w-36 text-left m-0">Panel Quntity</p>}
+          label={<p className="  w-36 text-left m-0">Panel Quantity</p>}
           name="panel_quntity"
           rules={[{ required: true, message: 'Please Input Panel Quntity!' }]}
         >
-              <InputNumber min={1} max={25} defaultValue={1} onChange={onChange} />
+              <InputNumber min={1} max={25}  onChange={onChange} />
 </Form.Item>
 
               </Col>

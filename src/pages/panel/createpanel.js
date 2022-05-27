@@ -49,8 +49,6 @@ export default function CreatePanel({cancel,project_id,product_id}) {
      product_id:product_id
   }
 
-
-
   dispatch(createpanel(data, {id:product_id,project:project_id}))
   form.resetFields()
   cancel()
@@ -100,7 +98,7 @@ const { TextArea } = Input;
         </Button>
         </Tooltip>
         <Drawer
-          title="Create a new Product" placement="right" onClose={onClose} visible={visible} width={720}
+          title="Create New Pannel" placement="right" onClose={onClose} visible={visible} width={720}
         >
           <Form layout="vertical" hideRequiredMark
            form={form}
@@ -221,11 +219,11 @@ const { TextArea } = Input;
             <Row gutter={16}>
               <Col span={12}>
               <Form.Item
-          label={<p className="  w-36 text-left m-0">Panel Quntity</p>}
+          label={<p className="  w-36 text-left m-0">Panel Quantity</p>}
           name="panel_quntity"
           rules={[{ required: true, message: 'Please Input Panel Quntity!' }]}
         >
-              <InputNumber min={1} max={25} defaultValue={1} onChange={onChange} />
+              <InputNumber min={1} max={25} onChange={onChange} />
 </Form.Item>
 
               </Col>

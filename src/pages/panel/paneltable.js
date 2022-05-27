@@ -28,7 +28,7 @@ import {deletepanel,deleteManypanel} from '../../api/panel'
 import Editpanel from './editpanel';
 import moment from 'moment';
   
-  function PanelTable({data,current_product}) {
+  function PanelTable({data,project_id, product_id}) {
 
     
     const [visibleEdit, setEditModal] = useState(false);
@@ -43,7 +43,7 @@ import moment from 'moment';
     console.log(current_panel);
     
         const confirm = (e, id) => {
-            dispatch(deletepanel(id._id, current_product))
+            dispatch(deletepanel(id._id, {id:product_id,project:project_id}))
            
           }
           const handleClickEdit = (e, isvisible, id) =>{
@@ -51,11 +51,9 @@ import moment from 'moment';
             setpanel(id)
             setVisible(true);
             }
-    
-       
+      
       const [page, setPage] = useState(1);
-    
-    
+  
       const [visible, setVisible] = useState(false);
     
       const cancel = (e) =>{
@@ -137,8 +135,8 @@ import moment from 'moment';
 
       {
         title: 'Created Date',
-        dataIndex: 'createdDate',
-        key: 'createdDate',
+        dataIndex: 'createdAt',
+        key: 'createdAt',
         render:(item)=>{
           return <p >  { moment(current_panel?.createdAt).format('DD/MM/YYYY')}</p>
         }
@@ -152,12 +150,12 @@ import moment from 'moment';
         
       },
 
-      {
-        title: 'Ambient Temperature',
-        dataIndex: 'ambient_temperature',
-        key: 'ambient_temperature',
+      // {
+      //   title: 'Ambient Temperature',
+      //   dataIndex: 'ambient_temperature',
+      //   key: 'ambient_temperature',
         
-      },
+      // },
       {
         title: 'Busbar Material',
         dataIndex: 'busbar_material',
@@ -184,7 +182,7 @@ import moment from 'moment';
   
                       <FaRegEdit  onClick={(e)=>handleClickEdit(e, true, id)} className="text-secondary  text-lg mt-2"  /> 
                               
-                      
+                      <FaRegEdit  onClick={(e)=>handleClickEdit(e, true, id)} className="text-secondary  text-lg mt-2"  /> 
                       </h5>
                     <h5 className="text-danger">
                         <DeleteConfirm confirm={(e)=>confirm(e, id)} title="panel" cancel={cancel} >
@@ -211,7 +209,7 @@ import moment from 'moment';
       ];
 
 
-      const [selectionKey, setSelectionKey] = useState([]);
+   const [selectionKey, setSelectionKey] = useState([]);
 
     const rowSelection = {
       onChange: (selectedRowKeys, selectedRows) => {
@@ -261,8 +259,6 @@ import moment from 'moment';
                         onClick: event => {  history.push(`/auth/panelpage/${record._id}`) }, // click row
                         };
                         }}
-
-
                   >
                     </Table>
                 </div>
@@ -271,9 +267,9 @@ import moment from 'moment';
           </Row>
         </div>
                    <Drawer
-          title="Update a existing user" placement="right" onClose={onClose} visible={visible} width={720}
+          title="Update a existing Panel" placement="right" onClose={onClose} visible={visible} width={720}
         >
-          <Editpanel current_panel={current_panel} cancel={onClose}/>
+          <Editpanel current_panel={current_panel} cancel={onClose} project_id ={project_id} product_id={product_id}/>
         </Drawer>
         
       </>
