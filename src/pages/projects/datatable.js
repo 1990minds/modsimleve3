@@ -103,24 +103,29 @@ import {deleteproject,deleteManyproject} from '../../api/project'
         
       },
 
-    
+      {
+        title: ' Project ID ',
+        dataIndex: 'project_id',
+        key: 'project_id',
+        
+      },
 
       {
-        title: ' Project name ',
+        title: ' Project Name ',
         dataIndex: 'project_name',
         key: 'project_name',
         
       },
           
       {
-        title: ' Project location',
+        title: ' Project Location',
         dataIndex: 'project_location',
         key: 'project_location',
         
       },
 
       {
-        title: 'Project coordiantor',
+        title: 'Project Coordinator',
         dataIndex: 'project_coordiantor',
         key: 'project_coordiantor',
         
@@ -145,30 +150,37 @@ import {deleteproject,deleteManyproject} from '../../api/project'
         //   key: 'product_image',
          
         // }, 
-        // {
-        //   title: 'Action',
-        //   key: 'action',
-        //   render: (id) => (
-        //     <Space size="middle">
-              
-        //     <h5 className="text-secondary" >
+        {
+          title: 'Action',
+          key: 'action',
+        
+          render: (id) => (
             
+            <a href="#" className="" style={{  margin:'0px', padding:'0px', width:'100%'}} onClick={(e) => { 
+              e.stopPropagation();      
+                    }}>
+                     
+                  <Space size="middle">
+    
+                  <h5 className="text-secondary" >
+                  
 
-        //       <FaRegEdit onClick={(e)=>handleClickEdit(e, true, id)} style={{cursor:"pointer", color: "#1890FF"}} /> 
-              
-        //       </h5>
-        //   <h5 className="text-danger">
-        //       <DeleteConfirm confirm={(e)=>confirm(e, id)} title="product" cancel={cancel} >
-        //           <FaRegTrashAlt style={{cursor:"pointer", color: "#1890FF"}}  />
-        //       </DeleteConfirm>
-        //   </h5>
+                    {/* <FaRegEdit  onClick={(e)=>handleClickEdit(e, true, id)} className="text-secondary  text-lg mt-2"  />  */}
+                            
+                    
+                    </h5>
+                  <h5 className="text-danger">
+                      <DeleteConfirm confirm={(e)=>confirm(e, id)} title="panel" cancel={cancel} >
+                          <FaRegTrashAlt style={{cursor:"pointer"}} className="text-secondary text-lg  mt-2"  />
+                      </DeleteConfirm>
+          </h5>
 
-        //   </Space>
-        //   ),
-        // },
+          </Space>
+              </a>
+            ),
+          },
     
       ];
-
 
       const [selectionKey, setSelectionKey] = useState([]);
 

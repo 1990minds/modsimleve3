@@ -61,22 +61,22 @@ export const panelSelector = state => state.panel;
 
 
 
-export const fetchAllpanel = () => async dispatch => {
-  dispatch(getpanel())
+// export const fetchAllpanel = () => async dispatch => {
+//   dispatch(getpanel())
  
-  try {
+//   try {
  
-   const {data} = await axios.get(keyUri.BACKEND_URI +`/panel`)
-   console.log(data);
+//    const {data} = await axios.get(keyUri.BACKEND_URI +`/panel`)
+//    console.log(data);
    
-   dispatch(getAll_panel_success(data));
+//    dispatch(getAll_panel_success(data));
     
-  } catch (error) {
+//   } catch (error) {
  
- dispatch(get_panel_Failure())
+//  dispatch(get_panel_Failure())
 
-  }
- };
+//   }
+//  };
 
  export const deletepanel = (id, product) => async dispatch => {
 
@@ -113,12 +113,15 @@ console.log( {id});
    dispatch(fetchProductPanels(id));
 
   } 
-  catch ({response}) {
-response.data && message.error({ content: response.data.msg, key, duration: 2 })
- dispatch(get_panel_Failure())
+    catch ({response}) {
+    response.data && message.error({ content: response.data.msg, key, duration: 2 })
+    dispatch(get_panel_Failure())
 
   }
  };
+
+
+
 
  export const fetchProductPanels = (values) => async dispatch => {
   dispatch(getpanel())
@@ -155,7 +158,7 @@ response.data && message.error({ content: response.data.msg, key, duration: 2 })
  };
 
 
- export const  updatePanel = (id, values) => async dispatch =>{
+ export const  updatePanel = (id, values,product) => async dispatch =>{
   const key = "panel"
   dispatch(getpanel())
   message.loading({ content: 'loading...', key })
@@ -165,8 +168,8 @@ try {
     console.log(data);
     
     data && message.success({ content: data.msg, key, duration: 2 });
-    // dispatch(fetchAllpanel())
-    window.location.reload()
+    dispatch(fetchProductPanels(product));
+        // window.location.reload()
 
 } catch ({response}) {
 console.log(response.data);
@@ -175,31 +178,5 @@ console.log(response.data);
 }
 }
 
-export const deleteManypanel = (values) => async dispatch =>{
 
-  console.log(values);
-  const key = 'delete';
-  dispatch(getpanel())
-  message.loading({ content: 'loading...', key })
-
-  try {
-      
-      const {data} = await axios.post(keyUri + `/delete-panel`, values, config )
-  
-      data &&  message.success({ content: data.msg, key, duration: 2 });
-
-      dispatch(fetchAllpanel())
-
-  } catch (error) {
-
-dispatch(get_panel_Failure())
-setTimeout(() => {
-
-  message.error({ content: error.response.data.msg, key, duration: 2 });
-}, 100) 
-
-      
-  }
-
-}
 export default panelSlice.reducer;

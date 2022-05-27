@@ -53,7 +53,6 @@ function Main({ children }) {
      dispatch(checkAuth())
 }, [])
 
-
   return (
     <Layout
       className={`layout-dashboard ${

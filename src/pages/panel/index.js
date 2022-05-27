@@ -2,7 +2,7 @@
 import React, { useState, useLayoutEffect} from 'react'
 import Layout from '../../components/layout/Main'
 import PanelTable from './paneltable'
-import {fetchAllpanel,fetchProductPanels,panelSelector} from '../../api/panel'
+import {fetchProductPanels,panelSelector} from '../../api/panel'
 import {useDispatch, useSelector} from 'react-redux'
 import { useEffect } from 'react'
 import Createpanel from './createpanel'
@@ -58,22 +58,19 @@ export default function Panel() {
 console.log(filter);
   
  
-useEffect(()=>{
+    useEffect(()=>{
 
-  axios.get(keyUri.BACKEND_URI +`/panel?search=${debouncedText}`).then(({data})=>{
-    
-    console.log({data})
+      axios.get(keyUri.BACKEND_URI +`/panel?search=${debouncedText}`).then(({data})=>{
+        
+        console.log({data})
 
-    setFilter(data?.filterpanel)
-     })
-setLoading(false)
- }, [dispatch, debouncedText])
+        setFilter(data?.filterpanel)
+        })
+    setLoading(false)
+    }, [dispatch, debouncedText])
 
 console.log(filter);
 
-useEffect(()=>{
-  dispatch(fetchAllpanel())
-      }, [dispatch])
 
       useEffect(()=>{     
         if(filter?.length < 1) {
@@ -110,7 +107,7 @@ placeholder="Search" onChange={onSearch}  />
         <ExcelBtn data={product_panels} />
       </Col>
       </Row>
-        <PanelTable data={product_panels}/>
+        <PanelTable data={product_panels} project_id ={project} product_id={id}/>
     </Layout>
   )
 
