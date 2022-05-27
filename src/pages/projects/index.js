@@ -55,13 +55,13 @@ export default function Project() {
 console.log(filter);
 useEffect(()=>{
 
-  axios.get(keyUri.BACKEND_URI +`/parts?search=${debouncedText}`).then(({data})=>{
+  axios.get(keyUri.BACKEND_URI +`/project?search=${debouncedText}`).then(({data})=>{
     console.log(
       'text'
     );
     console.log({data})
 
-    setFilter(data?.filterparts)
+    setFilter(data?.filterproject)
      })
 setLoading(false)
  }, [dispatch, debouncedText])
@@ -106,7 +106,7 @@ placeholder="Search" onChange={onSearch}  />
         <ExcelBtn data={all_project} />
       </Col>
       </Row>
-        <ProjectTable data={all_project}/>
+        <ProjectTable data={(filter?.length > 0) ? filter :all_project} />
     </Layout>
   )
 

@@ -96,8 +96,6 @@ import {deleteproject,deleteManyproject} from '../../api/project'
         title: ' Customer name ',
         key: 'customer_name',
         render:(item)=>{
-            
-         
           return <p class="m-0 ">{item?.customers?.customers_name} </p>
         }
         
