@@ -95,7 +95,7 @@ placeholder="Search" onChange={onSearch}  />
        <ExcelBtn data={all_customers} />
       </Col>
       </Row>
-        <CustomersTable data={all_customers} />
+        <CustomersTable data={(filter?.length > 0) ? filter :all_customers} />
         
     </Layout>
   )
