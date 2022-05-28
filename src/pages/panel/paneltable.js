@@ -15,7 +15,7 @@ import {
   import { Link } from "react-router-dom";
   import { PlusOutlined } from '@ant-design/icons';
   import DeleteConfirm from '../../global/delete'
-  import { FileAddOutlined  } from '@ant-design/icons'
+  import {GrDocumentWindows } from 'react-icons/gr';
   import face6 from "../../assets/images/face-6.jpeg";
   import pencil from "../../assets/images/pencil.svg";
   import {useDispatch, useSelector} from 'react-redux'
@@ -24,9 +24,10 @@ import {
   import {authenticateSelector} from '../../api/authSlice';
 //   import Editpanel from './editpanel';
 import { useHistory} from 'react-router-dom'
-import {deletepanel,deleteManypanel} from '../../api/panel'
+import {deletepanel,deleteManypanel, updatePanel} from '../../api/panel'
 import Editpanel from './editpanel';
 import moment from 'moment';
+import { Popconfirm, message } from 'antd';
   
   function PanelTable({data,project_id, product_id}) {
 
@@ -35,9 +36,7 @@ import moment from 'moment';
     const [current_panel, setpanel] = useState(null);
     
     const [selectionType, setSelectionType] = useState('checkbox');
-   
-  
-   
+
     let history = useHistory()
     
     console.log(current_panel);
@@ -51,12 +50,32 @@ import moment from 'moment';
             setpanel(id)
             setVisible(true);
             }
-      
+
+            const handleClick = (e, isvisible, id) =>{
+              e.preventDefault()
+              // setpanel(id)
+              // setVisible(true);
+              }
+    
       const [page, setPage] = useState(1);
   
       const [visible, setVisible] = useState(false);
     
+
+      const confirmRequest = (values, id) => {
+        const data={
+          request:true
+        }
+
+        dispatch(updatePanel(id._id, data))
+       
+      }
       const cancel = (e) =>{
+        return null
+      }
+    
+
+      const cancelRequest = (e) =>{
         return null
       }
     
@@ -77,6 +96,20 @@ import moment from 'moment';
   const handleVisibleChange = flag => {
     setVisible(flag);
   };
+
+
+  const onChange = (e, id) => {
+    console.log(id);
+  console.log(`GrDocumentWindows to ${id}`);
+  const data={
+    request:id
+  }
+
+  
+  
+    
+};
+
 
   const menu = (
     <Menu
@@ -115,6 +148,14 @@ import moment from 'moment';
         }
         
       },
+      {
+        title: ' Panel ID ',
+        dataIndex: 'panel_id',
+        key: 'panel_id',
+        
+      },
+
+
 
       {
         title: ' Panel Name ',
@@ -122,8 +163,6 @@ import moment from 'moment';
         key: 'panel_name',
         
       },
-
-    
 
       {
         
@@ -163,6 +202,32 @@ import moment from 'moment';
         
       },
 
+      {
+        title: 'Request',
+        key: 'request',
+        render: (id) => (
+          <a href="#" className="" style={{  margin:'0px', padding:'0px', width:'100%'}} onClick={(e) => { 
+            e.stopPropagation();      
+            }}>
+
+          <Popconfirm
+          title="Are you sure to Request this BOM?"
+          onConfirm={(data)=>confirmRequest(data, id)}
+          onCancel={cancelRequest}
+          okText="Yes"
+          cancelText="No"
+          >
+  
+          <h5 className="text-secondary" >
+            <GrDocumentWindows  className="text-secondary"  defaultChecked={id.request}  onChange={(e)=>onChange(e,id)} />
+
+            </h5>
+        
+            </Popconfirm>
+            </a>
+        ),
+      },
+
 
      
         {
@@ -171,35 +236,37 @@ import moment from 'moment';
           
             render: (id) => (
               
-              <a href="#" className="" style={{  margin:'0px', padding:'0px', width:'100%'}} onClick={(e) => { 
-                e.stopPropagation();      
-                      }}>
+                    <a href="#" className="" style={{  margin:'0px', padding:'0px', width:'100%'}} onClick={(e) => { 
+                    e.stopPropagation();      
+                    }}>
                        
                     <Space size="middle">
       
                     <h5 className="text-secondary" >
-                    
-  
-                      <FaRegEdit  onClick={(e)=>handleClickEdit(e, true, id)} className="text-secondary  text-lg mt-2"  /> 
-                              
+                   
                       <FaRegEdit  onClick={(e)=>handleClickEdit(e, true, id)} className="text-secondary  text-lg mt-2"  /> 
                       </h5>
+                    
+                    
+                    
+                    
+                    
                     <h5 className="text-danger">
                         <DeleteConfirm confirm={(e)=>confirm(e, id)} title="panel" cancel={cancel} >
                             <FaRegTrashAlt style={{cursor:"pointer"}} className="text-secondary text-lg  mt-2"  />
                         </DeleteConfirm>
                     </h5>
                     <h5>
-                    <Dropdown overlay={menu} onVisibleChange={handleVisibleChange} visible={visible}>
-      <a onClick={e => e.preventDefault()}>
+                    {/* <Dropdown overlay={menu} onVisibleChange={handleVisibleChange} visible={visible}>
+                    <a onClick={e => e.preventDefault()}>
                     <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-dots-vertical" width="20" height="20" viewBox="0 0 24 24" stroke-width="1.5" stroke="#000000" fill="none" stroke-linecap="round" stroke-linejoin="round">
-  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
-  <circle cx="12" cy="12" r="1" />
-  <circle cx="12" cy="19" r="1" />
-  <circle cx="12" cy="5" r="1" />
+                    <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+                    <circle cx="12" cy="12" r="1" />
+                    <circle cx="12" cy="19" r="1" />
+                    <circle cx="12" cy="5" r="1" />
                     </svg>
                     </a>
-    </Dropdown>
+                    </Dropdown> */}
                     </h5>
                   </Space>
               </a>

@@ -140,6 +140,22 @@ console.log( {id});
   }
  };
 
+ export const fetchAllRequestPanels = (values) => async dispatch => {
+  dispatch(getpanel())
+  console.log(values);
+  try {
+ 
+   const {data} = await axios.post(keyUri.BACKEND_URI +`/request-panel`, values, config)
+   console.log(data);
+   
+   dispatch(get_product_panels_success(data));
+    
+  } catch (error) {
+ 
+ dispatch(get_panel_Failure())
+
+  }
+ };
 
 
  export const fetchOnepanel = (id) => async dispatch => {
@@ -158,7 +174,12 @@ console.log( {id});
  };
 
 
- export const  updatePanel = (id, values,product) => async dispatch =>{
+ export const  updatePanel = (id, values, product) => async dispatch =>{
+
+  console.log("testingggg/////////////");
+  console.log(id);
+  console.log(values);
+
   const key = "panel"
   dispatch(getpanel())
   message.loading({ content: 'loading...', key })
@@ -168,11 +189,12 @@ try {
     console.log(data);
     
     data && message.success({ content: data.msg, key, duration: 2 });
-    dispatch(fetchProductPanels(product));
-        // window.location.reload()
+    // dispatch(fetchProductPanels(product));
+        window.location.reload()
 
 } catch ({response}) {
-console.log(response.data);
+
+  console.log("error");
     dispatch(get_panel_Failure())
 
 }
