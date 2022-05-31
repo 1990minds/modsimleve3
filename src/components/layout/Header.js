@@ -25,6 +25,7 @@ import {
   TwitterOutlined,
   FacebookFilled,
 } from "@ant-design/icons";
+import { FaUserCog } from 'react-icons/fa';
 
 import { NavLink, Link } from "react-router-dom";
 import styled from "styled-components";
@@ -268,7 +269,7 @@ function Header({
       <div className="setting-drwer" onClick={showDrawer}>
         {setting}
       </div>
-      <Row gutter={[24, 0]}>
+      <Row gutter={[24, 0]} >
         <Col span={24} md={6}>
           <Breadcrumb>
             <Breadcrumb.Item>
@@ -282,7 +283,7 @@ function Header({
           <div className="ant-page-header-heading">
             <span
               className="ant-page-header-heading-title"
-              style={{ textTransform: "capitalize" , fontSize: "24px" , paddingTop: '10px'}}
+              style={{ textTransform: "capitalize" , fontSize: "24px" , paddingTop: '10px', paddingBottom: '10px'}}
             >
               {/* {subName.replace("/", "")} */}
               {LastWord(name.split('-').join(' ')) }
@@ -408,6 +409,7 @@ function Header({
               </div>
             </div>
           </Drawer> */}
+          
           &nbsp;&nbsp;
           <ButtonContainer>
 
@@ -418,7 +420,7 @@ function Header({
           
           </ButtonContainer>
           &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-          <Badge size="small" count={4}>
+          {/* <Badge size="small" count={4}>
             <Dropdown overlay={menu} trigger={["click"]}>
               <a
                 href="#pablo"
@@ -428,11 +430,22 @@ function Header({
                 {bell}
               </a>
             </Dropdown>
+          </Badge> */}
+         
+          <div style={{ paddingLeft: '20px', paddingRight: '20px'}}>
+            <Link to='/auth/profile'>
+          <Badge size="small">
+          <FaUserCog style={{height:'1.5rem',  cursor: 'pointer' }}/>
           </Badge>
-          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          </Link>
+         </div>
+         <div style={{ paddingLeft: '10px', paddingRight: '10px'}}>
+         
           <Badge size="small">
           <CalendarFilled />
           </Badge>
+         
+          </div>
           {/* <Input
             className="header-search"
             placeholder="Type here..."
