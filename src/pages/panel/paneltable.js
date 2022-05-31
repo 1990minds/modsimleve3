@@ -16,6 +16,7 @@ import {
   import { PlusOutlined } from '@ant-design/icons';
   import DeleteConfirm from '../../global/delete'
   import {GrDocumentWindows } from 'react-icons/gr';
+  import {VscGitPullRequestCreate } from 'react-icons/vsc';
   import face6 from "../../assets/images/face-6.jpeg";
   import pencil from "../../assets/images/pencil.svg";
   import {useDispatch, useSelector} from 'react-redux'
@@ -24,7 +25,8 @@ import {
   import {authenticateSelector} from '../../api/authSlice';
 //   import Editpanel from './editpanel';
 import { useHistory} from 'react-router-dom'
-import {deletepanel,deleteManypanel, updatePanel} from '../../api/panel'
+import {deletepanel,deleteManypanel, } from '../../api/panel'
+import { createbomrequest} from '../../api/bomrequest'
 import Editpanel from './editpanel';
 import moment from 'moment';
 import { Popconfirm, message } from 'antd';
@@ -64,16 +66,26 @@ import { Popconfirm, message } from 'antd';
 
       const confirmRequest = (values, id) => {
         const data={
-          request:true
+          panel:id._id
         }
+        dispatch(createbomrequest(data))
 
-        dispatch(updatePanel(id._id, data))
        
       }
       const cancel = (e) =>{
         return null
       }
-    
+     
+
+      const confirmRequestdwg = (values, id) => {
+        const data={
+          panel:id._id
+        }
+        dispatch(createbomrequest(data))
+
+       
+      }
+  
 
       const cancelRequest = (e) =>{
         return null
@@ -98,9 +110,18 @@ import { Popconfirm, message } from 'antd';
   };
 
 
-  const onChange = (e, id) => {
+  const onChangeBom = (e, id) => {
     console.log(id);
   console.log(`GrDocumentWindows to ${id}`);
+  const data={
+    request:id
+  }
+
+}
+
+  const onChangeDrawing = (e, id) => {
+    console.log(id);
+  console.log(`VscGitPullRequestCreate to ${id}`);
   const data={
     request:id
   }
@@ -176,18 +197,17 @@ import { Popconfirm, message } from 'antd';
         title: 'Created Date',
         dataIndex: 'createdAt',
         key: 'createdAt',
-        render:(item)=>{
-          return <p >  { moment(current_panel?.createdAt).format('DD/MM/YYYY')}</p>
-        }
-        
+        render:(createdAt)=>{
+          return <small className="my-0 mr-3">{moment(createdAt).format('DD/MM/YYYY')}</small>
+      }
       },
 
-      {
-        title: 'Rated Voltage',
-        dataIndex: 'rated_voltage',
-        key: 'rated_voltage',
+      // {
+      //   title: 'Rated Voltage',
+      //   dataIndex: 'rated_voltage',
+      //   key: 'rated_voltage',
         
-      },
+      // },
 
       // {
       //   title: 'Ambient Temperature',
@@ -195,12 +215,12 @@ import { Popconfirm, message } from 'antd';
       //   key: 'ambient_temperature',
         
       // },
-      {
-        title: 'Busbar Material',
-        dataIndex: 'busbar_material',
-        key: 'busbar_material',
+      // {
+      //   title: 'Busbar Material',
+      //   dataIndex: 'busbar_material',
+      //   key: 'busbar_material',
         
-      },
+      // },
 
       {
         title: 'Request',
@@ -209,6 +229,7 @@ import { Popconfirm, message } from 'antd';
           <a href="#" className="" style={{  margin:'0px', padding:'0px', width:'100%'}} onClick={(e) => { 
             e.stopPropagation();      
             }}>
+<Space size="middle">
 
           <Popconfirm
           title="Are you sure to Request this BOM?"
@@ -217,13 +238,38 @@ import { Popconfirm, message } from 'antd';
           okText="Yes"
           cancelText="No"
           >
-  
+
+ 
           <h5 className="text-secondary" >
-            <GrDocumentWindows  className="text-secondary"  defaultChecked={id.request}  onChange={(e)=>onChange(e,id)} />
+            <GrDocumentWindows  className="text-secondary"  defaultChecked={id.request}  onChange={(e)=>onChangeBom(e,id)}style={{cursor:"pointer", color: id?.requestStatus === 'pending' ? "#929292" : id?.requestStatus === 'sent' ? "red" : "orange"}}  />
 
             </h5>
-        
+
+
             </Popconfirm>
+
+
+
+
+            <Popconfirm
+          title="Are you sure to Request this Drawing?"
+          onConfirm={(data)=>confirmRequestdwg(data, id)}
+          onCancel={cancelRequest}
+          okText="Yes"
+          cancelText="No"
+          >
+
+
+<h5 className="text-secondary" >
+            <VscGitPullRequestCreate  className="text-secondary"  defaultChecked={id.request}  onChange={(e)=>onChangeDrawing(e,id)} />
+
+            </h5>
+
+
+            </Popconfirm>
+
+            </Space>
+
             </a>
         ),
       },

@@ -12,6 +12,8 @@ import moment from 'moment';
 import {FaPanelAlt, FaLock} from 'react-icons/fa'
 import Editpanel from './editpanel';
 import {useParams} from 'react-router-dom'
+import ExportExcel from './bomdownload';
+import Modal from '../../global/model';
 
 
 const { Option } = Select;
@@ -26,6 +28,7 @@ export default function CreatePanelsettings({current_panel}) {
   const dispatch = useDispatch();
   const [validityYear, setYear]=useState(null)
   const [validityMonth, setMonth]=useState(null)
+  const [visible, setVisible]=useState(false)
   
 
   console.log(current_panel);
@@ -110,7 +113,7 @@ export default function CreatePanelsettings({current_panel}) {
   };
 
 
-    const [visible, setVisible] = useState(false);
+    // const [visible, setVisible] = useState(false);
 
     const showDrawer = () => {
       setVisible(true);
@@ -416,12 +419,39 @@ export default function CreatePanelsettings({current_panel}) {
       <Row>
       <Col xs={2} sm={4} md={6} lg={8} xl={5}>
   <Form.Item >
-    <Button type="primary" htmlType="submit"
-    block style={{ fontSize: '14px', width:'10rem' , }}>
-      
+
+
+
+
+
+    <Button type="primary" 
+    block style={{ fontSize: '14px', width:'10rem' , }}
+      onClick={() => setVisible(true)}>
       <span className='px-5 '> View BOM</span>
     </Button>
+
+ 
   </Form.Item>
+
+
+                    <Modal 
+                    isVisible={visible} 
+                    title="BOM DETAILS"
+                    footer={false}
+                    className=""
+                    width="70%"
+                    cancel={()=>setVisible(!visible)}>
+                      
+                      <ExportExcel cancel={()=>setVisible(!visible)} data={current_panel?.bom} panel={current_panel} />
+                      
+                      </Modal>
+
+
+
+
+
+
+
 </Col>
 <Col xs={2} sm={4} md={6} lg={8} xl={5}>
   <Form.Item >
