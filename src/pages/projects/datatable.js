@@ -233,7 +233,7 @@ import {deleteproject,deleteManyproject} from '../../api/project'
                  style={{ cursor: 'pointer' }}
                  onRow={(record, rowIndex) => {
                  return {
-                 onClick: event => {  history.push(`/auth/product/${record._id}`) }, // click row
+                 onClick: event => {  history.push(`/auth/projects/product/${record._id}`) }, // click row
                  };
                  }}
 
