@@ -1,6 +1,6 @@
 import React, {useState,useEffect} from 'react'
 import {useDispatch, useSelector} from 'react-redux'
-import { Drawer, Form, Button, Col, Row, Input, Select, DatePicker, Space,Descriptions } from 'antd';
+import { Drawer, Form, Button, Col, Row, Input, Select, DatePicker ,Descriptions } from 'antd';
 import { PlusOutlined } from '@ant-design/icons';
 import { Divider } from 'antd';
 import { EyeInvisibleOutlined, EyeTwoTone } from '@ant-design/icons';
@@ -177,28 +177,10 @@ export default function CreatePanelsettings({current_panel}) {
                   </Form.Item>
               </Col>
 
-              <Col xs={2} sm={4} md={6} lg={8} xl={5}>
-                     <Form.Item
-                
-                    label={<p className="  text-left m-0">Material</p>}
-                    name= "frame_material"  
-                  >
-         <Select
-          placeholder="Frame Material"  
-        >
-          <Option value="Aluzn">Aluzn</Option>
-          <Option value="GI">GI</Option>
-          <Option value="GI275 GSM">GI275 GSM</Option>
-          <Option value="CRCA">CRCA</Option>
-         
-          
-          </Select>
-          </Form.Item> 
-           </Col>
 
 
            
-            {/* <p style={{ marginTop:'2rem', marginLeft:'2rem'}}>Frame Bar | Cross Bar</p> */}
+          
 
             <Col xs={2} sm={4} md={6} lg={8} xl={5}>
               <Form.Item
@@ -218,21 +200,7 @@ export default function CreatePanelsettings({current_panel}) {
 
                   </Form.Item>
               </Col>
-              <Col xs={2} sm={4} md={6} lg={8} xl={5}>
-                  <Form.Item
-                    label={<p className="  text-left m-0">Powdercoating</p>}
-                    name= "frame_powdercoating"
-                  >
-                  <Select
-                   placeholder="Frame Powdercoating"
-          
-                  >
-                <Option value="Yes">Yes</Option>
-                   <Option value="No">No</Option>
-
-                  </Select>
-                 </Form.Item>
-                  </Col>
+              
 
                   <Col xs={2} sm={4} md={6} lg={8} xl={5}>
               <Form.Item
@@ -254,7 +222,7 @@ export default function CreatePanelsettings({current_panel}) {
 
               </Col>
         
-              {/* <p style={{ marginTop:'2rem', marginLeft:'2rem'}}>Doors |  Covers | Partitions</p> */}
+            
 
               <Col xs={2} sm={4} md={6} lg={8} xl={5}>
            <Form.Item
@@ -279,26 +247,7 @@ export default function CreatePanelsettings({current_panel}) {
 
                   </Form.Item>
               </Col>
-              <Col xs={2} sm={4} md={6} lg={8} xl={5}>
-
-           <Form.Item
-
-         label={<p className="  text-left m-0">Material</p>}
-         name= "cover_material"
-  
-          >
-          <Select
-           placeholder="Cover Material"
-
-            >
-           <Option value="Aluzn">Aluzn</Option>
-           <Option value="GI">GI</Option>
-           <Option value="GI275 GSM">GI275 GSM</Option>
-           <Option value="CRCA">CRCA</Option>
-
-          </Select>
-          </Form.Item>
-           </Col>
+              
            <Col xs={2} sm={4} md={6} lg={8} xl={5}>
             <Form.Item
                     label={<p className="  text-left m-0">Powder Coating Finish</p>}
@@ -318,21 +267,7 @@ export default function CreatePanelsettings({current_panel}) {
 
                   </Form.Item>
               </Col>
-              <Col xs={2} sm={4} md={6} lg={8} xl={5}>
-           <Form.Item
-           label={<p className="  text-left m-0">Powdercoating</p>}
-            name= "cover_powdercoating"  
-            >
-         <Select
-         placeholder="Cover Powdercoating"
-
-          >
-          <Option value="Yes">Yes</Option>
-            <Option value="No">No</Option>  
-          </Select>
-          </Form.Item>
-
-           </Col>
+             
            <Col xs={2} sm={4} md={6} lg={8} xl={5}>
             <Form.Item
                     label={<p className="  text-left m-0">Panel Short Circuit Rating</p>}
@@ -394,7 +329,89 @@ export default function CreatePanelsettings({current_panel}) {
             
               </Col>
             </Row>
-              <div id='addlis'>
+
+ <p style={{ marginTop:'1rem'}}>Frame Bar | Cross Bar</p>
+            <Row gutter={24}>
+ 
+      
+            <Col xs={2} sm={4} md={6} lg={8} xl={5}>
+                     <Form.Item
+                
+                    label={<p className="  text-left m-0">Material</p>}
+                    name= "frame_material"  
+                  >
+         <Select
+          placeholder="Frame Material"  
+        >
+          <Option value="Aluzn">Aluzn</Option>
+          <Option value="GI">GI</Option>
+          <Option value="GI275 GSM">GI275 GSM</Option>
+          <Option value="CRCA">CRCA</Option>
+         
+          
+          </Select>
+          </Form.Item> 
+           </Col>
+           <Col xs={2} sm={4} md={6} lg={8} xl={5}>
+                  <Form.Item
+                    label={<p className="  text-left m-0">Powdercoating</p>}
+                    name= "frame_powdercoating"
+                  >
+                  <Select
+                   placeholder="Frame Powdercoating"
+          
+                  >
+                <Option value="Yes">Yes</Option>
+                   <Option value="No">No</Option>
+
+                  </Select>
+                 </Form.Item>
+                  </Col>
+                  </Row>
+                    <p style={{ marginTop:'1rem'}}>Doors |  Covers | Partitions</p>
+                  <Row gutter={24}>
+
+<Col xs={2} sm={4} md={6} lg={8} xl={5}>
+
+           <Form.Item
+
+         label={<p className="  text-left m-0">Material</p>}
+         name= "cover_material"
+  
+          >
+          <Select
+           placeholder="Cover Material"
+
+            >
+           <Option value="Aluzn">Aluzn</Option>
+           <Option value="GI">GI</Option>
+           <Option value="GI275 GSM">GI275 GSM</Option>
+           <Option value="CRCA">CRCA</Option>
+
+          </Select>
+          </Form.Item>
+           </Col>
+
+
+           <Col xs={2} sm={4} md={6} lg={8} xl={5}>
+           <Form.Item
+           label={<p className="  text-left m-0">Powdercoating</p>}
+            name= "cover_powdercoating"  
+            >
+         <Select
+         placeholder="Cover Powdercoating"
+
+          >
+          <Option value="Yes">Yes</Option>
+            <Option value="No">No</Option>  
+          </Select>
+          </Form.Item>
+
+           </Col>
+
+
+              </Row>
+              <div id='addlis' style={{ marginTop:'1rem'}}>
             <Button type="primary" htmlType="submit"
              onClick={() => setVisible(false)}
              block style={{ fontSize: '14px', width:'10rem'  }}>

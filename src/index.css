@@ -46,3 +46,7 @@
     font-weight: 700 !important;
 }
 
+.ant-select-selector{
+    height: 2.5rem !important;
+    border-radius: 6px !important;
+}
