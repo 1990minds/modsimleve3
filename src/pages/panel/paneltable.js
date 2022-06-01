@@ -242,7 +242,7 @@ import { Popconfirm, message } from 'antd';
           disabled={id?.request === "send"? false : true}
           >
 
-          
+   
 <Tooltip placement="topLeft" title={id?.request === 'null' ? " Enabled only when BOM is generated" : id?.request === 'send' ? " Send Full BOM request": id?.request === 'pending' ? "Request sent please wait till processed": " Request of BOM mailed succesfully"}>
 <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-file-analytics" 
 style={{cursor: id?.request === "send" ? "pointer" : 'no-drop', stroke: id?.request === 'null' ? "gray" : id?.request === 'send' ? "blue" :id?.request === 'pending' ? "orange":"green"}}
@@ -273,11 +273,11 @@ width="20" height="20" viewBox="0 0 24 24" stroke-width="1.5" stroke="#2C3E50" f
           >
 
 
-<h5 className="text-secondary" >
+            <h5 className="text-secondary" >
             <VscGitPullRequestCreate  className="text-secondary"  defaultChecked={id.request}  onChange={(e)=>onChangeDrawing(e,id)} />
 
             </h5>
-
+            
 
             </Popconfirm>
 
@@ -300,21 +300,22 @@ width="20" height="20" viewBox="0 0 24 24" stroke-width="1.5" stroke="#2C3E50" f
                     }}>
                        
                     <Space size="middle">
-      
+                    <Tooltip placement="topLeft" title="Edit Panel" arrowPointAtCenter>
                     <h5 className="text-secondary" >
                    
                       <FaRegEdit  onClick={(e)=>handleClickEdit(e, true, id)} className="text-secondary  text-lg mt-2"  /> 
                       </h5>
+                    </Tooltip>
                     
                     
                     
-                    
-                    
+                    <Tooltip placement="topLeft" title="Delete Panel" arrowPointAtCenter>
                     <h5 className="text-danger">
                         <DeleteConfirm confirm={(e)=>confirm(e, id)} title="panel" cancel={cancel} >
                             <FaRegTrashAlt style={{cursor:"pointer"}} className="text-secondary text-lg  mt-2"  />
                         </DeleteConfirm>
                     </h5>
+                    </Tooltip>
                     <h5>
                     {/* <Dropdown overlay={menu} onVisibleChange={handleVisibleChange} visible={visible}>
                     <a onClick={e => e.preventDefault()}>

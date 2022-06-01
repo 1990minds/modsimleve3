@@ -167,12 +167,13 @@ import {deleteproject,deleteManyproject} from '../../api/project'
                             
                     
                     </h5>
+                    <Tooltip placement="topLeft" title="Delete Project" arrowPointAtCenter>
                   <h5 className="text-danger">
                       <DeleteConfirm confirm={(e)=>confirm(e, id)} title="panel" cancel={cancel} >
                           <FaRegTrashAlt style={{cursor:"pointer"}} className="text-secondary text-lg  mt-2"  />
                       </DeleteConfirm>
           </h5>
-
+          </Tooltip>
           </Space>
               </a>
             ),

@@ -13,6 +13,8 @@ import Product from "./pages/product";
 import Panel from './pages/panel'
 import Panelpage from './pages/panelpage'
 import Profile from './pages/UserProfile'
+import Ticket from './pages/tickets'
+
 function App() {
 
   // let { path } = useRouteMatch();
@@ -32,6 +34,8 @@ function App() {
     <Route path="/auth/panel/:id"  component={Panel} exact />
     <Route path="/auth/panelpage/:id"  component={Panelpage} exact />
     <Route path="/auth/profile"  component={Profile} exact />
+    <Route path="/auth/ticket"  component={Ticket} exact />
+    
      </main>
     </Router>
   );
