@@ -4,7 +4,7 @@ import {
     Row,
     Col,
     Card,
-    Radio,
+    Tooltip,
     Table,
     Space,
     Drawer,
@@ -27,13 +27,35 @@ import {
 import { useHistory} from 'react-router-dom'
 import {deletepanel,deleteManypanel, } from '../../api/panel'
 import { createbomrequest} from '../../api/bomrequest'
+import  {createdrawingreq} from '../../api/drawingreq'
 import Editpanel from './editpanel';
 import moment from 'moment';
 import { Popconfirm, message } from 'antd';
   
   function PanelTable({data,project_id, product_id}) {
 
-    
+    const [confirmLoading, setConfirmLoading] = useState(false);
+    const [modalText, setModalText] = useState('Content of the modal');
+  
+    const showModal = () => {
+      setVisible(true);
+    };
+  
+    const handleOk = () => {
+      setModalText('The modal will be closed after two seconds');
+      setConfirmLoading(true);
+      setTimeout(() => {
+        setVisible(false);
+        setConfirmLoading(false);
+      }, 2000);
+    };
+  
+    const handleCancel = () => {
+      console.log('Clicked cancel button');
+      setVisible(false);
+    };
+
+
     const [visibleEdit, setEditModal] = useState(false);
     const [current_panel, setpanel] = useState(null);
     
@@ -61,17 +83,17 @@ import { Popconfirm, message } from 'antd';
     
       const [page, setPage] = useState(1);
   
-      const [visible, setVisible] = useState(false);
+               const [visible, setVisible] = useState(false);
     
 
-      const confirmRequest = (values, id) => {
-        const data={
-          panel:id._id
-        }
-        dispatch(createbomrequest(data))
+                const confirmRequest = (values, id) => {
+                const data={
+                 panel:id._id
+                 }
+                 dispatch(createbomrequest(data))
 
        
-      }
+                 }
       const cancel = (e) =>{
         return null
       }
@@ -81,7 +103,7 @@ import { Popconfirm, message } from 'antd';
         const data={
           panel:id._id
         }
-        dispatch(createbomrequest(data))
+        dispatch(createdrawingreq(data))
 
        
       }
@@ -202,26 +224,6 @@ import { Popconfirm, message } from 'antd';
       }
       },
 
-      // {
-      //   title: 'Rated Voltage',
-      //   dataIndex: 'rated_voltage',
-      //   key: 'rated_voltage',
-        
-      // },
-
-      // {
-      //   title: 'Ambient Temperature',
-      //   dataIndex: 'ambient_temperature',
-      //   key: 'ambient_temperature',
-        
-      // },
-      // {
-      //   title: 'Busbar Material',
-      //   dataIndex: 'busbar_material',
-      //   key: 'busbar_material',
-        
-      // },
-
       {
         title: 'Request',
         key: 'request',
@@ -229,7 +231,7 @@ import { Popconfirm, message } from 'antd';
           <a href="#" className="" style={{  margin:'0px', padding:'0px', width:'100%'}} onClick={(e) => { 
             e.stopPropagation();      
             }}>
-<Space size="middle">
+        <Space size="middle">
 
           <Popconfirm
           title="Are you sure to Request this BOM?"
@@ -237,13 +239,24 @@ import { Popconfirm, message } from 'antd';
           onCancel={cancelRequest}
           okText="Yes"
           cancelText="No"
+          disabled={id?.request === "send"? false : true}
           >
 
- 
-          <h5 className="text-secondary" >
-            <GrDocumentWindows  className="text-secondary"  defaultChecked={id.request}  onChange={(e)=>onChangeBom(e,id)}style={{cursor:"pointer", color: id?.requestStatus === 'pending' ? "#929292" : id?.requestStatus === 'sent' ? "red" : "orange"}}  />
+          
+<Tooltip placement="topLeft" title={id?.request === 'null' ? " Enabled only when BOM is generated" : id?.request === 'send' ? " Send Full BOM request": id?.request === 'pending' ? "Request sent please wait till processed": " Request of BOM mailed succesfully"}>
+<svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-file-analytics" 
+style={{cursor: id?.request === "send" ? "pointer" : 'no-drop', stroke: id?.request === 'null' ? "gray" : id?.request === 'send' ? "blue" :id?.request === 'pending' ? "orange":"green"}}
+width="20" height="20" viewBox="0 0 24 24" stroke-width="1.5" stroke="#2C3E50" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M14 3v4a1 1 0 0 0 1 1h4" />
+  <path d="M17 21h-10a2 2 0 0 1 -2 -2v-14a2 2 0 0 1 2 -2h7l5 5v11a2 2 0 0 1 -2 2z" />
+  <line x1="9" y1="17" x2="9" y2="12" />
+  <line x1="12" y1="17" x2="12" y2="16" />
+  <line x1="15" y1="17" x2="15" y2="14" />
+  {id?.request}
+</svg>
+</Tooltip>
 
-            </h5>
 
 
             </Popconfirm>
@@ -339,14 +352,14 @@ import { Popconfirm, message } from 'antd';
   
     return (
       <>
-        <div className="tabled">
-          <Row gutter={[24, 0]}>
-            <Col xs="24" xl={24}>
-            <Card
-                bordered={false}
-                className="criclebox tablespace mb-24"
-                // title="Customer Table"
-                extra={
+              <div className="tabled">
+              <Row gutter={[24, 0]}>
+              <Col xs="24" xl={24}>
+              <Card
+               bordered={false}
+               className="criclebox tablespace mb-24"
+               // title="Customer Table"
+              extra={
                   <>
                     {/* <Createcustomer /> */}
                     {/* <Radio.Group onChange={onChange} defaultValue="a">
