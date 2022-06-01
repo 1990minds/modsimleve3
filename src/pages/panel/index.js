@@ -107,7 +107,7 @@ placeholder="Search" onChange={onSearch}  />
         <ExcelBtn data={product_panels} />
       </Col>
       </Row>
-        <PanelTable data={product_panels} project_id ={project} product_id={id}/>
+        <PanelTable  data={product_panels} project_id ={project} product_id={id}/>
     </Layout>
   )
 
