@@ -33,9 +33,16 @@ const [current_parts, setParts] = useState(null);
   
     
 
+<<<<<<< HEAD
     const cancel = (e) =>{
       return null
     }
+=======
+    console.log(data);
+  const Search = Input.Search; 
+  const [visibleLicense, setVisibleModal] = useState(false);
+  const [current_parts, setParts] = useState(null);
+>>>>>>> f39006249147166db82eff727c21d8f13f7d1253
 
     const dispatch = useDispatch()
 

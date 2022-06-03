@@ -200,6 +200,3 @@ block style={{ fontSize: '14px' }}>
     </Layout>
   )
 }
-
-
-
