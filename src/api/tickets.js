@@ -115,4 +115,4 @@ export const createtickets = ( values,id) => async dispatch => {
   
    
 
-export default ticketsSlice.reducer;
+   export default ticketsSlice.reducer;

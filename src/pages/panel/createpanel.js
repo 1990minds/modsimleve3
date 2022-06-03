@@ -28,7 +28,7 @@ export default function CreatePanel({cancel,project_id,product_id}) {
       
       useEffect(()=>{
 
-        dispatch(fetchAllcompanycustomers(user?.company))
+        dispatch(fetchAllcompanycustomers(user?.company?._id))
            
       }, [dispatch])
         

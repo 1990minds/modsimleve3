@@ -85,9 +85,6 @@ export const {getlogin, getFilter, getUserProfile, getAuthenticate, isAuthentica
 export const authenticateSelector = state => state.auth
 export default authenticateSlice.reducer
 
-
-
-
 export const logOut = () => async dispatch =>{
     // const key = 'logOut';
 
@@ -103,7 +100,6 @@ export const logOut = () => async dispatch =>{
     }
 
 }
-
 
 export const fetchlogin = (logindata) => async dispatch =>{
     const key = 'login';

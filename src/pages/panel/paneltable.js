@@ -69,6 +69,8 @@ import { Popconfirm, message } from 'antd';
             dispatch(deletepanel(id._id, {id:product_id,project:project_id}))
            
           }
+
+
           const handleClickEdit = (e, isvisible, id) =>{
             e.preventDefault()
             setpanel(id)
@@ -90,10 +92,11 @@ import { Popconfirm, message } from 'antd';
                 const data={
                  panel:id._id
                  }
-                 dispatch(createbomrequest(data))
+                 dispatch(createbomrequest(data,{id:product_id,project:project_id}))
 
        
                  }
+
       const cancel = (e) =>{
         return null
       }
@@ -103,7 +106,7 @@ import { Popconfirm, message } from 'antd';
         const data={
           panel:id._id
         }
-        dispatch(createdrawingreq(data))
+        dispatch(createdrawingreq(data,{id:product_id,project:project_id}))
 
        
       }
@@ -145,7 +148,7 @@ import { Popconfirm, message } from 'antd';
     console.log(id);
   console.log(`VscGitPullRequestCreate to ${id}`);
   const data={
-    request:id
+    requestdwg:id
   }
 
   
@@ -262,21 +265,32 @@ width="20" height="20" viewBox="0 0 24 24" stroke-width="1.5" stroke="#2C3E50" f
             </Popconfirm>
 
 
-
-
             <Popconfirm
           title="Are you sure to Request this Drawing?"
           onConfirm={(data)=>confirmRequestdwg(data, id)}
           onCancel={cancelRequest}
           okText="Yes"
           cancelText="No"
+          disabled={id?.requestdwg === "send"? false : true}
           >
 
-
-            <h5 className="text-secondary" >
-            <VscGitPullRequestCreate  className="text-secondary"  defaultChecked={id.request}  onChange={(e)=>onChangeDrawing(e,id)} />
-
-            </h5>
+<Tooltip placement="topLeft" title={id?.requestdwg === 'null' ? " Enabled only when Drawing is generated" : id?.requestdwg === 'send' ? " Send Full Drawing request": id?.requestdwg === 'pending' ? "Request Drawing please wait till processed": " Request of Drawing mailed succesfully"}>
+<svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-artboard"
+style={{cursor: id?.requestdwg === "send" ? "pointer" : 'no-drop', stroke: id?.requestdwg === 'null' ? "gray" : id?.requestdwg === 'send' ? "blue" :id?.requestdwg === 'pending' ? "orange":"green"}}
+width="15" height="15" viewBox="0 0 24 24" stroke-width="3" stroke="#2C3E50" fill="none" stroke-linecap="round" stroke-linejoin="round">
+ 
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <rect x="8" y="8" width="8" height="8" rx="1" />
+  <line x1="3" y1="8" x2="4" y2="8" />
+  <line x1="3" y1="16" x2="4" y2="16" />
+  <line x1="8" y1="3" x2="8" y2="4" />
+  <line x1="16" y1="3" x2="16" y2="4" />
+  <line x1="20" y1="8" x2="21" y2="8" />
+  <line x1="20" y1="16" x2="21" y2="16" />
+  <line x1="8" y1="20" x2="8" y2="21" />
+  <line x1="16" y1="20" x2="16" y2="21" />
+</svg>
+</Tooltip>
             
 
             </Popconfirm>

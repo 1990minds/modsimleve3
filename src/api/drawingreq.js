@@ -2,6 +2,7 @@ import { createSlice } from '@reduxjs/toolkit';
 import axios from 'axios'
 import { message } from 'antd';
 import { keyUri, config } from '../key'
+import { fetchProductPanels} from '../api/panel'
 
 const initialState = {
 
@@ -91,7 +92,7 @@ export const fetchAlldrawingreq = () => async dispatch => {
 
 
 
- export const createdrawingreq = ( values) => async dispatch => {
+ export const createdrawingreq = ( values, id) => async dispatch => {
 
   dispatch(getdrawingreq())
   const key = 'create';
@@ -101,7 +102,7 @@ export const fetchAlldrawingreq = () => async dispatch => {
    const {data} = await axios.post(keyUri.BACKEND_URI +`/drawingreq`, values, config)
 
    data && message.success({ content: data.msg, key, duration: 2 });
-   dispatch(fetchAlldrawingreq());
+   dispatch(fetchProductPanels(id));
 
   } 
   catch ({response}) {
@@ -141,8 +142,8 @@ try {
     console.log(data);
     
     data && message.success({ content: data.msg, key, duration: 2 });
-    // dispatch(fetchAllcompany())
-    window.location.reload()
+    dispatch(fetchAlldrawingreq());
+    // window.location.reload()
 
 } catch ({response}) {
 console.log(response.data);

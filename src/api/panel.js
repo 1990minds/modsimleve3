@@ -189,8 +189,8 @@ try {
     console.log(data);
     
     data && message.success({ content: data.msg, key, duration: 2 });
-    // dispatch(fetchProductPanels(product));
-        window.location.reload()
+    dispatch(fetchProductPanels(product));
+        // window.location.reload()
 
 } catch ({response}) {
 

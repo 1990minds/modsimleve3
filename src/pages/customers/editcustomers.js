@@ -43,7 +43,7 @@ export default function EditCustomers({current_customers,}) {
              address:values.address,
                  
               }
-              dispatch(updatecustomers(current_customers._id, customersdata,user?.company))
+              dispatch(updatecustomers(current_customers._id, customersdata,user?.company?._id))
               form.resetFields()
              
              };
