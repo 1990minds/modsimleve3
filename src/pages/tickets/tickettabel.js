@@ -13,6 +13,7 @@ import {
   
   function Tables({data}) {
 
+    console.log(data);
   const Search = Input.Search; 
   const [visibleLicense, setVisibleModal] = useState(false);
   const [current_parts, setParts] = useState(null);
