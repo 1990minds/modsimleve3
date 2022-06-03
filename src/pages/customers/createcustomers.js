@@ -46,10 +46,10 @@ export default function CreateCustomer({cancel}) {
           email:values.email,
           customers_name:values.customers_name,
           address:values.address,
-          companyId:user?.company
+          companyId:user?.company?._id
         }
 
-        dispatch(createcustomers(data, user?.company))
+        dispatch(createcustomers(data, user?.company?._id))
         form.resetFields()
         cancel()
         

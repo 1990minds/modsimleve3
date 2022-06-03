@@ -24,7 +24,6 @@ const { Search } = Input;
     const dispatch=useDispatch()    
     const {all_tickets}=useSelector(ticketsSelector)
     const {current_company,loader}=useSelector(companySelector)
-    console.log(current_company);
     const { user } = useSelector(authenticateSelector) 
     
     const [search, setSearch] = useState('')

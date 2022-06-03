@@ -27,17 +27,6 @@ const { Meta } = Card;
 const { Search } = Input;
 
 
-// state = {
-//   loading: false,
-// };
-
-// showSkeleton = () => {
-//   this.setState({ loading: true });
-//   setTimeout(() => {
-//     this.setState({ loading: false });
-//   }, 3000);
-// };
-
 export default function Product(item) {
 
 

@@ -41,7 +41,7 @@ import {deleteproject,deleteManyproject} from '../../api/project'
   let history = useHistory()
   
       const confirm = (e, id) => {
-          dispatch(deleteproject(id._id, id.project,user?.company))
+          dispatch(deleteproject(id._id, id.project,user?.company?._id))
          
         }
         

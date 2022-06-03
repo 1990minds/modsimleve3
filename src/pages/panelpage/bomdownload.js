@@ -70,7 +70,7 @@ export default function ExportExcel({data, panel}) {
                             </tr>
                             <tr>
                                 <th colspan="2">Project ID</th>
-                                <td colspan="2"></td>
+                                <td colspan="2">{panel?.project?.project_id}</td>
                                 {/* <th colspan="2">Panel Quantity</th>
                                 <td colspan="1">{panel?.panel_quntity}</td> */}
                                 <th colspan="3" rowSpan="3"></th>

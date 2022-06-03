@@ -42,7 +42,7 @@ export default function Project() {
 
   useEffect(()=>{
 
-    dispatch(fetchAllproject(user?.company))
+    dispatch(fetchAllproject(user?.company?._id))
        
        
         }, [user])

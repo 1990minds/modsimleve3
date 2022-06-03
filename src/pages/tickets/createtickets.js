@@ -185,7 +185,7 @@ console.log(user);
               <Form.Item
             label={<p className="text-left m-0 ml-2 ">Upload Issue Image</p>}
             name="issue_image"
-            rules={[{ required: true, message: 'required!' }]}
+            // rules={[{ required: true, message: 'required!' }]}
           >
                 <div 
                     className=" grid grid-cols-4 gap-5">
@@ -226,17 +226,7 @@ console.log(user);
               </Col>
             </Row>
 
-
-
-
-
-
-
-
-
-
-          
-        
+       
 <Button type="primary" htmlType="submit"
 onClick={() => setVisible(false)}
 block style={{ fontSize: '14px' }}>

@@ -44,7 +44,7 @@ console.log(current_customers);
 
   const confirm = (e, id) => {
     console.log(id)
-      dispatch(deletecustomers(id._id, id.customers,id.company))
+      dispatch(deletecustomers(id._id, id.customers,id.company?._id))
      
     }
 

@@ -34,7 +34,7 @@ const { Search } = Input;
     console.log(user);
     useEffect(()=>{
 
-        dispatch(fetchAllcompanycustomers(user?.company))
+        dispatch(fetchAllcompanycustomers(user?.company?._id))
 
      }, [user])
 

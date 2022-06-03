@@ -2,6 +2,8 @@ import { createSlice } from '@reduxjs/toolkit';
 import axios from 'axios'
 import { message } from 'antd';
 import { keyUri, config } from '../key'
+import { fetchProductPanels} from '../api/panel'
+
 
 const initialState = {
 
@@ -88,7 +90,7 @@ export const fetchAllbomrequest = () => async dispatch => {
  };
 
 
- export const createbomrequest = ( values) => async dispatch => {
+ export const createbomrequest = ( values,id) => async dispatch => {
 
   dispatch(getbomrequest())
   const key = 'create';
@@ -98,7 +100,7 @@ export const fetchAllbomrequest = () => async dispatch => {
    const {data} = await axios.post(keyUri.BACKEND_URI +`/bomrequest`, values, config)
 
    data && message.success({ content: data.msg, key, duration: 2 });
-   dispatch(fetchAllbomrequest());
+   dispatch(fetchProductPanels(id));
 
   } 
   catch ({response}) {
@@ -136,8 +138,8 @@ try {
     console.log(data);
     
     data && message.success({ content: data.msg, key, duration: 2 });
-    // dispatch(fetchAllcompany())
-    window.location.reload()
+    dispatch(fetchAllbomrequest());
+    // window.location.reload()
 
 } catch ({response}) {
 console.log(response.data);
@@ -146,49 +148,6 @@ console.log(response.data);
 
 }
 }
-
-// export const BOMPdf = (pdfValues) => async dispatch => {
-//   console.log(pdfValues);
-
-//   axios.post(keyUri.BACKEND_URI +`/bomrequest`, values, config)
-//   .then(() => axios.get(keyUri.BACKEND_URI +'/fetch-templetpdf', { responseType: 'blob' })) 
-//   .then((res) => {  
-//       console.log(res.data);      
-//       const pdfBlob = new Blob([res.data], 
-//           { type: 'application/pdf' });
-//    saveAs(pdfBlob, 'payslip.pdf');      
-// }   
-// )
-// }
-
-// export const deleteManyCompany = (values) => async dispatch =>{
-
-//   console.log(values);
-//   const key = 'delete';
-//   dispatch(getcompany())
-//   message.loading({ content: 'loading...', key })
-
-//   try {
-      
-//       const {data} = await axios.post(keyUri + `/delete-company`, values, config )
-  
-//       data &&  message.success({ content: data.msg, key, duration: 2 });
-
-//       dispatch(fetchAllCompany())
-
-//   } catch (error) {
-
-// dispatch(get_company_Failure())
-// setTimeout(() => {
-
-//   message.error({ content: error.response.data.msg, key, duration: 2 });
-// }, 100) 
-
-      
-//   }
-
-// }
-
 
 
 export default bomrequestSlice.reducer;

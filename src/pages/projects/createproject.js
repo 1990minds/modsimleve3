@@ -27,7 +27,7 @@ export default function CreateProject({cancel}) {
       
       useEffect(()=>{
 
-        dispatch(fetchAllcompanycustomers(user?.company))
+        dispatch(fetchAllcompanycustomers(user?.company?._id))
            
       }, [dispatch])
         
@@ -44,12 +44,12 @@ export default function CreateProject({cancel}) {
         project_name:values.project_name,
         project_coordiantor:values.project_coordiantor,
         customerId:values.customerId,
-        companyId:user?.company
+        companyId:user?.company?._id
          
       }
 
 
-   dispatch(createproject(data,user?.company))
+   dispatch(createproject(data,user?.company?._id))
    form.resetFields()
    cancel()
   

@@ -164,33 +164,8 @@ console.log(response.data);
 }
 }
 
-// export const deleteManyCompany = (values) => async dispatch =>{
 
-//   console.log(values);
-//   const key = 'delete';
-//   dispatch(getcompany())
-//   message.loading({ content: 'loading...', key })
 
-//   try {
-      
-//       const {data} = await axios.post(keyUri + `/delete-company`, values, config )
-  
-//       data &&  message.success({ content: data.msg, key, duration: 2 });
-
-//       dispatch(fetchAllCompany())
-
-//   } catch (error) {
-
-// dispatch(get_company_Failure())
-// setTimeout(() => {
-
-//   message.error({ content: error.response.data.msg, key, duration: 2 });
-// }, 100) 
-
-      
-//   }
-
-// }
 
 
 
