@@ -3,7 +3,7 @@ import { useState, useEffect } from 'react';
 import Layout from '../../components/layout/Main'
 import Createtickets from './createtickets'
 import { Tabs, Button, Input,Upload, Tooltip } from 'antd';
-import {fetchAllCompanyTickets,ticketsSelector} from '../../api/tickets'
+import {fetchAllUserTickets,ticketsSelector} from '../../api/tickets'
 import {useDispatch, useSelector} from 'react-redux'
 import {authenticateSelector} from '../../api/authSlice'
 import axios from 'axios'
@@ -39,7 +39,7 @@ const { Search } = Input;
 
   useEffect(()=>{
 
-    axios.get(keyUri.BACKEND_URI +`/companytickets/${user?._id}?search=${debouncedText}`).then(({data})=>{
+    axios.get(keyUri.BACKEND_URI +`/usertickets/${user?._id}?search=${debouncedText}`).then(({data})=>{
  
 
 
@@ -53,7 +53,7 @@ console.log(filter);
 
 
 useEffect(()=>{
-  dispatch(fetchAllCompanyTickets(user?._id))
+  dispatch(fetchAllUserTickets(user?._id))
 },[user])
 
         useEffect(()=>{     
@@ -87,12 +87,10 @@ useEffect(()=>{
         </SearchWrap>
         </Tooltip>
         </Col> 
-         {/* <Col span={3} className='' style={{ display: 'flex', justifyContent: 'end' }}>
-        <ExcelBtn data={all_parts}  />
-      </Col> */}
+       
       </Row>
 
-        {/* <PartsTabel data={(filter?.length > 0) ? filter :all_parts} />  */}
+       
         < Tickettabel data={(filter?.length > 0) ? filter :all_tickets} />
     </Layout>
   )

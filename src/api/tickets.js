@@ -42,13 +42,13 @@ export const {gettickets , getAll_tickets_success, getCurrentSuccess, get_ticket
 
 export const ticketsSelector = state => state.tickets;
 
-export const fetchAllCompanyTickets = (id) => async dispatch => {
+export const fetchAllUserTickets = (id) => async dispatch => {
     dispatch(gettickets())
    
     console.log({id});
     try {
    
-     const {data} = await axios.get(keyUri.BACKEND_URI +`/companytickets/${id}`)
+     const {data} = await axios.get(keyUri.BACKEND_URI +`/usertickets/${id}`)
   
   
      console.log(data);
@@ -103,7 +103,7 @@ export const createtickets = ( values,id) => async dispatch => {
    
      const {data} = await axios.post(keyUri.BACKEND_URI +`/tickets`, values, config)
      data && message.success({ content: data.msg, key, duration: 2 });
-     dispatch(fetchAllCompanyTickets(id));
+     dispatch(fetchAllUserTickets(id));
   
     } 
     catch ({response}) {

@@ -30,9 +30,6 @@ const [current_parts, setParts] = useState(null);
       setVisible(false);
       setParts(null)
     };
-  
-    
-
 
     const cancel = (e) =>{
       return null

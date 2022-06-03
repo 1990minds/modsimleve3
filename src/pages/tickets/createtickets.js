@@ -7,10 +7,8 @@ import Loader from '../../pages/shared/loader';
 import storage from '../../pages/shared/storage'
 import { LoadingOutlined,} from '@ant-design/icons';
 import {MdClose, MdDelete} from 'react-icons/md'
-
 import {createtickets} from '../../api/tickets'
 import {authenticateSelector} from '../../api/authSlice';
-
 import { fetchAlltickets, ticketsSelector} from '../../api/tickets';
 import { fetchAllCompany } from '../../api/company';
 
@@ -24,7 +22,7 @@ const layout = {
   };
   
   
-export default function Createtickets({cancel}) {
+export default function Createtickets({cancel,}) {
   
   const [visible, setVisible] = useState(false);
   const showDrawer = () => {
@@ -64,7 +62,8 @@ console.log(user);
         tickets:values.tickets,
         title:values.title,
         description:values.description,
-        company_id:user?._id,
+        company_id:user?.company?._id,
+        user:user?._id,
         issue_image: imgurl[0],
         // ticket_id:values.ticket_id,
          
