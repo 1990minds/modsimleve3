@@ -97,11 +97,13 @@ const onFinishFailed = (errorInfo) => {
         <p style={{ lineHeight: '30px', paddingLeft: '20px', paddingRight: '30px', fontSize:'16px', textAlign: 'justify'}}>
         <b>Issue Description :</b> <p> {current_tickets?.description}</p>
         <br/><br/>
+        {current_tickets?.issue_image && <div>
         <b>Issue Screenshot:</b>
         <br/><br/>
         <Image
           width={400}
-          src={current_tickets?.issue_image}/>
+          src={current_tickets?.issue_image}/></div>
+          }
         <br/><br/>
         <Divider />
         

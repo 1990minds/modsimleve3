@@ -137,6 +137,7 @@ import {
         //   key: 'product_image',
          
         // }, 
+
         {
           title: 'Action',
           key: 'action',      
@@ -159,6 +160,38 @@ import {
               </a>
             ),
           },
+
+        // {
+        //   title: 'Action',
+        //   key: 'action',
+        
+        //   render: (id) => (
+            
+        //     <a href="#" className="" style={{  margin:'0px', padding:'0px', width:'100%'}} onClick={(e) => { 
+        //       e.stopPropagation();      
+        //             }}>
+                     
+        //           <Space size="middle">
+    
+        //           <h5 className="text-secondary" >
+                  
+
+        //             <FaRegEdit  onClick={(e)=>handleClickEdit(e, true, id)} className="text-secondary  text-lg mt-2"  /> 
+                            
+                    
+        //             </h5>
+        //             <Tooltip placement="topLeft" title="Delete Project" arrowPointAtCenter>
+        //           <h5 className="text-danger">
+        //               <DeleteConfirm confirm={(e)=>confirm(e, id)} title="panel" cancel={cancel} >
+        //                   <FaRegTrashAlt style={{cursor:"pointer"}} className="text-secondary text-lg  mt-2"  />
+        //               </DeleteConfirm>
+        //   </h5>
+        //   </Tooltip>
+        //   </Space>
+        //       </a>
+        //     ),
+        //   },
+
     
           ];
 
