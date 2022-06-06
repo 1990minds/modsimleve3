@@ -138,13 +138,16 @@ console.log(current_customers);
             <FaRegEdit style={{cursor:"pointer"}} onClick={(e)=>handleClickEdit(e, true, id)} className="text-secondary mt-2"  /> 
             </h5>
             </Tooltip>
+
             <Tooltip placement="topLeft" title="Delete existing customer" arrowPointAtCenter>
+
+       
         <h5 className="text-danger">
             <DeleteConfirm confirm={(e)=>confirm(e, id)} title="customers" cancel={cancel} >
                 <FaRegTrashAlt style={{cursor:"pointer"}}className="text-secondary mt-2"  />
             </DeleteConfirm>
         </h5>
-        </Tooltip>
+        </Tooltip> */}
         </Space>
         ),
       },

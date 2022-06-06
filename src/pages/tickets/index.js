@@ -75,14 +75,14 @@ useEffect(()=>{
      
       </Col>
       <Col span={3} offset={10} >
-      <Tooltip placement="top" title="Search by Ticket ID">
+      {/* <Tooltip placement="top" title="Search by Ticket ID">
       <SearchWrap className="mx-4 " style={{borderRadius:"20px"}}>
       <Input value={search}  className="px-4 py-2 focus:outline-none"
         prefix ={  <SearchOutlined  style={{color:'#3e79f7', fontWeight:'bold'}} />
         }
         placeholder="Search" onChange={onSearch}  />
         </SearchWrap>
-        </Tooltip>
+        </Tooltip> */}
         </Col> 
        
       </Row>
