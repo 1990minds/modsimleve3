@@ -24,6 +24,7 @@ export default function ExportExcel({data}) {
 
          {/* <ExcelColumn label="sl_no" value={col => col?.sl_no ? col.sl_no: "null"}/>  */}
             <ExcelColumn label="panel_name" value={col => col?.panel_name ? col.panel_name: "null"}/> 
+            <ExcelColumn label="panel_id" value={col => col?.panel_id ? col.panel_id: "null"}/> 
             <ExcelColumn label="panel_category" value={col => col?.panel_category ? col.panel_category: "null"}/> 
             <ExcelColumn label="rated_voltage" value={col => col?.rated_voltage ? col.rated_voltage: "null"}/> 
             <ExcelColumn label="ambient_temperature" value={col => col?.ambient_temperature ? col.ambient_temperature: "null"}/> 

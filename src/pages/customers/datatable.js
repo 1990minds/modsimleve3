@@ -23,6 +23,7 @@ import {
   import {useDispatch} from 'react-redux'
   import {deletecustomers} from '../../api/customers'
   import styled from 'styled-components'
+  import moment from 'moment';
 
   
   export default function CustomersTable({data,intialdata}) {
@@ -112,6 +113,15 @@ console.log(current_customers);
       },
 
       {
+        title: 'Created Date',
+        dataIndex: 'createdAt',
+        key: 'createdAt',
+        render:(createdAt)=>{
+          return <small className="my-0 mr-3">{moment(createdAt).format('DD/MM/YYYY')}</small>
+      }
+      },
+
+      {
         title: 'Address',
         dataIndex: 'address',
         key: 'address',
@@ -123,12 +133,12 @@ console.log(current_customers);
         key: 'action',
         render: (id) => (
           <Space size="middle">
-             <Tooltip placement="topLeft" title="Edit existing user" arrowPointAtCenter>
+             <Tooltip placement="topLeft" title="Edit existing customer" arrowPointAtCenter>
           <h5 className="text-secondary" >
             <FaRegEdit style={{cursor:"pointer"}} onClick={(e)=>handleClickEdit(e, true, id)} className="text-secondary mt-2"  /> 
             </h5>
             </Tooltip>
-            <Tooltip placement="topLeft" title="Delete existing user" arrowPointAtCenter>
+            <Tooltip placement="topLeft" title="Delete existing customer" arrowPointAtCenter>
         <h5 className="text-danger">
             <DeleteConfirm confirm={(e)=>confirm(e, id)} title="customers" cancel={cancel} >
                 <FaRegTrashAlt style={{cursor:"pointer"}}className="text-secondary mt-2"  />
@@ -197,7 +207,7 @@ console.log(current_customers);
         </div>
        
                    <Drawer
-          title="Update a existing user" placement="right" onClose={onClose} visible={visible} width={720}
+          title="Update a existing customer" placement="right" onClose={onClose} visible={visible} width={720}
         >
           <Editcustomers current_customers={current_customers} cancel={onClose}/>
         </Drawer>

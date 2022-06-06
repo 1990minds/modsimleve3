@@ -115,9 +115,9 @@ export default function EditCustomers({current_customers,}) {
 
 </Form.Item>
               </Col>
-            </Row>
+          
 
-            <Row gutter={16}>
+            
               <Col span={12}>
               <Form.Item
           label={<p className="  w-36 text-left m-0">Address</p>}

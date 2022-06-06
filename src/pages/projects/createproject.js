@@ -16,27 +16,23 @@ const { Option } = Select;
  
 export default function CreateProject({cancel}) {
   
-    const [loading, setLoading] = useState(false)
-    const { user } = useSelector(authenticateSelector) 
-    console.log(user);
-    const { all_customers} = useSelector(customersSelector) 
-    
-  
-      const dispatch = useDispatch();
-      console.log({K:all_customers});
+       const [loading, setLoading] = useState(false)
+       const { user } = useSelector(authenticateSelector) 
+       console.log(user);
+       const { all_customers} = useSelector(customersSelector)  
+       const dispatch = useDispatch();
+       console.log({K:all_customers});
       
-      useEffect(()=>{
-
-        dispatch(fetchAllcompanycustomers(user?.company?._id))
-           
-      }, [dispatch])
+      
+       useEffect(()=>{
+       dispatch(fetchAllcompanycustomers(user?.company?._id))           
+       }, [dispatch])
         
   
-  const onFinish = (values) => {
+       const onFinish = (values) => {
     
-  console.log(values);
-      const data = {
-
+       console.log(values);
+       const data = {
         project_location:values.project_location,
         phone_number:values.phone_number,
         email:values.email,
@@ -49,197 +45,158 @@ export default function CreateProject({cancel}) {
       }
 
 
-   dispatch(createproject(data,user?.company?._id))
-   form.resetFields()
-   cancel()
+       dispatch(createproject(data,user?.company?._id))
+       form.resetFields()
+       cancel()
   
-  };
+       };
   
+       const onFinishFailed = (errorInfo) => {
+       console.log('Failed:', errorInfo);
+       };
 
-  const onFinishFailed = (errorInfo) => {
-    console.log('Failed:', errorInfo);
-  };
-
+        const handleChangeSelect = (value) =>{
+       }
  
+       const [form] = Form.useForm();
 
-  const handleChangeSelect = (value) =>{
-
-    // console.log(value);
-    // setLoading(value)
-
-}
- 
-  const [form] = Form.useForm();
-
-  const onChange = (value)=> {
-    console.log(`selected ${value}`)
-
-  }
+       const onChange = (value)=> {
+       console.log(`selected ${value}`)
+       }
 
 
-const { TextArea } = Input;
-
-    const [visible, setVisible] = useState(false);
-
-    const showDrawer = () => {
-      setVisible(true);
-    };
+        const { TextArea } = Input;
+        const [visible, setVisible] = useState(false);
+        const showDrawer = () => {
+        setVisible(true);
+        };
   
-    const onClose = () => {
-      setVisible(false);
-    };
+        const onClose = () => {
+        setVisible(false);
+        };
 
     return (
-      <>
-      <Tooltip placement="topLeft" title="Create Project" arrowPointAtCenter>
-        <Button type="primary" onClick={showDrawer} icon={<PlusOutlined />} style={{fontSize: "14px"}}>
-          Create
-        </Button></Tooltip>
+           <>
+           <Tooltip placement="topLeft" title="Create Project" arrowPointAtCenter>
+           <Button type="primary" onClick={showDrawer} icon={<PlusOutlined />} style={{fontSize: "14px"}}>
+            Create
+            </Button></Tooltip>
         
-        <Drawer
-          title="Create a new Product" placement="right" onClose={onClose} visible={visible} width={720}
-        >
-          <Form layout="vertical" hideRequiredMark
-           form={form}
-           name="basic"
-           initialValues={{ remember: false }}
-           onFinish={onFinish}
-           onFinishFailed={onFinishFailed}
-           autoComplete={false}
-          >
+            <Drawer
+             title="Create A New Project" placement="right" onClose={onClose} visible={visible} width={720}
+             >
+            <Form layout="vertical" hideRequiredMark
+            form={form}
+            name="basic"
+            initialValues={{ remember: false }}
+            onFinish={onFinish}
+            onFinishFailed={onFinishFailed}
+            autoComplete={false}
+            >
+
+
+
             <Row gutter={16}>
               <Col span={12}>
               <Form.Item
-          label={<p className="  w-36 text-left m-0">Customer Name</p>}
-          name="customerId"
-          rules={[{ required: true, message: 'Please Input Customer Name!' }]}
-        >
-
-           <Select 
-                           showSearch
-                           placeholder="Customer name"  
+              label={<p className="  w-36 text-left m-0">Customer Name</p>}
+              name="customerId"
+              rules={[{ required: true, message: 'Please Input Customer Name!' }]}
+              >
+              <Select 
+              showSearch
+              placeholder="Customer name"  
                            
              optionFilterProp="children"
              filterOption={(input, option) =>
                option.children.toLowerCase().indexOf(input.toLowerCase()) >= 0
-            }
+              }
                           
-                           onChange={handleChangeSelect}>
+              onChange={handleChangeSelect}>
                     {
-                        all_customers.map((item, i)=>{     
+              all_customers.map((item, i)=>{     
                                                 
-                        return <option key={i} value={item._id} >{item.customers_name}</option>
-
-                    })
-                    }
-                            
-                    </Select>
-
-       
-        </Form.Item>
-
-
-</Col>
-
-               {/* <Col span={12}>
-                 
-               <Form.Item
-           label={<p className="  w-36 text-left m-0"> Project ID</p>}
-           name="project_id"
-           rules={[{ required: true, message: 'Please Input Project ID!' }]}
-         >
-           <Input/>
- 
-         </Form.Item>
-         </Col> */}
-
-
-              <Col span={12}>
-                
-              <Form.Item
-          label={<p className="  w-36 text-left m-0"> Project Name</p>}
-          name="project_name"
-          rules={[{ required: true, message: 'Please Input Project Name!' }]}
-        >
-          <Input/>
-
-        </Form.Item>
-
-
-
-
+              return <option key={i} value={item._id} >{item.customers_name}</option>
+              })
+                    }                           
+              </Select>       
+              </Form.Item>
               </Col>
-            </Row>
 
-            <Row gutter={16}>
-              <Col span={12}>
-              <Form.Item
-          label={<p className="  w-36 text-left m-0">Project Coordinator</p>}
-          name="project_coordiantor"
-          rules={[{ required: true, message: 'Please select Project Coordinator!' }]}
-        >
-  <Input/>
-        </Form.Item>
+             <Col span={12}>                
+             <Form.Item
+             label={<p className="  w-36 text-left m-0"> Project Name</p>}
+             name="project_name"
+             rules={[{ required: true, message: 'Please Input Project Name!' }]}
+             >
+             <Input/>
+             </Form.Item>
+             </Col>
+             </Row>
 
 
-        <Form.Item
-          label={<p className="  w-36 text-left m-0">Project Location</p>}
-          name="project_location"
-          rules={[{ required: true, message: 'Please select Project Location!' }]}
-        >
-  <Input/>
-        </Form.Item>
+
+
+             <Row gutter={16}>
+             <Col span={12}>
+             <Form.Item
+             label={<p className="  w-36 text-left m-0">Project Coordinator</p>}
+             name="project_coordiantor"
+             rules={[{ required: true, message: 'Please select Project Coordinator!' }]}
+             >
+             <Input/>
+             
+             </Form.Item>
+             </Col>
+
+             <Col span={12}>
+             <Form.Item
+             label={<p className="  w-36 text-left m-0">Project Location</p>}
+             name="project_location"
+             rules={[{ required: true, message: 'Please select Project Location!' }]}
+             >
+             <Input/>
+             </Form.Item>
+             </Col>
+             </Row>
+
 
         
-
-        <Form.Item
-          label={<p className="w-36 text-left m-0">Phone Number</p>}
-          name="phone_number"
-          rules={[{ required: true, message: 'Please Input Phone Number!' }]}
-        >
+           <Row gutter={16}>
+           <Col span={12}>
+           <Form.Item
+            label={<p className="w-36 text-left m-0">Phone Number</p>}
+            name="phone_number"
+            rules={[{ required: true, message: 'Please Input Phone Number!' }]}
+           >
            <Input/>
-
-</Form.Item>
-
-              </Col>
-            </Row>
-
-            
-
-            <Row gutter={16}>
+           </Form.Item>
+           </Col>
+             
               <Col span={12}>
               <Form.Item
-          label={<p className="  w-36 text-left m-0">Email</p>}
-          name="email"
-          rules={[{ required: true, message: 'Please Input Email!' }]}
-        >
+              label={<p className="  w-36 text-left m-0">Email</p>}
+            name="email"
+             rules={[{ required: true, message: 'Please Input Email!' }]}
+           >
            <Input/>
 
-</Form.Item>
-              </Col>
+           </Form.Item>
+             </Col>
             </Row>
  
-
-            {/* <Row gutter={16}>
-              <Col span={20}>
-              <Upload>
-            <Button icon={<UploadOutlined />}>Upload Product Image</Button>
-            </Upload>
-              </Col>
-              
-            </Row> */}
             <br/>
             <Divider />
 
             
-<Button type="primary" htmlType="submit"
-onClick={() => setVisible(false)}
-block style={{ fontSize: '14px' }}>
-      Submit
-    </Button>
-          </Form>
-        </Drawer>
-      </>
-    );
+            <Button type="primary" htmlType="submit"
+             onClick={() => setVisible(false)}
+             block style={{ fontSize: '14px' }}>
+             Submit
+             </Button>
+             </Form>
+             </Drawer>
+             </>
+             );
   }
 

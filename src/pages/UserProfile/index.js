@@ -118,69 +118,29 @@ useEffect(() =>{
   
       <div style={{ width: '30%' }}>
           <h1 style={{ fontSize: '1.5rem', fontWeight: '700'}}> Update Information</h1>
-          {/* <Form.Item
-            label={<p></p>}
-            name="profile_image"
-            // rules={[{ required: true, message: 'required!' }]}
-          >
-                <div 
-                    className=" grid grid-cols-4 gap-5">
-                {
-
-                imgurl.map((img, i)=>{
-
-                  return <div className=" imglist  bg-gray-50 text-center" style={{height:"100px"}}>
-                   
-                  <Image    
-                   preview={false}               
-                   key={i}
-                   className="  rounded col-span-1  block  object-cover"
-                   style={{height:"100px", width:"100px"}}
-                   src={img}
-                   placeholder={<Loader/> }              
-                 />   
-                  <h2 onClick={(e)=>remove(e, img)} className="p-1 text-white  text-xl "> <MdDelete/></h2> 
-
-                    </div>
-                })
-                }
-
-                <Upload       
-                        listType="picture-card"
-                        fileList={fileList}
-                        onChange={handleChange}
-                        multiple={false}
-                        className="ml-2"
-                        >
-                        {imgurl.length >= 1 ? null : uploadButton}
-                        </Upload>
-                </div> 
-
-
-        </Form.Item> */}
-
-
+ 
 <Form.Item>
+  <Avatar
 
-<img
+
         alt="example"
         src={user?.company?.profile_image} 
-      />
-
+        size={{  xxl: 100 }}
+/>
 
 </Form.Item>
 
 
-      <Form.Item label="User name" name="full_name" >
+      <Form.Item label="User Name" name="full_name" >
         <Input disabled />
       </Form.Item>
       <Form.Item label="Email" name="email">
         <Input disabled />
       </Form.Item>
-      <Form.Item label="Phone number" name="phone_number">
+      <Form.Item label="Phone Number" name="phone_number">
         <Input disabled />
       </Form.Item>
-      <Form.Item label="department" name='department'>
+      <Form.Item label="Department" name='department'>
         <Input />
       </Form.Item>
     

@@ -40,13 +40,10 @@ const { Search } = Input;
   useEffect(()=>{
 
     axios.get(keyUri.BACKEND_URI +`/usertickets/${user?._id}?search=${debouncedText}`).then(({data})=>{
- 
-
-
       setFilter(data?.filtertickets)
        })
-  setLoading(false)
-   }, [debouncedText])
+     setLoading(false)
+     }, [debouncedText])
 
 console.log(filter);
  
