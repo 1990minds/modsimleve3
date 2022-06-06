@@ -24,38 +24,30 @@ export default function Project() {
 
     const dispatch = useDispatch()
     const {all_project} = useSelector(projectSelector) 
-    const [search, setSearch] = useState('')
-  
-   
-    const { user} = useSelector(authenticateSelector) 
-  
+    const [search, setSearch] = useState('')   
+    const { user} = useSelector(authenticateSelector)   
     const [projectAddVisible, SetProjectAddVisible] = useState(false)
-    const [searchvalue, setSearchvalue] = useState('')
-
-   
+    const [searchvalue, setSearchvalue] = useState('')   
     const [loading, setLoading] = useState(false)
     const [filter,setFilter]=useState([])
     const [debouncedText] = useDebounce(search, 2000);
   
-  console.log(all_project);
-  
+    console.log(all_project);
 
-  useEffect(()=>{
 
-    dispatch(fetchAllproject(user?.company?._id))
-       
-       
-        }, [user])
-  
+
+     useEffect(()=>{
+     dispatch(fetchAllproject(user?.company?._id))            
+     }, [user]) 
      const handleCancel = () => {
        SetProjectAddVisible(false)
      };
-   
 
-console.log(filter);
-useEffect(()=>{
+     console.log(filter);
 
-  axios.get(keyUri.BACKEND_URI +`/project?search=${debouncedText}`).then(({data})=>{
+
+     useEffect(()=>{
+     axios.get(keyUri.BACKEND_URI +`/project?search=${debouncedText}`).then(({data})=>{
     console.log(
       'text'
     );
@@ -63,66 +55,68 @@ useEffect(()=>{
 
     setFilter(data?.filterproject)
      })
-setLoading(false)
- }, [dispatch, debouncedText])
+     setLoading(false)
+     }, [dispatch, debouncedText])
 
-console.log(filter);
+     console.log(filter);
 
-useEffect(()=>{
-  dispatch(fetchAllproject())
+
+     useEffect(()=>{
+     dispatch(fetchAllproject())
       }, [dispatch])
 
+
       useEffect(()=>{     
-        if(filter?.length < 1) {
-          setSearch('')
+      if(filter?.length < 1) {
+      setSearch('')
         }
          }, [filter])
       
       
       const onSearch = (e) => {
-        setLoading(true)
-        setSearch(e.target.value)
+       setLoading(true)
+       setSearch(e.target.value)
       }
 
   return (
     <Layout>
 
-<Row>
-      <Col span={8}>
-      <Createproject />
-      </Col>
-      <Col span={3} offset={10} >
-      <Tooltip placement="topLeft" title="Search for Name, Email, Phone No" arrowPointAtCenter>
-      <SearchWrap>
+    <Row>
+        <Col span={8}>
+        <Createproject />
+        </Col>
+        <Col span={3} offset={10} >
+        <Tooltip placement="topLeft" title="Search for Name, Email, Phone No" arrowPointAtCenter>
+        <SearchWrap>
 
-<Input value={search}  className="px-4 py-2 focus:outline-none"
+        <Input value={search}  className="px-4 py-2 focus:outline-none"
 prefix ={  <SearchOutlined  style={{color:'#3e79f7', fontWeight:'bold' ,padding:'0px'}} />
 }
-placeholder="Search" onChange={onSearch}  />
-</SearchWrap>
- </Tooltip>
+         placeholder="Search" onChange={onSearch}  />
+         </SearchWrap>
+         </Tooltip>
         </Col>
         <Col span={3} className='' style={{ display: 'flex', justifyContent: 'end' }}>
         <ExcelBtn data={all_project} />
-      </Col>
-      </Row>
+        </Col>
+        </Row>
         <ProjectTable data={(filter?.length > 0) ? filter :all_project} />
-    </Layout>
+        </Layout>
   )
 
 
 }
 
- const SearchWrap = styled.div`
+      const SearchWrap = styled.div`
   
 
-  .ant-input-affix-wrapper{
-  padding: 0px !important;
-  padding-left: 12px !important;
-  padding-right: 8px !important;
-  border-radius: 10px !important;
-  border-color: transparent !important;
-  box-shadow: 6px 6px 5px #F1F1F1;  
+         .ant-input-affix-wrapper{
+         padding: 0px !important;
+         padding-left: 12px !important;
+         padding-right: 8px !important;
+         border-radius: 10px !important;
+         border-color: transparent !important;
+         box-shadow: 6px 6px 5px #F1F1F1;  
   }
 
   

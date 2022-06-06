@@ -65,7 +65,7 @@ export default function CreateCustomer({cancel}) {
   
     return (
       <>
-      <Tooltip placement="topLeft" title="Creating a new user" arrowPointAtCenter>
+      <Tooltip placement="topLeft" title="Creating a new customer" arrowPointAtCenter>
         <Button type="primary" onClick={showDrawer} icon={<PlusOutlined />} style={{fontSize: "14px" }}>
           Create
         </Button>

@@ -116,28 +116,28 @@ const columns = [
   const onChange = (e) => console.log(`radio checked:${e.target.value}`);
 
   return (
-    <>
-      <div className="tabled">
-        <Row gutter={[24, 0]}>
-          <Col xs="24" xl={24}>
-            <Card
-              bordered={false}
-              className="criclebox tablespace mb-24"
-              // title="Customer Table"
-              extra={
-                <>
+                        <>
+                  <div className="tabled">
+                  <Row gutter={[24, 0]}>
+                  <Col xs="24" xl={24}>
+                  <Card
+                  bordered={false}
+                  className="criclebox tablespace mb-24"
+                  // title="Customer Table"
+                  extra={
+                    <>
 
-                </>
-              }
-            >
-              <div className="table-responsive">
-                <Table
-                  columns={columns}
-                  dataSource={data}
-                  pagination={{
-                    onChange(current) {
-                      setPage(current)
-                    }
+                    </>
+                      }
+                    >
+                  <div className="table-responsive">
+                    <Table
+                      columns={columns}
+                      dataSource={data}
+                      pagination={{
+                        onChange(current) {
+                          setPage(current)
+                        }
                     
                   }}
                   style={{ cursor:"pointer" }}

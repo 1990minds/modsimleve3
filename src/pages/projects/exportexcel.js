@@ -24,11 +24,12 @@ export default function ExportExcel({data}) {
 
          {/* <ExcelColumn label="sl_no" value={col => col?.sl_no ? col.sl_no: "null"}/>  */}
             <ExcelColumn label="project_location" value={col => col?.project_location ? col.project_location: "null"}/> 
+            <ExcelColumn label="project_id" value={col => col?.project_id ? col.project_id: "null"}/> 
             <ExcelColumn label="phone_number" value={col => col?.phone_number ? col.phone_number: "null"}/> 
             <ExcelColumn label="project_name" value={col => col?.project_name ? col.project_name: "null"}/> 
             <ExcelColumn label="email" value={col => col?.email ? col.email: "null"}/> 
             <ExcelColumn label="project_coordiantor" value={col => col?.project_coordiantor ? col.project_coordiantor: "null"}/> 
-            <ExcelColumn label="customer_name" value={col => col?.customer_name ? col.customer_name: "null"}/> 
+            <ExcelColumn label="customer_name" value={col => col?.customers?.customers_name ? col.customers?.customers_name: "null"}/> 
         </ExcelSheet>
     </ExcelFile>
     )

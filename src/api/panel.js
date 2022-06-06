@@ -176,7 +176,6 @@ console.log( {id});
 
  export const  updatePanel = (id, values, product) => async dispatch =>{
 
-  console.log("testingggg/////////////");
   console.log(id);
   console.log(values);
 
@@ -190,7 +189,8 @@ try {
     
     data && message.success({ content: data.msg, key, duration: 2 });
     dispatch(fetchProductPanels(product));
-        // window.location.reload()
+    dispatch(fetchOnepanel(id));
+
 
 } catch ({response}) {
 
