@@ -31,12 +31,14 @@ import  {createdrawingreq} from '../../api/drawingreq'
 import Editpanel from './editpanel';
 import moment from 'moment';
 import { Popconfirm, message } from 'antd';
+import {updateUser} from '../../api/user'
   
   function PanelTable({data,project_id, product_id}) {
 
     const [confirmLoading, setConfirmLoading] = useState(false);
     const [modalText, setModalText] = useState('Content of the modal');
-  
+    const {user} = useSelector(authenticateSelector)
+    console.log(user);
     const showModal = () => {
       setVisible(true);
     };
@@ -259,25 +261,14 @@ width="20" height="20" viewBox="0 0 24 24" stroke-width="1.5" stroke="#2C3E50" f
   {id?.request}
 </svg>
 </Tooltip>
-
-
-
             </Popconfirm>
 
 
-            <Popconfirm
-          title="Are you sure to Request this Drawing?"
-          onConfirm={(data)=>confirmRequestdwg(data, id)}
-          onCancel={cancelRequest}
-          okText="Yes"
-          cancelText="No"
-          disabled={id?.requestdwg === "send"? false : true}
-          >
-
-<Tooltip placement="topLeft" title={id?.requestdwg === 'null' ? " Enabled only when Drawing is generated" : id?.requestdwg === 'send' ? " Send Full Drawing request": id?.requestdwg === 'pending' ? "Request Drawing please wait till processed": " Request of Drawing mailed succesfully"}>
-<svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-artboard"
-style={{cursor: id?.requestdwg === "send" ? "pointer" : 'no-drop', stroke: id?.requestdwg === 'null' ? "gray" : id?.requestdwg === 'send' ? "blue" :id?.requestdwg === 'pending' ? "orange":"green"}}
-width="15" height="15" viewBox="0 0 24 24" stroke-width="3" stroke="#2C3E50" fill="none" stroke-linecap="round" stroke-linejoin="round">
+{ user?.license?.license_type === 'Basic' ? <Tooltip placement="topLeft" title=" Upgarde to Premium" >
+<svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-artboard" 
+width="15" height="15" viewBox="0 0 24 24" 
+style={{ cursor: 'no-drop'}}
+stroke-width="3" stroke="#2C3E50" fill="none" stroke-linecap="round" stroke-linejoin="round">
  
   <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
   <rect x="8" y="8" width="8" height="8" rx="1" />
@@ -290,10 +281,40 @@ width="15" height="15" viewBox="0 0 24 24" stroke-width="3" stroke="#2C3E50" fil
   <line x1="8" y1="20" x2="8" y2="21" />
   <line x1="16" y1="20" x2="16" y2="21" />
 </svg>
+ 
 </Tooltip>
-            
 
-            </Popconfirm>
+:
+
+<Popconfirm
+title="Are you sure to Request this Drawing?"
+onConfirm={(data)=>confirmRequestdwg(data, id)}
+onCancel={cancelRequest}
+okText="Yes"
+cancelText="No"
+disabled={id?.requestdwg === "send"? false : true}
+>
+
+<Tooltip placement="topLeft" title={id?.requestdwg === 'null' ? " Enabled only when Drawing is generated" : id?.requestdwg === 'send' ? " Send Full Drawing request": id?.requestdwg === 'pending' ? "Request Drawing please wait till processed": " Request of Drawing mailed succesfully"}>
+<svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-artboard"
+style={{cursor: id?.requestdwg === "send" ? "pointer" : 'no-drop', stroke: id?.requestdwg === 'null' ? "gray" : id?.requestdwg === 'send' ? "blue" :id?.requestdwg === 'pending' ? "orange":"green"}}
+width="15" height="15" viewBox="0 0 24 24" stroke-width="3" stroke="#2C3E50" fill="none" stroke-linecap="round" stroke-linejoin="round">
+
+<path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+<rect x="8" y="8" width="8" height="8" rx="1" />
+<line x1="3" y1="8" x2="4" y2="8" />
+<line x1="3" y1="16" x2="4" y2="16" />
+<line x1="8" y1="3" x2="8" y2="4" />
+<line x1="16" y1="3" x2="16" y2="4" />
+<line x1="20" y1="8" x2="21" y2="8" />
+<line x1="20" y1="16" x2="21" y2="16" />
+<line x1="8" y1="20" x2="8" y2="21" />
+<line x1="16" y1="20" x2="16" y2="21" />
+</svg>
+</Tooltip>
+  </Popconfirm>
+      }
+         
 
             </Space>
 

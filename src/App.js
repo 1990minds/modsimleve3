@@ -14,6 +14,7 @@ import Panel from './pages/panel'
 import Panelpage from './pages/panelpage'
 import Profile from './pages/UserProfile'
 import Ticket from './pages/tickets'
+import TicketView from './pages/tickets/ticketviewer'
 
 function App() {
 
@@ -35,7 +36,7 @@ function App() {
     <Route path="/auth/panelpage/:id"  component={Panelpage} exact />
     <Route path="/auth/profile"  component={Profile} exact />
     <Route path="/auth/ticket"  component={Ticket} exact />
-    
+    <Route path="/auth/ticketviewer/:id"  component={TicketView} exact />
      </main>
     </Router>
   );
