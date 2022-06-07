@@ -105,7 +105,7 @@ export default function CreateProject({cancel}) {
               >
               <Select 
               showSearch
-              placeholder="Customer name"  
+              placeholder="Customer Name"  
                            
              optionFilterProp="children"
              filterOption={(input, option) =>
