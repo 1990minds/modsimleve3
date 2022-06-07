@@ -69,6 +69,7 @@ useEffect(()=>{
     
   return (
     <Layout>
+      <h1 style={{ fontSize:'2rem', fontWeight: '700' , paddingBottom: '10px' }}>Tickets</h1>
       <Row>
       <Col span={8}>
       < Createtickets  />

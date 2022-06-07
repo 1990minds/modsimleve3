@@ -269,25 +269,27 @@ function Header({
       <div className="setting-drwer" onClick={showDrawer}>
         {setting}
       </div>
-      <Row gutter={[24, 0]} >
+      <Row gutter={[24, 0]} 
+      style={{paddingTop: "10px"}}
+      >
         <Col span={24} md={6}>
-          <Breadcrumb>
+          {/* <Breadcrumb>
             <Breadcrumb.Item>
               <NavLink to="/">Home</NavLink>
             </Breadcrumb.Item>
             <Breadcrumb.Item style={{ textTransform: "capitalize" }}>
-              {/* {name.replace("/", "")} */}
+              {name.replace("/", "")}
               {LastWord(name.split('-').join(' ')) }
             </Breadcrumb.Item>
-          </Breadcrumb>
+          </Breadcrumb> */}
           <div className="ant-page-header-heading">
-            <span
+            {/* <span
               className="ant-page-header-heading-title"
               style={{ textTransform: "capitalize" , fontSize: "24px" , paddingTop: '10px', paddingBottom: '10px'}}
             >
-              {/* {subName.replace("/", "")} */}
+              {subName.replace("/", "")}
               {LastWord(name.split('-').join(' ')) }
-            </span>
+            </span> */}
           </div>
         </Col>
         <Col span={24} md={18} className="header-control">
@@ -413,7 +415,8 @@ function Header({
           &nbsp;&nbsp;
           <ButtonContainer>
 
-          <Link to="/sign-in" className="btn-sign-in" onClick={()=>{  dispatch(logOut()) }} type="link" danger>
+          <Link to="/sign-in"
+          className="btn-sign-in" onClick={()=>{  dispatch(logOut()) }} type="link" danger>
             {/* {profile} */}
             <span>Sign Out</span>
           </Link>

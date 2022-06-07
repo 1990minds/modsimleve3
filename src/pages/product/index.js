@@ -78,7 +78,7 @@ console.log(filter);
 
   return (
     <Layout>
-
+<h1 style={{ fontSize:'1.5rem', fontWeight: '700' , paddingBottom: '10px' }}>Products</h1>
 <Row>
 
 {

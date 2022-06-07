@@ -87,7 +87,7 @@ console.log(filter);
 
   return (
     <Layout>
-
+<h1 style={{ fontSize:'1.5rem', fontWeight: '700' , paddingBottom: '10px' }}>Panels</h1>
 <Row>
       <Col span={8}>
       <Createpanel project_id ={project} product_id={id}/>
