@@ -40,7 +40,7 @@ export default function Panel() {
     console.log(project);
     const {id}= useParams()
 
-  const [panelAddVisible, SetPanelAddVisible] = useState(false)
+    const [panelAddVisible, SetPanelAddVisible] = useState(false)
   // const [searchvalue, setSearchvalue] = useState('')
 
   
@@ -60,7 +60,7 @@ console.log(filter);
  
     useEffect(()=>{
 
-      axios.get(keyUri.BACKEND_URI +`/panel?search=${debouncedText}`).then(({data})=>{
+      axios.post(keyUri.BACKEND_URI +`/product-panels?search=${debouncedText}`,{id,project}).then(({data})=>{
         
         console.log({data})
 
@@ -93,7 +93,7 @@ console.log(filter);
       <Createpanel project_id ={project} product_id={id}/>
       </Col>
       <Col span={3} offset={10} >
-      <Tooltip placement="topLeft" title="Search for Name, Email, Phone No" arrowPointAtCenter>
+      <Tooltip placement="topLeft" title="Search for Panel Name, Panel ID" arrowPointAtCenter>
       <SearchWrap>
 
 <Input value={search}  className="px-4 py-2 focus:outline-none"
@@ -107,7 +107,7 @@ placeholder="Search" onChange={onSearch}  />
         <ExcelBtn data={product_panels} />
       </Col>
       </Row>
-        <PanelTable  data={product_panels} project_id ={project} product_id={id}/>
+        <PanelTable  data={(filter?.length > 0) ? filter :product_panels} project_id ={project} product_id={id}/>
     </Layout>
   )
 

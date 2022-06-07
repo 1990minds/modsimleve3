@@ -139,7 +139,9 @@ console.log(current_customers);
             </h5>
             </Tooltip>
 
-            {/* <Tooltip placement="topLeft" title="Delete existing customer" arrowPointAtCenter>
+
+            <Tooltip placement="topLeft" title="Delete existing customer" arrowPointAtCenter>
+
 
 
             
