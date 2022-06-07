@@ -88,12 +88,11 @@ console.log(filter);
 
   return (
     <Layout>
-
+<h1 style={{ fontSize:'1.5rem', fontWeight: '700' , paddingBottom: '10px' }}>Panel Details</h1>
 <Row>
       <Col span={24} >
      
 <div className='max-w-xl sm:mx-auto lg:max-w-7xl'>
-      <h1 style={{ fontSize:'20px'}}>Panel  </h1>
        <EditPanel current_panel={current_panel}/>
        
 

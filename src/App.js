@@ -6,7 +6,7 @@ import React from 'react';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 import Dashboard from './pages/Dashboard'
 import PrivateVendorRoute from './components/auth/privateRoute'
-import Login from './pages/SignIn'
+import Login from './components/auth/login'
 import Customers from '../src/pages/customers'
 import Project from "./pages/projects";
 import Product from "./pages/product";

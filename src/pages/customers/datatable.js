@@ -140,17 +140,16 @@ console.log(current_customers);
             </Tooltip>
 
 
-            <Tooltip placement="topLeft" title="Delete existing customer" arrowPointAtCenter>
+           
 
-
-
-            
             <DeleteConfirm confirm={(e)=>confirm(e, id)} title="customers" cancel={cancel} >
+               <Tooltip placement="topLeft" title="Delete existing customer" arrowPointAtCenter>
                 <FaRegTrashAlt style={{cursor:"pointer"}}className="text-secondary mt-2"  />
+                 </Tooltip> 
             </DeleteConfirm>
+
        
         </Tooltip>  
-
 
         </Space>
         ),
