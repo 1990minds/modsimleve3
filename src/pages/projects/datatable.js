@@ -26,6 +26,7 @@ import {
   //   import Editproject from './editproject';
   import { useHistory} from 'react-router-dom'
   import {deleteproject,deleteManyproject} from '../../api/project'
+  import moment from 'moment';
   
    function ProjectTable({data}) {
 
@@ -118,10 +119,13 @@ import {
         
       },
       {
-        title: 'Phone',
-        dataIndex: 'phone_number',
-        key: 'phone_number',
-        
+        title: 'Date',
+        dataIndex: 'createdAt',
+        key: 'createdAt',
+        width: 200,
+        render:(createdAt)=>{
+          return <small className="my-0 mr-3">{moment(createdAt).format('DD/MM/YYYY')}</small>
+      }
       },
       {
         title: 'Email',

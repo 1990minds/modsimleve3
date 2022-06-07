@@ -148,6 +148,9 @@ console.log(current_customers);
                  </Tooltip> 
             </DeleteConfirm>
 
+       
+        </Tooltip>  
+
         </Space>
         ),
       },
