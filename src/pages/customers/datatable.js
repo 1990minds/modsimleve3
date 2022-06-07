@@ -138,8 +138,10 @@ console.log(current_customers);
             <FaRegEdit style={{cursor:"pointer"}} onClick={(e)=>handleClickEdit(e, true, id)} className="text-secondary mt-2"  /> 
             </h5>
             </Tooltip>
-{/* 
+
+
             <Tooltip placement="topLeft" title="Delete existing customer" arrowPointAtCenter>
+
 
 
             

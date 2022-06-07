@@ -439,13 +439,13 @@ function Header({
           </Badge>
           </Link>
          </div>
-         <div style={{ paddingLeft: '10px', paddingRight: '10px'}}>
+         {/* <div style={{ paddingLeft: '10px', paddingRight: '10px'}}>
          
           <Badge size="small">
           <CalendarFilled />
           </Badge>
          
-          </div>
+          </div> */}
           {/* <Input
             className="header-search"
             placeholder="Type here..."
