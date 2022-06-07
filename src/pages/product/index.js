@@ -90,11 +90,12 @@ console.log(filter);
    <Card
    
     hoverable
-    style={{ width: 300, paddingTop: '30px', marginTop: '20px' }}
+    style={{ width: 300, paddingTop: '30px', marginTop: '20px',  }}
     cover={
       <img
         alt="example"
         src={item?.product_image} 
+        style={{height: '20vh'}}
       />
     }
    

@@ -139,7 +139,7 @@ console.log(current_customers);
             </h5>
             </Tooltip>
 
-            <Tooltip placement="topLeft" title="Delete existing customer" arrowPointAtCenter>
+            {/* <Tooltip placement="topLeft" title="Delete existing customer" arrowPointAtCenter>
 
 
             
@@ -147,7 +147,7 @@ console.log(current_customers);
                 <FaRegTrashAlt style={{cursor:"pointer"}}className="text-secondary mt-2"  />
             </DeleteConfirm>
        
-        </Tooltip> 
+        </Tooltip>  */}
 
 
         </Space>
