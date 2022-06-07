@@ -86,7 +86,7 @@ export default function Project() {
         <Createproject />
         </Col>
         <Col span={3} offset={10} >
-        <Tooltip placement="topLeft" title="Search for Name, Email, Phone No" arrowPointAtCenter>
+        <Tooltip placement="topLeft" title="Search for Project Name, Project ID" arrowPointAtCenter>
         <SearchWrap>
 
         <Input value={search}  className="px-4 py-2 focus:outline-none"
