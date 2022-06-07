@@ -149,7 +149,7 @@ console.log(current_customers);
                 <FaRegTrashAlt style={{cursor:"pointer"}}className="text-secondary mt-2"  />
             </DeleteConfirm>
        
-        </Tooltip>  */}
+        </Tooltip>  
 
 
         </Space>
