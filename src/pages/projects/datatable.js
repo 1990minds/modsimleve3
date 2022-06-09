@@ -119,7 +119,7 @@ import {
         
       },
       {
-        title: 'Date',
+        title: 'Created Date',
         dataIndex: 'createdAt',
         key: 'createdAt',
         width: 200,
@@ -127,6 +127,19 @@ import {
           return <small className="my-0 mr-3">{moment(createdAt).format('DD/MM/YYYY')}</small>
       }
       },
+
+      {
+        title: 'Updated Date',
+        dataIndex: 'updatedAt',
+        key: 'updatedAt',
+        render:(updatedAt)=>{
+          return <small className="my-0 mr-3">{moment(updatedAt).format('DD/MM/YYYY')}</small>
+      }
+      },
+
+
+
+
       {
         title: 'Email',
         dataIndex: 'email',
