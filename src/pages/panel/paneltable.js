@@ -8,7 +8,8 @@ import {
     Table,
     Space,
     Drawer,
-    Menu, Dropdown, Button 
+    Menu,
+    Model, Dropdown, Button 
   } from "antd";
   import { useState } from "react";
   import { ToTopOutlined } from "@ant-design/icons";
@@ -20,7 +21,11 @@ import {
   import face6 from "../../assets/images/face-6.jpeg";
   import pencil from "../../assets/images/pencil.svg";
   import {useDispatch, useSelector} from 'react-redux'
-  import { FaRegTrashAlt, FaRegEdit } from 'react-icons/fa';
+  import { FaRegTrashAlt, FaRegEdit, } from 'react-icons/fa';
+  import { FiCopy } from 'react-icons/fi';
+  import ModalForm from '../../global/model.js'
+  
+
   import {deleteProduct} from '../../api/product'
   import {authenticateSelector} from '../../api/authSlice';
 //   import Editpanel from './editpanel';
@@ -29,6 +34,7 @@ import {deletepanel,deleteManypanel, } from '../../api/panel'
 import { createbomrequest} from '../../api/bomrequest'
 import  {createdrawingreq} from '../../api/drawingreq'
 import Editpanel from './editpanel';
+import Duplicatepanel from './duplicatepanel';
 import moment from 'moment';
 import { Popconfirm, message } from 'antd';
 import {updateUser} from '../../api/user'
@@ -60,6 +66,8 @@ import {updateUser} from '../../api/user'
 
     const [visibleEdit, setEditModal] = useState(false);
     const [current_panel, setpanel] = useState(null);
+    const [visibleDuplicate, setDuplicatetModal] = useState(false);
+   
     
     const [selectionType, setSelectionType] = useState('checkbox');
 
@@ -69,8 +77,24 @@ import {updateUser} from '../../api/user'
     
         const confirm = (e, id) => {
             dispatch(deletepanel(id._id, {id:product_id,project:project_id}))
-           
+          
           }
+
+
+          const handleClickDuplicate = (e, isvisible, id) =>{
+            e.preventDefault()
+            setpanel(id)
+            setDuplicatetModal(isvisible)
+            // setDuplicatetModal(false)
+            }
+    
+            const cancelModel = () => {
+              setDuplicatetModal(false)
+              setpanel(null)
+            }
+    
+
+
 
 
           const handleClickEdit = (e, isvisible, id) =>{
@@ -78,6 +102,8 @@ import {updateUser} from '../../api/user'
             setpanel(id)
             setVisible(true);
             }
+
+           
 
             const handleClick = (e, isvisible, id) =>{
               e.preventDefault()
@@ -88,7 +114,7 @@ import {updateUser} from '../../api/user'
       const [page, setPage] = useState(1);
   
                const [visible, setVisible] = useState(false);
-    
+               
 
                 const confirmRequest = (values, id) => {
                 const data={
@@ -117,12 +143,7 @@ import {updateUser} from '../../api/user'
       const cancelRequest = (e) =>{
         return null
       }
-    
-          const closeModal = () => {
-            setEditModal(false)
-            setpanel(null)
-          }
-   
+  
 
   const dispatch = useDispatch()
 
@@ -183,8 +204,9 @@ import {updateUser} from '../../api/user'
   const onClose = () => {
     setVisible(false);
     setpanel(null)
-  };
 
+  };
+ 
   const columns = [
       
     {
@@ -228,6 +250,16 @@ import {updateUser} from '../../api/user'
           return <small className="my-0 mr-3">{moment(createdAt).format('DD/MM/YYYY')}</small>
       }
       },
+
+      {
+        title: 'Updated Date',
+        dataIndex: 'updatedAt',
+        key: 'updatedAt',
+        render:(updatedAt)=>{
+          return <small className="my-0 mr-3">{moment(updatedAt).format('DD/MM/YYYY')}</small>
+      }
+      },
+
 
       {
         title: 'Request',
@@ -341,6 +373,13 @@ width="15" height="15" viewBox="0 0 24 24" stroke-width="3" stroke="#2C3E50" fil
                       <FaRegEdit  onClick={(e)=>handleClickEdit(e, true, id)} className="text-secondary  text-lg mt-2"  /> 
                       </h5>
                     </Tooltip>
+
+                    <Tooltip placement="topLeft" title="Duplicate Panel" arrowPointAtCenter>
+                    <h5 className="text-secondary" >
+                   
+                      <FiCopy onClick={(e)=>handleClickDuplicate(e, true, id)}/> 
+                      </h5>
+                    </Tooltip>
                     
                     
                     
@@ -432,7 +471,27 @@ width="15" height="15" viewBox="0 0 24 24" stroke-width="3" stroke="#2C3E50" fil
           title="Update a existing Panel" placement="right" onClose={onClose} visible={visible} width={720}
         >
           <Editpanel current_panel={current_panel} cancel={onClose} project_id ={project_id} product_id={product_id}/>
+
+        
         </Drawer>
+
+        {/* <Modal
+          title="Basic Modal" visible={isModalVisible} onOk={handleOk} onCancel={handleCancel}
+        >
+
+          <Duplicatepanel current_panel={current_panel} cancel={onClose1} project_id ={project_id} product_id={product_id}/>
+        </Modal> */}
+
+        <ModalForm 
+            isVisible={visibleDuplicate} 
+            title="Duplicate Panel"
+            footer={false}
+            onOk={handleOk}
+            className=""
+            width="50%"
+            cancel={()=>setDuplicatetModal(!visibleDuplicate)}>
+                  <Duplicatepanel current_panel={current_panel} cancel={()=>setDuplicatetModal(!visibleDuplicate)} project_id ={project_id} product_id={product_id} />
+            </ModalForm>
         
       </>
     );
