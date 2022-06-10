@@ -970,9 +970,9 @@ c-0.01-0.42-0.32-0.5-0.66-0.51C-57.1,15.18-57.68,15.19-58.26,15.19z"fill={color}
             {dashboard}
           </span>
           <h6>Need Help?</h6>
-          <p>please contact our support team</p>
+          <p>Please contact our support team</p>
           <Button type="primary" className="ant-btn-sm ant-btn-block">
-          info@avconsulting.in
+          info@modutec.net
           </Button>
         </div>
       </div>
