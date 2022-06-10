@@ -14,7 +14,6 @@ import Editpanel from './editpanel';
 import {useParams} from 'react-router-dom'
 import Item from 'antd/lib/list/Item';
 
-
 const { Option } = Select;
 
 export default function DuplicatePanel({current_panel,project_id,product_id,cancel}) {
@@ -60,6 +59,7 @@ export default function DuplicatePanel({current_panel,project_id,product_id,canc
                 data.createdAt=null
                 data.request="null"
                 data.dwgrequest="null"
+                
 
           dispatch(duplicatepanel( data,{id:product_id,project:project_id}))
           form.resetFields()
@@ -128,6 +128,9 @@ export default function DuplicatePanel({current_panel,project_id,product_id,canc
            
 
             <Row gutter={16}>
+            
+
+
 
             
 
@@ -157,10 +160,6 @@ export default function DuplicatePanel({current_panel,project_id,product_id,canc
           </Form.Item>
   
                 </Col>
-
-
-
-
 
               <Col span={12}>
 
