@@ -42,7 +42,8 @@ export default function CreatePanel({cancel,project_id,product_id}) {
         busbar_material:values.busbar_material,
         panel_quntity:values.panel_quntity,
         project_id:project_id,
-        product_id:product_id
+        product_id:product_id,
+        user:user?._id,
       }
 
         dispatch(createpanel(data, {id:product_id,project:project_id}))

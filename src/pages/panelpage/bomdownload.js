@@ -105,7 +105,7 @@ export default function ExportExcel({data, panel}) {
                                             <td>{item.Width ? item.Width : 'NA'}</td>
                                             <td>{item.Height ? item.Height : 'NA'}</td>
                                             <td>{item.Qty}</td>
-                                            <td className='text'>{item.Unit}</td>
+                                            <td className='text'>{item.UOM}</td>
                                             <td>{item.Qty*panel?.panel_quntity}</td>
                                         </tr>
                                     })
