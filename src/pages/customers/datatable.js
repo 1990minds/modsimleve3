@@ -211,7 +211,7 @@ console.log(current_customers);
         </div>
        
                    <Drawer
-          title="Update a existing customer" placement="right" onClose={onClose} visible={visible} width={720}
+          title="Update an existing customer" placement="right" onClose={onClose} visible={visible} width={720}
         >
           <Editcustomers current_customers={current_customers} cancel={onClose}/>
         </Drawer>

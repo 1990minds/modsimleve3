@@ -26,7 +26,7 @@ export default function CreateProject({cancel}) {
       
        useEffect(()=>{
        dispatch(fetchAllcompanycustomers(user?.company?._id))           
-       }, [dispatch])
+       }, [user])
         
   
        const onFinish = (values) => {
@@ -53,6 +53,7 @@ export default function CreateProject({cancel}) {
   
        const onFinishFailed = (errorInfo) => {
        console.log('Failed:', errorInfo);
+       setVisible(true);
        };
 
         const handleChangeSelect = (value) =>{
@@ -62,6 +63,7 @@ export default function CreateProject({cancel}) {
 
        const onChange = (value)=> {
        console.log(`selected ${value}`)
+       
        }
 
 
@@ -73,6 +75,7 @@ export default function CreateProject({cancel}) {
   
         const onClose = () => {
         setVisible(false);
+        form.resetFields()
         };
 
     return (

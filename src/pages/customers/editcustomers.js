@@ -14,7 +14,7 @@ import { UploadOutlined } from '@ant-design/icons';
 
 const { Option } = Select;
 
-export default function EditCustomers({current_customers,}) {
+export default function EditCustomers({current_customers,cancel}) {
   
 
     const dispatch = useDispatch();
@@ -45,7 +45,7 @@ export default function EditCustomers({current_customers,}) {
               }
               dispatch(updatecustomers(current_customers._id, customersdata,user?.company?._id))
               form.resetFields()
-             
+              cancel()
              };
            const [form] = Form.useForm();
 
