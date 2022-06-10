@@ -120,6 +120,28 @@ console.log( {id});
   }
  };
 
+ export const duplicatepanel = (values,product) => async dispatch => {
+  console.log( values);
+  
+  
+    dispatch(getpanel())
+    const key = 'create';
+    message.loading({ content: 'loading...', key })
+    try {
+   
+     const {data} = await axios.post(keyUri.BACKEND_URI +`/duplicatepanel`, values, config)
+  
+     data && message.success({ content: data.msg, key, duration: 2 });
+     dispatch(fetchProductPanels(product));
+  
+    } 
+      catch ({response}) {
+      response.data && message.error({ content: response.data.msg, key, duration: 2 })
+      dispatch(get_panel_Failure())
+  
+    }
+   };
+
 
 
 

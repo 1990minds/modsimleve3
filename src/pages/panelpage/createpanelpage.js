@@ -237,11 +237,11 @@ export default function CreatePanelsettings({current_panel}) {
           style={{ width: '100%' }}
           allowClear
         >
-          <Option value="RAL7032">RAL7032</Option>
-          <Option value="RAL7035">RAL7035</Option>
-          <Option value="RAL2000">RAL2000</Option>
-          <Option value="RAL9003">RAL9003</Option>
-          <Option value="Others">Others</Option>
+          <Option value="RAL7032">01. RAL7032</Option>
+          <Option value="RAL7035">02. RAL7035</Option>
+          <Option value="RAL2000">03. RAL2000</Option>
+          <Option value="RAL9003">04. RAL9003</Option>
+          <Option value="Others">05. Others</Option>
 
         </Select>
 
@@ -345,7 +345,7 @@ export default function CreatePanelsettings({current_panel}) {
         >
           <Option value="Aluzn">Aluzn</Option>
           <Option value="GI">GI</Option>
-          <Option value="GI275 GSM">GI275 GSM</Option>
+          {/* <Option value="GI275 GSM">GI275 GSM</Option> */}
           <Option value="CRCA">CRCA</Option>
          
           
@@ -385,7 +385,7 @@ export default function CreatePanelsettings({current_panel}) {
             >
            <Option value="Aluzn">Aluzn</Option>
            <Option value="GI">GI</Option>
-           <Option value="GI275 GSM">GI275 GSM</Option>
+           {/* <Option value="GI275 GSM">GI275 GSM</Option> */}
            <Option value="CRCA">CRCA</Option>
 
           </Select>
