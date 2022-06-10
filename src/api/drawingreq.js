@@ -1,6 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 import axios from 'axios'
-import { message } from 'antd';
+import { message, notification } from 'antd';
 import { keyUri, config } from '../key'
 import { fetchProductPanels} from '../api/panel'
 
@@ -96,12 +96,25 @@ export const fetchAlldrawingreq = () => async dispatch => {
 
   dispatch(getdrawingreq())
   const key = 'create';
-  message.loading({ content: 'loading...', key })
+  // message.loading({ content: 'loading...', key })
   try {
  
    const {data} = await axios.post(keyUri.BACKEND_URI +`/drawingreq`, values, config)
 
-   data && message.success({ content: data.msg, key, duration: 2 });
+  //  data && message.success({ content: data.msg, key, duration: 2 });
+
+  data && notification.open(
+    {
+        message: `BOM Request ID : #${data?.drawingreq?.request_id}`,
+        description:
+          `We have received your request and a Drawing Request ID ${data?.drawingreq?.request_id} has been created.
+Our Team will share the details with you to your official Email.
+Thank you for contacting Modutec.
+          `
+          ,
+        duration: 0,
+      }
+  );
    dispatch(fetchProductPanels(id));
 
   } 

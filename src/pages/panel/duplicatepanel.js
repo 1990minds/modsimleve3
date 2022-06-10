@@ -16,7 +16,7 @@ import Item from 'antd/lib/list/Item';
 
 const { Option } = Select;
 
-export default function DuplicatePanel({current_panel,project_id,product_id}) {
+export default function DuplicatePanel({current_panel,project_id,product_id,cancel}) {
   
 
   console.log(current_panel)
@@ -63,13 +63,14 @@ export default function DuplicatePanel({current_panel,project_id,product_id}) {
 
           dispatch(duplicatepanel( data,{id:product_id,project:project_id}))
           form.resetFields()
+          cancel()
            };
 
            const [form] = Form.useForm();
 
            const onChange = (value)=> {
              console.log(`selected ${value}`)
-         
+             setVisible(false);
            }
         
 
@@ -112,38 +113,6 @@ export default function DuplicatePanel({current_panel,project_id,product_id}) {
               </Col>
 
               <Col span={12}>
-                
-              <Form.Item
-          label={<p className="  w-36 text-left m-0">Panel Category</p>}
-          name="panel_category"
-          rules={[{ required: true, message: 'Please Select Panel category!' }]}
-          
-        >
-        <Select
-          placeholder="Select Panel category"
-          onChange={onChange}
-          style={{ width: '100%' }}
-          disabled
-        >
-          <Option value="Power Control Center" >Power Control Center</Option>
-          <Option value="Motor Control Center">Motor Control Center</Option>
-          <Option value="Main Distribution Boards">Main Distribution Boards</Option>
-          <Option value="Sub Distribution Boards">Sub Distribution Boards</Option>
-          <Option value="Power Factor control Panel">Power Factor control Panel</Option>
-          <Option value="Synchronising Panel">Synchronising Panel</Option>
-          <Option value="Others">Others</Option>
-        </Select>
- 
-        </Form.Item>
-
-              </Col>
-            </Row>
-
-           
-
-            <Row gutter={16}>
-
-            <Col span={12}>
               <Form.Item
           label={<p className="  w-36 text-left m-0">Rename Panel</p>}
           name="repanel_name"
@@ -154,6 +123,40 @@ export default function DuplicatePanel({current_panel,project_id,product_id}) {
         </Form.Item>
                
               </Col>
+            </Row>
+
+           
+
+            <Row gutter={16}>
+            
+
+            <Col span={12}>
+                
+                <Form.Item
+            label={<p className="  w-36 text-left m-0">Panel Category</p>}
+            name="panel_category"
+            rules={[{ required: true, message: 'Please Select Panel category!' }]}
+            
+          >
+          <Select
+            placeholder="Select Panel category"
+            onChange={onChange}
+            style={{ width: '100%' }}
+            disabled
+          >
+            <Option value="Power Control Center" >Power Control Center</Option>
+            <Option value="Motor Control Center">Motor Control Center</Option>
+            <Option value="Main Distribution Boards">Main Distribution Boards</Option>
+            <Option value="Sub Distribution Boards">Sub Distribution Boards</Option>
+            <Option value="Power Factor control Panel">Power Factor control Panel</Option>
+            <Option value="Synchronising Panel">Synchronising Panel</Option>
+            <Option value="Others">Others</Option>
+          </Select>
+   
+          </Form.Item>
+  
+                </Col>
+
 
 
               <Col span={12}>
@@ -199,9 +202,7 @@ export default function DuplicatePanel({current_panel,project_id,product_id}) {
 
 </Form.Item>
               </Col>
-            </Row>
 
-            <Row gutter={16}>
               <Col span={12}>
               <Form.Item
           
@@ -225,6 +226,10 @@ export default function DuplicatePanel({current_panel,project_id,product_id}) {
 
 
               </Col>
+            </Row>
+
+            <Row gutter={16}>
+              
             </Row>
             <Row gutter={16}>
               <Col span={12}>
