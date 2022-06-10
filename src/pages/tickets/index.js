@@ -12,9 +12,10 @@ import {SearchOutlined,SyncOutlined} from '@ant-design/icons'
 import { useDebounce } from "use-debounce";
 import { keyUri, config } from '../../key'
 import styled from 'styled-components'
-import { Row, Col } from 'antd';
+import { Row, Col, Breadcrumb } from 'antd';
 import {useParams} from 'react-router-dom'
 import Tickettabel from './tickettabel'
+import { Link } from 'react-router-dom';
 const { Search } = Input;
 
   export default function Database() {
@@ -69,13 +70,26 @@ useEffect(()=>{
     
   return (
     <Layout>
+
+<Breadcrumb>
+    <Breadcrumb.Item>
+    <Link to="/"> Home </Link>
+    </Breadcrumb.Item>
+    <Breadcrumb.Item>
+    Tickets 
+    </Breadcrumb.Item>
+    </Breadcrumb>
+
       <h1 style={{ fontSize:'2rem', fontWeight: '700' , paddingBottom: '10px' }}>Tickets</h1>
+ 
+
+
       <Row>
-      <Col span={8}>
+      <Col  flex="1 1 200px">
       < Createtickets  />
      
       </Col>
-      <Col span={3} offset={10} >
+      <Col flex="0 1 300px" >
       <Tooltip placement="top" title="Search by Ticket ID">
       <SearchWrap className="mx-4 " style={{borderRadius:"20px"}}>
       <Input value={search}  className="px-4 py-2 focus:outline-none"
@@ -100,10 +114,12 @@ const SearchWrap = styled.div`
 
 .ant-input-affix-wrapper{
   padding: 0px !important;
-padding-left: 12px !important;
-padding-right: 8px !important;
-border-radius: 10px !important;
-border-color: transparent !important;
-box-shadow: 6px 6px 5px #F1F1F1;  
+  padding-left: 12px !important;
+  padding-right: 8px !important;
+  border-radius: 10px !important;
+  border-color: transparent !important;
+  box-shadow: 6px 6px 5px #F1F1F1;
+  width: 70% !important    
 }
+
 `

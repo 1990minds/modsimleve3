@@ -12,7 +12,7 @@ import {SearchOutlined,SyncOutlined} from '@ant-design/icons'
 import { useDebounce } from "use-debounce";
 import { keyUri, config } from '../../key'
 import styled from 'styled-components'
-import { Tabs,Skeleton, Button , Input,Upload } from 'antd';
+import { Tabs,Skeleton, Breadcrumb , Input,Upload } from 'antd';
 import { Row, Col } from 'antd';
 import {  fetchAllproduct,productSelector} from '../../api/product'
 import { fetchProjectProducts } from '../../api/product'
@@ -78,6 +78,20 @@ console.log(filter);
 
   return (
     <Layout>
+
+<Breadcrumb>
+    <Breadcrumb.Item>
+    <Link to="/"> Home </Link>
+    </Breadcrumb.Item>
+    <Breadcrumb.Item>
+    <Link to="/auth/projects"> Projects </Link>
+    </Breadcrumb.Item>
+    <Breadcrumb.Item>
+    Products
+    </Breadcrumb.Item>
+  </Breadcrumb>
+
+
 <h1 style={{ fontSize:'1.5rem', fontWeight: '700' , paddingBottom: '10px' }}>Products</h1>
 <Row>
 

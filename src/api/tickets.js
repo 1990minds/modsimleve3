@@ -1,6 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
-import { message } from "antd";
+import { message, notification } from "antd";
 import { config, keyUri } from '../key'
 
 
@@ -98,11 +98,24 @@ export const createtickets = ( values,id) => async dispatch => {
 
     dispatch(gettickets())
     const key = 'create';
-    message.loading({ content: 'loading...', key })
+    // message.loading({ content: 'loading...', key })
     try {
    
      const {data} = await axios.post(keyUri.BACKEND_URI +`/tickets`, values, config)
-     data && message.success({ content: data.msg, key, duration: 2 });
+    //  data && message.success({ content: data?.tickets?.ticket_id, key, duration: 2 });
+
+     data && notification.open(
+        {
+            message: `Ticket ID : #${data?.tickets?.ticket_id}`,
+            description:
+              `We have received your request and a ticket has been created. Ticket ID ${data?.tickets?.ticket_id}
+              A Support representative will review your request and get in touch with you soon.
+              Thank you for contacting Modutec.`
+              ,
+            duration: 0,
+          }
+     );
+
      dispatch(fetchAllUserTickets(id));
   
     } 

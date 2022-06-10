@@ -13,11 +13,12 @@ import {SearchOutlined,SyncOutlined} from '@ant-design/icons'
 import { useDebounce } from "use-debounce";
 import { keyUri, config } from '../../key'
 import styled from 'styled-components'
-import { Tabs, Tooltip, Input,Upload, Button } from 'antd';
+import { Breadcrumb, Tooltip, Input,Upload, Button } from 'antd';
 import { Row, Col } from 'antd';
 import {useParams,  useLocation} from 'react-router-dom'
-
+import { Link } from 'react-router-dom'
 import './index.css'
+import { useHistory } from "react-router-dom";
 
 const { Search } = Input;
 
@@ -43,6 +44,7 @@ export default function Panel() {
     const [panelAddVisible, SetPanelAddVisible] = useState(false)
   // const [searchvalue, setSearchvalue] = useState('')
 
+  let history = useHistory();
   
   useEffect(()=>{
 
@@ -87,6 +89,23 @@ console.log(filter);
 
   return (
     <Layout>
+
+    <Breadcrumb>
+    <Breadcrumb.Item>
+    <Link to="/"> Home </Link>
+    </Breadcrumb.Item>
+    <Breadcrumb.Item>
+    <Link to="/auth/projects"> Projects </Link>
+    </Breadcrumb.Item>
+    <Breadcrumb.Item>
+    <a onClick={history.goBack}>Products</a>
+    </Breadcrumb.Item>
+    <Breadcrumb.Item>
+    Panels
+    </Breadcrumb.Item>
+    </Breadcrumb>
+
+
 <h1 style={{ fontSize:'1.5rem', fontWeight: '700' , paddingBottom: '10px' }}>Panels</h1>
 <Row>
 <Col flex="1 1 200px">

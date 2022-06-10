@@ -11,14 +11,15 @@ import {SearchOutlined,SyncOutlined} from '@ant-design/icons'
 import { useDebounce } from "use-debounce";
 import { keyUri, config } from '../../key'
 import styled from 'styled-components'
-import { Tabs, Button, Input,Upload } from 'antd';
+import { Tabs, Breadcrumb, Input,Upload } from 'antd';
 import { Row, Col } from 'antd';
 import {useParams} from 'react-router-dom'
 import {fetchOneproduct, productSelector} from '../../api/product'
 import CreatePanelpage from './createpanelpage';
 import EditPanel from './editpanel';
 import './index.css'
-
+import { Link } from 'react-router-dom'
+import { useHistory } from "react-router-dom";
 
 const { Search } = Input;
 
@@ -50,7 +51,6 @@ console.log({current_panel});
    
   }, [dispatch])
 
-  
   
 
   const [isModalVisible, setIsModalVisible] = useState(false);
@@ -84,10 +84,26 @@ console.log(filter);
           setSearch(e.target.value)
         
         }
-
+        let history = useHistory();
 
   return (
     <Layout>
+
+<Breadcrumb>
+    <Breadcrumb.Item>
+    <Link to="/"> Home </Link>
+    </Breadcrumb.Item>
+    <Breadcrumb.Item>
+    <Link to="/auth/projects"> Projects </Link>
+    </Breadcrumb.Item>
+    <Breadcrumb.Item>
+    <a onClick={history.goBack}>Panels</a> 
+    </Breadcrumb.Item>
+    <Breadcrumb.Item>
+    Pannel Page
+    </Breadcrumb.Item>
+    </Breadcrumb>
+
 <h1 style={{ fontSize:'1.5rem', fontWeight: '700' , paddingBottom: '10px' }}>Panel Details</h1>
 <Row>
       <Col span={24} >

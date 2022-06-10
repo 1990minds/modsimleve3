@@ -1,6 +1,6 @@
 import React, {useState,useEffect} from 'react'
 import {useDispatch, useSelector} from 'react-redux'
-import { Form, Input, Tooltip,Upload ,Image, Button, Col, Row, Select, Drawer } from 'antd';
+import { Form, Input, Tooltip,Upload ,Image, Button, Col, Row, Select, Drawer , notification } from 'antd';
 import { PlusOutlined } from '@ant-design/icons';
 import {useParams} from 'react-router-dom'
 import Loader from '../../pages/shared/loader';
@@ -54,7 +54,17 @@ console.log(user);
  }, [dispatch])
    
 
-        
+ const openNotification = () => {
+  const args = {
+    message: "hi",
+    description:
+      'I will never close automatically. This is a purposely very very long description that has many many characters and words.',
+    duration: 0,
+  };
+  notification.open(args);
+};
+
+
   
   const onFinish = (values) => {
   console.log(values);
@@ -72,7 +82,6 @@ console.log(user);
    dispatch(createtickets(data,user?._id))
    form.resetFields()
    cancel()
-  
   };
 
   const handleChange = info => {
@@ -112,6 +121,7 @@ console.log(user);
 
   const onFinishFailed = (errorInfo) => {
     console.log('Failed:', errorInfo);
+    setVisible(true);
   };
 
   const [form] = Form.useForm();
@@ -141,6 +151,7 @@ console.log(user);
            name="basic"
            initialValues={{ remember: false }}
            onFinish={onFinish}
+           
            onFinishFailed={onFinishFailed}
            autoComplete={false}
           >
@@ -150,7 +161,7 @@ console.log(user);
                 <Form.Item
                   name="title"
                   label="Title"
-                  rules={[{ required: true, message: 'Please enterTitle' }]}
+                  rules={[{ required: true, message: 'Please enter Title' }]}
                 >
                   <Input />
                 </Form.Item>
@@ -227,7 +238,7 @@ console.log(user);
 
        
 <Button type="primary" htmlType="submit"
-onClick={() => setVisible(false)}
+onClick={() => setVisible(false) }
 block style={{ fontSize: '14px' }}>
       Submit
     </Button>
