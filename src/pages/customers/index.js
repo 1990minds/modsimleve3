@@ -8,13 +8,13 @@ import {SearchOutlined,SyncOutlined} from '@ant-design/icons'
 import { useDebounce } from "use-debounce";
 import { keyUri, config } from '../../key'
 import styled from 'styled-components'
-import { Tabs, Button, Input,Tooltip } from 'antd';
+import { Tabs, Breadcrumb, Input,Tooltip } from 'antd';
 import { Row, Col } from 'antd';
 import './index.css'
 import {fetchAllcompanycustomers,customersSelector} from '../../api/customers'
 import Createcustomers from './createcustomers'
 import {authenticateSelector} from '../../api/authSlice'
-
+import { Link } from 'react-router-dom'
 
 const { Search } = Input;
 
@@ -75,23 +75,35 @@ const onSearch = (e) => {
 
   return (
     <Layout>
+
+ <Breadcrumb>
+    <Breadcrumb.Item>
+    <Link to="/"> Home </Link>
+    </Breadcrumb.Item>
+    <Breadcrumb.Item>
+    Customers 
+    </Breadcrumb.Item>
+  </Breadcrumb>
+
 <h1 style={{ fontSize:'1.5rem', fontWeight: '700' , paddingBottom: '10px' }}>Customers</h1>
 <Row>
-      <Col span={8}>
+      <Col  flex="1 1 200px">
       <Createcustomers />
       </Col>
-      <Col span={3} offset={10} >
+      <Col flex="0 1 300px" >
+        <SearchWrap >
       <Tooltip placement="topLeft" title="Search for Name, Email, Phone No" arrowPointAtCenter>
-      <SearchWrap className="mx-4 " style={{borderRadius:"4px"}}>
+      
 
 <Input value={search}  className="px-4 py-2 focus:outline-none"
-prefix ={  <SearchOutlined  style={{color:'#3e79f7', fontWeight:'bold'}} />
+prefix ={  <SearchOutlined  style={{color:'#3e79f7', fontWeight:'bold',}} />
 }
 placeholder="Search" onChange={onSearch}  />
-</SearchWrap>
 </Tooltip>
+</SearchWrap>
+
         </Col>
-        <Col span={3} className='' style={{ display: 'flex', justifyContent: 'end' }}>
+        <Col  style={{ display: 'flex', justifyContent: 'end' }}>
        <ExcelBtn data={all_customers} />
       </Col>
       </Row>
@@ -103,12 +115,14 @@ placeholder="Search" onChange={onSearch}  />
 const SearchWrap = styled.div`
   
 
+
 .ant-input-affix-wrapper{
   padding: 0px !important;
-padding-left: 12px !important;
-padding-right: 8px !important;
-border-radius: 10px !important;
-border-color: transparent !important;
-box-shadow: 6px 6px 5px #F1F1F1;  
-}
+  padding-left: 12px !important;
+  padding-right: 8px !important;
+  border-radius: 10px !important;
+  border-color: transparent !important;
+  box-shadow: 6px 6px 5px #F1F1F1;
+  width: 70% !important  
+  }
 `

@@ -13,9 +13,10 @@ import {SearchOutlined,SyncOutlined} from '@ant-design/icons'
 import { useDebounce } from "use-debounce";
 import { keyUri, config } from '../../key'
 import styled from 'styled-components'
-import { Tooltip, Button, Input,Upload } from 'antd';
+import { Tooltip, Breadcrumb, Input,Upload } from 'antd';
 import { Row, Col } from 'antd';
 import './index.css'
+import { Link } from 'react-router-dom'
 
 
 const { Search } = Input;
@@ -80,12 +81,23 @@ export default function Project() {
 
   return (
     <Layout>
+
+<Breadcrumb>
+    <Breadcrumb.Item>
+    <Link to="/"> Home </Link>
+    </Breadcrumb.Item>
+    <Breadcrumb.Item>
+     Projects 
+    </Breadcrumb.Item>
+  </Breadcrumb>
+
+
 <h1 style={{ fontSize:'1.5rem', fontWeight: '700' , paddingBottom: '10px' }}>Projects</h1>
     <Row>
-        <Col span={8}>
+    <Col  flex="1 1 200px">
         <Createproject />
         </Col>
-        <Col span={3} offset={10} >
+        <Col flex="0 1 300px" >
         <Tooltip placement="topLeft" title="Search for Project Name, Project ID" arrowPointAtCenter>
         <SearchWrap>
 
@@ -96,7 +108,7 @@ prefix ={  <SearchOutlined  style={{color:'#3e79f7', fontWeight:'bold' ,padding:
          </SearchWrap>
          </Tooltip>
         </Col>
-        <Col span={3} className='' style={{ display: 'flex', justifyContent: 'end' }}>
+        <Col className='' style={{ display: 'flex', justifyContent: 'end' }}>
         <ExcelBtn data={all_project} />
         </Col>
         </Row>
@@ -110,14 +122,15 @@ prefix ={  <SearchOutlined  style={{color:'#3e79f7', fontWeight:'bold' ,padding:
       const SearchWrap = styled.div`
   
 
-         .ant-input-affix-wrapper{
-         padding: 0px !important;
-         padding-left: 12px !important;
-         padding-right: 8px !important;
-         border-radius: 10px !important;
-         border-color: transparent !important;
-         box-shadow: 6px 6px 5px #F1F1F1;  
-  }
+      .ant-input-affix-wrapper{
+        padding: 0px !important;
+        padding-left: 12px !important;
+        padding-right: 8px !important;
+        border-radius: 10px !important;
+        border-color: transparent !important;
+        box-shadow: 6px 6px 5px #F1F1F1;
+        width: 70% !important  
+        }
 
   
 `

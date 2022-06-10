@@ -80,12 +80,14 @@ const columns = [
     },
 
    
-    // {
-    //   title: 'Company Name',
-    //   dataIndex: 'company_name',
-    //   key: 'company_name',
+    {
+      title: 'Ticket Status',
+      dataIndex: 'ticket_status',
+      key: 'ticket_status',
+      width: 200,
+      render:(ticket_status)=>{ return <> { ticket_status === true ? " Closed" : " Open" } </> }
       
-    // },
+    },
 
    
     // {
