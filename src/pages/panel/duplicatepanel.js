@@ -128,6 +128,7 @@ export default function DuplicatePanel({current_panel,project_id,product_id,canc
            
 
             <Row gutter={16}>
+            
 
 
 
@@ -159,11 +160,6 @@ export default function DuplicatePanel({current_panel,project_id,product_id,canc
           </Form.Item>
   
                 </Col>
-
-
-
-
-
 
               <Col span={12}>
 

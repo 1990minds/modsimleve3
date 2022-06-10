@@ -474,7 +474,7 @@ export default function CreatePanelsettings({current_panel}) {
     <Button type="primary" htmlType="submit"
     block style={{ fontSize: '14px', width:'10rem' , }}>
 
-    <a  target='_blank' href={`https://modsimcanvas.web.app/panel/${current_panel?._id}`}> Configure Now</a>
+    <a   href={`https://modsimcanvas.web.app/panel/${current_panel?._id}`}> Configure Now</a>
     </Button>
   </Form.Item>
   </Col>
