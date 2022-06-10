@@ -1,6 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 import axios from 'axios'
-import { message } from 'antd';
+import { message, notification } from 'antd';
 import { keyUri, config } from '../key'
 import { fetchProductPanels} from '../api/panel'
 
@@ -94,12 +94,24 @@ export const fetchAllbomrequest = () => async dispatch => {
 
   dispatch(getbomrequest())
   const key = 'create';
-  message.loading({ content: 'loading...', key })
+  // message.loading({ content: 'loading...', key })
   try {
  
    const {data} = await axios.post(keyUri.BACKEND_URI +`/bomrequest`, values, config)
 
-   data && message.success({ content: data.msg, key, duration: 2 });
+  //  data && message.success({ content: data.msg, key, duration: 2 });
+  data && notification.open(
+    {
+        message: `BOM Request ID : #${data?.bomrequest?.request_id}`,
+        description:
+          `We have received your request and a BOM Request ID ${data?.bomrequest?.request_id} has been created.
+Our Team will share the details with you to your official Email.
+Thank you for contacting Modutec.
+          `
+          ,
+        duration: 0,
+      }
+  );
    dispatch(fetchProductPanels(id));
 
   } 
