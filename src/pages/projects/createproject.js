@@ -26,7 +26,7 @@ export default function CreateProject({cancel}) {
       
        useEffect(()=>{
        dispatch(fetchAllcompanycustomers(user?.company?._id))           
-       }, [dispatch])
+       }, [user])
         
   
        const onFinish = (values) => {
