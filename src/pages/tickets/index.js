@@ -80,7 +80,7 @@ useEffect(()=>{
     </Breadcrumb.Item>
     </Breadcrumb>
 
-      <h1 style={{ fontSize:'2rem', fontWeight: '700' , paddingBottom: '10px' }}>Tickets</h1>
+      <h1 style={{ fontSize:'1.5rem', fontWeight: '700' , paddingBottom: '10px' }}>Tickets</h1>
  
 
 
