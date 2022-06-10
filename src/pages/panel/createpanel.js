@@ -54,6 +54,7 @@ export default function CreatePanel({cancel,project_id,product_id}) {
   
         const onFinishFailed = (errorInfo) => {
           console.log('Failed:', errorInfo);
+          setVisible(true);
         };
 
         const handleChangeSelect = (value) =>{
@@ -77,6 +78,7 @@ export default function CreatePanel({cancel,project_id,product_id}) {
           
             const onClose = () => {
               setVisible(false);
+              form.resetFields()
             };
 
     return (

@@ -33,6 +33,7 @@ export default function CreateCustomer({cancel}) {
     };
     const onClose = () => {
       setVisible(false);
+      form.resetFields()
     };
     
   
@@ -52,11 +53,11 @@ export default function CreateCustomer({cancel}) {
         dispatch(createcustomers(data, user?.company?._id))
         form.resetFields()
         cancel()
-        
       };
 
    const onFinishFailed = (errorInfo) => {
     console.log('Failed:', errorInfo);
+    setVisible(true);
   };
 
   const [form] = Form.useForm();
