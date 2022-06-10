@@ -96,7 +96,6 @@ import {updateUser} from '../../api/user'
                  }
                  dispatch(createbomrequest(data,{id:product_id,project:project_id}))
 
-       
                  }
 
       const cancel = (e) =>{
@@ -264,7 +263,7 @@ width="20" height="20" viewBox="0 0 24 24" stroke-width="1.5" stroke="#2C3E50" f
             </Popconfirm>
 
 
-{ user?.license?.license_type === 'Basic' ? <Tooltip placement="topLeft" title=" Upgarde to Premium" >
+{ user?.license?.license_type === 'Basic' ? <Tooltip placement="topLeft" title=" Upgrade to Premium" >
 <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-artboard" 
 width="15" height="15" viewBox="0 0 24 24" 
 style={{ cursor: 'no-drop'}}

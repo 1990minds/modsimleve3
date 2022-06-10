@@ -80,7 +80,7 @@ export default function Project() {
 
   return (
     <Layout>
-<h1 style={{ fontSize:'1.5rem', fontWeight: '700' , paddingBottom: '10px' }}>Project's</h1>
+<h1 style={{ fontSize:'1.5rem', fontWeight: '700' , paddingBottom: '10px' }}>Projects</h1>
     <Row>
         <Col span={8}>
         <Createproject />

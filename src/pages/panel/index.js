@@ -13,7 +13,7 @@ import {SearchOutlined,SyncOutlined} from '@ant-design/icons'
 import { useDebounce } from "use-debounce";
 import { keyUri, config } from '../../key'
 import styled from 'styled-components'
-import { Tabs, Tooltip, Input,Upload } from 'antd';
+import { Tabs, Tooltip, Input,Upload, Button } from 'antd';
 import { Row, Col } from 'antd';
 import {useParams,  useLocation} from 'react-router-dom'
 
@@ -89,10 +89,10 @@ console.log(filter);
     <Layout>
 <h1 style={{ fontSize:'1.5rem', fontWeight: '700' , paddingBottom: '10px' }}>Panels</h1>
 <Row>
-      <Col span={8}>
+<Col flex="1 1 200px">
       <Createpanel project_id ={project} product_id={id}/>
       </Col>
-      <Col span={3} offset={10} >
+      <Col flex="0 1 300px" >
       <Tooltip placement="topLeft" title="Search for Panel Name, Panel ID" arrowPointAtCenter>
       <SearchWrap>
 
@@ -102,8 +102,30 @@ prefix ={  <SearchOutlined  style={{color:'#3e79f7', fontWeight:'bold' ,padding:
 placeholder="Search" onChange={onSearch}  />
 </SearchWrap>
  </Tooltip>
-        </Col>
-        <Col span={3} className='' style={{ display: 'flex', justifyContent: 'end' }}>
+        </Col>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <Col  className='' style={{ display: 'flex', justifyContent: 'end' }}>
+        <Button type="primary" style={{ fontSize: '14px'  }}>
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-file-info" width="20" height="20" viewBox="0 0 24 24" stroke-width="1.5" stroke="#ffffff" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M14 3v4a1 1 0 0 0 1 1h4" />
+  <path d="M17 21h-10a2 2 0 0 1 -2 -2v-14a2 2 0 0 1 2 -2h7l5 5v11a2 2 0 0 1 -2 2z" />
+  <path d="M11 14h1v4h1" />
+  <path d="M12 11h.01" />
+</svg> &nbsp;
+          Generate Quotation</Button> &nbsp;&nbsp;&nbsp;&nbsp;
+        <Button type="primary" style={{ fontSize: '14px'  }}>
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-shape" width="20" height="20" viewBox="0 0 24 24" stroke-width="1.5" stroke="#ffffff" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <circle cx="5" cy="5" r="2" />
+  <circle cx="19" cy="5" r="2" />
+  <circle cx="5" cy="19" r="2" />
+  <circle cx="19" cy="19" r="2" />
+  <line x1="5" y1="7" x2="5" y2="17" />
+  <line x1="7" y1="5" x2="17" y2="5" />
+  <line x1="7" y1="19" x2="17" y2="19" />
+  <line x1="19" y1="7" x2="19" y2="17" />
+</svg>&nbsp;
+          Download 2D Drawings</Button> &nbsp;&nbsp;&nbsp;&nbsp;
         <ExcelBtn data={product_panels} />
       </Col>
       </Row>

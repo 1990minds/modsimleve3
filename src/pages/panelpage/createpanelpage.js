@@ -330,7 +330,7 @@ export default function CreatePanelsettings({current_panel}) {
               </Col>
             </Row>
 
- <p style={{ marginTop:'1rem'}}>Frame Bar | Cross Bar</p>
+ <b><p style={{ marginTop:'1rem'}}>Frame Bar | Cross Bar</p></b>
             <Row gutter={24}>
  
       
@@ -368,7 +368,7 @@ export default function CreatePanelsettings({current_panel}) {
                  </Form.Item>
                   </Col>
                   </Row>
-                    <p style={{ marginTop:'1rem'}}>Doors |  Covers | Partitions</p>
+                   <b><p style={{ marginTop:'1rem'}}>Doors |  Covers | Partitions</p></b> 
                   <Row gutter={24}>
 
 <Col xs={2} sm={4} md={6} lg={8} xl={5}>
@@ -464,20 +464,15 @@ export default function CreatePanelsettings({current_panel}) {
                       </Modal>
 
 
-
-
-
-
-
 </Col>
-<Col xs={2} sm={4} md={6} lg={8} xl={5}>
+{/* <Col xs={2} sm={4} md={6} lg={8} xl={5}>
   <Form.Item >
     <Button type="primary" htmlType="submit"
     block style={{ fontSize: '14px', width:'10rem' ,  }}>
       <span className='px-5 '> Download BOM</span>
     </Button>
   </Form.Item>
-  </Col>
+  </Col> */}
  
   <Col xs={2} sm={4} md={6} lg={8} xl={5}>
   <Form.Item  >

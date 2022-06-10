@@ -75,7 +75,7 @@ const onSearch = (e) => {
 
   return (
     <Layout>
-<h1 style={{ fontSize:'1.5rem', fontWeight: '700' , paddingBottom: '10px' }}>Customer's</h1>
+<h1 style={{ fontSize:'1.5rem', fontWeight: '700' , paddingBottom: '10px' }}>Customers</h1>
 <Row>
       <Col span={8}>
       <Createcustomers />
