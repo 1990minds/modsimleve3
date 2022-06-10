@@ -38,28 +38,26 @@ export default function CreatePanelsettings({current_panel}) {
 
          useEffect(()=>{
             form.setFieldsValue({
-                panel_name:current_panel &&  current_panel. panel_name,
-                panel_category:current_panel && current_panel.panel_category,
-                ambient_temperature:current_panel&& current_panel. ambient_temperature,
-                busbar_material:current_panel && current_panel.busbar_material,
-                rated_voltage:current_panel && current_panel.rated_voltage,
-        
-        
-        
-                    panel_type:current_panel &&  current_panel.panel_type,
-                    compliance_with_IEC61439:current_panel &&  current_panel.compliance_with_IEC61439,
-                    ingress_protection:current_panel &&  current_panel.ingress_protection,
-                    form_of_construction:current_panel &&  current_panel.form_of_construction,
-                    panel_colour:current_panel &&  current_panel.panel_colour,
-                    powder_coating_finish:current_panel &&  current_panel.powder_coating_finish,
-                    panel_short_circuit_rating:current_panel &&  current_panel.panel_short_circuit_rating,
-                    nature_of_ventilation:current_panel &&  current_panel.nature_of_ventilation,
-                    required_busbar_support:current_panel &&  current_panel.required_busbar_support,
-                    required_base_plinth:current_panel &&  current_panel.required_base_plinth,
-                    frame_material:current_panel &&  current_panel.frame_material,
-                    frame_powdercoating:current_panel &&  current_panel.frame_powdercoating,
-                    cover_material:current_panel &&  current_panel.cover_material,
-                    cover_powdercoating:current_panel &&  current_panel.cover_powdercoating,
+                panel_name: current_panel?. panel_name,
+                panel_category:current_panel?.panel_category,
+                ambient_temperature:current_panel?. ambient_temperature,
+                busbar_material:current_panel?.busbar_material,
+                rated_voltage:current_panel?.rated_voltage,
+
+                    panel_type: current_panel?.panel_type,
+                    compliance_with_IEC61439: current_panel?.compliance_with_IEC61439,
+                    ingress_protection: current_panel?.ingress_protection,
+                    form_of_construction: current_panel?.form_of_construction,
+                    panel_colour: current_panel?.panel_colour,
+                    powder_coating_finish: current_panel?.powder_coating_finish,
+                    panel_short_circuit_rating: current_panel?.panel_short_circuit_rating,
+                    nature_of_ventilation: current_panel?.nature_of_ventilation,
+                    required_busbar_support: current_panel?.required_busbar_support,
+                    required_base_plinth: current_panel?.required_base_plinth,
+                    frame_material: current_panel?.frame_material,
+                    frame_powdercoating: current_panel?.frame_powdercoating,
+                    cover_material: current_panel?.cover_material,
+                    cover_powdercoating: current_panel?.cover_powdercoating,
         
                 
                 
@@ -170,8 +168,8 @@ export default function CreatePanelsettings({current_panel}) {
           style={{ width: '100%' }}
           allowClear
         >
-          <Option value="true">Yes </Option>
-          <Option value="false">No </Option>
+          <Option value={true}>Yes </Option>
+          <Option value={false}>No </Option>
         </Select>
 
                   </Form.Item>
@@ -237,12 +235,11 @@ export default function CreatePanelsettings({current_panel}) {
           style={{ width: '100%' }}
           allowClear
         >
-          <Option value="RAL7032">01. RAL7032</Option>
-          <Option value="RAL7035">02. RAL7035</Option>
-          <Option value="RAL2000">03. RAL2000</Option>
-          <Option value="RAL9003">04. RAL9003</Option>
-          <Option value="Others">05. Others</Option>
-
+          <Option value="0">0 - RAL7032</Option>
+          <Option value="1">1 - RAL7035</Option>
+          <Option value="2">2 - RAL2000</Option>
+          <Option value="3">3 - RAL9003</Option>
+          <Option value="U">User Defined</Option>
         </Select>
 
                   </Form.Item>
@@ -260,9 +257,9 @@ export default function CreatePanelsettings({current_panel}) {
           style={{ width: '100%' }}
           allowClear
         >
-          <Option value="Structure">Structure</Option>
-          <Option value="Semiglossy">Semiglossy</Option>
-          <Option value="Glossy">Glossy</Option>
+          <Option value="S">S - Structure</Option>
+          <Option value="I">I - Semiglossy</Option>
+          <Option value="G">G - Glossy</Option>
         </Select>
 
                   </Form.Item>
@@ -343,10 +340,9 @@ export default function CreatePanelsettings({current_panel}) {
          <Select
           placeholder="Frame Material"  
         >
-          <Option value="Aluzn">Aluzn</Option>
-          <Option value="GI">GI</Option>
-          {/* <Option value="GI275 GSM">GI275 GSM</Option> */}
-          <Option value="CRCA">CRCA</Option>
+          <Option value="Z">Aluzn</Option>
+          <Option value="G">GI</Option>
+          <Option value="C">CRCA</Option>
          
           
           </Select>
@@ -361,8 +357,8 @@ export default function CreatePanelsettings({current_panel}) {
                    placeholder="Frame Powdercoating"
           
                   >
-                <Option value="Yes">Yes</Option>
-                   <Option value="No">No</Option>
+       <Option value={true}>Yes</Option>
+            <Option value={false}>No</Option>  
 
                   </Select>
                  </Form.Item>
@@ -383,10 +379,9 @@ export default function CreatePanelsettings({current_panel}) {
            placeholder="Cover Material"
 
             >
-           <Option value="Aluzn">Aluzn</Option>
-           <Option value="GI">GI</Option>
-           {/* <Option value="GI275 GSM">GI275 GSM</Option> */}
-           <Option value="CRCA">CRCA</Option>
+          <Option value="Z">Aluzn</Option>
+          <Option value="G">GI</Option>
+          <Option value="C">CRCA</Option>
 
           </Select>
           </Form.Item>
@@ -402,8 +397,8 @@ export default function CreatePanelsettings({current_panel}) {
          placeholder="Cover Powdercoating"
 
           >
-          <Option value="Yes">Yes</Option>
-            <Option value="No">No</Option>  
+          <Option value={true}>Yes</Option>
+            <Option value={false}>No</Option>  
           </Select>
           </Form.Item>
 

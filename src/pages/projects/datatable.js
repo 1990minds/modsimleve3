@@ -112,12 +112,12 @@ import {
         
       },
 
-      {
-        title: 'Project Coordinator',
-        dataIndex: 'project_coordiantor',
-        key: 'project_coordiantor',
+      // {
+      //   title: 'Project Coordinator',
+      //   dataIndex: 'project_coordiantor',
+      //   key: 'project_coordiantor',
         
-      },
+      // },
       {
         title: 'Created Date',
         dataIndex: 'createdAt',
