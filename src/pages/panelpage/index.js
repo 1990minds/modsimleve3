@@ -100,7 +100,7 @@ console.log(filter);
     </div>
 
     <div className='max-w-xl sm:mx-auto lg:max-w-7xl'>
-      <h1  style={{marginTop:'3rem', marginBottom:"2rem", fontSize:'20px'}}> Panel Settings  </h1>
+     <b> <h1  style={{marginTop:'3rem', marginBottom:"2rem", fontSize:'20px', fontWeight:'700'}}> Panel Settings  </h1></b>
        {/* <Editpanel all_panel={all_panel} /> */}
        <CreatePanelpage current_panel={current_panel}/>
        

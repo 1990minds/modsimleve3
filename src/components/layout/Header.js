@@ -1,7 +1,8 @@
 
 import './index.css'
 import { useState, useEffect } from "react";
-import {useDispatch} from 'react-redux'
+import { authenticateSelector} from '../../api/authSlice'
+import {useDispatch, useSelector} from 'react-redux'
 import {
   Row,
   Col,
@@ -263,6 +264,8 @@ function Header({
   const dispatch = useDispatch()
   const showDrawer = () => setVisible(true);
   const hideDrawer = () => setVisible(false);
+  const {user} = useSelector(authenticateSelector)
+  console.log(user);
 
   return (
     <>
@@ -411,7 +414,17 @@ function Header({
               </div>
             </div>
           </Drawer> */}
-          
+          <div style={{ paddingLeft: '20px', paddingRight: '20px'}}>
+            <Link to='/auth/profile'>
+          <Badge size="small">
+         {/* <img src={user?.profile_image} style={{height:'2rem',  cursor: 'pointer', borderRadius: '300px', border: '1px solid #1890FF' }}/> */}
+          {/* <FaUserCog style={{height:'1.5rem',  cursor: 'pointer' }}/> */}
+          <Avatar style={{ color: '#fff', backgroundColor: '#1890FF', boxShadow: "0 4px 10px 0 rgba(0, 0, 0, 0.1), 0 2px 10px 0 rgba(0, 0, 0, 0.20)" }}>
+            {user?.full_name.charAt(0).toUpperCase()}
+            </Avatar>
+          </Badge>
+          </Link>
+         </div>
           &nbsp;&nbsp;
           <ButtonContainer>
 
@@ -435,13 +448,7 @@ function Header({
             </Dropdown>
           </Badge> */}
          
-          <div style={{ paddingLeft: '20px', paddingRight: '20px'}}>
-            <Link to='/auth/profile'>
-          <Badge size="small">
-          <FaUserCog style={{height:'1.5rem',  cursor: 'pointer' }}/>
-          </Badge>
-          </Link>
-         </div>
+          
          {/* <div style={{ paddingLeft: '10px', paddingRight: '10px'}}>
          
           <Badge size="small">

@@ -131,30 +131,30 @@ function Home() {
   ];
   const count = [
     {
-      today: "Today’s Sales",
-      title: "$53,000",
-      persent: "+30%",
+      today: "Total Sales",
+      title: "₹ 53,000",
+      // persent: "+30%",
       icon: dollor,
       bnb: "bnb2",
     },
     {
-      today: "Today’s Users",
-      title: "3,200",
-      persent: "+20%",
+      today: "Total Projects",
+      title: "45",
+      // persent: "+20%",
       icon: profile,
       bnb: "bnb2",
     },
     {
-      today: "New Clients",
-      title: "+1,200",
-      persent: "-20%",
+      today: "Total Panels",
+      title: "10",
+      // persent: "-20%",
       icon: heart,
       bnb: "redtext",
     },
     {
-      today: "New Orders",
+      today: "Total Customers",
       title: "$13,200",
-      persent: "10%",
+      // persent: "10%",
       icon: cart,
       bnb: "bnb2",
     },
@@ -376,15 +376,15 @@ function Home() {
           </Col>
         </Row>
 
-        <Row gutter={[24, 0]}>
+        {/* <Row gutter={[24, 0]}>
           <Col xs={24} sm={24} md={12} lg={12} xl={16} className="mb-24">
             <Card bordered={false} className="criclebox cardbody h-full">
               <div className="project-ant">
                 <div>
                   <Title level={5}>Projects</Title>
-                  {/* <Paragraph className="lastweek">
+                  <Paragraph className="lastweek">
                     done this month<span className="blue">40%</span>
-                  </Paragraph> */}
+                  </Paragraph>
                 </div>
                 <div className="ant-filtertabs">
                   <div className="antd-pro-pages-dashboard-analysis-style-salesExtra">
@@ -419,7 +419,7 @@ function Home() {
                             {d.Title}
                           </h6>
                         </td>
-                        {/* <td>{d.member}</td> */}
+                        <td>{d.member}</td>
                         <td>
                           <span className="text-xs font-weight-bold">
                             {d.bud}{" "}
@@ -433,7 +433,7 @@ function Home() {
                   </tbody>
                 </table>
               </div>
-              {/* <div className="uploadfile shadow-none">
+              <div className="uploadfile shadow-none">
                 <Upload {...uploadProps}>
                   <Button
                     type="dashed"
@@ -443,16 +443,16 @@ function Home() {
                     <span className="click">Click to Upload</span>
                   </Button>
                 </Upload>
-              </div> */}
+              </div>
             </Card>
           </Col>
           <Col xs={24} sm={24} md={12} lg={12} xl={8} className="mb-24">
             <Card bordered={false} className="criclebox h-full">
               <div className="timeline-box">
                 <Title level={5} style={{ marginBottom: 24 }}> History</Title>
-                {/* <Paragraph className="lastweek" style={{ marginBottom: 24 }}>
+                <Paragraph className="lastweek" style={{ marginBottom: 24 }}>
                   this month <span className="bnb2">20%</span>
-                </Paragraph> */}
+                </Paragraph>
 
                 <Timeline
                   pending="Recording..."
@@ -466,19 +466,19 @@ function Home() {
                     </Timeline.Item>
                   ))}
                 </Timeline>
-                {/* <Button
+                <Button
                   type="primary"
                   className="width-100"
                   onClick={() => setReverse(!reverse)}
                 >
                   {<MenuUnfoldOutlined />} View More
-                </Button> */}
+                </Button>
               </div>
             </Card>
           </Col>
-        </Row>
+        </Row> */}
 
-        <Row gutter={[24, 0]}>
+        {/* <Row gutter={[24, 0]}>
           <Col xs={24} md={12} sm={24} lg={12} xl={14} className="mb-24">
             <Card bordered={false} className="criclebox h-full">
               <Row gutter>
@@ -540,7 +540,7 @@ function Home() {
               </div>
             </Card>
           </Col>
-        </Row>
+        </Row> */}
       </div>
     </>
   );
