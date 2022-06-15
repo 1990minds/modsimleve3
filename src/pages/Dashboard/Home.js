@@ -28,31 +28,29 @@ import {fetchAllcompanycustomers,customersSelector} from '../../api/customers'
 import {authenticateSelector} from '../../api/authSlice'
 import {fetchAllproject, projectSelector} from '../../api/project'
 import {fetchAllUserTickets,ticketsSelector} from '../../api/tickets'
+import { fetchAllpanel, panelSelector } from "../../api/panel";
+import { Link } from "react-router-dom";
 
 function Home() {
 
   const dispatch = useDispatch()
   const { all_customers} = useSelector(customersSelector)
   const { user} = useSelector(authenticateSelector)
+  const {all_project} = useSelector(projectSelector) 
+  const {all_tickets}=useSelector(ticketsSelector)
+  const {all_panel}=useSelector(panelSelector)
+
+  console.log(user?.company?._id)
+
+
+
 
   useEffect(()=>{
     dispatch(fetchAllcompanycustomers(user?.company?._id))
+    dispatch(fetchAllproject(user?.company?._id)) 
+    dispatch(fetchAllUserTickets(user?._id)) 
+    dispatch(fetchAllpanel(user?.company?._id)) 
  }, [user])
-
- const {all_project} = useSelector(projectSelector) 
-
- useEffect(()=>{
-  dispatch(fetchAllproject(user?.company?._id))            
-  }, [user]) 
-
-
-  const {all_tickets}=useSelector(ticketsSelector)
-
-  useEffect(()=>{
-    dispatch(fetchAllUserTickets(user?._id))
-  },[user])
-
-  
 
 
 
@@ -148,32 +146,43 @@ function Home() {
   const count = [
     {
       today: "Total Customers",
-      title: [all_customers.length ],
+      title: [all_customers?.length ],
       // persent: "+30%",
       icon: dollor,
       bnb: "bnb2",
+      link: '/auth/customers'
+      
     },
     {
       today: "Total Projects",
-      title: [all_project.length],
+      title: [all_project?.length],
       // persent: "+20%",
       icon: profile,
       bnb: "bnb2",
+      link: '/auth/projects'
     },
     {
       today: "Total Panels",
-      title: "55",
+      title: [all_panel?.length],
       // persent: "-20%",
       icon: heart,
       bnb: "redtext",
+      // link:'/auth/panel/:id'
     },
+    
     {
       today: "Tickets",
-      title: [all_tickets.length],
+      title: [all_tickets?.length],
       // persent: "10%",
       icon: cart,
       bnb: "bnb2",
+      link: '/auth/ticket'
     },
+
+
+
+
+
   ];
 
  
@@ -192,6 +201,7 @@ function Home() {
               xl={6}
               className="mb-24"
             >
+              <Link to ={c.link}>
               <Card bordered={false} className="criclebox ">
                 <div className="number">
                   <Row align="middle" gutter={[24, 0]}>
@@ -207,6 +217,7 @@ function Home() {
                   </Row>
                 </div>
               </Card>
+              </Link>
             </Col>
           ))}
         </Row>

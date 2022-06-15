@@ -235,10 +235,10 @@ export default function CreatePanelsettings({current_panel}) {
           style={{ width: '100%' }}
           allowClear
         >
-          <Option value="0">0 - RAL7032</Option>
-          <Option value="1">1 - RAL7035</Option>
-          <Option value="2">2 - RAL2000</Option>
-          <Option value="3">3 - RAL9003</Option>
+          <Option value="0">RAL7032</Option>
+          <Option value="1">RAL7035</Option>
+          <Option value="2">RAL2000</Option>
+          <Option value="3">RAL9003</Option>
           <Option value="U">User Defined</Option>
         </Select>
 
@@ -257,9 +257,9 @@ export default function CreatePanelsettings({current_panel}) {
           style={{ width: '100%' }}
           allowClear
         >
-          <Option value="S">S - Structure</Option>
-          <Option value="I">I - Semiglossy</Option>
-          <Option value="G">G - Glossy</Option>
+          <Option value="S">Structure</Option>
+          <Option value="I">Semiglossy</Option>
+          <Option value="G">Glossy</Option>
         </Select>
 
                   </Form.Item>

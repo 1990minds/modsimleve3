@@ -161,6 +161,31 @@ const tables = [
 ,
 ];
 
+const project = [
+  <svg
+  width="20"
+  height="20"
+  viewBox="0 0 20 20"
+  xmlns="http://www.w3.org/2000/svg"
+  key={0}
+>
+<path d="M11.6 11.125H8.4c-.442 0-.8.364-.8.813v3.25c0 .448.358.812.8.812h3.2c.442 0 .8-.364.8-.813v-3.25a.806.806 0 0 0-.8-.812ZM6.8 3.812A.806.806 0 0 0 6 3H2.8c-.442 0-.8.364-.8.813v3.25c0 .448.358.812.8.812h2.393l1.829 3.251a1.59 1.59 0 0 1 1.378-.813h.007L6.8 7.455V6.25h5.6V4.625H6.8v-.813ZM17.2 3H14c-.442 0-.8.364-.8.813v3.25c0 .448.358.812.8.812h3.2c.442 0 .8-.364.8-.813v-3.25A.806.806 0 0 0 17.2 3Z"fill={color}></path>
+</svg>
+
+
+]
+
+
+
+
+
+
+
+
+
+
+
+
 
   const billing = [
     <svg
@@ -855,10 +880,10 @@ c-0.01-0.42-0.32-0.5-0.66-0.51C-57.1,15.18-57.68,15.19-58.26,15.19z"fill={color}
             <span
               className="icon"
               style={{
-                background: page === "tables" ? color : "",
+                background: page === "project" ? color : "",
               }}
             >
-              {tables}
+              {project}
             </span>
             <span className="label">Project</span>
           </NavLink>
