@@ -57,6 +57,9 @@ export default function EditPanel({current_panel,project_id,product_id}) {
                  panel_quntity:values.panel_quntity,
                 
               }
+
+  console.log(current_panel._id,)
+
           dispatch(updatePanel(current_panel._id, paneldata,{id:product_id,project:project_id}))
           form.resetFields()
            };

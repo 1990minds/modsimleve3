@@ -39,7 +39,7 @@ import moment from 'moment';
 import { Popconfirm, message } from 'antd';
 import {updateUser} from '../../api/user'
   
-  function PanelTable({data,project_id, product_id}) {
+  function PanelTable({data,project_id, product_id,loading}) {
 
     const [confirmLoading, setConfirmLoading] = useState(false);
     const [modalText, setModalText] = useState('Content of the modal');
@@ -445,6 +445,7 @@ width="15" height="15" viewBox="0 0 24 24" stroke-width="3" stroke="#2C3E50" fil
               >
                 <div className="table-responsive" >
                   <Table
+                  loading={loading}
                   pagination={{
                     onChange(current) {
                       setPage(current)

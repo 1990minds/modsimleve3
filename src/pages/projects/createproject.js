@@ -40,7 +40,8 @@ export default function CreateProject({cancel}) {
         project_name:values.project_name,
         project_coordiantor:values.project_coordiantor,
         customerId:values.customerId,
-        companyId:user?.company?._id
+        companyId:user?.company?._id,
+        user:user?._id,
          
       }
 
@@ -170,7 +171,11 @@ export default function CreateProject({cancel}) {
            <Form.Item
             label={<p className="w-36 text-left m-0">Phone Number</p>}
             name="phone_number"
-            rules={[{ required: true, message: 'Please Input Phone Number!' }]}
+            rules={[{ required: true ,message: 'required!' },
+            {min: 10},
+            {max:10},
+            {pattern:"[0-9]", message:"Only Numbers"}
+            ]}
            >
            <Input/>
            </Form.Item>
@@ -180,7 +185,14 @@ export default function CreateProject({cancel}) {
               <Form.Item
               label={<p className="  w-36 text-left m-0">Email</p>}
             name="email"
-             rules={[{ required: true, message: 'Please Input Email!' }]}
+            rules={[{
+              type: 'email',
+              message: 'The input is not valid E-mail!',
+            },
+            {
+              required: true,
+              message: 'Please input your E-mail!',
+            },]}
            >
            <Input/>
 

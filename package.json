@@ -13,6 +13,7 @@
     "apexcharts": "^3.27.1",
     "axios": "^0.27.2",
     "excel-export": "^0.5.1",
+    "file-save": "^0.2.0",
     "firebase": "^8.9.1",
     "install": "^0.13.0",
     "moment": "^2.29.3",

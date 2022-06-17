@@ -46,7 +46,15 @@ export default function CreateCustomer({cancel}) {
           phone_number:values.phone_number,
           email:values.email,
           customers_name:values.customers_name,
+          country:values.country,
+          designation:values.designation,
           address:values.address,
+          address2:values.address2,
+          state:values.state,
+          city:values.city,
+          pincode:values.pincode,
+          customer_tax_number:values.customer_tax_number,
+          website:values.website,
           companyId:user?.company?._id
         }
 
@@ -101,7 +109,11 @@ export default function CreateCustomer({cancel}) {
               <Form.Item
           label={<p className="w-36 text-left m-0">Phone Number</p>}
           name="phone_number"
-          rules={[{ required: true, message: 'Please Input Phone Number!' }]}
+          rules={[{ required: true ,message: 'required!' },
+          {min: 10},
+          {max:10},
+          {pattern:"[0-9]", message:"Only Numbers"}
+          ]}
         >
            <Input/>
 
@@ -115,25 +127,126 @@ export default function CreateCustomer({cancel}) {
               <Form.Item
           label={<p className="  w-36 text-left m-0">Email</p>}
           name="email"
-          rules={[{ required: true, message: 'Please Input Email!' }]}
+          rules={[{
+            type: 'email',
+            message: 'The input is not valid E-mail!',
+          },
+          {
+            required: true,
+            message: 'Please input your E-mail!',
+          },]}
         >
            <Input/>
 
 </Form.Item>
               </Col>
               <Col span={12}>
-              <Form.Item
-          label={<p className="  w-36 text-left m-0">Address</p>}
-          name="address"
-          rules={[{ required: true, message: 'Please input Address!' }]}
-        >
-           <Input/>
+                <Form.Item
+                  name="designation"
+                  label="Designation"
+                  rules={[{ required: true, message: 'Please enter Designation' }]}
+                >
+                  <Input  />
+                </Form.Item>
+              </Col>
+           </Row>
 
-</Form.Item>
+           <Row gutter={16}>
+              <Col span={12}>
+                <Form.Item
+                  name="address"
+                  label="Address "
+                  rules={[{ required: true, message: 'Please enter Address' }]}
+                >
+                  <Input />
+                </Form.Item>
+              </Col>
+              <Col span={12}>
+                <Form.Item
+                  name="address2"
+                  label="Address 2"
+                  rules={[{ required: true, message: 'Please enter Address' }]}
+                >
+                  <Input  />
+                </Form.Item>
               </Col>
             </Row>
 
 
+
+            <Row gutter={16}>
+              <Col span={12}>
+                <Form.Item
+                  name="country"
+                  label="Country"
+                  rules={[{ required: true, message: 'Please select a Country' }]}
+                >
+                 
+                   <Input  />
+                </Form.Item>
+              </Col>
+              <Col span={12}>
+                <Form.Item
+                  name="state"
+                  label="State"
+                  rules={[{ required: true, message: 'Please choose a State' }]}
+                >
+                
+                   <Input  />
+                </Form.Item>
+              </Col>
+            </Row>
+
+            <Row gutter={16}>
+            <Col span={12}>
+                <Form.Item
+                  name="city"
+                  label="City"
+                  rules={[{ required: true, message: 'Please enter the City' }]}
+                >
+                  <Input  />
+                </Form.Item>
+              </Col>
+              <Col span={12}>
+                <Form.Item
+                  name="pincode"
+                  label="Pincode"
+                  rules={[{ required: true, message: 'Please enter the Pincode' }]}
+                >
+                  <Input  />
+                </Form.Item>
+              </Col>
+              
+            </Row>
+
+
+            <Row gutter={16}>
+            <Col span={12}>
+                <Form.Item
+                  name="customer_tax_number"
+                  label="Tax Number/GST"
+                  rules={[{ required: true, message: 'Please enter Tax Number' }]}
+                >
+                  <Input  />
+                </Form.Item>
+              </Col>
+            <Col span={12}>
+                <Form.Item
+                 name="website"
+                  label="Website"
+                  rules={[{ required: true, message: 'Please enter url' }]}
+                >
+                  <Input
+                    style={{ width: '100%' }}
+                    addonBefore="https://"
+                    
+                  />
+                </Form.Item>
+              </Col>
+              
+            </Row>
+
+            <Divider />
 
 <Button type="primary"  htmlType='submit' block style={{ fontSize: '14px' }}
 onClick={() => setVisible(false)}
