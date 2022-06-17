@@ -10,9 +10,10 @@ import {
     Table,
     Space,
     Drawer,
+    Button,
   } from "antd";
   import { useState } from "react";
-  import { ToTopOutlined } from "@ant-design/icons";
+  import { FilePdfOutlined } from "@ant-design/icons";
   import { Link } from "react-router-dom";
   import { PlusOutlined } from '@ant-design/icons';
   import DeleteConfirm from '../../global/delete'
@@ -21,14 +22,18 @@ import {
   import pencil from "../../assets/images/pencil.svg";
   import {useDispatch, useSelector} from 'react-redux'
   import { FaRegTrashAlt, FaRegEdit } from 'react-icons/fa';
+  import { DownloadOutlined  } from '@ant-design/icons';
   import {deleteProduct} from '../../api/product'
   import {authenticateSelector} from '../../api/authSlice';
   //   import Editproject from './editproject';
   import { useHistory} from 'react-router-dom'
-  import {deleteproject,deleteManyproject} from '../../api/project'
+  import {deleteproject,deleteManyproject,createQuotationPdf} from '../../api/project'
   import moment from 'moment';
+  import ModalForm from '../../global/model.js'
+  import Quotation from './quotation';
   
-   function ProjectTable({data}) {
+  
+   function ProjectTable({data,loading}) {
 
     
     const [visibleEdit, setEditModal] = useState(false);
@@ -36,6 +41,11 @@ import {
     const [selectionType, setSelectionType] = useState('checkbox');
     const [page, setPage] = useState(1);
     const { user } = useSelector(authenticateSelector) 
+    const [item,setItem] =useState(null)
+const [downloadLoading,setDownloadLoading] =useState(false)
+const [visibleQuotation, setQuotationModal] = useState(false);
+const [confirmLoading, setConfirmLoading] = useState(false);
+const [modalText, setModalText] = useState('Content of the modal');
   
 
      let history = useHistory() 
@@ -47,14 +57,14 @@ import {
       return null
       }
   
-       const handleClickEdit = (e, isvisible, id) =>{
+       const handleClickQuotation = (e, isvisible, id) =>{
        e.preventDefault()
        setproject(id)
-       setEditModal(isvisible)
+       setQuotationModal(isvisible)
        }
   
        const closeModal = () => {
-       setEditModal(false)
+        setQuotationModal(false)
        setproject(null)
        }
    
@@ -68,6 +78,48 @@ import {
        setproject(null)
        };
 
+
+       const createPdf= (value)=> {
+   
+        setDownloadLoading(true)
+        setItem(value._id)
+        dispatch(createQuotationPdf(value))
+        
+        setTimeout(()=>{
+          setDownloadLoading(false)
+            setItem(null)
+        },3000)
+
+
+
+        const handleClickQuotation = (e, isvisible, id) =>{
+          e.preventDefault()
+          setproject(id)
+          setQuotationModal(isvisible)
+          // setDuplicatetModal(false)
+          }
+  
+          const cancelModel = () => {
+            setQuotationModal(false)
+            setproject(null)
+          };
+  
+
+        // const handleQuotationOk = () => {
+        //   setModalText('The modal will be closed after two seconds');
+        //   setConfirmLoading(true);
+        //   setTimeout(() => {
+        //     setVisible(false);
+        //     setConfirmLoading(false);
+        //   }, 2000);
+        // };
+  }
+    
+  // const handleClickquotation = (e, isvisible, id) =>{
+  //   e.preventDefault()
+  //   setproject(id)
+  //   // setVisible(true);
+  //   }
 
 
   const columns = [
@@ -137,8 +189,47 @@ import {
       }
       },
 
+      {
 
 
+      title:'Generate Quotation',
+    //   render: (value) => { 
+    //     <a href="#" className="" style={{  margin:'0px', padding:'0px', width:'100%'}} onClick={(e) => { 
+    //       e.stopPropagation();      
+    //       }}> <h1>dhfuug</h1>
+    //        {/* <Button disabled={(downloadLoading && item === value._id) ? true : false } 
+    //               style={{backgroundColor:"#3498db24", color:'var(--brandColor)',boxShadow:'none'}} type="primary" onClick={()=>createPdf(value)}>
+    //       {(downloadLoading && item === value._id) ? 'Loading': 'Download'}
+    //         </Button> */}
+    //         </a>
+    //   }
+    // },
+
+            key: 'download',      
+            render: (id) => (           
+            <a href="#" className="" style={{  margin:'0px', padding:'0px', width:'100%'}} onClick={(e) => { 
+            e.stopPropagation();      
+            }}>                    
+            <Space size="middle">    
+              <Tooltip placement="topLeft" title="Generate Qutation" arrowPointAtCenter>
+              <h5 className="text-danger"> 
+            {/* <DownloadOutlined disabled={(downloadLoading && item === value._id) ? true : false } 
+                style={{backgroundColor:"#3498db24", color:'var(--brandColor)',boxShadow:'none'}} type="primary" onClick={()=>createPdf(value)}>
+          {(downloadLoading && item === value._id) ? 'Loading': 'Download'}
+            </DownloadOutlined>  */}
+
+            <Button type='link'   onClick={(e)=>handleClickQuotation(e, true, id)}> Generate </Button>
+
+
+
+
+
+              </h5>
+              </Tooltip>
+              </Space>
+                </a>
+              ),
+            },
 
       {
         title: 'Email',
@@ -248,6 +339,7 @@ import {
                 <div className="table-responsive" >
                
                  <Table
+                 loading={loading}
                  pagination={{
                  onChange(current) {
                  setPage(current)
@@ -274,7 +366,18 @@ import {
                  <Drawer
                   title="Update a existing user" placement="right" onClose={onClose} visible={visible} width={720}
                   >          
-                 </Drawer>       
+                 </Drawer>   
+
+                   <ModalForm 
+            isVisible={visibleQuotation} 
+            title="Quotation Details"
+            footer={false}
+            // onOk={handleQuotationOk}
+            className=""
+            width="50%"
+            cancel={()=>setQuotationModal(!visibleQuotation)}>
+                  <Quotation current_project={current_project} cancel={()=>setQuotationModal(!visibleQuotation)} />
+            </ModalForm>    
                  </>
     );
   }

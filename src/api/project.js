@@ -2,6 +2,7 @@ import { createSlice } from '@reduxjs/toolkit';
 import axios from 'axios'
 import { message } from 'antd';
 import { keyUri, config } from '../key'
+import {saveAs} from 'file-saver' 
 
 
 const initialState = {
@@ -59,7 +60,7 @@ export const fetchAllproject = (id) => async dispatch => {
  
   try {
  
-   const {data} = await axios.get(keyUri.BACKEND_URI +`/company-project/${id}`)
+   const {data} = await axios.get(keyUri.BACKEND_URI +`/project`)
    console.log(data);
    
    dispatch(getAll_project_success(data));
@@ -72,7 +73,24 @@ export const fetchAllproject = (id) => async dispatch => {
  };
 
 
-  
+
+export const fetchAllcompanyProject = (id) => async dispatch => {
+  dispatch(getproject())
+ 
+  try {
+ 
+   const {data} = await axios.get(keyUri.BACKEND_URI +`/company-project/${id}`)
+   console.log(data);
+   
+   dispatch(getAll_project_success(data));
+    
+  } catch (error) {
+ 
+ dispatch(get_project_Failure())
+
+  }
+ };
+
 
  export const deleteproject = (id, project,company) => async dispatch => {
 
@@ -153,6 +171,20 @@ console.log(response.data);
    
 
 }
+}
+
+export const createQuotationPdf = (pdfValues) => async dispatch => {
+  console.log(pdfValues);
+
+  axios.post(keyUri.BACKEND_URI + `/create-pdf`, pdfValues, config )
+  .then(() => axios.get(keyUri.BACKEND_URI +'/fetch-templetpdf', { responseType: 'blob' })) 
+  .then((res) => {  
+      console.log(res.data);      
+      const pdfBlob = new Blob([res.data], 
+          { type: 'application/pdf' });
+   saveAs(pdfBlob, 'Quotation.pdf');      
+}   
+)
 }
 
 export default projectSlice.reducer;

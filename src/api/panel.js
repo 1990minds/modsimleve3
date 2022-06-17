@@ -25,6 +25,8 @@ export const panelSlice = createSlice({
 
     getAll_panel_success: (state, {payload})  =>{
 
+      console.log(payload)
+
         state.loading = false
         state.all_panel = payload.panel
 
@@ -61,22 +63,22 @@ export const panelSelector = state => state.panel;
 
 
 
-// export const fetchAllpanel = () => async dispatch => {
-//   dispatch(getpanel())
+export const fetchAllpanel = (id) => async dispatch => {
+  dispatch(getpanel())
+  console.log(id)
+  try {
  
-//   try {
- 
-//    const {data} = await axios.get(keyUri.BACKEND_URI +`/panel`)
-//    console.log(data);
+   const {data} = await axios.get(keyUri.BACKEND_URI +`/panel/${id}`)
+   console.log(data);
    
-//    dispatch(getAll_panel_success(data));
+   dispatch(getAll_panel_success(data));
     
-//   } catch (error) {
+  } catch (error) {
  
-//  dispatch(get_panel_Failure())
+ dispatch(get_panel_Failure())
 
-//   }
-//  };
+  }
+ };
 
  export const deletepanel = (id, product) => async dispatch => {
 
@@ -186,7 +188,7 @@ console.log( {id});
  console.log(id);
   try {
  
-   const {data} = await axios.get(keyUri.BACKEND_URI +`/panel/${id}`)
+   const {data} = await axios.get(keyUri.BACKEND_URI +`/one-panel/${id}`)
   console.log(data);
    dispatch(getCurrentSuccess(data));
   } catch (error) {
@@ -221,6 +223,9 @@ try {
 
 }
 }
+
+
+
 
 
 export default panelSlice.reducer;

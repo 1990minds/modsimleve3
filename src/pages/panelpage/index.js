@@ -42,7 +42,7 @@ export default function Panel() {
   // const [searchvalue, setSearchvalue] = useState('')
 
 console.log({current_panel});
-  
+  console.log('hhhhhhhhh')
   
 
   useEffect(()=>{
