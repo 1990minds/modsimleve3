@@ -23,10 +23,10 @@ import Paragraph from "antd/lib/typography/Paragraph";
 import {useDispatch, useSelector} from 'react-redux'
 import Echart from "../../components/chart/EChart";
 import LineChart from "../../components/chart/LineChart";
-
+import {useParams,  useLocation} from 'react-router-dom'
 import {fetchAllcompanycustomers,customersSelector} from '../../api/customers'
 import {authenticateSelector} from '../../api/authSlice'
-import {fetchAllproject, projectSelector} from '../../api/project'
+import {fetchAllcompanyProject, projectSelector} from '../../api/project'
 import {fetchAllUserTickets,ticketsSelector} from '../../api/tickets'
 import { fetchAllpanel, panelSelector } from "../../api/panel";
 import { Link } from "react-router-dom";
@@ -40,6 +40,10 @@ function Home() {
   const {all_tickets}=useSelector(ticketsSelector)
   const {all_panel}=useSelector(panelSelector)
 
+
+  const project =   new URLSearchParams(useLocation().search).get(`project`)
+  const {id}= useParams()
+
   console.log(user?.company?._id)
 
 
@@ -47,7 +51,7 @@ function Home() {
 
   useEffect(()=>{
     dispatch(fetchAllcompanycustomers(user?.company?._id))
-    dispatch(fetchAllproject(user?.company?._id)) 
+    dispatch(fetchAllcompanyProject(user?.company?._id)) 
     dispatch(fetchAllUserTickets(user?._id)) 
     dispatch(fetchAllpanel(user?.company?._id)) 
  }, [user])

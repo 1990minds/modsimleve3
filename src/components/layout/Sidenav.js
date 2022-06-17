@@ -997,7 +997,7 @@ c-0.01-0.42-0.32-0.5-0.66-0.51C-57.1,15.18-57.68,15.19-58.26,15.19z"fill={color}
           <h6>Need Help?</h6>
           <p>Please contact our support team</p>
           <Button type="primary" className="ant-btn-sm ant-btn-block">
-          info@modutec.net
+          modsim@modutec.net
           </Button>
         </div>
       </div>

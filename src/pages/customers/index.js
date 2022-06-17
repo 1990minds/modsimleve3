@@ -31,14 +31,14 @@ const { Search } = Input;
   
     const [customersAddVisible, SetCustomersAddVisible] = useState(false)
 
-    console.log(user);
     useEffect(()=>{
 
         dispatch(fetchAllcompanycustomers(user?.company?._id))
 
      }, [user])
 
-    
+     console.log({loading});
+
 
 
   const handleCancel = () => {
@@ -46,18 +46,13 @@ const { Search } = Input;
   };
   useEffect(()=>{
 
-    axios.get(keyUri.BACKEND_URI +`/customers?search=${debouncedText}`).then(({data})=>{
-      console.log(
-        'text'
-      );
-      console.log({data})
+    axios.get(keyUri.BACKEND_URI +`/companycustomers/${user?.company?._id}?search=${debouncedText}`).then(({data})=>{
 
       setFilter(data?.filtercustomers)
        })
   setLoading(false)
    }, [dispatch, debouncedText])
 
-console.log(filter);
 
 useEffect(()=>{     
   if(filter?.length < 1) {
@@ -107,7 +102,7 @@ placeholder="Search" onChange={onSearch}  />
        <ExcelBtn data={all_customers} />
       </Col>
       </Row>
-        <CustomersTable data={(filter?.length > 0) ? filter :all_customers} />
+        <CustomersTable data={(filter?.length > 0) ? filter :all_customers} loading={loading}/>
         
     </Layout>
   )

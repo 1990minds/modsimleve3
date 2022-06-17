@@ -45,7 +45,7 @@ export default function CreatePanelsettings({current_panel}) {
                 rated_voltage:current_panel?.rated_voltage,
 
                     panel_type: current_panel?.panel_type,
-                    compliance_with_IEC61439: current_panel?.compliance_with_IEC61439,
+                    // compliance_with_IEC61439: current_panel?.compliance_with_IEC61439,
                     ingress_protection: current_panel?.ingress_protection,
                     form_of_construction: current_panel?.form_of_construction,
                     panel_colour: current_panel?.panel_colour,
@@ -74,7 +74,7 @@ export default function CreatePanelsettings({current_panel}) {
                   const panelsettingsdata = {
           
                       panel_type:values.panel_type,
-                      compliance_with_IEC61439:values.compliance_with_IEC61439,
+                      // compliance_with_IEC61439:values.compliance_with_IEC61439,
                       ingress_protection:values.ingress_protection,
                       form_of_construction:values.form_of_construction,
                       panel_colour:values.panel_colour,
@@ -87,10 +87,12 @@ export default function CreatePanelsettings({current_panel}) {
                       frame_powdercoating:values.frame_powdercoating,
                       cover_material:values.cover_material,
                       cover_powdercoating:values.cover_powdercoating,
-                     
+                      partition_material:values.partition_material,
+                      partition_powdercoating:values.partition_powdercoating,
                     
                   }
                   
+                  console.log(current_panel._id)
                 
                   dispatch(updatePanel(current_panel._id, panelsettingsdata))
                   form.resetFields()
@@ -156,7 +158,7 @@ export default function CreatePanelsettings({current_panel}) {
 
                   </Form.Item>
               </Col>
-              <Col xs={2} sm={4} md={6} lg={8} xl={5}>
+              {/* <Col xs={2} sm={4} md={6} lg={8} xl={5}>
               <Form.Item
                     label={<p className=" text-left m-0">Compliance With IEC61439</p>}
                     name= "compliance_with_IEC61439"
@@ -173,7 +175,7 @@ export default function CreatePanelsettings({current_panel}) {
         </Select>
 
                   </Form.Item>
-              </Col>
+              </Col> */}
 
 
 
@@ -326,8 +328,15 @@ export default function CreatePanelsettings({current_panel}) {
             
               </Col>
             </Row>
+            <Row >
+              <Col span={10}>
 
  <b><p style={{ marginTop:'1rem'}}>Frame Bar | Cross Bar</p></b>
+ </Col>
+ <Col span={10} >
+ <b><p style={{ marginTop:'1rem'}}> Partitions</p></b>
+ </Col>
+ </Row>
             <Row gutter={24}>
  
       
@@ -363,8 +372,43 @@ export default function CreatePanelsettings({current_panel}) {
                   </Select>
                  </Form.Item>
                   </Col>
+
+                 
+
+                  <Col xs={2} sm={4} md={6} lg={8} xl={5}>
+                     <Form.Item
+                
+                    label={<p className="  text-left m-0">Material</p>}
+                    name= "partition_material"  
+                  >
+         <Select
+          placeholder="Partition Material"  
+        >
+          <Option value="Z">Aluzn</Option>
+          <Option value="G">GI</Option>
+          <Option value="C">CRCA</Option>
+         
+          
+          </Select>
+          </Form.Item> 
+           </Col>
+           <Col xs={2} sm={4} md={6} lg={8} xl={5}>
+                  <Form.Item
+                    label={<p className="  text-left m-0">Powdercoating</p>}
+                    name= "partition_powdercoating"
+                  >
+                  <Select
+                   placeholder="Partition Powdercoating"
+          
+                  >
+       <Option value={true}>Yes</Option>
+            <Option value={false}>No</Option>  
+
+                  </Select>
+                 </Form.Item>
+                  </Col>
                   </Row>
-                   <b><p style={{ marginTop:'1rem'}}>Doors |  Covers | Partitions</p></b> 
+                   <b><p style={{ marginTop:'1rem'}}>Doors |  Covers </p></b> 
                   <Row gutter={24}>
 
 <Col xs={2} sm={4} md={6} lg={8} xl={5}>

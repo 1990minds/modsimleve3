@@ -112,7 +112,11 @@ export default function EditCustomers({current_customers,cancel}) {
               <Form.Item
           label={<p className="w-36 text-left m-0">Phone number</p>}
           name="phone_number"
-          rules={[{ required: true, message: 'Please Input Phone Number!' }]}
+          rules={[{ required: true ,message: 'required!' },
+          {min: 10},
+          {max:10},
+          {pattern:"[0-9]", message:"Only Numbers"}
+          ]}
         >
            <Input/>
 
@@ -125,7 +129,14 @@ export default function EditCustomers({current_customers,cancel}) {
               <Form.Item
           label={<p className="  w-36 text-left m-0">Email</p>}
           name="email"
-          rules={[{ required: true, message: 'Please Input Email!' }]}
+          rules={[{
+            type: 'email',
+            message: 'The input is not valid E-mail!',
+          },
+          {
+            required: true,
+            message: 'Please input your E-mail!',
+          },]}
         >
            <Input/>
 

@@ -188,7 +188,7 @@ console.log( {id});
  console.log(id);
   try {
  
-   const {data} = await axios.get(keyUri.BACKEND_URI +`/panel/${id}`)
+   const {data} = await axios.get(keyUri.BACKEND_URI +`/one-panel/${id}`)
   console.log(data);
    dispatch(getCurrentSuccess(data));
   } catch (error) {
@@ -223,6 +223,9 @@ try {
 
 }
 }
+
+
+
 
 
 export default panelSlice.reducer;

@@ -26,25 +26,25 @@ import {
   import moment from 'moment';
 
   
-  export default function CustomersTable({data,intialdata}) {
+  export default function CustomersTable({data,intialdata,loading}) {
 
     const [visibleEdit, setEditModal] = useState(false);
     const [current_customers, setcustomers] = useState(null);
     
     const [selectionType, setSelectionType] = useState('checkbox');
 
+
+    console.log({loading});
   
   
   const [visibleLicense, setVisibleModal] = useState(false);
   const [curr_company, setCompany] = useState(null);
 
   
-console.log(current_customers);
 
   const dispatch = useDispatch()
 
   const confirm = (e, id) => {
-    console.log(id)
       dispatch(deletecustomers(id._id, id.customers,id.company?._id))
      
     }
@@ -195,6 +195,7 @@ console.log(current_customers);
               >
                 <div className="table-responsive">
                   <Table
+                  loading={loading}
                   pagination={{
                     onChange(current) {
                       setPage(current)

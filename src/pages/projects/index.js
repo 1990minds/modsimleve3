@@ -2,7 +2,7 @@
 import React, { useState, useLayoutEffect} from 'react'
 import Layout from '../../components/layout/Main'
 import ProjectTable from './datatable'
-import {fetchAllproject, projectSelector} from '../../api/project'
+import { projectSelector,fetchAllcompanyProject} from '../../api/project'
 import {useDispatch, useSelector} from 'react-redux'
 import { useEffect } from 'react'
 import Createproject from './createproject'
@@ -38,7 +38,7 @@ export default function Project() {
 
 
      useEffect(()=>{
-     dispatch(fetchAllproject(user?.company?._id))            
+     dispatch(fetchAllcompanyProject(user?.company?._id))            
      }, [user]) 
      const handleCancel = () => {
        SetProjectAddVisible(false)
@@ -48,11 +48,8 @@ export default function Project() {
 
 
      useEffect(()=>{
-     axios.get(keyUri.BACKEND_URI +`/project?search=${debouncedText}`).then(({data})=>{
-    console.log(
-      'text'
-    );
-    console.log({data})
+     axios.get(keyUri.BACKEND_URI +`/company-project/${user?.company?._id}?search=${debouncedText}`).then(({data})=>{
+
 
     setFilter(data?.filterproject)
      })
@@ -63,7 +60,7 @@ export default function Project() {
 
 
      useEffect(()=>{
-     dispatch(fetchAllproject())
+     dispatch(fetchAllcompanyProject())
       }, [dispatch])
 
 
@@ -112,7 +109,7 @@ prefix ={  <SearchOutlined  style={{color:'#3e79f7', fontWeight:'bold' ,padding:
         <ExcelBtn data={all_project} />
         </Col>
         </Row>
-        <ProjectTable data={(filter?.length > 0) ? filter :all_project} />
+        <ProjectTable data={(filter?.length > 0) ? filter :all_project} loading={loading} />
         </Layout>
   )
 
