@@ -157,12 +157,16 @@ response.data && message.error({ content: response.data.msg, key, duration: 2 })
   const key = "project"
   dispatch(getproject())
   message.loading({ content: 'loading...', key })
+  const pdfValues={
+    _id:id
+  }
 
 try {
     const {data} = await axios.put(keyUri.BACKEND_URI +`/project/${id}`, values, config);
     console.log(data);
     
     data && message.success({ content: data.msg, key, duration: 2 });
+    data && dispatch(createQuotationPdf(pdfValues))
     dispatch(fetchAllproject(company))
 
 } catch ({response}) {

@@ -4,7 +4,7 @@ import { Drawer, Form, Button, Col, Row, Input, Select, DatePicker, Space,InputN
 import { PlusOutlined } from '@ant-design/icons';
 import { Divider } from 'antd';
 import { EyeInvisibleOutlined, EyeTwoTone } from '@ant-design/icons';
-import {updatePanel, fetchOnePanel, panelSelector, duplicatepanel,} from '../../api/panel'
+import {updateproject} from '../../api/project'
 import {authenticateSelector} from '../../api/authSlice';
 import { fetchAllPanel } from '../../api/panel';
 import {createPanel} from '../../api/panel'
@@ -38,7 +38,7 @@ export default function Quotation({current_project,cancel}) {
   const onFinish = (values) => {
     
     console.log(values);
-    const data = {
+    const quotationdata = {
         scope_supply:values.scope_supply,
         packing_forwarding:values.packing_forwarding,
         freight:values.freight,
@@ -51,9 +51,9 @@ export default function Quotation({current_project,cancel}) {
    }
 
 
-    // dispatch(createproject(data,user?.company?._id))
-    // form.resetFields()
-    // cancel()
+    dispatch(updateproject(current_project._id ,quotationdata ))
+    form.resetFields()
+    cancel()
 
     };
 
