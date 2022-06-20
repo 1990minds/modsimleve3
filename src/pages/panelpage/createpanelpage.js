@@ -29,9 +29,26 @@ export default function CreatePanelsettings({current_panel}) {
   const [validityYear, setYear]=useState(null)
   const [validityMonth, setMonth]=useState(null)
   const [visible, setVisible]=useState(false)
+  const [frameMaterial, setframeMaterial] = useState(null);
+
   
 
-  console.log(current_panel);
+  console.log(frameMaterial);
+
+
+
+  const handleClickFrame = (value) =>{
+
+   form.setFieldsValue({
+    frame_powdercoating:(value==='G' || value=== 'Z') ? false:true
+  });
+    
+    setframeMaterial(value)
+    
+    }
+
+
+
 
   const {id} = useParams()
      
@@ -347,6 +364,7 @@ export default function CreatePanelsettings({current_panel}) {
                     name= "frame_material"  
                   >
          <Select
+           onChange={handleClickFrame}
           placeholder="Frame Material"  
         >
           <Option value="Z">Aluzn</Option>
@@ -366,8 +384,8 @@ export default function CreatePanelsettings({current_panel}) {
                    placeholder="Frame Powdercoating"
           
                   >
-       <Option value={true}>Yes</Option>
-            <Option value={false}>No</Option>  
+      <Option value={true}>Yes</Option>
+      { frameMaterial !=='C' &&  <Option value={false}>No</Option>  }
 
                   </Select>
                  </Form.Item>
@@ -442,7 +460,7 @@ export default function CreatePanelsettings({current_panel}) {
 
           >
           <Option value={true}>Yes</Option>
-            <Option value={false}>No</Option>  
+            {/* <Option value={false}>No</Option>   */}
           </Select>
           </Form.Item>
 
