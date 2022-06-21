@@ -30,6 +30,7 @@ export default function CreatePanelsettings({current_panel}) {
   const [validityMonth, setMonth]=useState(null)
   const [visible, setVisible]=useState(false)
   const [frameMaterial, setframeMaterial] = useState(null);
+  const [userColor, setuserColor] = useState(false)
 
   
 
@@ -77,6 +78,7 @@ export default function CreatePanelsettings({current_panel}) {
                     cover_powdercoating:true,       
                     partition_material: current_panel?.partition_material,
                     partition_powdercoating: current_panel?.partition_powdercoating,
+                    user_define:current_panel?.user_define,
                 
                 
             
@@ -106,6 +108,7 @@ export default function CreatePanelsettings({current_panel}) {
                       cover_powdercoating:values.cover_powdercoating,
                       partition_material:values.partition_material,
                       partition_powdercoating:values.partition_powdercoating,
+                      user_define:values.user_define,
                     
                   }
                   
@@ -123,6 +126,23 @@ export default function CreatePanelsettings({current_panel}) {
              console.log(`selected ${value}`)
          
            }
+
+           const onChangeColor = (value)=> {
+            console.log(`selected ${value}`)
+        
+            if(value === 'U'){
+
+              setuserColor(true)
+            }
+
+            else{
+
+              setuserColor(false)
+            }
+
+
+          }
+
         
 
   const onFinishFailed = (errorInfo) => {
@@ -238,52 +258,7 @@ export default function CreatePanelsettings({current_panel}) {
 
               </Col>
         
-            
-
               <Col xs={2} sm={4} md={6} lg={8} xl={5}>
-           <Form.Item
-                    
-                    label={<p className="  text-left m-0">Panel Color</p>}
-                    name="panel_colour"
-                    rules={[{ required: true, message: 'required!'}]}
-                  >
-                     <Select
-          placeholder="Select panel colour"
-          onChange={onChange}
-          style={{ width: '100%' }}
-          allowClear
-        >
-          <Option value="0">RAL7032 </Option>
-          <Option value="1">RAL7035</Option>
-          <Option value="2">RAL2000</Option>
-          <Option value="3">RAL9003</Option>
-          <Option value="U">User Defined</Option>
-        </Select>
-
-                  </Form.Item>
-              </Col>
-              
-           <Col xs={2} sm={4} md={6} lg={8} xl={5}>
-            <Form.Item
-                    label={<p className="  text-left m-0">Powder Coating Finish</p>}
-                    name= "powder_coating_finish"
-                    rules={[{ required: true, message: 'required!'}]}
-                  >
-                     <Select
-          placeholder="Select Powder Coating Finish"
-          onChange={onChange}
-          style={{ width: '100%' }}
-          allowClear
-        >
-          <Option value="S">Structure</Option>
-          <Option value="I">Semiglossy</Option>
-          <Option value="G">Glossy</Option>
-        </Select>
-
-                  </Form.Item>
-              </Col>
-             
-           <Col xs={2} sm={4} md={6} lg={8} xl={5}>
             <Form.Item
                     label={<p className="  text-left m-0">Panel Short Circuit Rating</p>}
                     name= "panel_short_circuit_rating"
@@ -306,6 +281,30 @@ export default function CreatePanelsettings({current_panel}) {
 
                   </Form.Item>
               </Col>
+
+              
+           <Col xs={2} sm={4} md={6} lg={8} xl={5}>
+            <Form.Item
+                    label={<p className="  text-left m-0">Powder Coating Finish</p>}
+                    name= "powder_coating_finish"
+                    rules={[{ required: true, message: 'required!'}]}
+                  >
+                     <Select
+          placeholder="Select Powder Coating Finish"
+          onChange={onChange}
+          style={{ width: '100%' }}
+          allowClear
+        >
+          <Option value="S">Structure</Option>
+          <Option value="I">Semiglossy</Option>
+          <Option value="G">Glossy</Option>
+        </Select>
+
+                  </Form.Item>
+              </Col>
+             
+
+
               <Col xs={2} sm={4} md={6} lg={8} xl={5}>
             <Form.Item
                     label={<p className="  text-left m-0">Required Busbar Support</p>}
@@ -331,7 +330,7 @@ export default function CreatePanelsettings({current_panel}) {
                     rules={[{ required: true, message: 'required!'}]}
                   >
                      <Select
-          placeholder="Select required_base_plinth"
+          placeholder="Select Required Base Plinth"
           onChange={onChange}
           style={{ width: '100%' }}
           allowClear
@@ -343,6 +342,63 @@ export default function CreatePanelsettings({current_panel}) {
                   </Form.Item>            
             
               </Col>
+
+
+
+
+              <Col xs={2} sm={4} md={6} lg={8} xl={5}>
+           <Form.Item
+                    
+                    label={<p className="  text-left m-0">Panel Color</p>}
+                    name="panel_colour"
+                    rules={[{ required: true, message: 'required!'}]}
+                  >
+                     <Select
+          placeholder="Select panel color"
+          onChange={onChangeColor}
+          style={{ width: '100%' }}
+          allowClear
+        >
+          <Option value="0"><span  style={{color:'#B5B0A1', paddingRight:'1rem', display:'inline-block', fontSize:'10px' }} >< SiHeadspace/> </span>RAL7032  </Option>
+          <Option value="1"><span  style={{color:'#C5C7C4', paddingRight:'1rem', display:'inline-block', fontSize:'10px' }} >< SiHeadspace/> </span>RAL7035</Option>
+          <Option value="2"><span  style={{color:'#DA6E00', paddingRight:'1rem', display:'inline-block', fontSize:'10px' }} >< SiHeadspace/> </span>RAL2000</Option>
+          <Option value="3"><span  style={{color:'#ECECE7', paddingRight:'1rem', display:'inline-block', fontSize:'10px' }} >< SiHeadspace/> </span>RAL9003</Option>
+          <Option value="U"><span  style={{color:'transparent',  paddingRight:'1rem', display:'inline-block', fontSize:'10px' }} >< SiHeadspace/> </span>User Defined</Option>
+          </Select>
+
+              </Form.Item>
+              </Col>
+
+
+
+          { userColor && <Col xs={2} sm={4} md={6} lg={8} xl={5}>
+          <Form.Item
+                
+                label={<p > User Defined Panel Color</p>}
+                name="user_define"
+                rules={[{ required: true, message: 'required!'}]}
+              >
+      <Input style={{backgroundColor:'#fff', }}/>
+
+          </Form.Item>
+          </Col>}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
             </Row>
             <Row >
               <Col span={10}>
@@ -350,7 +406,7 @@ export default function CreatePanelsettings({current_panel}) {
  <b><p style={{ marginTop:'1rem'}}>Frame Bar | Cross Bar</p></b>
  </Col>
  <Col span={10} >
- <b><p style={{ marginTop:'1rem'}}> Partitions</p></b>
+ <b><p style={{ marginTop:'1rem', paddingLeft:'10px' }}> Partitions</p></b>
  </Col>
  </Row>
             <Row gutter={24}>

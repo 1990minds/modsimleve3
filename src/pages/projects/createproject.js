@@ -146,7 +146,7 @@ export default function CreateProject({cancel}) {
              <Form.Item
              label={<p className="  w-36 text-left m-0">Project Coordinator</p>}
              name="project_coordiantor"
-             rules={[{ required: true, message: 'Please select Project Coordinator!' }]}
+            //  rules={[{ required: true, message: 'Please select Project Coordinator!' }]}
              >
              <Input/>
              
@@ -157,7 +157,7 @@ export default function CreateProject({cancel}) {
              <Form.Item
              label={<p className="  w-36 text-left m-0">Project Location</p>}
              name="project_location"
-             rules={[{ required: true, message: 'Please select Project Location!' }]}
+            //  rules={[{ required: true, message: 'Please select Project Location!' }]}
              >
              <Input/>
              </Form.Item>
