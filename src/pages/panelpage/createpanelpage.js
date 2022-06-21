@@ -9,7 +9,7 @@ import {authenticateSelector} from '../../api/authSlice';
 import { fetchAllPanel } from '../../api/panel';
 import {createPanel} from '../../api/panel'
 import moment from 'moment';
-import {FaPanelAlt, FaLock} from 'react-icons/fa'
+import {SiHeadspace} from 'react-icons/si'
 import Editpanel from './editpanel';
 import {useParams} from 'react-router-dom'
 import ExportExcel from './bomdownload';
@@ -74,9 +74,9 @@ export default function CreatePanelsettings({current_panel}) {
                     frame_material: current_panel?.frame_material,
                     frame_powdercoating: current_panel?.frame_powdercoating,
                     cover_material: current_panel?.cover_material,
-                    cover_powdercoating: current_panel?.cover_powdercoating,
-        
-                
+                    cover_powdercoating:true,       
+                    partition_material: current_panel?.partition_material,
+                    partition_powdercoating: current_panel?.partition_powdercoating,
                 
                 
             
@@ -175,6 +175,8 @@ export default function CreatePanelsettings({current_panel}) {
 
                   </Form.Item>
               </Col>
+
+
               {/* <Col xs={2} sm={4} md={6} lg={8} xl={5}>
               <Form.Item
                     label={<p className=" text-left m-0">Compliance With IEC61439</p>}
@@ -194,10 +196,7 @@ export default function CreatePanelsettings({current_panel}) {
                   </Form.Item>
               </Col> */}
 
-
-
-           
-          
+         
 
             <Col xs={2} sm={4} md={6} lg={8} xl={5}>
               <Form.Item
@@ -244,7 +243,7 @@ export default function CreatePanelsettings({current_panel}) {
               <Col xs={2} sm={4} md={6} lg={8} xl={5}>
            <Form.Item
                     
-                    label={<p className="  text-left m-0">Panel Colour</p>}
+                    label={<p className="  text-left m-0">Panel Color</p>}
                     name="panel_colour"
                     rules={[{ required: true, message: 'required!'}]}
                   >
@@ -254,7 +253,7 @@ export default function CreatePanelsettings({current_panel}) {
           style={{ width: '100%' }}
           allowClear
         >
-          <Option value="0">RAL7032</Option>
+          <Option value="0">RAL7032 </Option>
           <Option value="1">RAL7035</Option>
           <Option value="2">RAL2000</Option>
           <Option value="3">RAL9003</Option>
@@ -426,7 +425,7 @@ export default function CreatePanelsettings({current_panel}) {
                  </Form.Item>
                   </Col>
                   </Row>
-                   <b><p style={{ marginTop:'1rem'}}>Doors |  Covers </p></b> 
+                   <b><p style={{ marginTop:'1rem'}}> Doors |  Covers (Powdercoated) </p></b> 
                   <Row gutter={24}>
 
 <Col xs={2} sm={4} md={6} lg={8} xl={5}>
@@ -452,14 +451,14 @@ export default function CreatePanelsettings({current_panel}) {
 
            <Col xs={2} sm={4} md={6} lg={8} xl={5}>
            <Form.Item
-           label={<p className="  text-left m-0">Powdercoating</p>}
+           label={ <p className="  text-left m-0">Powdercoating</p>}
             name= "cover_powdercoating"  
             >
-         <Select
+         <Select disabled
          placeholder="Cover Powdercoating"
-
+           
           >
-          <Option value={true}>Yes</Option>
+          <Option   value={true}>Yes</Option>
             {/* <Option value={false}>No</Option>   */}
           </Select>
           </Form.Item>
@@ -500,7 +499,8 @@ export default function CreatePanelsettings({current_panel}) {
 
     <Button type="primary" 
     block style={{ fontSize: '14px', width:'10rem' , }}
-      onClick={() => setVisible(true)}>
+      onClick={() => setVisible(true)}
+      disabled={id?.request === "send"? false : true}>
       <span className='px-5 '> View BOM</span>
     </Button>
 

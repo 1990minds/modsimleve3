@@ -55,6 +55,7 @@ export default function CreateCustomer({cancel}) {
           pincode:values.pincode,
           customer_tax_number:values.customer_tax_number,
           website:values.website,
+          contact_person:values.contact_person,
           companyId:user?.company?._id
         }
 
@@ -245,6 +246,26 @@ export default function CreateCustomer({cancel}) {
               </Col>
               
             </Row>
+            <Row>
+
+            <Col span={12}>
+                <Form.Item
+                  name="contact_person"
+                  label="Contact Person"
+                  rules={[{ required: true, message: 'Please enter Contact Person name' }]}
+                >
+                  <Input/>
+                </Form.Item>
+              </Col>
+
+              </Row>
+
+
+
+
+
+
+
 
             <Divider />
 
