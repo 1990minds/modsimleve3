@@ -36,6 +36,7 @@ export default function EditCustomers({current_customers,cancel}) {
           pincode:current_customers && current_customers.pincode,
           customer_tax_number:current_customers && current_customers.customer_tax_number,
           website:current_customers && current_customers.website,
+          contact_person:current_customers && current_customers.contact_person,
    
           });
           }, [current_customers])
@@ -57,6 +58,7 @@ export default function EditCustomers({current_customers,cancel}) {
               pincode:values.pincode,
               customer_tax_number:values.customer_tax_number,
               website:values.website,
+              contact_person:values.contact_person,
                  
               }
               dispatch(updatecustomers(current_customers._id, customersdata,user?.company?._id))
@@ -250,6 +252,20 @@ export default function EditCustomers({current_customers,cancel}) {
               </Col>
               
             </Row>
+
+            <Row>
+
+<Col span={12}>
+    <Form.Item
+      name="contact_person"
+      label="Contact Person"
+      rules={[{ required: true, message: 'Please enter Contact Person name' }]}
+    >
+      <Input/>
+    </Form.Item>
+  </Col>
+
+  </Row>
 
         
             <Divider />
