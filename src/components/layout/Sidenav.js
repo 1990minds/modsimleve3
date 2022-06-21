@@ -889,9 +889,9 @@ c-0.01-0.42-0.32-0.5-0.66-0.51C-57.1,15.18-57.68,15.19-58.26,15.19z"fill={color}
           </NavLink>
         </Menu.Item>
 
-        <Menu.Item className="menu-item-header" key="5">
+        {/* <Menu.Item className="menu-item-header" key="5">
           Support
-        </Menu.Item>
+        </Menu.Item> */}
        
         <Menu.Item key="2">
           <NavLink to="/auth/ticket">

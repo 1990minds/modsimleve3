@@ -42,3 +42,6 @@
     background: #ccc;
   }
   
+  .ant-input {
+    background: #fff !important;
+  }
