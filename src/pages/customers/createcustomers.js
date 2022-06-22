@@ -11,6 +11,11 @@ import { fetchAllcompanycustomers,customersSelector } from '../../api/customers'
 import Password from 'antd/lib/input/Password';
 import {FaCompanyAlt, FaLock} from 'react-icons/fa'
 import {createcustomers} from '../../api/customers'
+import countries from '../../global/data'
+import 'react-phone-number-input/style.css'
+import PhoneInput from 'react-phone-number-input'
+
+
 
 const { Option } = Select;
 
@@ -36,10 +41,27 @@ export default function CreateCustomer({cancel}) {
       form.resetFields()
     };
     
-  
+    const [ states , setStates ] = useState([])
       const dispatch = useDispatch();
      
-        
+      const onChange = (value)=> {
+        console.log(`selected ${value}`)
+    
+      }
+
+
+      const onChangeCountry = (value)=> {
+        console.log(`selected ${value}`)
+       let country = countries?.countries.find( item => item.country === value)
+    setStates(country.states)
+      }
+
+          
+      const onSearch = (value) => {
+        console.log('search:', value);
+      };
+ 
+
   
       const onFinish = (values) => {
         const data = {
@@ -71,7 +93,7 @@ export default function CreateCustomer({cancel}) {
 
   const [form] = Form.useForm();
 
-
+  const [value, setValue] = useState()
   
     return (
       <>
@@ -111,12 +133,14 @@ export default function CreateCustomer({cancel}) {
           label={<p className="w-36 text-left m-0">Phone Number</p>}
           name="phone_number"
           rules={[{ required: true ,message: 'required!' },
-          {min: 10},
-          {max:10},
           {pattern:"[0-9]", message:"Only Numbers"}
           ]}
         >
-           <Input/>
+         <PhoneInput
+      
+      value={value}
+      onChange={setValue}/>
+      
 
 </Form.Item>
               </Col>
@@ -152,30 +176,9 @@ export default function CreateCustomer({cancel}) {
               </Col>
            </Row>
 
+           
+
            <Row gutter={16}>
-              <Col span={12}>
-                <Form.Item
-                  name="address"
-                  label="Address "
-                  rules={[{ required: true, message: 'Please enter Address' }]}
-                >
-                  <Input />
-                </Form.Item>
-              </Col>
-              <Col span={12}>
-                <Form.Item
-                  name="address2"
-                  label="Address 2"
-                  rules={[{ required: true, message: 'Please enter Address' }]}
-                >
-                  <Input  />
-                </Form.Item>
-              </Col>
-            </Row>
-
-
-
-            <Row gutter={16}>
               <Col span={12}>
                 <Form.Item
                   name="country"
@@ -183,7 +186,19 @@ export default function CreateCustomer({cancel}) {
                   rules={[{ required: true, message: 'Please select a Country' }]}
                 >
                  
-                   <Input  />
+                 <Select
+                  optionFilterProp="children"
+                  onChange={onChangeCountry}
+                  onSearch={onSearch}
+                 
+                  showSearch      
+                  placeholder="Please select your country">
+                  { 
+                   countries?.countries?.map( (item, i)=>(
+                   <option key={i} value={item?.country}> { item?.country}</option>
+                     ))
+                }
+                  </Select> 
                 </Form.Item>
               </Col>
               <Col span={12}>
@@ -193,10 +208,47 @@ export default function CreateCustomer({cancel}) {
                   rules={[{ required: true, message: 'Please choose a State' }]}
                 >
                 
-                   <Input  />
+                <Select
+                  optionFilterProp="children"
+                  onChange={onChange}
+                  onSearch={onSearch}
+                 disabled={ states.length===0}
+                  showSearch      
+                  placeholder="Please select your state">
+                  { 
+                  states?.map( (item, i)=>(
+                   <option key={i} value={item}
+                   
+                   > { item}</option>
+                     ))
+                }
+                  </Select>
                 </Form.Item>
               </Col>
             </Row>
+
+           <Row gutter={16}>
+              <Col span={12}>
+                <Form.Item
+                  name="address"
+                  label="Address Line 1"
+                  rules={[{ required: true, message: 'Please enter Address' }]}
+                >
+                  <Input />
+                </Form.Item>
+              </Col>
+              <Col span={12}>
+                <Form.Item
+                  name="address2"
+                  label="Address Line 2"
+                  rules={[{ required: true, message: 'Please enter Address' }]}
+                >
+                  <Input  />
+                </Form.Item>
+              </Col>
+            </Row>
+
+
 
             <Row gutter={16}>
             <Col span={12}>

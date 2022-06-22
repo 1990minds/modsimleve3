@@ -105,7 +105,7 @@ export const fetchAlldrawingreq = () => async dispatch => {
 
   data && notification.open(
     {
-        message: `BOM Request ID : #${data?.drawingreq?.request_id}`,
+        message: `Drawing Request ID : #${data?.drawingreq?.request_id}`,
         description:
           `We have received your request and a Drawing Request ID ${data?.drawingreq?.request_id} has been created.
 Our Team will share the details with you to your official Email.

@@ -100,7 +100,7 @@ console.log(filter);
     <a onClick={history.goBack}>Panels</a> 
     </Breadcrumb.Item>
     <Breadcrumb.Item>
-    Pannel Page
+    Panel Page
     </Breadcrumb.Item>
     </Breadcrumb>
 
