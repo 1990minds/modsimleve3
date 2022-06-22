@@ -16,7 +16,7 @@ import {
   import { Link } from "react-router-dom";
   import { PlusOutlined } from '@ant-design/icons';
   import DeleteConfirm from '../../global/delete'
-  import {GrDocumentWindows } from 'react-icons/gr';
+  import { DownloadOutlined  } from '@ant-design/icons';
   import {VscGitPullRequestCreate } from 'react-icons/vsc';
   import face6 from "../../assets/images/face-6.jpeg";
   import pencil from "../../assets/images/pencil.svg";
@@ -24,13 +24,11 @@ import {
   import { FaRegTrashAlt, FaRegEdit, } from 'react-icons/fa';
   import { FiCopy } from 'react-icons/fi';
   import ModalForm from '../../global/model.js'
-  
-
   import {deleteProduct} from '../../api/product'
   import {authenticateSelector} from '../../api/authSlice';
 //   import Editpanel from './editpanel';
 import { useHistory} from 'react-router-dom'
-import {deletepanel,deleteManypanel, } from '../../api/panel'
+import {deletepanel,deleteManypanel,createDrawingPdf } from '../../api/panel'
 import { createbomrequest} from '../../api/bomrequest'
 import  {createdrawingreq} from '../../api/drawingreq'
 import Editpanel from './editpanel';
@@ -67,6 +65,9 @@ import {updateUser} from '../../api/user'
     const [visibleEdit, setEditModal] = useState(false);
     const [current_panel, setpanel] = useState(null);
     const [visibleDuplicate, setDuplicatetModal] = useState(false);
+    const [item,setItem] =useState(null)
+    const [downloadLoading,setDownloadLoading] =useState(false)
+    const [visibleDrawing, setDrawingModal] = useState(false);
    
     
     const [selectionType, setSelectionType] = useState('checkbox');
@@ -103,13 +104,42 @@ import {updateUser} from '../../api/user'
             setVisible(true);
             }
 
+
+            const handleClickDrawing = (e, isvisible, id) =>{
+              e.preventDefault()
+              setpanel(id)
+              setVisible(isvisible);
+              }
+
+              const createPdf= (value)=> {
+   
+                setDownloadLoading(true)
+                setItem(value._id)
+                dispatch(createDrawingPdf(value))
+                
+                setTimeout(()=>{
+                  setDownloadLoading(false)
+                    setItem(null)
+                },3000)
+        
+        
+        
+                const handleClickDrawing = (e, isvisible, id) =>{
+                  e.preventDefault()
+                  setpanel(id)
+                  setDrawingModal(isvisible)
+                  // setDuplicatetModal(false)
+                  }
+          
+                  const cancelModel = () => {
+                    setDrawingModal(false)
+                    setpanel(null)
+                  };
+        
+          }
            
 
-            const handleClick = (e, isvisible, id) =>{
-              e.preventDefault()
-              // setpanel(id)
-              // setVisible(true);
-              }
+        
     
       const [page, setPage] = useState(1);
   
@@ -258,6 +288,30 @@ import {updateUser} from '../../api/user'
           return <small className="my-0 mr-3">{moment(updatedAt).format('DD/MM/YYYY')}</small>
       }
       },
+
+
+      {
+        title: 'Download',
+        key: 'download',
+        render: (id) => (           
+          <a href="#" className="" style={{  margin:'0px', padding:'0px', width:'100%'}} onClick={(e) => { 
+          e.stopPropagation();      
+          }}>  
+        <DownloadOutlined style={{ fontsize:'30px', textAlign:'center'}}
+           onClick={(e)=>handleClickDrawing(e, true, id)} />
+
+        <DownloadOutlined style={{ fontsize:'30px', textAlign:'center'}}
+           onClick={(e)=>handleClickDrawing(e, true, id)} />
+
+</a>
+        )
+      },
+
+
+
+
+
+
 
 
       {

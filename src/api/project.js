@@ -101,7 +101,7 @@ export const fetchAllcompanyProject = (id) => async dispatch => {
  
    const {data} = await axios.delete(keyUri.BACKEND_URI +`/project/${id} `, project, config)
   data && message.success({ content: data.msg, key, duration: 2 });
-   dispatch(fetchAllproject(company));
+   dispatch(fetchAllcompanyProject(company));
     
   } catch (error) {
 
@@ -113,9 +113,9 @@ export const fetchAllcompanyProject = (id) => async dispatch => {
 
 
 
- export const createproject = ( values,company) => async dispatch => {
+ export const createproject = ( values,id) => async dispatch => {
 console.log( values);
-
+console.log( {id});
 
   dispatch(getproject())
   const key = 'create';
@@ -125,7 +125,7 @@ console.log( values);
    const {data} = await axios.post(keyUri.BACKEND_URI +`/project`, values, config)
 
    data && message.success({ content: data.msg, key, duration: 2 });
-   dispatch(fetchAllproject(company));
+   dispatch(fetchAllcompanyProject(id));
 
   } 
   catch ({response}) {
@@ -167,7 +167,7 @@ try {
     
     data && message.success({ content: data.msg, key, duration: 2 });
     data && dispatch(createQuotationPdf(pdfValues))
-    dispatch(fetchAllproject(company))
+    dispatch(fetchAllcompanyProject(company))
 
 } catch ({response}) {
 console.log(response.data);
