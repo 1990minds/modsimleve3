@@ -46,10 +46,8 @@ export default function CreateProject({cancel}) {
       }
 
 
-       dispatch(createproject(data,user?.company?._id))
-       form.resetFields()
-       cancel()
-  
+       dispatch(createproject(data, user?.company?._id))
+      
        };
   
        const onFinishFailed = (errorInfo) => {
@@ -171,7 +169,7 @@ export default function CreateProject({cancel}) {
            <Form.Item
             label={<p className="w-36 text-left m-0">Phone Number</p>}
             name="phone_number"
-            rules={[{ required: true ,message: 'required!' },
+            rules={[{ message: 'required!' },
             {min: 10},
             {max:10},
             {pattern:"[0-9]", message:"Only Numbers"}
@@ -190,7 +188,7 @@ export default function CreateProject({cancel}) {
               message: 'The input is not valid E-mail!',
             },
             {
-              required: true,
+             
               message: 'Please input your E-mail!',
             },]}
            >

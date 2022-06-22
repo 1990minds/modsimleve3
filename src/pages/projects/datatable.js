@@ -103,23 +103,10 @@ const [modalText, setModalText] = useState('Content of the modal');
             setQuotationModal(false)
             setproject(null)
           };
-  
 
-        // const handleQuotationOk = () => {
-        //   setModalText('The modal will be closed after two seconds');
-        //   setConfirmLoading(true);
-        //   setTimeout(() => {
-        //     setVisible(false);
-        //     setConfirmLoading(false);
-        //   }, 2000);
-        // };
   }
     
-  // const handleClickquotation = (e, isvisible, id) =>{
-  //   e.preventDefault()
-  //   setproject(id)
-  //   // setVisible(true);
-  //   }
+ 
 
 
   const columns = [
@@ -161,7 +148,9 @@ const [modalText, setModalText] = useState('Content of the modal');
         title: ' Project Location',
         dataIndex: 'project_location',
         key: 'project_location',
-        
+        render:(item)=>{
+          return <p class="m-0 ">{item?item:'-'} </p>
+        }
       },
 
       // {

@@ -2,6 +2,7 @@ import { createSlice } from '@reduxjs/toolkit';
 import axios from 'axios'
 import { message } from 'antd';
 import { keyUri, config } from '../key'
+import {saveAs} from 'file-saver' 
 
 
 const initialState = {
@@ -224,8 +225,19 @@ try {
 }
 }
 
+export const createDrawingPdf = (pdfValues) => async dispatch => {
+  console.log(pdfValues);
 
-
+  axios.post(keyUri.BACKEND_URI + `/create-pdf`, pdfValues, config )
+  .then(() => axios.get(keyUri.BACKEND_URI +'/fetch-templetpdf', { responseType: 'blob' })) 
+  .then((res) => {  
+      console.log(res.data);      
+      const pdfBlob = new Blob([res.data], 
+          { type: 'application/pdf' });
+   saveAs(pdfBlob, 'Drawing.pdf');      
+}   
+)
+}
 
 
 export default panelSlice.reducer;
