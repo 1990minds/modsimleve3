@@ -10,13 +10,15 @@ import { fetchAllCustomers } from '../../api/customers';
 import {createCustomers} from '../../api/customers'
 import { Upload } from 'antd';
 import { UploadOutlined } from '@ant-design/icons';
-
+import countries from '../../global/data'
+import 'react-phone-number-input/style.css'
+import PhoneInput from 'react-phone-number-input'
 
 const { Option } = Select;
 
 export default function EditCustomers({current_customers,cancel}) {
   
-
+  const [ states , setStates ] = useState([])
     const dispatch = useDispatch();
     const { user } = useSelector(authenticateSelector) 
     console.log(user);
@@ -40,7 +42,24 @@ export default function EditCustomers({current_customers,cancel}) {
    
           });
           }, [current_customers])
-                  
+               
+          const [value, setValue] = useState()
+          const onChange = (value)=> {
+            console.log(`selected ${value}`)
+        
+          }
+    
+    
+          const onChangeCountry = (value)=> {
+            console.log(`selected ${value}`)
+           let country = countries?.countries.find( item => item.country === value)
+        setStates(country.states)
+          }
+    
+              
+          const onSearch = (value) => {
+            console.log('search:', value);
+          };
   
           const onFinish = (values) => {
   
@@ -67,10 +86,6 @@ export default function EditCustomers({current_customers,cancel}) {
              };
            const [form] = Form.useForm();
 
-           const onChange = (value)=> {
-             console.log(`selected ${value}`)
-         
-           }
         
 
   const onFinishFailed = (errorInfo) => {
@@ -112,15 +127,17 @@ export default function EditCustomers({current_customers,cancel}) {
               </Col>
               <Col span={12}>
               <Form.Item
-          label={<p className="w-36 text-left m-0">Phone number</p>}
+          label={<p className="w-36 text-left m-0">Phone Number</p>}
           name="phone_number"
           rules={[{ required: true ,message: 'required!' },
-          {min: 10},
-          {max:10},
           {pattern:"[0-9]", message:"Only Numbers"}
           ]}
         >
-           <Input/>
+         <PhoneInput
+      
+      value={value}
+      onChange={setValue}/>
+      
 
 </Form.Item>
               </Col>
@@ -183,23 +200,49 @@ export default function EditCustomers({current_customers,cancel}) {
 
             <Row gutter={16}>
               <Col span={12}>
-                <Form.Item
+              <Form.Item
                   name="country"
                   label="Country"
                   rules={[{ required: true, message: 'Please select a Country' }]}
                 >
                  
-                   <Input  />
+                 <Select
+                  optionFilterProp="children"
+                  onChange={onChangeCountry}
+                  onSearch={onSearch}
+                 
+                  showSearch      
+                  placeholder="Please select your country">
+                  { 
+                   countries?.countries?.map( (item, i)=>(
+                   <option key={i} value={item?.country}> { item?.country}</option>
+                     ))
+                }
+                  </Select> 
                 </Form.Item>
               </Col>
               <Col span={12}>
-                <Form.Item
+              <Form.Item
                   name="state"
                   label="State"
                   rules={[{ required: true, message: 'Please choose a State' }]}
                 >
                 
-                   <Input  />
+                <Select
+                  optionFilterProp="children"
+                  onChange={onChange}
+                  onSearch={onSearch}
+                 disabled={ states.length===0}
+                  showSearch      
+                  placeholder="Please select your state">
+                  { 
+                  states?.map( (item, i)=>(
+                   <option key={i} value={item}
+                   
+                   > { item}</option>
+                     ))
+                }
+                  </Select>
                 </Form.Item>
               </Col>
             </Row>
