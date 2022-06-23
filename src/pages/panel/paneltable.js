@@ -321,14 +321,20 @@ import ExportExcel from './bomdownload';
       {
         title: 'Download',
         key: 'download',
-        render: (value) => (           
-          <a href="#" className="" style={{  margin:'0px', padding:'0px', width:'100%', display:'flex' , zIndex:'100'}} onClick={(e) => { 
+
+        render: (value, id) => (           
+          <a href="#" className="" style={{  margin:'0px', padding:'0px', width:'100%', display:'flex' ,zIndex:'100'}} onClick={(e) => {
           e.stopPropagation();      
           }}>  
-        <Button type="link" onClick={()=>drawingPdf(value)}> 2D </Button> 
+        <Button 
+        disabled={id?.request === 'null' ? true : false}
+        type="link" onClick={()=>drawingPdf(value)}> 2D </Button> 
         
+        <Button
+        disabled={id?.request === 'null' ? true : false}
+        type="link">
         <ExportExcel data={value?.bom} panel={value} />
- 
+ </Button>
 </a>
         )
       },
@@ -349,7 +355,7 @@ import ExportExcel from './bomdownload';
           onCancel={cancelRequest}
           okText="Yes"
           cancelText="No"
-          disabled={id?.request === "send"? false : true}
+          disabled={id?.request === 'null' ? true : false}
           >
 
    
