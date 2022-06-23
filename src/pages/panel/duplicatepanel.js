@@ -58,7 +58,7 @@ export default function DuplicatePanel({current_panel,project_id,product_id,canc
                 data.updatedAt=null
                 data.createdAt=null
                 data.request="null"
-                data.dwgrequest="null"
+                data.requestdwg="null"
                 
 
           dispatch(duplicatepanel( data,{id:product_id,project:project_id}))
@@ -195,10 +195,10 @@ export default function DuplicatePanel({current_panel,project_id,product_id,canc
           style={{ width: '100%' }}
           allowClear
         >
-          <Option value="35">35</Option>
-          <Option value="40">40</Option>
-          <Option value="35">45</Option>
-          <Option value="40">50</Option>
+                        <Option value="35°C">35℃ </Option>
+                        <Option value="40°C">40℃</Option>
+                        <Option value="45°C">45℃</Option>
+                        <Option value="50°C">50℃</Option>
 
         </Select>
 
