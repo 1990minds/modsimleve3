@@ -385,20 +385,6 @@ export default function CreatePanelsettings({current_panel}) {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
             </Row>
             <Row >
               <Col span={10}>
@@ -414,7 +400,7 @@ export default function CreatePanelsettings({current_panel}) {
       
             <Col xs={2} sm={4} md={6} lg={8} xl={5}>
                      <Form.Item
-                
+                 rules={[{ required: true, message: 'required!'}]}
                     label={<p className="  text-left m-0">Material</p>}
                     name= "frame_material"  
                   >
@@ -434,6 +420,7 @@ export default function CreatePanelsettings({current_panel}) {
                   <Form.Item
                     label={<p className="  text-left m-0">Powdercoating</p>}
                     name= "frame_powdercoating"
+                    rules={[{ required: true, message: 'required!'}]}
                   >
                   <Select
                    placeholder="Frame Powdercoating"
@@ -450,7 +437,7 @@ export default function CreatePanelsettings({current_panel}) {
 
                   <Col xs={2} sm={4} md={6} lg={8} xl={5}>
                      <Form.Item
-                
+                rules={[{ required: true, message: 'required!'}]}
                     label={<p className="  text-left m-0">Material</p>}
                     name= "partition_material"  
                   >
@@ -469,6 +456,7 @@ export default function CreatePanelsettings({current_panel}) {
                   <Form.Item
                     label={<p className="  text-left m-0">Powdercoating</p>}
                     name= "partition_powdercoating"
+                    rules={[{ required: true, message: 'required!'}]}
                   >
                   <Select
                    placeholder="Partition Powdercoating"
@@ -487,7 +475,7 @@ export default function CreatePanelsettings({current_panel}) {
 <Col xs={2} sm={4} md={6} lg={8} xl={5}>
 
            <Form.Item
-
+ rules={[{ required: true, message: 'required!'}]}
          label={<p className="  text-left m-0">Material</p>}
          name= "cover_material"
   
@@ -507,6 +495,7 @@ export default function CreatePanelsettings({current_panel}) {
 
            <Col xs={2} sm={4} md={6} lg={8} xl={5}>
            <Form.Item
+            rules={[{ required: true, message: 'required!'}]}
            label={ <p className="  text-left m-0">Powdercoating</p>}
             name= "cover_powdercoating"  
             >
@@ -561,7 +550,6 @@ export default function CreatePanelsettings({current_panel}) {
       <span className='px-5 '> 
       View BOM
       </span>
-
     </Button>
 
  
