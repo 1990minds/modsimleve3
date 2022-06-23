@@ -11,11 +11,10 @@ export default function ExportExcel({data, panel}) {
 
     const [bom, setBom] = useState([])
     const [total, setTotal] = useState(null)
-
-    // console.log({data});
-    // console.log({panel});
-    // console.log({bom});
     
+
+console.log(panel)
+
 
     useEffect(() => {
          let bomArray = _.flatten(data?.map(item =>{
@@ -34,14 +33,16 @@ export default function ExportExcel({data, panel}) {
             <TableWrap>
 
                 <div className=' flex  justify-end mx-24'> 
+                <Buttonwrap>
                 <ReactHTMLTableToExcel
                     id="test-table-xls-button"
                     className=""
                     table="table-to-xls"
                     filename="BOM"
                     sheet="tablexls" 
-                    buttonText={<a> BOM</a> } 
-                    />
+                    buttonText="BOM"
+                    
+                    /></Buttonwrap>
                 </div>
                         <div className='tableview pb-5 mt-4 w-full flex justify-center' 
                               style={{overflowY:'auto', height:'60vh', overflowX:'hidden',display:'none' }}> 
@@ -101,7 +102,7 @@ export default function ExportExcel({data, panel}) {
                                             <td>{i+1}</td>
                                             <td className='text'>{item.Ordering_Code}</td>
                                             <td className='text'>{item.Item_Description}</td>
-                                            <td className='text'>Signature</td>
+                                            <td className='text'>{item.Nature_of_Component}</td>
                                             <td>{item.Width ? item.Width : 'NA'}</td>
                                             <td>{item.Height ? item.Height : 'NA'}</td>
                                             <td>{item.Qty}</td>
@@ -126,7 +127,7 @@ const TableWrap = styled.div`
 /* height: 70vh ; */
 
 table, th, td {
-  border: 1px solid black;
+  /* border: 1px solid black; */
   border-collapse: collapse;
   table {border: none;}
 }
@@ -138,5 +139,19 @@ th,td {
 .text{
     text-align: left;
     padding: 0 10px;
+}
+
+.test-table-xls-button{
+    background-color: transparent !important;
+    border: 0px !important;
+    transform: translateY(7px) !important;
+}
+
+`
+const Buttonwrap = styled.div`
+#test-table-xls-button{
+    background-color: transparent !important;
+    border: 0px !important;
+    transform: translateY(8px) !important;
 }
 `

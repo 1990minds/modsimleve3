@@ -133,7 +133,7 @@ placeholder="Search" onChange={onSearch}  />
   <path d="M12 11h.01" />
 </svg> &nbsp;
           Generate Quotation</Button> &nbsp;&nbsp;&nbsp;&nbsp; */}
-        <Button type="primary" style={{ fontSize: '14px'  }}>
+        {/* <Button type="primary" style={{ fontSize: '14px'  }}>
         <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-shape" width="20" height="20" viewBox="0 0 24 24" stroke-width="1.5" stroke="#ffffff" fill="none" stroke-linecap="round" stroke-linejoin="round">
   <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
   <circle cx="5" cy="5" r="2" />
@@ -145,7 +145,7 @@ placeholder="Search" onChange={onSearch}  />
   <line x1="7" y1="19" x2="17" y2="19" />
   <line x1="19" y1="7" x2="19" y2="17" />
 </svg>&nbsp;
-          Download 2D Drawings</Button> &nbsp;&nbsp;&nbsp;&nbsp;
+          Download 2D Drawings</Button> &nbsp;&nbsp;&nbsp;&nbsp; */}
         <ExcelBtn data={product_panels} />
       </Col>
       </Row>

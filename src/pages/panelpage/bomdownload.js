@@ -101,7 +101,7 @@ export default function ExportExcel({data, panel}) {
                                             <td>{i+1}</td>
                                             <td className='text'>{item.Ordering_Code}</td>
                                             <td className='text'>{item.Item_Description}</td>
-                                            <td className='text'>Signature</td>
+                                            <td className='text'>{item.Nature_of_Component}</td>
                                             <td>{item.Width ? item.Width : 'NA'}</td>
                                             <td>{item.Height ? item.Height : 'NA'}</td>
                                             <td>{item.Qty}</td>

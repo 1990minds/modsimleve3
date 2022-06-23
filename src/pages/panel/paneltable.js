@@ -322,7 +322,7 @@ import ExportExcel from './bomdownload';
         title: 'Download',
         key: 'download',
         render: (value) => (           
-          <a href="#" className="" style={{  margin:'0px', padding:'0px', width:'100%'}} onClick={(e) => { 
+          <a href="#" className="" style={{  margin:'0px', padding:'0px', width:'100%', display:'flex' ,}} onClick={(e) => { 
           e.stopPropagation();      
           }}>  
         <Button type="link" onClick={()=>drawingPdf(value)}> 2D </Button> 
@@ -332,12 +332,6 @@ import ExportExcel from './bomdownload';
 </a>
         )
       },
-
-
-
-
-
-
 
 
       {
