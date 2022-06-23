@@ -556,7 +556,7 @@ export default function CreatePanelsettings({current_panel}) {
     <Button type="primary" 
     block style={{ fontSize: '14px', width:'10rem' , }}
       onClick={() => setVisible(true)}
-      disabled={id?.request === "send"? false : true}>
+      >
       <span className='px-5 '> View BOM</span>
     </Button>
 

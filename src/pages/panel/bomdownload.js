@@ -40,11 +40,11 @@ export default function ExportExcel({data, panel}) {
                     table="table-to-xls"
                     filename="BOM"
                     sheet="tablexls" 
-                    buttonText={<Button type="primary ">Download BOM</Button>} 
+                    buttonText={<a> BOM</a> } 
                     />
                 </div>
                         <div className='tableview pb-5 mt-4 w-full flex justify-center' 
-                              style={{overflowY:'auto', height:'60vh', overflowX:'hidden' }}> 
+                              style={{overflowY:'auto', height:'60vh', overflowX:'hidden',display:'none' }}> 
 
                         <table id="table-to-xls" style={{width:'90%'}}>
                             <tr className=" text-2xl">
@@ -128,6 +128,7 @@ const TableWrap = styled.div`
 table, th, td {
   border: 1px solid black;
   border-collapse: collapse;
+  table {border: none;}
 }
 th,td {
   text-align: center;

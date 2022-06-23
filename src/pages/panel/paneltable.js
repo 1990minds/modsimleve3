@@ -28,7 +28,7 @@ import {
   import {authenticateSelector} from '../../api/authSlice';
 //   import Editpanel from './editpanel';
 import { useHistory} from 'react-router-dom'
-import {deletepanel,deleteManypanel,createDrawingPdf } from '../../api/panel'
+import {deletepanel,deleteManypanel,createDrawingPdf,createBomPdf } from '../../api/panel'
 import { createbomrequest} from '../../api/bomrequest'
 import  {createdrawingreq} from '../../api/drawingreq'
 import Editpanel from './editpanel';
@@ -36,7 +36,8 @@ import Duplicatepanel from './duplicatepanel';
 import moment from 'moment';
 import { Popconfirm, message } from 'antd';
 import {updateUser} from '../../api/user'
-  
+import ExportExcel from './bomdownload';
+
   function PanelTable({data,project_id, product_id,loading}) {
 
     const [confirmLoading, setConfirmLoading] = useState(false);
@@ -64,10 +65,16 @@ import {updateUser} from '../../api/user'
 
     const [visibleEdit, setEditModal] = useState(false);
     const [current_panel, setpanel] = useState(null);
+    const [ panel, setcurrentpanel] = useState(null);
     const [visibleDuplicate, setDuplicatetModal] = useState(false);
     const [item,setItem] =useState(null)
     const [downloadLoading,setDownloadLoading] =useState(false)
     const [visibleDrawing, setDrawingModal] = useState(false);
+    const [Bomvisible, setBomVisible] = useState(false);
+    const [curr_company, setCompany] = useState(null);
+    const [dwgpanel, setdwgpanel] = useState(null);
+  
+  
    
     
     const [selectionType, setSelectionType] = useState('checkbox');
@@ -93,9 +100,6 @@ import {updateUser} from '../../api/user'
               setDuplicatetModal(false)
               setpanel(null)
             }
-    
-
-
 
 
           const handleClickEdit = (e, isvisible, id) =>{
@@ -107,11 +111,16 @@ import {updateUser} from '../../api/user'
 
             const handleClickDrawing = (e, isvisible, id) =>{
               e.preventDefault()
-              setpanel(id)
-              setVisible(isvisible);
+              setdwgpanel(id)
+              setDrawingModal(isvisible);
               }
 
-              const createPdf= (value)=> {
+              const closeModal = () => {
+                setDrawingModal(false)
+               setpanel(null)
+               }
+
+              const drawingPdf= (value)=> {
    
                 setDownloadLoading(true)
                 setItem(value._id)
@@ -121,22 +130,41 @@ import {updateUser} from '../../api/user'
                   setDownloadLoading(false)
                     setItem(null)
                 },3000)
+
+              }
+
+                const bomPdf= (value)=> {
+   
+                  setDownloadLoading(true)
+                  setItem(value._id)
+                  dispatch(createBomPdf(value))
+                  
+                  setTimeout(()=>{
+                    setDownloadLoading(false)
+                      setItem(null)
+                  },3000)
         
         
         
-                const handleClickDrawing = (e, isvisible, id) =>{
-                  e.preventDefault()
-                  setpanel(id)
-                  setDrawingModal(isvisible)
-                  // setDuplicatetModal(false)
-                  }
+                // const handleClickDrawing = (e, isvisible, id) =>{
+                //   e.preventDefault()
+                //   setpanel(id)
+                //   setDrawingModal(isvisible)
+                //   // setDuplicatetModal(false)
+                //   }
           
-                  const cancelModel = () => {
-                    setDrawingModal(false)
-                    setpanel(null)
-                  };
+                //   const cancelModel = () => {
+                //     setDrawingModal(false)
+                //     setpanel(null)
+                //   };
         
           }
+
+          const handleClickBom = (e, isvisible, id) =>{
+            e.preventDefault()
+            setcurrentpanel(id)
+            setBomVisible(true);
+            }
            
 
         
@@ -293,16 +321,14 @@ import {updateUser} from '../../api/user'
       {
         title: 'Download',
         key: 'download',
-        render: (id) => (           
+        render: (value) => (           
           <a href="#" className="" style={{  margin:'0px', padding:'0px', width:'100%'}} onClick={(e) => { 
           e.stopPropagation();      
           }}>  
-        <DownloadOutlined style={{ fontsize:'30px', textAlign:'center'}}
-           onClick={(e)=>handleClickDrawing(e, true, id)} />
-
-        <DownloadOutlined style={{ fontsize:'30px', textAlign:'center'}}
-           onClick={(e)=>handleClickDrawing(e, true, id)} />
-
+        <Button type="link" onClick={()=>drawingPdf(value)}> 2D </Button> 
+        
+        <ExportExcel data={value?.bom} panel={value} />
+ 
 </a>
         )
       },

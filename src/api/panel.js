@@ -228,13 +228,27 @@ try {
 export const createDrawingPdf = (pdfValues) => async dispatch => {
   console.log(pdfValues);
 
-  axios.post(keyUri.BACKEND_URI + `/create-pdf`, pdfValues, config )
-  .then(() => axios.get(keyUri.BACKEND_URI +'/fetch-templetpdf', { responseType: 'blob' })) 
+  axios.post(keyUri.BACKEND_URI + `/drawing-pdf`, pdfValues, config )
+  .then(() => axios.get(keyUri.BACKEND_URI +'/fetch-templet1pdf', { responseType: 'blob' })) 
   .then((res) => {  
       console.log(res.data);      
       const pdfBlob = new Blob([res.data], 
           { type: 'application/pdf' });
    saveAs(pdfBlob, 'Drawing.pdf');      
+}   
+)
+}
+
+export const createBomPdf = (pdfValues) => async dispatch => {
+  console.log(pdfValues);
+
+  axios.post(keyUri.BACKEND_URI + `/bom-pdf`, pdfValues, config )
+  .then(() => axios.get(keyUri.BACKEND_URI +'/fetch-templet2pdf', { responseType: 'blob' })) 
+  .then((res) => {  
+      console.log(res.data);      
+      const pdfBlob = new Blob([res.data], 
+          { type: 'application/pdf' });
+   saveAs(pdfBlob, 'Bom.pdf');      
 }   
 )
 }
