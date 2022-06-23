@@ -174,14 +174,24 @@ export default function Login({history}) {
                     name="email"
                     style={{borderColor: 'white'}}
                     rules={[
+                    
+                      {
+                        type: 'email',
+                        message: 'The input is not valid E-mail!',
+                      },
                       {
                         required: true,
-                        message: "Please input your email!",
+                        message: 'Please input your E-mail!',
                       },
                     ]}
                     
                   >
-                    <Input  id="email" name="email" type="email" autocomplete="email" required="" placeholder="Your Email" />
+                    <Input  id="email" 
+                    name="email" type="email"
+                     autocomplete="email"
+                     style={{ height: '50px'}}
+                      required=""
+                       placeholder="Your Email" />
                   </Form.Item>
 
 
@@ -191,7 +201,7 @@ export default function Login({history}) {
                     name="password"
                     rules={[
                       {
-                        
+                        required: true,
                         message: "Please input your password!",
                       },
                     ]}
@@ -200,15 +210,15 @@ export default function Login({history}) {
                   </Form.Item>
 
 
-                  <Form.Item
+                  {/* <Form.Item
                     name="remember"
                     className="aligin-center"
                     valuePropName="checked"
                   >
                     <Switch defaultChecked onChange={onChange} />
                     &nbsp;&nbsp;Remember me 
-                  </Form.Item>
-
+                  </Form.Item> */}
+<br/>
                   <Form.Item>
                     <Button
                       type="primary"
