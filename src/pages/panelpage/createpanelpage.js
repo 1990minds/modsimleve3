@@ -561,6 +561,7 @@ export default function CreatePanelsettings({current_panel}) {
       <span className='px-5 '> 
       View BOM
       </span>
+
     </Button>
 
  

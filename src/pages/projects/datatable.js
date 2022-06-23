@@ -210,9 +210,6 @@ const [modalText, setModalText] = useState('Content of the modal');
             <Button type='link'   onClick={(e)=>handleClickQuotation(e, true, id)}> Generate </Button>
 
 
-
-
-
               </h5>
               </Tooltip>
               </Space>
