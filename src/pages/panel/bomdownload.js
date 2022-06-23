@@ -13,7 +13,7 @@ export default function ExportExcel({data, panel}) {
     const [total, setTotal] = useState(null)
     
 
-console.log(panel)
+console.log({panel})
 
 
     useEffect(() => {

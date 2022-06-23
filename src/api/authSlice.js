@@ -104,7 +104,7 @@ export const logOut = () => async dispatch =>{
 export const fetchlogin = (logindata) => async dispatch =>{
     const key = 'login';
     dispatch(getlogin())
-    message.loading({ content: 'loading...', key })
+    message.loading({ content: 'Loading...', key })
 
     try {
         
@@ -118,6 +118,8 @@ export const fetchlogin = (logindata) => async dispatch =>{
         data &&  message.success({ content: data.msg, key, duration: 2 });
 
     } catch (error) {
+
+      console.log(error)
       error && message.error({ content: error.response.data.msg, key, duration: 1 });
        dispatch(isAuthenticateError())
     }
