@@ -546,6 +546,7 @@ export default function CreatePanelsettings({current_panel}) {
       <Divider />
       <br/>
       <Row>
+      
       <Col xs={2} sm={4} md={6} lg={8} xl={5}>
   <Form.Item >
 
@@ -556,8 +557,11 @@ export default function CreatePanelsettings({current_panel}) {
     <Button type="primary" 
     block style={{ fontSize: '14px', width:'10rem' , }}
       onClick={() => setVisible(true)}
-      >
-      <span className='px-5 '> View BOM</span>
+      disabled={current_panel?.request === "null" ? true : false }>
+      <span className='px-5 '> 
+      View BOM
+      </span>
+
     </Button>
 
  
@@ -590,6 +594,7 @@ export default function CreatePanelsettings({current_panel}) {
   <Col xs={2} sm={4} md={6} lg={8} xl={5}>
   <Form.Item  >
     <Button type="primary" htmlType="submit"
+   disabled={current_panel?.panel_type === null}
     block style={{ fontSize: '14px', width:'10rem' , }}>
 
     <a   href={`https://modsimcanvas.web.app/panel/${current_panel?._id}`}> Configure Now</a>
