@@ -125,42 +125,7 @@ export default function EditCustomers({current_customers,cancel}) {
 
         </Form.Item>
               </Col>
-              <Col span={12}>
-              <Form.Item
-          label={<p className="w-36 text-left m-0">Phone Number</p>}
-          name="phone_number"
-          rules={[{ required: true ,message: 'required!' },
-          {pattern:"[0-9]", message:"Only Numbers"}
-          ]}
-        >
-         <PhoneInput
-      
-      value={value}
-      onChange={setValue}/>
-      
-
-</Form.Item>
-              </Col>
-            </Row>
-
-            <Row gutter={16}>
-              <Col span={12}>
-              <Form.Item
-          label={<p className="  w-36 text-left m-0">Email</p>}
-          name="email"
-          rules={[{
-            type: 'email',
-            message: 'The input is not valid E-mail!',
-          },
-          {
-            required: true,
-            message: 'Please input your E-mail!',
-          },]}
-        >
-           <Input/>
-
-</Form.Item>
-              </Col>
+             
               <Col span={12}>
                 <Form.Item
                   name="designation"
@@ -170,37 +135,13 @@ export default function EditCustomers({current_customers,cancel}) {
                   <Input  />
                 </Form.Item>
               </Col>
-           </Row>
-
-           <Row gutter={16}>
-              <Col span={12}>
-                <Form.Item
-                  name="address"
-                  label="Address"
-                  rules={[{ required: true, message: 'Please enter Address' }]}
-                >
-                  <Input />
-                </Form.Item>
-              </Col>
-              <Col span={12}>
-                <Form.Item
-                  name="address2"
-                  label="Address 2"
-                  rules={[{ required: true, message: 'Please enter Address' }]}
-                >
-                  <Input  />
-                </Form.Item>
-              </Col>
+          
             </Row>
-
-
-
-
 
 
             <Row gutter={16}>
               <Col span={12}>
-              <Form.Item
+                <Form.Item
                   name="country"
                   label="Country"
                   rules={[{ required: true, message: 'Please select a Country' }]}
@@ -222,7 +163,7 @@ export default function EditCustomers({current_customers,cancel}) {
                 </Form.Item>
               </Col>
               <Col span={12}>
-              <Form.Item
+                <Form.Item
                   name="state"
                   label="State"
                   rules={[{ required: true, message: 'Please choose a State' }]}
@@ -246,6 +187,70 @@ export default function EditCustomers({current_customers,cancel}) {
                 </Form.Item>
               </Col>
             </Row>
+
+            <Row gutter={16}>
+            <Col span={12}>
+              <Form.Item
+          label={<p className="w-36 text-left m-0">Phone Number</p>}
+          name="phone_number"
+          rules={[{ required: true ,message: 'required!' },
+          {pattern:"[0-9]", message:"Only Numbers"}
+          ]}
+        >
+         <PhoneInput
+      
+      value={value}
+      onChange={setValue}/>
+    
+        </Form.Item>
+              </Col>
+              <Col span={12}>
+              <Form.Item
+          label={<p className="  w-36 text-left m-0">Email</p>}
+          name="email"
+          rules={[{
+            type: 'email',
+            message: 'The input is not valid E-mail!',
+          },
+          {
+            required: true,
+            message: 'Please input your E-mail!',
+          },]}
+        >
+           <Input/>
+
+</Form.Item>
+</Col> 
+
+
+
+
+           </Row>
+
+           
+
+           <Row gutter={16}>
+              <Col span={12}>
+                <Form.Item
+                  name="address"
+                  label="Address Line 1"
+                  rules={[{ required: true, message: 'Please enter Address' }]}
+                >
+                  <Input />
+                </Form.Item>
+              </Col>
+              <Col span={12}>
+                <Form.Item
+                  name="address2"
+                  label="Address Line 2"
+                  rules={[{ required: true, message: 'Please enter Address' }]}
+                >
+                  <Input  />
+                </Form.Item>
+              </Col>
+            </Row>
+
+
 
             <Row gutter={16}>
             <Col span={12}>
@@ -295,20 +300,25 @@ export default function EditCustomers({current_customers,cancel}) {
               </Col>
               
             </Row>
-
             <Row>
 
-<Col span={12}>
-    <Form.Item
-      name="contact_person"
-      label="Contact Person"
-      rules={[{ required: true, message: 'Please enter Contact Person name' }]}
-    >
-      <Input/>
-    </Form.Item>
-  </Col>
+            <Col span={12}>
+                <Form.Item
+                  name="contact_person"
+                  label="Contact Person"
+                  rules={[{ required: true, message: 'Please enter Contact Person name' }]}
+                >
+                  <Input/>
+                </Form.Item>
+              </Col>
 
-  </Row>
+              </Row>
+
+
+
+
+
+
 
         
             <Divider />

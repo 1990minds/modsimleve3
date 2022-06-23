@@ -40,9 +40,9 @@ console.log(panel)
                     table="table-to-xls"
                     filename="BOM"
                     sheet="tablexls" 
-                    buttonText="BOM"
+                    buttonText="BOM"/>
                     
-                    /></Buttonwrap>
+                    </Buttonwrap>
                 </div>
                         <div className='tableview pb-5 mt-4 w-full flex justify-center' 
                               style={{overflowY:'auto', height:'60vh', overflowX:'hidden',display:'none' }}> 

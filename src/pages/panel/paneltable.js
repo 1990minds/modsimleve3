@@ -321,8 +321,9 @@ import ExportExcel from './bomdownload';
       {
         title: 'Download',
         key: 'download',
+
         render: (value, id) => (           
-          <a href="#" className="" style={{  margin:'0px', padding:'0px', width:'100%', display:'flex' ,zIndex:'100'}} onClick={(e) => { 
+          <a href="#" className="" style={{  margin:'0px', padding:'0px', width:'100%', display:'flex' ,zIndex:'100'}} onClick={(e) => {
           e.stopPropagation();      
           }}>  
         <Button 
