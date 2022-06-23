@@ -200,7 +200,7 @@ const [modalText, setModalText] = useState('Content of the modal');
             e.stopPropagation();      
             }}>                    
             <Space size="middle">    
-              <Tooltip placement="topLeft" title="Generate Qutation" arrowPointAtCenter>
+              <Tooltip placement="topLeft" title="Generate Quotation" arrowPointAtCenter>
               <h5 className="text-danger"> 
             {/* <DownloadOutlined disabled={(downloadLoading && item === value._id) ? true : false } 
                 style={{backgroundColor:"#3498db24", color:'var(--brandColor)',boxShadow:'none'}} type="primary" onClick={()=>createPdf(value)}>
