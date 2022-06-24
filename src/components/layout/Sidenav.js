@@ -3,7 +3,7 @@ import { Menu, Button } from "antd";
 import { NavLink, useLocation } from "react-router-dom";
 import logo from "../../assets/images/logo.png";
 import Customers from '../../pages/customers'
-import Logo from '../../assets/MODSIM.png'
+import Logo from '../../assets/MODSIMbeta.png'
 import { FaUserAlt } from 'react-icons/fa';
 import { useState } from "react";
 
@@ -844,7 +844,7 @@ c-0.01-0.42-0.32-0.5-0.66-0.51C-57.1,15.18-57.68,15.19-58.26,15.19z"fill={color}
   return (
     <>
       <div className="brand" style={{ display: "flex" , justifyContent: "center"}}>
-        <img src={Logo} alt="" style={{ height: '30px'}} />
+        <img src={Logo} alt="" style={{ height: '60px'}} />
        
       </div>
       <hr />

@@ -182,17 +182,7 @@ const [modalText, setModalText] = useState('Content of the modal');
 
 
       title:'Generate Quotation',
-    //   render: (value) => { 
-    //     <a href="#" className="" style={{  margin:'0px', padding:'0px', width:'100%'}} onClick={(e) => { 
-    //       e.stopPropagation();      
-    //       }}> <h1>dhfuug</h1>
-    //        {/* <Button disabled={(downloadLoading && item === value._id) ? true : false } 
-    //               style={{backgroundColor:"#3498db24", color:'var(--brandColor)',boxShadow:'none'}} type="primary" onClick={()=>createPdf(value)}>
-    //       {(downloadLoading && item === value._id) ? 'Loading': 'Download'}
-    //         </Button> */}
-    //         </a>
-    //   }
-    // },
+    
 
             key: 'download',      
             render: (id) => (           
@@ -202,12 +192,11 @@ const [modalText, setModalText] = useState('Content of the modal');
             <Space size="middle">    
               <Tooltip placement="topLeft" title="Generate Quotation" arrowPointAtCenter>
               <h5 className="text-danger"> 
-            {/* <DownloadOutlined disabled={(downloadLoading && item === value._id) ? true : false } 
-                style={{backgroundColor:"#3498db24", color:'var(--brandColor)',boxShadow:'none'}} type="primary" onClick={()=>createPdf(value)}>
-          {(downloadLoading && item === value._id) ? 'Loading': 'Download'}
-            </DownloadOutlined>  */}
+           
 
-            <Button type='link'   onClick={(e)=>handleClickQuotation(e, true, id)}> Generate </Button>
+            <Button type='link' 
+            
+            onClick={(e)=>handleClickQuotation(e, true, id)}> Generate </Button>
 
 
               </h5>

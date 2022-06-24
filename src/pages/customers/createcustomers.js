@@ -292,7 +292,9 @@ export default function CreateCustomer({cancel}) {
                 <Form.Item
                  name="website"
                   label="Website"
-                  rules={[{ required: true, message: 'Please enter url' }]}
+                  rules={[{ required: true,
+                    defaultField: { type: 'url' },
+                    message: 'Please enter url' }]}
                 >
                   <Input
                     style={{ width: '100%' }}
