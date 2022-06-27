@@ -24,7 +24,7 @@ const { Search } = Input;
 export default function Project() {
 
     const dispatch = useDispatch()
-    const {all_project} = useSelector(projectSelector) 
+    const {all_project, loading:load} = useSelector(projectSelector) 
     const [search, setSearch] = useState('')   
     const { user} = useSelector(authenticateSelector)   
     const [projectAddVisible, SetProjectAddVisible] = useState(false)
@@ -109,7 +109,7 @@ prefix ={  <SearchOutlined  style={{color:'#3e79f7', fontWeight:'bold' ,padding:
         <ExcelBtn data={all_project} />
         </Col>
         </Row>
-        <ProjectTable data={(filter?.length > 0) ? filter :all_project} loading={loading} />
+        <ProjectTable data={(filter?.length > 0) ? filter :all_project} loading={loading || load}  />
         </Layout>
   )
 

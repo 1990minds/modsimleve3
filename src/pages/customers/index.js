@@ -21,7 +21,7 @@ const { Search } = Input;
   export default function Database() {
 
     const dispatch = useDispatch()
-    const { all_customers} = useSelector(customersSelector) 
+    const { all_customers, loading:load} = useSelector(customersSelector) 
     const { user} = useSelector(authenticateSelector) 
     const [search, setSearch] = useState('')
     const [loading, setLoading] = useState(false)
@@ -102,7 +102,7 @@ placeholder="Search" onChange={onSearch}  />
        <ExcelBtn data={all_customers} />
       </Col>
       </Row>
-        <CustomersTable data={(filter?.length > 0) ? filter :all_customers} loading={loading}/>
+        <CustomersTable data={(filter?.length > 0) ? filter :all_customers} loading={loading || load}/>
         
     </Layout>
   )

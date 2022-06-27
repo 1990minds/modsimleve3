@@ -48,9 +48,6 @@ export default function CreatePanelsettings({current_panel}) {
     
     }
 
-
-
-
   const {id} = useParams()
      
 

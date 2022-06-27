@@ -27,7 +27,7 @@ export default function Panel() {
   
     const dispatch = useDispatch()
 
-    const {product_panels} = useSelector(panelSelector) 
+    const {product_panels,loading:load} = useSelector(panelSelector) 
     const [search, setSearch] = useState('')
     const [loading, setLoading] = useState(false)
     const [filter,setFilter]=useState([])
@@ -149,7 +149,7 @@ placeholder="Search" onChange={onSearch}  />
         <ExcelBtn data={product_panels} />
       </Col>
       </Row>
-        <PanelTable  data={(filter?.length > 0) ? filter :product_panels} project_id ={project} product_id={id} loading={loading}/>
+        <PanelTable  data={(filter?.length > 0) ? filter :product_panels} project_id ={project} product_id={id} loading={loading || load}/>
     </Layout>
   )
 
