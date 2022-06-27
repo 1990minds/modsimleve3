@@ -35,20 +35,27 @@ import {
   
    function ProjectTable({data,loading}) {
 
-    
+   
+
     const [visibleEdit, setEditModal] = useState(false);
     const [current_project, setproject] = useState(null);
+    const [current_panel, setpanel] = useState(null);
     const [selectionType, setSelectionType] = useState('checkbox');
     const [page, setPage] = useState(1);
     const { user } = useSelector(authenticateSelector) 
     const [item,setItem] =useState(null)
-const [downloadLoading,setDownloadLoading] =useState(false)
-const [visibleQuotation, setQuotationModal] = useState(false);
-const [confirmLoading, setConfirmLoading] = useState(false);
-const [modalText, setModalText] = useState('Content of the modal');
+    const [downloadLoading,setDownloadLoading] =useState(false)
+    const [visibleQuotation, setQuotationModal] = useState(false);
+    const [confirmLoading, setConfirmLoading] = useState(false);
+    const [modalText, setModalText] = useState('Content of the modal');
   
+    console.log(current_project)
+
 
      let history = useHistory() 
+     console.log(current_panel);
+
+
      const confirm = (e, id) => {
      dispatch(deleteproject(id._id, id.project,user?.company?._id))     
         }
@@ -91,7 +98,6 @@ const [modalText, setModalText] = useState('Content of the modal');
         },3000)
 
 
-
         const handleClickQuotation = (e, isvisible, id) =>{
           e.preventDefault()
           setproject(id)
@@ -106,9 +112,6 @@ const [modalText, setModalText] = useState('Content of the modal');
 
   }
     
- 
-
-
   const columns = [
       
     {
@@ -180,59 +183,35 @@ const [modalText, setModalText] = useState('Content of the modal');
 
       {
 
-
-      title:'Generate Quotation',
-    //   render: (value) => { 
-    //     <a href="#" className="" style={{  margin:'0px', padding:'0px', width:'100%'}} onClick={(e) => { 
-    //       e.stopPropagation();      
-    //       }}> <h1>dhfuug</h1>
-    //        {/* <Button disabled={(downloadLoading && item === value._id) ? true : false } 
-    //               style={{backgroundColor:"#3498db24", color:'var(--brandColor)',boxShadow:'none'}} type="primary" onClick={()=>createPdf(value)}>
-    //       {(downloadLoading && item === value._id) ? 'Loading': 'Download'}
-    //         </Button> */}
-    //         </a>
-    //   }
-    // },
-
-            key: 'download',      
+            title:'Generate Quotation',
+            key: 'download', 
+              
             render: (id) => (           
             <a href="#" className="" style={{  margin:'0px', padding:'0px', width:'100%'}} onClick={(e) => { 
             e.stopPropagation();      
             }}>                    
             <Space size="middle">    
-              <Tooltip placement="topLeft" title="Generate Quotation" arrowPointAtCenter>
-              <h5 className="text-danger"> 
-            {/* <DownloadOutlined disabled={(downloadLoading && item === value._id) ? true : false } 
-                style={{backgroundColor:"#3498db24", color:'var(--brandColor)',boxShadow:'none'}} type="primary" onClick={()=>createPdf(value)}>
-          {(downloadLoading && item === value._id) ? 'Loading': 'Download'}
-            </DownloadOutlined>  */}
-
-            <Button type='link'   onClick={(e)=>handleClickQuotation(e, true, id)}> Generate </Button>
-
-
-              </h5>
-              </Tooltip>
-              </Space>
-                </a>
+            <Tooltip placement="topLeft" title="Generate Quotation" arrowPointAtCenter>
+            <h5 className="text-danger"  > 
+            <Button  disabled={current_panel?.panel_name === "null" ? true : false }  type='link' style={{ fontSize:'14px'}}  onClick={(e)=>handleClickQuotation(e, true, id)}> Generate </Button>
+            </h5>
+            </Tooltip>
+            </Space>
+            </a>
               ),
             },
 
       {
-        title: 'Email',
-        dataIndex: 'email',
-        key: 'email',
+            title: 'Email',
+            dataIndex: 'email',
+            key: 'email',
+            render:(item)=>{
+              return <p class="m-0 ">{item?item:'-'} </p>
+            }
         
       },
 
-
-        // {
-        //   title: 'Product Image ',
-        //   dataIndex: 'product_image',
-        //   key: 'product_image',
-         
-        // }, 
-
-        {
+      {
           title: 'Action',
           key: 'action',      
           render: (id) => (           
@@ -254,39 +233,6 @@ const [modalText, setModalText] = useState('Content of the modal');
               </a>
             ),
           },
-
-
-        // {
-        //   title: 'Action',
-        //   key: 'action',
-        
-        //   render: (id) => (
-            
-        //     <a href="#" className="" style={{  margin:'0px', padding:'0px', width:'100%'}} onClick={(e) => { 
-        //       e.stopPropagation();      
-        //             }}>
-                     
-        //           <Space size="middle">
-    
-        //           <h5 className="text-secondary" >
-                  
-
-        //             <FaRegEdit  onClick={(e)=>handleClickEdit(e, true, id)} className="text-secondary  text-lg mt-2"  /> 
-                            
-                    
-        //             </h5>
-        //             <Tooltip placement="topLeft" title="Delete Project" arrowPointAtCenter>
-        //           <h5 className="text-danger">
-        //               <DeleteConfirm confirm={(e)=>confirm(e, id)} title="panel" cancel={cancel} >
-        //                   <FaRegTrashAlt style={{cursor:"pointer"}} className="text-secondary text-lg  mt-2"  />
-        //               </DeleteConfirm>
-        //   </h5>
-        //   </Tooltip>
-        //   </Space>
-        //       </a>
-        //     ),
-        //   },
-
 
 
     
@@ -314,11 +260,6 @@ const [modalText, setModalText] = useState('Content of the modal');
                 // title="Customer Table"
                 extra={
                   <>
-                    {/* <Createcustomer /> */}
-                    {/* <Radio.Group onChange={onChange} defaultValue="a">
-                      <Radio.Button value="a">All</Radio.Button>
-                      <Radio.Button value="b">ONLINE</Radio.Button>
-                    </Radio.Group> */}
                   </>
                  }
                  >

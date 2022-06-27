@@ -73,8 +73,6 @@ import ExportExcel from './bomdownload';
     const [Bomvisible, setBomVisible] = useState(false);
     const [curr_company, setCompany] = useState(null);
     const [dwgpanel, setdwgpanel] = useState(null);
-  
-  
    
     
     const [selectionType, setSelectionType] = useState('checkbox');
@@ -142,21 +140,7 @@ import ExportExcel from './bomdownload';
                   setTimeout(()=>{
                     setDownloadLoading(false)
                       setItem(null)
-                  },3000)
-        
-        
-        
-                // const handleClickDrawing = (e, isvisible, id) =>{
-                //   e.preventDefault()
-                //   setpanel(id)
-                //   setDrawingModal(isvisible)
-                //   // setDuplicatetModal(false)
-                //   }
-          
-                //   const cancelModel = () => {
-                //     setDrawingModal(false)
-                //     setpanel(null)
-                //   };
+                  },3000)                     
         
           }
 
@@ -329,7 +313,7 @@ import ExportExcel from './bomdownload';
         
         <ExportExcel data={value?.bom} panel={value} />
  
-</a>
+        </a>
         )
       },
 
