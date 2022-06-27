@@ -152,6 +152,6 @@ const Buttonwrap = styled.div`
 #test-table-xls-button{
     background-color: transparent !important;
     border: 0px !important;
-    transform: translateY(8px) !important;
+    cursor: pointer;
 }
 `

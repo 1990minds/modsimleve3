@@ -183,21 +183,41 @@ import {
 
       {
 
-            title:'Generate Quotation',
-            key: 'download', 
-              
+
+         
+
+      title:'Generate Quotation',
+    
+
+            key: 'download',      
+
             render: (id) => (           
             <a href="#" className="" style={{  margin:'0px', padding:'0px', width:'100%'}} onClick={(e) => { 
             e.stopPropagation();      
             }}>                    
             <Space size="middle">    
+
             <Tooltip placement="topLeft" title="Generate Quotation" arrowPointAtCenter>
             <h5 className="text-danger"  > 
-            <Button  disabled={current_panel?.panel_name === "null" ? true : false }  type='link' style={{ fontSize:'14px'}}  onClick={(e)=>handleClickQuotation(e, true, id)}> Generate </Button>
+            <Button  type='link' style={{ fontSize:'14px'}}  onClick={(e)=>handleClickQuotation(e, true, id)}> Generate </Button>
             </h5>
             </Tooltip>
             </Space>
-            </a>
+
+              <Tooltip placement="topLeft" title="Generate Quotation" arrowPointAtCenter>
+              <h5 className="text-danger"> 
+           
+
+            <Button type='link' 
+            
+            onClick={(e)=>handleClickQuotation(e, true, id)}> Generate </Button>
+
+
+              </h5>
+              </Tooltip>
+              </Space>
+                </a>
+
               ),
             },
 
