@@ -115,6 +115,7 @@ const [modalText, setModalText] = useState('Content of the modal');
         title: ' Sl No.',
         dataIndex: 'sl_no',
         key: 'sl_no',
+        width: 100,
         render:(t, k, i)=>{
           return <p class="m-0 ">{(page - 1) * 10 + (i+1)}</p>
         }
@@ -124,6 +125,7 @@ const [modalText, setModalText] = useState('Content of the modal');
       {
         title: ' Customer name ',
         key: 'customer_name',
+        ellipsis: true,
         render:(item)=>{
           return <p class="m-0 ">{item?.customers?.customers_name} </p>
         }
