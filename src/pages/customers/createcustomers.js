@@ -222,8 +222,8 @@ export default function CreateCustomer({cancel}) {
         >
            <Input/>
 
-</Form.Item>
-</Col> 
+          </Form.Item>
+           </Col> 
 
 
 
@@ -316,11 +316,6 @@ export default function CreateCustomer({cancel}) {
               </Col>
 
               </Row>
-
-
-
-
-
 
 
 
