@@ -253,7 +253,7 @@ import ExportExcel from './bomdownload';
     {
         title: ' Sl No.',
         dataIndex: 'sl_no',
-        key: 'sl_no',
+        key: 'sl_no',width: 100,
         render:(t, k, i)=>{
           return <p class="m-0 ">{(page - 1) * 10 + (i+1)}</p>
         }
@@ -263,8 +263,9 @@ import ExportExcel from './bomdownload';
         title: ' Panel ID ',
         dataIndex: 'panel_id',
         key: 'panel_id',
-        
-      },
+        width: 150 ,
+        ellipsis: true,
+      }, 
 
 
 
@@ -272,7 +273,7 @@ import ExportExcel from './bomdownload';
         title: ' Panel Name ',
         dataIndex: 'panel_name',
         key: 'panel_name',
-        
+        ellipsis: true,
       },
 
       {
