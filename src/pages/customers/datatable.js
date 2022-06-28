@@ -85,6 +85,7 @@ import {
         title: ' Sl No.',
         dataIndex: 'sl_no',
         key: 'sl_no',
+        width: 100,
         render:(t, k, i)=>{
           return <p class="m-0 ">{(page - 1) * 10 + (i+1)}</p>
         }
@@ -95,7 +96,7 @@ import {
         title: ' Customer Name ',
         dataIndex: 'customers_name',
         key: 'customers_name',
-        
+        ellipsis: true,
       },
      
 
@@ -125,7 +126,8 @@ import {
         title: 'Address',
         dataIndex: 'address',
         key: 'address',
-        
+        ellipsis: true,
+
       },
         
       {

@@ -253,7 +253,7 @@ import ExportExcel from './bomdownload';
     {
         title: ' Sl No.',
         dataIndex: 'sl_no',
-        key: 'sl_no',
+        key: 'sl_no',width: 100,
         render:(t, k, i)=>{
           return <p class="m-0 ">{(page - 1) * 10 + (i+1)}</p>
         }
@@ -263,8 +263,9 @@ import ExportExcel from './bomdownload';
         title: ' Panel ID ',
         dataIndex: 'panel_id',
         key: 'panel_id',
-        
-      },
+        width: 150 ,
+        ellipsis: true,
+      }, 
 
 
 
@@ -272,7 +273,7 @@ import ExportExcel from './bomdownload';
         title: ' Panel Name ',
         dataIndex: 'panel_name',
         key: 'panel_name',
-        
+        ellipsis: true,
       },
 
       {
@@ -305,15 +306,32 @@ import ExportExcel from './bomdownload';
       {
         title: 'Download',
         key: 'download',
-        render: (value) => (           
-          <a href="#" className="" style={{  margin:'0px', padding:'0px', width:'100%', display:'flex' , zIndex:'100'}} onClick={(e) => { 
+
+        render: (value, id) => ( 
+          <div style={{  margin:'0px', padding:'0px', width:'100%', display:'flex' ,zIndex:'100'}}>         
+          <a href="#" className=""  onClick={(e) => {
           e.stopPropagation();      
           }}>  
-        <Button type="link" onClick={()=>drawingPdf(value)}> 2D </Button> 
-        
+        <Button 
+        disabled={id?.request === 'null' ? true : false} style={{ padding: '0px'}}
+        type="link" onClick={()=>drawingPdf(value)}> 2D </Button> </a>
+
+
+        <a href="#" className=""  onClick={(e) => {
+          e.stopPropagation();      
+          }}>
+        <Button
+        disabled={id?.request === 'null' ? true : false}
+        type="link">
         <ExportExcel data={value?.bom} panel={value} />
+
  
         </a>
+
+ </Button>
+</a>
+</div> 
+
         )
       },
 
@@ -333,7 +351,7 @@ import ExportExcel from './bomdownload';
           onCancel={cancelRequest}
           okText="Yes"
           cancelText="No"
-          disabled={id?.request === "send"? false : true}
+          disabled={id?.request === 'null' ? true : false}
           >
 
    

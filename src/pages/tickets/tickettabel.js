@@ -102,6 +102,7 @@ const columns = [
       dataIndex: 'title',
       key: 'title',
       width: 200,
+      ellipsis: true,
     },
     
     
