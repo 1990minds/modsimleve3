@@ -21,8 +21,7 @@ export default function DuplicatePanel({current_panel,project_id,product_id,canc
 
   console.log(current_panel)
 
-  const [loading, setLoading] = useState(false)   
-  
+  const [loading, setLoading] = useState(false)    
   const { panel } = useSelector(authenticateSelector) 
   const dispatch = useDispatch();
   const [validityYear, setYear]=useState(null)
@@ -118,22 +117,14 @@ export default function DuplicatePanel({current_panel,project_id,product_id,canc
           name="repanel_name"
           rules={[{ required: true, message: 'Please Input Panel Name!' }]}
         >
-          <Input />
+          <Input maxLength={15}/>
 
         </Form.Item>
                
               </Col>
-            </Row>
-
-           
+            </Row>           
 
             <Row gutter={16}>
-            
-
-
-
-            
-
             <Col span={12}>
                 
                 <Form.Item

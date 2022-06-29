@@ -38,7 +38,7 @@ console.log({panel})
                     id="test-table-xls-button"
                     className=""
                     table="table-to-xls"
-                    filename="BOM"
+                    filename={panel?.project?.project_id.concat(panel?.panel_id)}
                     sheet="tablexls" 
                     buttonText="BOM"/>
                     

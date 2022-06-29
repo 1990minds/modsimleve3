@@ -199,7 +199,7 @@ export default function EditPanel({current_panel,project_id,product_id}) {
 
         </Select>
 
-</Form.Item>
+        </Form.Item>
 
 
               </Col>
@@ -207,23 +207,23 @@ export default function EditPanel({current_panel,project_id,product_id}) {
             <Row gutter={16}>
               <Col span={12}>
               <Form.Item
-          label={<p className="  w-36 text-left m-0">Panel Quantity</p>}
-          name="panel_quntity"
-          rules={[{ required: true, message: 'Please Input Panel Quntity!' }]}
-        >
+            label={<p className="  w-36 text-left m-0">Panel Quantity</p>}
+            name="panel_quntity"
+            rules={[{ required: true, message: 'Please Input Panel Quntity!' }]}
+            >
               <InputNumber min={1} max={25}  onChange={onChange} />
-</Form.Item>
+            </Form.Item>
 
               </Col>
             </Row>
 
         
-<Button type="primary" htmlType="submit"
-onClick={() => setVisible(false)}
-block style={{ fontSize: '14px' }}>
-      Update
-    </Button>
-          </Form>
+             <Button type="primary" htmlType="submit"
+              onClick={() => setVisible(false)}
+              block style={{ fontSize: '14px' }}>
+              Update
+              </Button>
+              </Form>
         
       </>
     );

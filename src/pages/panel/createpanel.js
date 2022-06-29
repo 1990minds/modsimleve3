@@ -81,6 +81,10 @@ export default function CreatePanel({cancel,project_id,product_id}) {
               form.resetFields()
             };
 
+            const onChange1 = (e) => {
+              console.log('Change:', e.target.value);
+            };
+
     return (
       <>
              <Tooltip placement="topLeft" title="Create New Pannel" arrowPointAtCenter>
@@ -104,15 +108,16 @@ export default function CreatePanel({cancel,project_id,product_id}) {
              <Form.Item
               label={<p className="  w-36 text-left m-0"> Panel Name</p>}
               name="panel_name"
+              
               rules={[{ required: true, message: 'Please Input Panel Name!' }]}
-            >
-              <Input/>
-
+              >
+              <Input showCount onChange={onChange1} maxLength={15}/>
             </Form.Item>
-               
+
+
+
               </Col>
-              <Col span={12}>
-                
+              <Col span={12}>                
               <Form.Item
                 label={<p className="  w-36 text-left m-0">Panel Category</p>}
                 name="panel_category"
