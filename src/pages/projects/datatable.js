@@ -192,9 +192,7 @@ import {
       },
 
       {
-
-
-         
+    
 
             title:'Generate Quotation',
             key: 'download',      
@@ -203,7 +201,7 @@ import {
             e.stopPropagation();      
             }}>                    
             <Space size="middle">    
-            
+
             {/* <Tooltip placement="topLeft" title="Generate Quotation" arrowPointAtCenter> */}
             <h5 className="text-danger"  > 
             <Button disabled={(all_panel.filter(item=>{return item.project === id._id && item.request !== "null"})).length>0 ? false:true} type='link' style={{ fontSize:'14px'}}  onClick={(e)=>handleClickQuotation(e, true, id)}> Generate </Button>

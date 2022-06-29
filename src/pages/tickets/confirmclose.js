@@ -15,7 +15,6 @@ const Close = (current_tickets) => {
     setIsModalVisible(true);
   };
 
-  
   const handleOk = () => {
     setIsModalVisible(false);
   };
