@@ -289,7 +289,7 @@ import ExportExcel from './bomdownload';
         dataIndex: 'createdAt',
         key: 'createdAt',
         render:(createdAt)=>{
-          return <small className="my-0 mr-3">{moment(createdAt).format('DD/MM/YYYY')}</small>
+          return <small style={{fontSize:'14px'}} className="my-0 mr-3">{moment(createdAt).format('DD/MM/YYYY')}</small>
       }
       },
 
@@ -298,7 +298,7 @@ import ExportExcel from './bomdownload';
         dataIndex: 'updatedAt',
         key: 'updatedAt',
         render:(updatedAt)=>{
-          return <small className="my-0 mr-3">{moment(updatedAt).format('DD/MM/YYYY')}</small>
+          return <small style={{fontSize:'14px'}} className="my-0 mr-3">{moment(updatedAt).format('DD/MM/YYYY')}</small>
       }
       },
 
@@ -324,13 +324,9 @@ import ExportExcel from './bomdownload';
         disabled={id?.request === 'null' ? true : false}
         type="link">
         <ExportExcel data={value?.bom} panel={value} />
-
- 
+        </Button>
         </a>
-
- </Button>
-</a>
-</div> 
+        </div> 
 
         )
       },

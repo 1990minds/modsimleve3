@@ -75,7 +75,7 @@ const columns = [
       key: 'createdAt',
       width: 200,
       render:(createdAt)=>{
-        return <small className="my-0 mr-3">{moment(createdAt).format('DD/MM/YYYY')}</small>
+        return <small style={{fontSize:'14px'}} className="my-0 mr-3">{moment(createdAt).format('DD/MM/YYYY')}</small>
     }
     },
 
