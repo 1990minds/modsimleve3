@@ -192,8 +192,6 @@ import {
       },
 
       {
-    
-
             title:'Generate Quotation',
             key: 'download',      
             render: (id) => (           

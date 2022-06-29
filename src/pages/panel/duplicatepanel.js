@@ -4,7 +4,7 @@ import { Drawer, Form, Button, Col, Row, Input, Select, DatePicker, Space,InputN
 import {updatePanel, fetchOnePanel, panelSelector, duplicatepanel,} from '../../api/panel'
 import {authenticateSelector} from '../../api/authSlice';
 import {useParams} from 'react-router-dom'
-import Item from 'antd/lib/list/Item';
+
 
 const { Option } = Select;
 

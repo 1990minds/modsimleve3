@@ -6,7 +6,6 @@ import { Divider } from 'antd';
 import { EyeInvisibleOutlined, EyeTwoTone } from '@ant-design/icons';
 import {updatePanel, fetchOnePanel, panelSelector,} from '../../api/panel'
 import {authenticateSelector} from '../../api/authSlice';
-import {createPanel} from '../../api/panel'
 import moment from 'moment';
 import {SiHeadspace} from 'react-icons/si'
 import Editpanel from './editpanel';
