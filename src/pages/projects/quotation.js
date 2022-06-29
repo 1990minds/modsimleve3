@@ -6,11 +6,6 @@ import { Divider } from 'antd';
 import { EyeInvisibleOutlined, EyeTwoTone } from '@ant-design/icons';
 import {updateproject} from '../../api/project'
 import {authenticateSelector} from '../../api/authSlice';
-import { fetchAllPanel } from '../../api/panel';
-import {createPanel} from '../../api/panel'
-import moment from 'moment';
-import {FaPanelAlt, FaLock} from 'react-icons/fa'
-
 import {useParams} from 'react-router-dom'
 import Item from 'antd/lib/list/Item';
 

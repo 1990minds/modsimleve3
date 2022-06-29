@@ -12,7 +12,7 @@ import {
     Drawer,
     Button,
   } from "antd";
-  import { useState } from "react";
+  import { useState, useEffect } from "react";
   import { FilePdfOutlined } from "@ant-design/icons";
   import { Link } from "react-router-dom";
   import { PlusOutlined } from '@ant-design/icons';
@@ -31,6 +31,7 @@ import {
   import moment from 'moment';
   import ModalForm from '../../global/model.js'
   import Quotation from './quotation';
+  import { fetchAllpanel, panelSelector } from "../../api/panel";
   
   
    function ProjectTable({data,loading}) {
@@ -48,13 +49,20 @@ import {
     const [visibleQuotation, setQuotationModal] = useState(false);
     const [confirmLoading, setConfirmLoading] = useState(false);
     const [modalText, setModalText] = useState('Content of the modal');
+    const {all_panel}=useSelector(panelSelector)
   
     console.log(current_project)
 
 
      let history = useHistory() 
-     console.log(current_panel);
+     console.log(all_panel);
 
+
+
+     
+  useEffect(()=>{
+    dispatch(fetchAllpanel(user?.company?._id)) 
+ }, [user])
 
      const confirm = (e, id) => {
      dispatch(deleteproject(id._id, id.project,user?.company?._id))     
@@ -184,34 +192,26 @@ import {
       },
 
       {
-
-
-         
-
-      title:'Generate Quotation',
-    
-
+            title:'Generate Quotation',
             key: 'download',      
-
             render: (id) => (           
             <a href="#" className="" style={{  margin:'0px', padding:'0px', width:'100%'}} onClick={(e) => { 
             e.stopPropagation();      
             }}>                    
             <Space size="middle">    
 
-            <Tooltip placement="topLeft" title="Generate Quotation" arrowPointAtCenter>
+            {/* <Tooltip placement="topLeft" title="Generate Quotation" arrowPointAtCenter> */}
             <h5 className="text-danger"  > 
-            <Button  type='link' style={{ fontSize:'14px'}}  onClick={(e)=>handleClickQuotation(e, true, id)}> Generate </Button>
+            <Button disabled={(all_panel.filter(item=>{return item.project === id._id && item.request !== "null"})).length>0 ? false:true} type='link' style={{ fontSize:'14px'}}  onClick={(e)=>handleClickQuotation(e, true, id)}> Generate </Button>
             </h5>
-            </Tooltip>
+            {/* </Tooltip> */}
             </Space>
-             
-                </a>
+             </a>
 
               ),
             },
 
-      {
+            {
             title: 'Email',
             dataIndex: 'email',
             key: 'email',

@@ -1,18 +1,10 @@
 import React, {useState,useEffect} from 'react'
 import {useDispatch, useSelector} from 'react-redux'
 import { Drawer, Form, Button, Col, Row, Input, Select, DatePicker, Space,InputNumber } from 'antd';
-import { PlusOutlined } from '@ant-design/icons';
-import { Divider } from 'antd';
-import { EyeInvisibleOutlined, EyeTwoTone } from '@ant-design/icons';
 import {updatePanel, fetchOnePanel, panelSelector, duplicatepanel,} from '../../api/panel'
 import {authenticateSelector} from '../../api/authSlice';
-import { fetchAllPanel } from '../../api/panel';
-import {createPanel} from '../../api/panel'
-import moment from 'moment';
-import {FaPanelAlt, FaLock} from 'react-icons/fa'
-import Editpanel from './editpanel';
 import {useParams} from 'react-router-dom'
-import Item from 'antd/lib/list/Item';
+
 
 const { Option } = Select;
 
