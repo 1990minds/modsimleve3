@@ -2,7 +2,7 @@
 import React, { useState, useLayoutEffect} from 'react'
 import Layout from '../../components/layout/Main'
 import PanelTable from './paneltable'
-import {fetchAllpanel, fetchProductPanels,panelSelector} from '../../api/panel'
+import {fetchProductPanels,panelSelector} from '../../api/panel'
 import {useDispatch, useSelector} from 'react-redux'
 import { useEffect } from 'react'
 import Createpanel from './createpanel'
