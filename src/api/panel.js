@@ -124,7 +124,7 @@ console.log( {id});
  };
 
  export const duplicatepanel = (values,product) => async dispatch => {
-  console.log( values);
+  console.log(values);
   
   
     dispatch(getpanel())
@@ -253,5 +253,18 @@ export const createBomPdf = (pdfValues) => async dispatch => {
 )
 }
 
+
+// export const download = (id) => async dispatch => {
+//   console.log(id);
+
+//   axios.get(keyUri.BACKEND_URI +`/create/${id}`, config )
+//   .then((res) => {  
+//       console.log(res.data);      
+//       const blob = new Blob([res.data], 
+//           { type: 'application/application/vnd.openxmlformats-officedocument.spreadsheetml.sheet;base64' });
+//           saveAs(blob, 'Bom.xlsx')      
+// }   
+// )
+// }
 
 export default panelSlice.reducer;

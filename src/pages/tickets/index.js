@@ -23,7 +23,7 @@ const { Search } = Input;
     
     const {id}= useParams()
     const dispatch=useDispatch()    
-    const {all_tickets}=useSelector(ticketsSelector)
+    const {all_tickets, loading:load}=useSelector(ticketsSelector)
     const {current_company,loader}=useSelector(companySelector)
     const { user } = useSelector(authenticateSelector) 
     
@@ -103,7 +103,7 @@ useEffect(()=>{
       </Row>
 
        
-        < Tickettabel data={(filter?.length > 0) ? filter :all_tickets} loading={loading} />
+        < Tickettabel data={(filter?.length > 0) ? filter :all_tickets} loading={loading || load}  />
     </Layout>
   )
         
