@@ -92,6 +92,8 @@ export const fetchAllcompanyProject = (id) => async dispatch => {
  };
 
 
+
+
  export const deleteproject = (id, project,company) => async dispatch => {
 
   dispatch(getproject())
@@ -129,7 +131,7 @@ console.log( {id});
 
   } 
   catch ({response}) {
-response.data && message.error({ content: response.data.msg, key, duration: 2 })
+ response.data && message.error({ content: response.data.msg, key, duration: 2 })
  dispatch(get_project_Failure())
 
   }
@@ -189,6 +191,14 @@ export const createQuotationPdf = (pdfValues) => async dispatch => {
    saveAs(pdfBlob, 'Quotation.pdf');      
 }   
 )
+
+
+// .then((res) => {  
+//   console.log({res});
+//   const zipBlob = new Blob([res.data], 
+//       { type: 'application/zip' });
+//   saveAs(zipBlob, 'download.zip');  
+//   })
 }
 
 export default projectSlice.reducer;
