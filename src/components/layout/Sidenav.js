@@ -6,12 +6,15 @@ import Customers from '../../pages/customers'
 import Logo from '../../assets/MODSIMbeta.png'
 import { FaUserAlt } from 'react-icons/fa';
 import { useState } from "react";
-
+import { authenticateSelector} from '../../api/authSlice'
+import {useDispatch, useSelector} from 'react-redux'
 
 function Sidenav({ color }) {
 
   const [collapsed , setstate ] = useState(false);
 
+  const {user} = useSelector(authenticateSelector)
+  // console.log(user); 
 
   const { pathname } = useLocation();
   const page = pathname.replace("/", "");
@@ -804,7 +807,7 @@ c-0.01-0.42-0.32-0.5-0.66-0.51C-57.1,15.18-57.68,15.19-58.26,15.19z"fill={color}
   return (
     <>
       <div className="brand" style={{ display: "flex" , justifyContent: "center"}}>
-        <img src={Logo} alt="" style={{ height: '60px'}} />
+        <img src={user?.company?.profile_image} alt="" style={{ height: '60px'}} />
        
       </div>
       <hr />
