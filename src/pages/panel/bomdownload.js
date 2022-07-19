@@ -14,7 +14,7 @@ export default function ExportExcel({data, panel}) {
     
 
 console.log({panel})
-
+console.log({bom});
 
     useEffect(() => {
          let bomArray = _.flatten(data?.map(item =>{
@@ -40,7 +40,7 @@ console.log({panel})
                     table="table-to-xls"
                     filename={panel?.project?.project_id.concat(panel?.panel_id)}
                     sheet="tablexls" 
-                    buttonText="BOM"/>
+                    buttonText="BOM"                    />
                     
                     </Buttonwrap>
                 </div>

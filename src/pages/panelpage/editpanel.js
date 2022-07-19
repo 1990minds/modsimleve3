@@ -46,10 +46,8 @@ export default function EditPanel({current_panel,}) {
           }, [current_panel])
                   
   
-          const onFinish = (values) => {
+            const onFinish = (values) => {
             const paneldata = {
-
-
                 panel_category:values.panel_category,
                 rated_voltage:values.rated_voltage,
                 ambient_temperature:values.ambient_temperature,

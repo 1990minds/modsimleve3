@@ -31,6 +31,7 @@ import {
   import moment from 'moment';
   import ModalForm from '../../global/model.js'
   import Quotation from './quotation';
+  // import generateZipFromCloud from './generatezip';
   import { fetchAllpanel, panelSelector } from "../../api/panel";
   
   
@@ -172,6 +173,7 @@ import {
       //   key: 'project_coordiantor',
         
       // },
+
       {
         title: 'Created Date',
         dataIndex: 'createdAt',
@@ -194,7 +196,7 @@ import {
       {
             title:'Generate Quotation',
             key: 'download',      
-            render: (id) => (           
+            render: (project) => (           
             <a href="#" className="" style={{  margin:'0px', padding:'0px', width:'100%'}} onClick={(e) => { 
             e.stopPropagation();      
             }}>                    
@@ -202,7 +204,8 @@ import {
 
             {/* <Tooltip placement="topLeft" title="Generate Quotation" arrowPointAtCenter> */}
             <h5 className="text-danger"  > 
-            <Button disabled={(all_panel.filter(item=>{return item.project === id._id && item.request !== "null"})).length>0 ? false:true} type='link' style={{ fontSize:'14px'}}  onClick={(e)=>handleClickQuotation(e, true, id)}> Generate </Button>
+            <Button disabled={(all_panel.filter(item=>{return item.project === project._id && item.request !== "null"})).length>0 ? false:true} type='link' style={{ fontSize:'14px'}}  onClick={(e)=>handleClickQuotation(e, true, project)}> Generate </Button>
+            {/* <Button  onClick={(e)=>generateZipFromCloud(e, true, project)}> Generate </Button> */}
             </h5>
             {/* </Tooltip> */}
             </Space>
@@ -212,14 +215,16 @@ import {
             },
 
             {
-            title: 'Email',
-            dataIndex: 'email',
-            key: 'email',
-            render:(item)=>{
-              return <p class="m-0 ">{item?item:'-'} </p>
-            }
-        
-      },
+              title: 'Email',
+              dataIndex: 'email',
+              key: 'email',
+              width: 150,
+              ellipsis: true,
+              render:(item)=>{
+                return <p class="m-0 ">{item?item:'-'} </p>
+              }
+          
+        },
 
       {
           title: 'Action',
@@ -305,7 +310,7 @@ import {
                   >          
                  </Drawer>   
 
-                   <ModalForm 
+            <ModalForm 
             isVisible={visibleQuotation} 
             title="Quotation Details"
             footer={false}

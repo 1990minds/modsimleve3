@@ -10,35 +10,26 @@ import {
     Drawer,
     Menu,
     Model, Dropdown, Button 
-  } from "antd";
-  import { useState } from "react";
-  import { ToTopOutlined } from "@ant-design/icons";
-  import { Link } from "react-router-dom";
-  import { PlusOutlined } from '@ant-design/icons';
-  import DeleteConfirm from '../../global/delete'
-  import { DownloadOutlined  } from '@ant-design/icons';
-  import {VscGitPullRequestCreate } from 'react-icons/vsc';
-  import face6 from "../../assets/images/face-6.jpeg";
-  import pencil from "../../assets/images/pencil.svg";
-  import {useDispatch, useSelector} from 'react-redux'
-  import { FaRegTrashAlt, FaRegEdit, } from 'react-icons/fa';
-  import { FiCopy } from 'react-icons/fi';
-  import ModalForm from '../../global/model.js'
-  import {deleteProduct} from '../../api/product'
-  import {authenticateSelector} from '../../api/authSlice';
-//   import Editpanel from './editpanel';
-import { useHistory} from 'react-router-dom'
-import {deletepanel,deleteManypanel,createDrawingPdf,createBomPdf } from '../../api/panel'
-import { createbomrequest} from '../../api/bomrequest'
-import  {createdrawingreq} from '../../api/drawingreq'
-import Editpanel from './editpanel';
-import Duplicatepanel from './duplicatepanel';
-import moment from 'moment';
-import { Popconfirm, message } from 'antd';
-import {updateUser} from '../../api/user'
-import ExportExcel from './bomdownload';
+    } from "antd";
 
-  function PanelTable({data,project_id, product_id,loading}) {
+    import { useState } from "react";
+    import DeleteConfirm from '../../global/delete'
+    import {useDispatch, useSelector} from 'react-redux'
+    import { FaRegTrashAlt, FaRegEdit, } from 'react-icons/fa';
+    import { FiCopy } from 'react-icons/fi';
+    import ModalForm from '../../global/model.js'
+    import {authenticateSelector} from '../../api/authSlice';
+    import { useHistory} from 'react-router-dom'
+    import {deletepanel,createDrawingPdf,createBomPdf, download,updatePanel } from '../../api/panel'
+    import { createbomrequest} from '../../api/bomrequest'
+    import  {createdrawingreq} from '../../api/drawingreq'
+    import Editpanel from './editpanel';
+    import Duplicatepanel from './duplicatepanel';
+    import moment from 'moment';
+    import { Popconfirm, message } from 'antd';
+    import ExportExcel from './bomdownload';
+
+    function PanelTable({data,project_id, product_id,loading}) {
 
     const [confirmLoading, setConfirmLoading] = useState(false);
     const [modalText, setModalText] = useState('Content of the modal');
@@ -67,23 +58,20 @@ import ExportExcel from './bomdownload';
     const [current_panel, setpanel] = useState(null);
     const [ panel, setcurrentpanel] = useState(null);
     const [visibleDuplicate, setDuplicatetModal] = useState(false);
+    const [visibleBOM, setBOMModal] = useState(false);
     const [item,setItem] =useState(null)
     const [downloadLoading,setDownloadLoading] =useState(false)
     const [visibleDrawing, setDrawingModal] = useState(false);
-    const [Bomvisible, setBomVisible] = useState(false);
+    const [bomvisible, setBomVisible] = useState(false);
     const [curr_company, setCompany] = useState(null);
     const [dwgpanel, setdwgpanel] = useState(null);
-   
-    
     const [selectionType, setSelectionType] = useState('checkbox');
-
     let history = useHistory()
     
-    console.log(current_panel);
+        console.log(current_panel);
     
-        const confirm = (e, id) => {
-            dispatch(deletepanel(id._id, {id:product_id,project:project_id}))
-          
+            const confirm = (e, id) => {
+            dispatch(deletepanel(id._id, {id:product_id,project:project_id}))          
           }
 
 
@@ -99,6 +87,18 @@ import ExportExcel from './bomdownload';
               setpanel(null)
             }
 
+
+            
+          const handleClickBOM = (e, id) =>{
+            e.preventDefault()
+            setpanel(id)
+            setBOMModal(true)
+            }
+    
+            const cancelBOMModel = () => {
+              setBOMModal(false)
+              setpanel(null)
+            }
 
           const handleClickEdit = (e, isvisible, id) =>{
             e.preventDefault()
@@ -131,40 +131,52 @@ import ExportExcel from './bomdownload';
 
               }
 
-                const bomPdf= (value)=> {
-   
-                  setDownloadLoading(true)
-                  setItem(value._id)
-                  dispatch(createBomPdf(value))
-                  
-                  setTimeout(()=>{
-                    setDownloadLoading(false)
-                      setItem(null)
-                  },3000)                     
-        
-          }
+              // const downloadExcel= (value)=> {
+  
+              //   setDownloadLoading(true)
+              //   setItem(value._id)
+              //   dispatch(download( value._id))
+                
+              //   setTimeout(()=>{
+              //     setDownloadLoading(false)
+              //       setItem(null)
+              //   },3000)
 
-          const handleClickBom = (e, isvisible, id) =>{
-            e.preventDefault()
-            setcurrentpanel(id)
-            setBomVisible(true);
-            }
+              // }
+
+
+
+          //       const bomPdf= (value)=> {
+   
+          //         setDownloadLoading(true)
+          //         setItem(value._id)
+          //         dispatch(createBomPdf(value))
+                  
+          //         setTimeout(()=>{
+          //           setDownloadLoading(false)
+          //             setItem(null)
+          //  },3000)                     
+        
+          // }
+
+          // const handleClickBom = (e, isvisible, id) =>{
+          //   e.preventDefault()
+          //   setcurrentpanel(id)
+          //   setBomVisible(true);
+          //   }
            
 
         
     
       const [page, setPage] = useState(1);
   
-               const [visible, setVisible] = useState(false);
-               
-
-                const confirmRequest = (values, id) => {
-                const data={
-                 panel:id._id
-                 }
-                 dispatch(createbomrequest(data,{id:product_id,project:project_id}))
-
-                 }
+      const [visible, setVisible] = useState(false);
+      const confirmRequest = (values, id) => {
+      const data={
+      panel:id._id
+      }
+      dispatch(createbomrequest(data,{id:product_id,project:project_id}))
+      }
 
       const cancel = (e) =>{
         return null
@@ -213,16 +225,12 @@ import ExportExcel from './bomdownload';
   console.log(`VscGitPullRequestCreate to ${id}`);
   const data={
     requestdwg:id
-  }
-
-  
-  
-    
-};
+  }    
+  };
 
 
   const menu = (
-    <Menu
+      <Menu
       onClick={handleMenuClick}
       items={[
         {
@@ -237,9 +245,9 @@ import ExportExcel from './bomdownload';
           label: 'Clicking me will close the menu.',
           key: '3',
         },
-      ]}
-    />
-  );
+        ]}
+        />
+         );
 
 
   const onClose = () => {
@@ -307,24 +315,25 @@ import ExportExcel from './bomdownload';
         title: 'Download',
         key: 'download',
 
-        render: (value, id) => ( 
+        render: (id) => ( 
           <div style={{  margin:'0px', padding:'0px', width:'100%', display:'flex' ,zIndex:'100'}}>         
           <a href="#" className=""  onClick={(e) => {
           e.stopPropagation();      
           }}>  
-        <Button 
-        disabled={id?.request === 'null' ? true : false} style={{ padding: '0px'}}
-        type="link" onClick={()=>drawingPdf(value)}> 2D </Button> </a>
+            <Button disabled={id?.request === 'null' ? true : false} style={{ padding: '0px'}}
+            type="link" onClick={()=>drawingPdf(id)}> 2D </Button> 
+          </a>
 
 
-        <a href="#" className=""  onClick={(e) => {
-          e.stopPropagation();      
-          }}>
-        <Button
-        disabled={id?.request === 'null' ? true : false}
-        type="link">
-        <ExportExcel data={value?.bom} panel={value} />
-        </Button>
+          <a href="#" className=""  onClick={(e) => { e.stopPropagation(); }}>
+
+         
+
+          <Button disabled={id?.request === 'null' ? true : false} type="link" onClick={(e)=>handleClickBOM(e, id)}> 
+            BOM
+          {/* <ExportExcel data={id?.bom} panel={id} />  */}
+
+         </Button>
         </a>
         </div> 
 
@@ -562,7 +571,30 @@ width="15" height="15" viewBox="0 0 24 24" stroke-width="3" stroke="#2C3E50" fil
             className=""
             width="50%"
             cancel={()=>setDuplicatetModal(!visibleDuplicate)}>
-                  <Duplicatepanel current_panel={current_panel} cancel={()=>setDuplicatetModal(!visibleDuplicate)} project_id ={project_id} product_id={product_id} />
+            <Duplicatepanel current_panel={current_panel} cancel={()=>setDuplicatetModal(!visibleDuplicate)} project_id ={project_id} product_id={product_id} />
+            </ModalForm>
+
+            <ModalForm 
+            isVisible={visibleBOM} 
+            title="BOM"
+            footer={false}
+            onOk={handleOk}
+            className=""
+            width="20%"
+            cancel={()=>setBOMModal(!visibleBOM)}>
+              <div>
+                <p style={{textAlign:"center"}}>
+                Are you sure to Download the BOM 
+               </p>
+               <p style={{textAlign:"center"}}>
+               <Button onClick={()=>setBOMModal(false)} >
+                <ExportExcel data={current_panel?.bom} panel={current_panel}  />
+                </Button>
+                </p>
+              {/* <ExportExcel data={current_panel?.bom} panel={current_panel}  onClick={()=>setBOMModal(false)}/> */}
+              </div>
+
+              {/* <ExportExcel current_panel={current_panel} cancel={()=>setBOMModal(!visibleBOM)} project_id ={project_id} product_id={product_id} /> */}
             </ModalForm>
         
       </>

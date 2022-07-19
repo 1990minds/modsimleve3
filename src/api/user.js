@@ -98,12 +98,10 @@ export const fetchAllCompanyUser = (id,company) => async dispatch => {
 //   const key = 'create';
 //   message.loading({ content: 'loading...', key })
 //   try {
- 
 //    const {data} = await axios.post(keyUri.BACKEND_URI +`/user`, values, config)
 //    data && message.success({ content: data.msg, key, duration: 2 });
 //    dispatch(fetchAllCompanyUser(company));
 //    dispatch(fetchAllcompanyactiveLicense(company))
-
 //   } 
 //   catch ({response}) {
 // response.data && message.error({ content: response.data.msg, key, duration: 2 })
