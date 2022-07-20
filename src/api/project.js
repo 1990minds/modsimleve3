@@ -192,6 +192,10 @@ export const createQuotationPdf = (pdfValues) => async dispatch => {
 }   
 )
 
+// export const createQuotationPdf = () => async dispatch => {
+
+
+//   axios.post(keyUri.BACKEND_URI + `/create`, config )
 
 // .then((res) => {  
 //   console.log({res});
