@@ -23,6 +23,7 @@ export default function CreatePanel({cancel,project_id,product_id}) {
     const { all_customers} = useSelector(customersSelector) 
     const dispatch = useDispatch();
     console.log({K:all_customers});
+    const [Others, setOthers] = useState(false)
      
     
       useEffect(()=>{
@@ -41,11 +42,12 @@ export default function CreatePanel({cancel,project_id,product_id}) {
         panel_name:values.panel_name,
         busbar_material:values.busbar_material,
         panel_quntity:values.panel_quntity,
+        category_type:values.category_type,
         project_id:project_id,
         product_id:product_id,
         user:user?._id,
       }
-
+      setOthers('')
         dispatch(createpanel(data, {id:product_id,project:project_id}))
         form.resetFields()
         cancel()
@@ -56,17 +58,28 @@ export default function CreatePanel({cancel,project_id,product_id}) {
           console.log('Failed:', errorInfo);
           setVisible(true);
         };
-
         const handleChangeSelect = (value) =>{
-
       }
-      
+
+      const onChange = (value)=> {
+        console.log(`selected ${value}`)
+    
+      }
+      const onChangeOthers = (value)=> {
+        console.log(`selected ${value}`)
+    
+        if(value === 'O'){
+          setOthers(true)
+        }
+        else{
+          setOthers(false)
+        }
+      }
+
+
         const [form] = Form.useForm();
 
-        const onChange = (value)=> {
-          console.log(`selected ${value}`)
-
-        }
+        
 
         const { TextArea } = Input;
 
@@ -114,9 +127,10 @@ export default function CreatePanel({cancel,project_id,product_id}) {
               <Input showCount onChange={onChange1} maxLength={15}/>
             </Form.Item>
 
-
-
               </Col>
+
+
+
               <Col span={12}>                
               <Form.Item
                 label={<p className="  w-36 text-left m-0">Panel Category</p>}
@@ -125,9 +139,10 @@ export default function CreatePanel({cancel,project_id,product_id}) {
               >
                               <Select
                 placeholder="Select Panel category"
-                onChange={onChange}
+                onChange={onChangeOthers}
                 style={{ width: '100%' }}
                 allowClear
+                // onChange={onChangeOthers}
               >
                 <Option value="Power Control Center">Power Control Center</Option>
                 <Option value="Motor Control Center">Motor Control Center</Option>
@@ -135,12 +150,26 @@ export default function CreatePanel({cancel,project_id,product_id}) {
                 <Option value="Sub Distribution Boards">Sub Distribution Boards</Option>
                 <Option value="Power Factor control Panel">Power Factor control Panel</Option>
                 <Option value="Synchronising Panel">Synchronising Panel</Option>
-                <Option value="Others">Others</Option>
+                <Option value="O">Others</Option>
               </Select>
       
               </Form.Item>
 
                     </Col>
+
+                    { Others && <Row xs={2} sm={4} md={6} lg={8} xl={5}>
+          <Form.Item
+                
+                label={<p  style={{width:'100%',marginLeft:'10px'}}> Panel Category Type</p>}
+                name="category_type"
+                rules={[{ required: true, message: 'required!'}]}
+              >
+      <Input style={{width:'330px',marginLeft:'10px'}} />
+
+          </Form.Item>
+          </Row>}
+
+
                   </Row>
 
                 
@@ -148,7 +177,7 @@ export default function CreatePanel({cancel,project_id,product_id}) {
                   <Row gutter={16}>
                     <Col span={12}>
 
-                    <Form.Item
+                    <Form.Item 
                 label={<p className="  w-36 text-left m-0">Rated voltage</p>}
                 name="rated_voltage"
                 rules={[{ required: true, message: 'Please Select Rated Voltage!' }]}

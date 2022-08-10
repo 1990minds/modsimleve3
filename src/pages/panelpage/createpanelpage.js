@@ -67,17 +67,40 @@ export default function CreatePanelsettings({current_panel}) {
                     nature_of_ventilation: current_panel?.nature_of_ventilation,
                     required_busbar_support: current_panel?.required_busbar_support,
                     required_base_plinth: current_panel?.required_base_plinth,
-                    frame_material: current_panel?.frame_material,
-                    frame_powdercoating: current_panel?.frame_powdercoating,
-                    cover_material: current_panel?.cover_material,
+                    // frame_material: current_panel?.frame_material,
+                    // frame_powdercoating: current_panel?.frame_powdercoating,
+                    // cover_material: current_panel?.cover_material,
                     cover_powdercoating:true,       
-                    partition_material: current_panel?.partition_material,
-                    partition_powdercoating: current_panel?.partition_powdercoating,
+                    // partition_material: current_panel?.partition_material,
+                    // partition_powdercoating: current_panel?.partition_powdercoating,
                     user_define:current_panel?.user_define,
                 
                 
             
                 });
+
+                form.setFieldsValue({
+                    frame_material: current_panel?.frame_material ? current_panel?.frame_material : 'Z',
+                });
+
+               form.setFieldsValue({
+                  frame_powdercoating:   current_panel?.frame_powdercoating ? current_panel?.frame_powdercoating : false,
+                });
+
+                 form.setFieldsValue({
+                partition_material: current_panel?.partition_material ? current_panel?.partition_material :'G',
+                });
+
+                form.setFieldsValue({
+                partition_powdercoating:current_panel?.partition_powdercoating ? current_panel?.partition_powdercoating :false,
+                });
+
+                form.setFieldsValue({
+                cover_material:current_panel?.cover_material ? current_panel?.cover_material : 'C',
+                });
+
+
+
               }, [current_panel])
                   
   
@@ -400,12 +423,13 @@ export default function CreatePanelsettings({current_panel}) {
                     name= "frame_material"  
                   >
          <Select
-           onChange={handleClickFrame}
-          placeholder="Frame Material"  
+          onChange={handleClickFrame}
+          placeholder="Frame Material" 
+          // defaultValue="Z" 
         >
           <Option value="Z">Aluzn</Option>
-          <Option value="G">GI</Option>
-          <Option value="C">CRCA</Option>
+          {/* <Option value="G">GI</Option>
+          <Option value="C">CRCA</Option> */}
          
           
           </Select>
@@ -419,6 +443,7 @@ export default function CreatePanelsettings({current_panel}) {
                   >
                   <Select
                    placeholder="Frame Powdercoating"
+                  
           
                   >
       <Option value={true}>Yes</Option>
@@ -431,13 +456,14 @@ export default function CreatePanelsettings({current_panel}) {
                  
 
                   <Col xs={2} sm={4} md={6} lg={8} xl={5}>
-                     <Form.Item
-                rules={[{ required: true, message: 'required!'}]}
-                    label={<p className="  text-left m-0">Material</p>}
-                    name= "partition_material"  
+                  <Form.Item
+                   rules={[{ required: true, message: 'required!'}]}
+                   label={<p className="  text-left m-0">Material</p>}
+                   name= "partition_material"  
                   >
          <Select
-          placeholder="Partition Material"  
+          placeholder="Partition Material" 
+          
         >
           <Option value="Z">Aluzn</Option>
           <Option value="G">GI</Option>
@@ -455,9 +481,10 @@ export default function CreatePanelsettings({current_panel}) {
                   >
                   <Select
                    placeholder="Partition Powdercoating"
+                   
           
                   >
-       <Option value={true}>Yes</Option>
+            <Option value={true}>Yes</Option>
             <Option value={false}>No</Option>  
 
                   </Select>
@@ -477,6 +504,7 @@ export default function CreatePanelsettings({current_panel}) {
           >
           <Select
            placeholder="Cover Material"
+            
 
             >
           <Option value="Z">Aluzn</Option>
@@ -548,6 +576,7 @@ export default function CreatePanelsettings({current_panel}) {
     </Button> */}
 
 <Form.Item  >
+  
     <Button type="primary" htmlType="submit"
    disabled={current_panel?.panel_type === null}
     block style={{ fontSize: '14px', width:'10rem' , }}>

@@ -51,7 +51,7 @@ export default function Quotation({current_project,cancel}) {
    }
 
 
-    dispatch(updateproject(current_project._id ,quotationdata ,current_project.company?._id))
+    dispatch(updateproject(current_project._id ,quotationdata ,current_project.company?._id,current_project.project_id))
     form.resetFields()
     cancel()
 

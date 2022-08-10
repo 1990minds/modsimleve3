@@ -287,8 +287,10 @@ import {
       {
         
         title: ' Panel Category',
-        dataIndex: 'panel_category',
         key: 'panel_category',
+        render:(item)=>{
+          return <small style={{fontSize:'14px'}} className="my-0 mr-3">{item.panel_category === 'O' ? item.category_type : item.panel_category}</small>
+      }
         
       },
 
