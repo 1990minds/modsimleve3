@@ -86,7 +86,7 @@ export default function ExportExcel({data, panel}) {
 
                             <tr>
                                 <th>Sl.No</th>
-                                <th>Catalogue No.</th>
+                                <th>CatalogueNo</th>
                                 <th>Catalogue Description</th>
                                 <th>Nature of component</th>
                                 <th>Compartment Width</th>

@@ -143,16 +143,14 @@ export default function CreatePanelsettings({current_panel}) {
          
            }
 
+
+
            const onChangeColor = (value)=> {
-            console.log(`selected ${value}`)
-        
+            console.log(`selected ${value}`)      
             if(value === 'U'){
-
-              setuserColor(true)
+             setuserColor(true)
             }
-
             else{
-
               setuserColor(false)
             }
 
@@ -193,21 +191,21 @@ export default function CreatePanelsettings({current_panel}) {
            <Col>
             <Row gutter={24}>
 
-              <Col xs={2} sm={4} md={6} lg={8} xl={5}  >
-              <Form.Item
-                    label={<p className="  text-left m-0">Panel Type</p>}
-                    name= "panel_type"
-                    rules={[{ required: true, message: 'required!'}]}
+                <Col xs={2} sm={4} md={6} lg={8} xl={5}  >
+                <Form.Item
+                 label={<p className="  text-left m-0">Panel Type</p>}
+                 name= "panel_type"
+                 rules={[{ required: true, message: 'required!'}]}
                   >
-                     <Select
-          placeholder="Select Panel Type"
-          onChange={onChange}
-          style={{ width: '100%' }}
-          allowClear
-        >
-          <Option value="single front">Single Front</Option>
-          <Option value="double front">Double Front</Option>
-        </Select>
+                 <Select
+                placeholder="Select Panel Type"
+                onChange={onChange}
+                style={{ width: '100%' }}
+                allowClear
+              >
+                <Option value="single front">Single Front</Option>
+                <Option value="double front">Double Front</Option>
+              </Select>
 
                   </Form.Item>
               </Col>
@@ -234,17 +232,17 @@ export default function CreatePanelsettings({current_panel}) {
 
          
 
-            <Col xs={2} sm={4} md={6} lg={8} xl={5}>
+              <Col xs={2} sm={4} md={6} lg={8} xl={5}>
               <Form.Item
-                    label={<p className="  text-left m-0">Ingress Protection</p>}
-                    name="ingress_protection"
-                    rules={[{ required: true, message: 'required!'}]}
-                  >
+              label={<p className="  text-left m-0">Ingress Protection</p>}
+              name="ingress_protection"
+              rules={[{ required: true, message: 'required!'}]}
+              >
                      <Select
-          placeholder="Select Ingress Protection"
-          onChange={onChange}
-          style={{ width: '100%' }}
-          allowClear
+              placeholder="Select Ingress Protection"
+              onChange={onChange}
+              style={{ width: '100%' }}
+              allowClear
         >
           <Option value="IP4x/43">IP4x/43</Option>
           <Option value="IP54/55">IP54/55</Option>
@@ -394,70 +392,72 @@ export default function CreatePanelsettings({current_panel}) {
                 name="user_define"
                 rules={[{ required: true, message: 'required!'}]}
               >
-      <Input style={{backgroundColor:'#fff', }}/>
+          <Input style={{backgroundColor:'#fff', }}/>
 
           </Form.Item>
           </Col>}
-
-
-
             </Row>
-            <Row >
-              <Col span={10}>
 
- <b><p style={{ marginTop:'1rem'}}>Frame Bar | Cross Bar</p></b>
- </Col>
- <Col span={10} >
- <b><p style={{ marginTop:'1rem', paddingLeft:'10px' }}> Partitions</p></b>
- </Col>
- </Row>
+
+
+
+            
+            <Row >
+            <Col span={10}>
+
+            <b><p style={{ marginTop:'1rem'}}>Frame Bar | Cross Bar</p></b>
+            </Col>
+            <Col span={10} >
+            <b><p style={{ marginTop:'1rem', paddingLeft:'10px' }}> Partitions</p></b>
+            </Col>
+            </Row>
+
+
+
             <Row gutter={24}>
- 
-      
             <Col xs={2} sm={4} md={6} lg={8} xl={5}>
-                     <Form.Item
-                 rules={[{ required: true, message: 'required!'}]}
-                    label={<p className="  text-left m-0">Material</p>}
-                    name= "frame_material"  
-                  >
-         <Select
-          onChange={handleClickFrame}
-          placeholder="Frame Material" 
-          // defaultValue="Z" 
-        >
-          <Option value="Z">Aluzn</Option>
-          {/* <Option value="G">GI</Option>
-          <Option value="C">CRCA</Option> */}
-         
-          
+            <Form.Item
+            rules={[{ required: true, message: 'required!'}]}
+            label={<p className="  text-left m-0">Material</p>}
+            name= "frame_material"  
+             >
+            <Select
+              onChange={handleClickFrame}
+              placeholder="Frame Material" 
+              // defaultValue="Z" 
+            >
+              <Option value="Z">Aluzn</Option>
+              {/* <Option value="G">GI</Option>
+              <Option value="C">CRCA</Option> */}        
           </Select>
           </Form.Item> 
            </Col>
-           <Col xs={2} sm={4} md={6} lg={8} xl={5}>
-                  <Form.Item
-                    label={<p className="  text-left m-0">Powdercoating</p>}
-                    name= "frame_powdercoating"
-                    rules={[{ required: true, message: 'required!'}]}
-                  >
-                  <Select
-                   placeholder="Frame Powdercoating"
-                  
-          
-                  >
-      <Option value={true}>Yes</Option>
-      { frameMaterial !=='C' &&  <Option value={false}>No</Option>  }
 
-                  </Select>
-                 </Form.Item>
-                  </Col>
+
+
+           <Col xs={2} sm={4} md={6} lg={8} xl={5}>
+            <Form.Item
+            label={<p className="  text-left m-0">Powdercoating</p>}
+            name= "frame_powdercoating"
+            rules={[{ required: true, message: 'required!'}]}
+            >
+            <Select
+            placeholder="Frame Powdercoating"
+             >
+            <Option value={true}>Yes</Option>
+            { frameMaterial !=='C' &&  <Option value={false}>No</Option>  }
+
+            </Select>
+            </Form.Item>
+            </Col>
 
                  
 
-                  <Col xs={2} sm={4} md={6} lg={8} xl={5}>
-                  <Form.Item
-                   rules={[{ required: true, message: 'required!'}]}
-                   label={<p className="  text-left m-0">Material</p>}
-                   name= "partition_material"  
+            <Col xs={2} sm={4} md={6} lg={8} xl={5}>
+            <Form.Item
+            rules={[{ required: true, message: 'required!'}]}
+            label={<p className="  text-left m-0">Material</p>}
+            name= "partition_material"  
                   >
          <Select
           placeholder="Partition Material" 
