@@ -27,6 +27,7 @@ export default function EditPanel({current_panel,project_id,product_id}) {
   const dispatch = useDispatch();
   const [validityYear, setYear]=useState(null)
   const [validityMonth, setMonth]=useState(null)
+  const [Others, setOthers] = useState(false)
   
 
   console.log(current_panel);
@@ -39,6 +40,7 @@ export default function EditPanel({current_panel,project_id,product_id}) {
                 panel_name:current_panel &&  current_panel.panel_name,
                 panel_category:current_panel && current_panel.panel_category,
                 ambient_temperature:current_panel&& current_panel. ambient_temperature,
+                category_type:current_panel && current_panel.category_type,
                 busbar_material:current_panel && current_panel.busbar_material,
                 rated_voltage:current_panel && current_panel.rated_voltage,
                 panel_quntity:current_panel && current_panel.panel_quntity,
@@ -55,6 +57,7 @@ export default function EditPanel({current_panel,project_id,product_id}) {
                  panel_name:values.panel_name,
                  busbar_material:values.busbar_material,
                  panel_quntity:values.panel_quntity,
+                 category_type:values.category_type,
                 
               }
 
@@ -70,6 +73,18 @@ export default function EditPanel({current_panel,project_id,product_id}) {
              console.log(`selected ${value}`)
          
            }
+
+           const onChangeOthers = (value)=> {
+            console.log(`selected ${value}`)
+        
+            if(value === 'O'){
+              setOthers(true)
+            }
+            else{
+              setOthers(false)
+            }
+          }
+    
         
 
   const onFinishFailed = (errorInfo) => {
@@ -109,32 +124,45 @@ export default function EditPanel({current_panel,project_id,product_id}) {
         </Form.Item>
                
               </Col>
-              <Col span={12}>
-                
+              <Col span={12}>                
               <Form.Item
-          label={<p className="  w-36 text-left m-0">Panel Category</p>}
-          name="panel_category"
-          rules={[{ required: true, message: 'Please Select Panel category!' }]}
-        >
-                        <Select
-          placeholder="Select Panel category"
-          onChange={onChange}
-          style={{ width: '100%' }}
-          allowClear
-        >
-          <Option value="Power Control Center">Power Control Center</Option>
-          <Option value="Motor Control Center">Motor Control Center</Option>
-          <Option value="Main Distribution Boards">Main Distribution Boards</Option>
-          <Option value="Sub Distribution Boards">Sub Distribution Boards</Option>
-          <Option value="Power Factor control Panel">Power Factor control Panel</Option>
-          <Option value="Synchronising Panel">Synchronising Panel</Option>
-          <Option value="Others">Others</Option>
-        </Select>
- 
-        </Form.Item>
+                label={<p className="  w-36 text-left m-0">Panel Category</p>}
+                name="panel_category"
+                rules={[{ required: true, message: 'Please Select Panel category!' }]}
+              >
+                              <Select
+                placeholder="Select Panel category"
+                onChange={onChangeOthers}
+                style={{ width: '100%' }}
+                allowClear
+                // onChange={onChangeOthers}
+              >
+                <Option value="Power Control Center">Power Control Center</Option>
+                <Option value="Motor Control Center">Motor Control Center</Option>
+                <Option value="Main Distribution Boards">Main Distribution Boards</Option>
+                <Option value="Sub Distribution Boards">Sub Distribution Boards</Option>
+                <Option value="Power Factor control Panel">Power Factor control Panel</Option>
+                <Option value="Synchronising Panel">Synchronising Panel</Option>
+                <Option value="O">Others</Option>
+              </Select>
+      
+              </Form.Item>
 
-              </Col>
-            </Row>
+                    </Col>
+
+                    { Others && <Row xs={2} sm={4} md={6} lg={8} xl={5}>
+          <Form.Item
+                
+                label={<p  style={{width:'100%',marginLeft:'10px'}}> Panel Category Type</p>}
+                name="category_type"
+                rules={[{ required: true, message: 'required!'}]}
+              >
+      <Input style={{width:'330px',marginLeft:'10px'}} />
+
+          </Form.Item>
+          </Row>}
+
+          </Row>
 
            
 
