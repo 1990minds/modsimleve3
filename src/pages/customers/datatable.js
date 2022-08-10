@@ -104,13 +104,13 @@ import {
         title: 'Phone Number',
         dataIndex: 'phone_number',
         key: 'phone_number',
-        
+        ellipsis: true,
       },
       {
         title: 'Email',
         dataIndex: 'email',
         key: 'email',
-        
+        ellipsis: true,
       },
 
       {

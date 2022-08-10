@@ -19,6 +19,7 @@ const { Option } = Select;
 export default function EditCustomers({current_customers,cancel}) {
   
   const [ states , setStates ] = useState([])
+  const [ statesnumber , setStatesnumber ] = useState('')
     const dispatch = useDispatch();
     const { user } = useSelector(authenticateSelector) 
     console.log(user);
@@ -54,6 +55,9 @@ export default function EditCustomers({current_customers,cancel}) {
             console.log(`selected ${value}`)
            let country = countries?.countries.find( item => item.country === value)
         setStates(country.states)
+
+        let contnumber = countries?.countries.find( item => item.country === value)
+    setStatesnumber(contnumber.code)
           }
     
               
@@ -65,7 +69,7 @@ export default function EditCustomers({current_customers,cancel}) {
   
             const customersdata = {
       
-              phone_number:values.phone_number,
+              phone_number:`${statesnumber} ${values.phone_number}`,
               email:values.email,
               customers_name:values.customers_name,
               country:values.country,
@@ -80,6 +84,7 @@ export default function EditCustomers({current_customers,cancel}) {
               contact_person:values.contact_person,
                  
               }
+              setStatesnumber('')
               dispatch(updatecustomers(current_customers._id, customersdata,user?.company?._id))
               form.resetFields()
               cancel()
@@ -190,6 +195,14 @@ export default function EditCustomers({current_customers,cancel}) {
 
             <Row gutter={16}>
             <Col span={12}>
+             < Form.Item
+             label="Phone Number"
+             name="phone_number"
+             >
+              <Input style={{ padding: '0px 2px 0px 12px', borderRadius: '8px' }} />
+    </Form.Item>
+              </Col>
+            {/* <Col span={12}>
               <Form.Item
           label={<p className="w-36 text-left m-0">Phone Number</p>}
           name="phone_number"
@@ -203,7 +216,7 @@ export default function EditCustomers({current_customers,cancel}) {
       onChange={setValue}/>
     
         </Form.Item>
-              </Col>
+              </Col> */}
               <Col span={12}>
               <Form.Item
           label={<p className="  w-36 text-left m-0">Email</p>}

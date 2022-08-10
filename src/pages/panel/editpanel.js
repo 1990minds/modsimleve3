@@ -16,7 +16,7 @@ import {useParams} from 'react-router-dom'
 
 const { Option } = Select;
 
-export default function EditPanel({current_panel,project_id,product_id}) {
+export default function EditPanel({cancel,current_panel,project_id,product_id}) {
   
 
   console.log(current_panel)
@@ -63,6 +63,7 @@ export default function EditPanel({current_panel,project_id,product_id}) {
           setOthers('')
           dispatch(updatePanel(current_panel._id, paneldata,{id:product_id,project:project_id}))
           form.resetFields()
+          cancel()
            };
 
            const [form] = Form.useForm();
