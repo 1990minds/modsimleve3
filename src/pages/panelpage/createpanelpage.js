@@ -37,11 +37,9 @@ export default function CreatePanelsettings({current_panel}) {
 
 
   const handleClickFrame = (value) =>{
-
    form.setFieldsValue({
     frame_powdercoating:(value==='G' || value=== 'Z') ? false:true
-  });
-    
+  });   
     setframeMaterial(value)
     
     }
@@ -576,9 +574,9 @@ export default function CreatePanelsettings({current_panel}) {
     </Button> */}
 
 <Form.Item  >
-  
+
     <Button type="primary" htmlType="submit"
-   disabled={current_panel?.panel_type === null}
+   disabled={current_panel?.panel_type === null || current_panel?.request !== "null" }
     block style={{ fontSize: '14px', width:'10rem' , }}>
 
     <a   href={`https://modsimcanvas.web.app/panel/${current_panel?._id}`}> Configure Now</a>

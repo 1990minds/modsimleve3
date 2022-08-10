@@ -20,9 +20,7 @@ export default function EditPanel({cancel,current_panel,project_id,product_id}) 
   
 
   console.log(current_panel)
-
-  const [loading, setLoading] = useState(false)   
-  
+  const [loading, setLoading] = useState(false)    
   const { panel } = useSelector(authenticateSelector) 
   const dispatch = useDispatch();
   const [validityYear, setYear]=useState(null)
@@ -61,8 +59,8 @@ export default function EditPanel({cancel,current_panel,project_id,product_id}) 
                 
               }
 
-  console.log(current_panel._id,)
-
+          console.log(current_panel._id,)
+          setOthers('')
           dispatch(updatePanel(current_panel._id, paneldata,{id:product_id,project:project_id}))
           form.resetFields()
           cancel()
@@ -74,6 +72,8 @@ export default function EditPanel({cancel,current_panel,project_id,product_id}) 
              console.log(`selected ${value}`)
          
            }
+
+
 
            const onChangeOthers = (value)=> {
             console.log(`selected ${value}`)
@@ -121,10 +121,13 @@ export default function EditPanel({cancel,current_panel,project_id,product_id}) 
           rules={[{ required: true, message: 'Please Input Panel Name!' }]}
         >
           <Input/>
-
-        </Form.Item>
-               
+        </Form.Item>              
               </Col>
+
+
+
+
+
               <Col span={12}>                
               <Form.Item
                 label={<p className="  w-36 text-left m-0">Panel Category</p>}
@@ -149,21 +152,21 @@ export default function EditPanel({cancel,current_panel,project_id,product_id}) 
       
               </Form.Item>
 
-                    </Col>
+              </Col>
 
-                    { Others && <Row xs={2} sm={4} md={6} lg={8} xl={5}>
-          <Form.Item
+               { Others && <Row xs={2} sm={4} md={6} lg={8} xl={5}>
+              <Form.Item
                 
                 label={<p  style={{width:'100%',marginLeft:'10px'}}> Panel Category Type</p>}
                 name="category_type"
                 rules={[{ required: true, message: 'required!'}]}
               >
-      <Input style={{width:'330px',marginLeft:'10px'}} />
+              <Input style={{width:'330px',marginLeft:'10px'}} />
 
-          </Form.Item>
-          </Row>}
+              </Form.Item>
+              </Row>}
 
-          </Row>
+              </Row>
 
            
 
@@ -206,8 +209,8 @@ export default function EditPanel({cancel,current_panel,project_id,product_id}) 
 
         </Select>
 
-</Form.Item>
-              </Col>
+        </Form.Item>
+            </Col>
             </Row>
 
             <Row gutter={16}>
@@ -231,7 +234,7 @@ export default function EditPanel({cancel,current_panel,project_id,product_id}) 
         </Form.Item>
 
 
-              </Col>
+            </Col>
             </Row>
             <Row gutter={16}>
               <Col span={12}>
