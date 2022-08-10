@@ -463,9 +463,9 @@ export default function CreatePanelsettings({current_panel}) {
           placeholder="Partition Material" 
           
         >
-          <Option value="Z">Aluzn</Option>
+          {/* <Option value="Z">Aluzn</Option> */}
           <Option value="G">GI</Option>
-          <Option value="C">CRCA</Option>
+          {/* <Option value="C">CRCA</Option> */}
          
           
           </Select>
