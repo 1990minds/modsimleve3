@@ -130,7 +130,17 @@ export default function EditCustomers({current_customers,cancel}) {
 
         </Form.Item>
               </Col>
-             
+
+              <Col span={12}>
+                <Form.Item
+                  name="contact_person"
+                  label="Contact Person"
+                  rules={[{ required: true, message: 'Please enter Contact Person name' }]}
+                >
+                  <Input/>
+                </Form.Item>
+              </Col>
+
               <Col span={12}>
                 <Form.Item
                   name="designation"
@@ -140,7 +150,15 @@ export default function EditCustomers({current_customers,cancel}) {
                   <Input  />
                 </Form.Item>
               </Col>
-          
+              <Col span={12}>
+                <Form.Item
+                  name="customer_tax_number"
+                  label="Tax Number/GST"
+                  rules={[{ required: true, message: 'Please enter Tax Number' }]}
+                >
+                  <Input  />
+                </Form.Item>
+              </Col>
             </Row>
 
 
@@ -289,15 +307,7 @@ export default function EditCustomers({current_customers,cancel}) {
 
 
             <Row gutter={16}>
-            <Col span={12}>
-                <Form.Item
-                  name="customer_tax_number"
-                  label="Tax Number/GST"
-                  rules={[{ required: true, message: 'Please enter Tax Number' }]}
-                >
-                  <Input  />
-                </Form.Item>
-              </Col>
+            
             <Col span={12}>
                 <Form.Item
                  name="website"
@@ -315,15 +325,7 @@ export default function EditCustomers({current_customers,cancel}) {
             </Row>
             <Row>
 
-            <Col span={12}>
-                <Form.Item
-                  name="contact_person"
-                  label="Contact Person"
-                  rules={[{ required: true, message: 'Please enter Contact Person name' }]}
-                >
-                  <Input/>
-                </Form.Item>
-              </Col>
+          
 
               </Row>
 

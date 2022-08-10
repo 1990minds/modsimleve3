@@ -124,7 +124,7 @@ export default function CreatePanel({cancel,project_id,product_id}) {
               
               rules={[{ required: true, message: 'Please Input Panel Name!' }]}
               >
-              <Input showCount onChange={onChange1} maxLength={15}/>
+              <Input showCount onChange={onChange1} />
             </Form.Item>
 
               </Col>

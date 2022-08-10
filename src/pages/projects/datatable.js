@@ -148,6 +148,7 @@ import {
         title: ' Project ID ',
         dataIndex: 'project_id',
         key: 'project_id',
+
         
       },
 
@@ -162,6 +163,7 @@ import {
         title: ' Project Location',
         dataIndex: 'project_location',
         key: 'project_location',
+        ellipsis: true,
         render:(item)=>{
           return <p class="m-0 ">{item?item:'-'} </p>
         }
@@ -178,7 +180,6 @@ import {
         title: 'Created Date',
         dataIndex: 'createdAt',
         key: 'createdAt',
-        width: 200,
         render:(createdAt)=>{
           return <small style={{fontSize:'14px'}} className="my-0 mr-3">{moment(createdAt).format('DD/MM/YYYY')}</small>
       }
@@ -195,7 +196,8 @@ import {
 
       {
             title:'Generate Quotation',
-            key: 'download',      
+            key: 'download', 
+            ellipsis: true,     
             render: (project) => (           
             <a href="#" className="" style={{  margin:'0px', padding:'0px', width:'100%'}} onClick={(e) => { 
             e.stopPropagation();      
