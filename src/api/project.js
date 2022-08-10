@@ -155,12 +155,13 @@ console.log( {id});
  };
 
 
- export const  updateproject = (id, values,company) => async dispatch =>{
+ export const  updateproject = (id, values,company,project_id) => async dispatch =>{
   const key = "project"
   dispatch(getproject())
   message.loading({ content: 'loading...', key })
   const pdfValues={
-    _id:id
+    _id:id,
+    project_id:project_id
   }
 
 try {
@@ -188,7 +189,7 @@ export const createQuotationPdf = (pdfValues) => async dispatch => {
       console.log(res.data);      
       const pdfBlob = new Blob([res.data], 
           { type: 'application/pdf' });
-   saveAs(pdfBlob, 'Quotation.pdf');      
+   saveAs(pdfBlob, `${pdfValues.project_id}.pdf`);      
 }   
 )
 
