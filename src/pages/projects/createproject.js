@@ -165,7 +165,7 @@ export default function CreateProject({cancel}) {
 
         
            <Row gutter={16}>
-           <Col span={12}>
+           {/* <Col span={12}>
            <Form.Item
             label={<p className="w-36 text-left m-0">Phone Number</p>}
             name="phone_number"
@@ -177,7 +177,7 @@ export default function CreateProject({cancel}) {
            >
            <Input/>
            </Form.Item>
-           </Col>
+           </Col> */}
              
               <Col span={12}>
               <Form.Item

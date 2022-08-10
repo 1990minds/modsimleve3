@@ -1,5 +1,6 @@
 
-import { Drawer, Form, Button, Col, Row, Input, Select, DatePicker, Tooltip } from 'antd';
+import { Drawer, Form, Button, Col, Row, Input, Select , Tooltip } from 'antd';
+import { InputNumber } from 'antd';
 import { PlusOutlined } from '@ant-design/icons';
 import { Divider } from 'antd';
 import {useDispatch, useSelector} from 'react-redux'
@@ -14,6 +15,7 @@ import {createcustomers} from '../../api/customers'
 import countries from '../../global/data'
 import 'react-phone-number-input/style.css'
 import PhoneInput from 'react-phone-number-input'
+import FormItem from 'antd/lib/form/FormItem';
 
 
 
@@ -42,6 +44,7 @@ export default function CreateCustomer({cancel}) {
     };
     
     const [ states , setStates ] = useState([])
+    const [ statesnumber , setStatesnumber ] = useState('')
       const dispatch = useDispatch();
      
       const onChange = (value)=> {
@@ -54,9 +57,17 @@ export default function CreateCustomer({cancel}) {
         console.log(`selected ${value}`)
        let country = countries?.countries.find( item => item.country === value)
     setStates(country.states)
-      }
 
-          
+    let contnumber = countries?.countries.find( item => item.country === value)
+    setStatesnumber(contnumber.code)
+
+// form.setFieldsValue({
+//   firstnumber:contnumber.code
+// })
+ }
+
+  console.log(statesnumber);
+      
       const onSearch = (value) => {
         console.log('search:', value);
       };
@@ -65,7 +76,7 @@ export default function CreateCustomer({cancel}) {
   
       const onFinish = (values) => {
         const data = {
-          phone_number:values.phone_number,
+          phone_number:`${statesnumber} ${values.phone_number}`,
           email:values.email,
           customers_name:values.customers_name,
           country:values.country,
@@ -80,10 +91,12 @@ export default function CreateCustomer({cancel}) {
           contact_person:values.contact_person,
           companyId:user?.company?._id
         }
-
+        setStatesnumber('')
         dispatch(createcustomers(data, user?.company?._id))
         form.resetFields()
         cancel()
+        
+        // console.log(data);
       };
 
    const onFinishFailed = (errorInfo) => {
@@ -138,11 +151,30 @@ export default function CreateCustomer({cancel}) {
                   <Input  />
                 </Form.Item>
               </Col>
-          
+              
             </Row>
 
 
             <Row gutter={16}>
+            <Col span={12}>
+                <Form.Item
+                  name="contact_person"
+                  label="Contact Person"
+                  rules={[{ required: true, message: 'Please enter Contact Person name' }]}
+                >
+                  <Input/>
+                </Form.Item>
+              </Col>
+              <Col span={12}>
+                <Form.Item
+                type='number'
+                  name="customer_tax_number"
+                  label="Tax Number/GST"
+                  rules={[{ required: true, message: 'Please enter Tax Number' }]}
+                >
+                  <Input  />
+                </Form.Item>
+              </Col>
               <Col span={12}>
                 <Form.Item
                   name="country"
@@ -166,10 +198,10 @@ export default function CreateCustomer({cancel}) {
                 </Form.Item>
               </Col>
               <Col span={12}>
-                <Form.Item
+        <Form.Item
                   name="state"
                   label="State"
-                  rules={[{ required: true, message: 'Please choose a State' }]}
+                  rules={[{ required: false, message: 'Please choose a State' }]}
                 >
                 
                 <Select
@@ -192,20 +224,14 @@ export default function CreateCustomer({cancel}) {
             </Row>
 
             <Row gutter={16}>
-            <Col span={12}>
-              <Form.Item
-          label={<p className="w-36 text-left m-0">Phone Number</p>}
-          name="phone_number"
-          rules={[{ required: true ,message: 'required!' },
-          {pattern:"[0-9]", message:"Only Numbers"}
-          ]}
-        >
-         <PhoneInput
-      
-      value={value}
-      onChange={setValue}/>
-    
-        </Form.Item>
+            
+              <Col span={12}>
+             < Form.Item
+             label="Phone Number"
+             name="phone_number"
+             >
+              <Input prefix={statesnumber} type='number' style={{ padding: '0px 2px 0px 12px', borderRadius: '8px' }} />
+    </Form.Item>
               </Col>
               <Col span={12}>
               <Form.Item
@@ -224,10 +250,6 @@ export default function CreateCustomer({cancel}) {
 
           </Form.Item>
            </Col> 
-
-
-
-
            </Row>
 
            
@@ -279,15 +301,7 @@ export default function CreateCustomer({cancel}) {
 
 
             <Row gutter={16}>
-            <Col span={12}>
-                <Form.Item
-                  name="customer_tax_number"
-                  label="Tax Number/GST"
-                  rules={[{ required: true, message: 'Please enter Tax Number' }]}
-                >
-                  <Input  />
-                </Form.Item>
-              </Col>
+           
             <Col span={12}>
                 <Form.Item
                  name="website"
@@ -307,15 +321,7 @@ export default function CreateCustomer({cancel}) {
             </Row>
             <Row>
 
-            <Col span={12}>
-                <Form.Item
-                  name="contact_person"
-                  label="Contact Person"
-                  rules={[{ required: true, message: 'Please enter Contact Person name' }]}
-                >
-                  <Input/>
-                </Form.Item>
-              </Col>
+           
 
               </Row>
 
