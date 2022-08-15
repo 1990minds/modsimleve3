@@ -40,7 +40,7 @@ console.log({bom});
                     table="table-to-xls"
                     filename={panel?.project?.project_id.concat(panel?.panel_id)}
                     sheet="tablexls" 
-                    buttonText="BOM"  />
+                    buttonText="Download"  />
                     
                     </Buttonwrap>
                 </div>

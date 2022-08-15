@@ -13,7 +13,7 @@ import {SearchOutlined,SyncOutlined} from '@ant-design/icons'
 import { useDebounce } from "use-debounce";
 import { keyUri, config } from '../../key'
 import styled from 'styled-components'
-import { Breadcrumb, Tooltip, Input,Upload, Button } from 'antd';
+import { Breadcrumb, Tooltip, Input,Spin, Upload, Button } from 'antd';
 import { Row, Col } from 'antd';
 import {useParams,  useLocation} from 'react-router-dom'
 import { Link } from 'react-router-dom'
@@ -149,11 +149,12 @@ placeholder="Search" onChange={onSearch}  />
         <ExcelBtn data={product_panels} />
       </Col>
       </Row>
+
+      {(loading || load) && <Spin style={{ position:"absolute", top: "10%", left:'30%',  width: "700px",   height: "500px", }} tip="Please Wait, We are loading panels !"> </Spin>}
         <PanelTable  data={(filter?.length > 0) ? filter :product_panels} project_id ={project} product_id={id} loading={loading || load}/>
+        
     </Layout>
   )
-
-
 }
 
  const SearchWrap = styled.div`

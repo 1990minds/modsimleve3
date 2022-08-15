@@ -312,7 +312,7 @@ export default function EditCustomers({current_customers,cancel}) {
                 <Form.Item
                  name="website"
                   label="Website"
-                  rules={[{ required: true, message: 'Please enter url' }]}
+                  
                 >
                   <Input
                     style={{ width: '100%' }}
