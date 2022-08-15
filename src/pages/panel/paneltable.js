@@ -9,9 +9,10 @@ import {
     Space,
     Drawer,
     Menu,
+    Spin,
     Model, Dropdown, Button 
     } from "antd";
-
+    
     import { useState } from "react";
     import DeleteConfirm from '../../global/delete'
     import {useDispatch, useSelector} from 'react-redux'
@@ -29,7 +30,7 @@ import {
     import { Popconfirm, message } from 'antd';
     import ExportExcel from './bomdownload';
 
-    function PanelTable({data,project_id, product_id,loading}) {
+    function PanelTable({data,project_id, product_id, loading}) {
 
     const [confirmLoading, setConfirmLoading] = useState(false);
     const [modalText, setModalText] = useState('Content of the modal');
@@ -527,11 +528,13 @@ width="15" height="15" viewBox="0 0 24 24" stroke-width="3" stroke="#2C3E50" fil
                 }
               >
                 <div className="table-responsive" >
+                  
+                
                   <Table
-                   scroll={{ x: true }}
-                  loading={loading}
+                  scroll={{ x: true }}
+                  // loading={loading }
                   pagination={{
-                    onChange(current) {
+                      onChange(current) {
                       setPage(current)
                     }
                   }}
@@ -546,11 +549,13 @@ width="15" height="15" viewBox="0 0 24 24" stroke-width="3" stroke="#2C3E50" fil
                         }}
                   >
                     </Table>
-                </div>
-              </Card>
-            </Col>
-          </Row>
-        </div>
+
+                    
+             </div>
+             </Card>
+             </Col>
+             </Row>
+             </div>
                    <Drawer
           title="Update a existing Panel" placement="right" onClose={onClose} visible={visible} width={720}
         >
@@ -579,7 +584,7 @@ width="15" height="15" viewBox="0 0 24 24" stroke-width="3" stroke="#2C3E50" fil
 
             <ModalForm 
             isVisible={visibleBOM} 
-            title="BOM"
+            title="Bill Of Material"
             footer={false}
             onOk={handleOk}
             className=""
@@ -587,10 +592,10 @@ width="15" height="15" viewBox="0 0 24 24" stroke-width="3" stroke="#2C3E50" fil
             cancel={()=>setBOMModal(!visibleBOM)}>
               <div>
                 <p style={{textAlign:"center"}}>
-                Are you sure to Download the BOM 
+                Click Here To Download The BOM 
                </p>
                <p style={{textAlign:"center"}}>
-               <Button onClick={()=>setBOMModal(false)} >
+               <Button type="primary" onClick={()=>setBOMModal(false)} >
                 <ExportExcel data={current_panel?.bom} panel={current_panel}  />
                 </Button>
                 </p>
