@@ -144,25 +144,22 @@ export default function CreateCustomer({cancel}) {
              
               <Col span={12}>
                 <Form.Item
-                  name="designation"
-                  label="Designation"
-                  rules={[{ required: true, message: 'Please enter Designation' }]}
-                >
-                  <Input  />
-                </Form.Item>
-              </Col>
-              
-            </Row>
-
-
-            <Row gutter={16}>
-            <Col span={12}>
-                <Form.Item
                   name="contact_person"
                   label="Contact Person"
                   rules={[{ required: true, message: 'Please enter Contact Person name' }]}
                 >
                   <Input/>
+                </Form.Item>
+              </Col>
+
+
+              <Col span={12}>
+                <Form.Item
+                  name="designation"
+                  label="Designation"
+                  rules={[{ required: true, message: 'Please enter Designation' }]}
+                >
+                  <Input  />
                 </Form.Item>
               </Col>
               <Col span={12}>
@@ -175,6 +172,12 @@ export default function CreateCustomer({cancel}) {
                   <Input  />
                 </Form.Item>
               </Col>
+            </Row>
+
+
+            <Row gutter={16}>
+           
+              
               <Col span={12}>
                 <Form.Item
                   name="country"

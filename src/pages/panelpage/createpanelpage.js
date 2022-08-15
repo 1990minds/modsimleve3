@@ -457,13 +457,13 @@ export default function CreatePanelsettings({current_panel}) {
             label={<p className="  text-left m-0">Material</p>}
             name= "partition_material"  
                   >
+
             <Select
-            placeholder="Partition Material" 
-          
-             >
-            <Option value="Z">Aluzn</Option>
-            <Option value="G">GI</Option>
-            <Option value="C">CRCA</Option>
+            placeholder="Partition Material"           
+        >
+          {/* <Option value="Z">Aluzn</Option> */}
+          <Option value="G">GI</Option>
+          {/* <Option value="C">CRCA</Option> */}
           </Select>
           </Form.Item> 
            </Col>

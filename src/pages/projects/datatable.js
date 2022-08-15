@@ -147,8 +147,7 @@ import {
       {
         title: ' Project ID ',
         dataIndex: 'project_id',
-        key: 'project_id',
-        scrollX: true,
+        key: 'project_id',      
     
         
       },
@@ -182,7 +181,6 @@ import {
         title: 'Created Date',
         dataIndex: 'createdAt',
         key: 'createdAt',
-        width: 200,
         render:(createdAt)=>{
           return <small style={{fontSize:'14px'}} className="my-0 mr-3">{moment(createdAt).format('DD/MM/YYYY')}</small>
       }
@@ -200,8 +198,8 @@ import {
 
       {
             title:'Generate Quotation',
-            key: 'download',
-            ellipsis: true,      
+            key: 'download', 
+            ellipsis: true,     
             render: (project) => (           
             <a href="#" className="" style={{  margin:'0px', padding:'0px', width:'100%'}} onClick={(e) => { 
             e.stopPropagation();      
