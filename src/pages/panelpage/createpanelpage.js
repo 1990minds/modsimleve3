@@ -1,6 +1,6 @@
 import React, {useState,useEffect} from 'react'
 import {useDispatch, useSelector} from 'react-redux'
-import { Drawer, Form, Button, Col, Row, Input, Select, DatePicker ,Descriptions } from 'antd';
+import { Drawer, Form, Button, Col, Row, Input, Select, DatePicker ,Descriptions, Tooltip } from 'antd';
 import { PlusOutlined } from '@ant-design/icons';
 import { Divider } from 'antd';
 import { EyeInvisibleOutlined, EyeTwoTone } from '@ant-design/icons';
@@ -47,8 +47,8 @@ export default function CreatePanelsettings({current_panel}) {
   const {id} = useParams()
      
 
-         useEffect(()=>{
-            form.setFieldsValue({
+                useEffect(()=>{
+                form.setFieldsValue({
                 panel_name: current_panel?. panel_name,
                 panel_category:current_panel?.panel_category,
                 ambient_temperature:current_panel?. ambient_temperature,
@@ -76,6 +76,8 @@ export default function CreatePanelsettings({current_panel}) {
                 
             
                 });
+
+
 
                 form.setFieldsValue({
                     frame_material: current_panel?.frame_material ? current_panel?.frame_material : 'Z',
@@ -175,8 +177,7 @@ export default function CreatePanelsettings({current_panel}) {
     };
 
     return (
-      <>
- 
+          <> 
           <Form layout="vertical" hideRequiredMark
            form={form}
            name="basic"
@@ -185,8 +186,8 @@ export default function CreatePanelsettings({current_panel}) {
            onFinishFailed={onFinishFailed}
           >
 
-<div>
-<div>
+          <div>
+          <div>
 
            <Col>
             <Row gutter={24}>
@@ -213,11 +214,11 @@ export default function CreatePanelsettings({current_panel}) {
 
               {/* <Col xs={2} sm={4} md={6} lg={8} xl={5}>
               <Form.Item
-                    label={<p className=" text-left m-0">Compliance With IEC61439</p>}
-                    name= "compliance_with_IEC61439"
-                    rules={[{ required: true, message: 'required!'}]}
-                  >
-                     <Select
+              label={<p className=" text-left m-0">Compliance With IEC61439</p>}
+              name= "compliance_with_IEC61439"
+              rules={[{ required: true, message: 'required!'}]}
+              >
+              <Select
           placeholder="Select Compliance With IEC61439"
           onChange={onChange}
           style={{ width: '100%' }}
@@ -297,8 +298,8 @@ export default function CreatePanelsettings({current_panel}) {
               </Col>
 
               
-           <Col xs={2} sm={4} md={6} lg={8} xl={5}>
-            <Form.Item
+          <Col xs={2} sm={4} md={6} lg={8} xl={5}>
+          <Form.Item
                     label={<p className="  text-left m-0">Powder Coating Finish</p>}
                     name= "powder_coating_finish"
                     rules={[{ required: true, message: 'required!'}]}
@@ -333,7 +334,7 @@ export default function CreatePanelsettings({current_panel}) {
         >
           <Option value="Yes">Yes</Option>
           <Option value="No">No</Option>
-        </Select>
+          </Select>
 
                   </Form.Item>   
               </Col>
@@ -353,21 +354,21 @@ export default function CreatePanelsettings({current_panel}) {
           <Option value="no">No</Option>
         </Select>
 
-                  </Form.Item>            
+        </Form.Item>            
             
-              </Col>
+         </Col>
 
 
 
 
-              <Col xs={2} sm={4} md={6} lg={8} xl={5}>
+           <Col xs={2} sm={4} md={6} lg={8} xl={5}>
            <Form.Item
                     
-                    label={<p className="  text-left m-0">Panel Color</p>}
-                    name="panel_colour"
-                    rules={[{ required: true, message: 'required!'}]}
-                  >
-                     <Select
+           label={<p className="  text-left m-0">Panel Color</p>}
+           name="panel_colour"
+           rules={[{ required: true, message: 'required!'}]}
+           >
+          <Select
           placeholder="Select panel color"
           onChange={onChangeColor}
           style={{ width: '100%' }}
@@ -383,8 +384,6 @@ export default function CreatePanelsettings({current_panel}) {
               </Form.Item>
               </Col>
 
-
-
           { userColor && <Col xs={2} sm={4} md={6} lg={8} xl={5}>
           <Form.Item
                 
@@ -396,12 +395,8 @@ export default function CreatePanelsettings({current_panel}) {
 
           </Form.Item>
           </Col>}
-            </Row>
+          </Row>
 
-
-
-
-            
             <Row >
             <Col span={10}>
 
@@ -411,6 +406,9 @@ export default function CreatePanelsettings({current_panel}) {
             <b><p style={{ marginTop:'1rem', paddingLeft:'10px' }}> Partitions</p></b>
             </Col>
             </Row>
+
+
+
 
 
 
@@ -435,7 +433,7 @@ export default function CreatePanelsettings({current_panel}) {
 
 
 
-           <Col xs={2} sm={4} md={6} lg={8} xl={5}>
+            <Col xs={2} sm={4} md={6} lg={8} xl={5}>
             <Form.Item
             label={<p className="  text-left m-0">Powdercoating</p>}
             name= "frame_powdercoating"
@@ -459,18 +457,22 @@ export default function CreatePanelsettings({current_panel}) {
             label={<p className="  text-left m-0">Material</p>}
             name= "partition_material"  
                   >
-         <Select
-          placeholder="Partition Material" 
-          
+
+            <Select
+            placeholder="Partition Material"           
         >
           {/* <Option value="Z">Aluzn</Option> */}
           <Option value="G">GI</Option>
           {/* <Option value="C">CRCA</Option> */}
+
+
          
           
+
           </Select>
           </Form.Item> 
            </Col>
+
            <Col xs={2} sm={4} md={6} lg={8} xl={5}>
                   <Form.Item
                     label={<p className="  text-left m-0">Powdercoating</p>}
@@ -489,13 +491,18 @@ export default function CreatePanelsettings({current_panel}) {
                  </Form.Item>
                   </Col>
                   </Row>
-                   <b><p style={{ marginTop:'1rem'}}> Doors |  Covers (Powdercoated) </p></b> 
-                  <Row gutter={24}>
 
-<Col xs={2} sm={4} md={6} lg={8} xl={5}>
 
-           <Form.Item
- rules={[{ required: true, message: 'required!'}]}
+
+
+
+         <b><p style={{ marginTop:'1rem'}}> Doors |  Covers (Powdercoated) </p></b> 
+         <Row gutter={24}>
+
+         <Col xs={2} sm={4} md={6} lg={8} xl={5}>
+
+         <Form.Item
+         rules={[{ required: true, message: 'required!'}]}
          label={<p className="  text-left m-0">Material</p>}
          name= "cover_material"
   
@@ -530,31 +537,38 @@ export default function CreatePanelsettings({current_panel}) {
           </Form.Item>
 
            </Col>
+           </Row>
 
 
-              </Row>
-              <div id='addlis' style={{ marginTop:'1rem'}}>
+
+            <Row  gutter={22} id='addlis' style={{ marginTop:'3rem',  }}>
+              <Col>
             <Button type="primary" htmlType="submit"
              onClick={() => setVisible(false)}
              block style={{ fontSize: '14px', width:'10rem'  }}>
                Save
              </Button>
-         
-            </div>
+             </Col>
+
+            <Col>
+
+            <Tooltip  placement="topLeft" title= {(current_panel?.panel_type === null || current_panel?.request !== "null" ) ?'Save Panel Settings to Enable Configure Now':'To Design Panel' }  arrowPointAtCenter>
+            <Button type="primary" htmlType="submit"
+            disabled={current_panel?.panel_type === null || current_panel?.request !== "null" }
+            block style={{ fontSize: '14px', width:'10rem' , }}>
+            <a  href={`https://modsimcanvas.web.app/panel/${current_panel?._id}`}> Configure Now</a>
+            </Button>
+            </Tooltip>
+
+    
+            </Col>
+
+            </Row>
           </Col>
            </div>
               </div>
 
-  {/* <div id='addlis' >
-
-
-  <Descriptions style={{marginTop:'2rem'}}
-       horizontal 
-       Row={1}
-        > */}
-        <br/>
-      <Divider />
-      <br/>
+ 
       <Row>
       
       <Col xs={2} sm={4} md={6} lg={8} xl={5}>
@@ -573,18 +587,13 @@ export default function CreatePanelsettings({current_panel}) {
       </span>
     </Button> */}
 
-<Form.Item  >
 
-    <Button type="primary" htmlType="submit"
-   disabled={current_panel?.panel_type === null || current_panel?.request !== "null" }
-    block style={{ fontSize: '14px', width:'10rem' , }}>
 
-    <a   href={`https://modsimcanvas.web.app/panel/${current_panel?._id}`}> Configure Now</a>
-    </Button>
-  </Form.Item>
 
- 
-  </Form.Item>
+    <Form.Item  >
+   
+    </Form.Item>
+    </Form.Item>
 
 
                     <Modal 
@@ -593,11 +602,9 @@ export default function CreatePanelsettings({current_panel}) {
                     footer={false}
                     className=""
                     width="70%"
-                    cancel={()=>setVisible(!visible)}>
-                      
-                      <ExportExcel cancel={()=>setVisible(!visible)} data={current_panel?.bom} panel={current_panel} />
-                      
-                      </Modal>
+                    cancel={()=>setVisible(!visible)}>                      
+                    <ExportExcel cancel={()=>setVisible(!visible)} data={current_panel?.bom} panel={current_panel} />                      
+                    </Modal>
 
 
 </Col>

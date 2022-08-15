@@ -49,10 +49,11 @@ export default function Quotation({current_project,cancel}) {
     //  user:user?._id,
       
    }
-
+console.log(quotationdata)
 
     dispatch(updateproject(current_project._id ,quotationdata ,current_project.company?._id,current_project.project_id))
     form.resetFields()
+    setIsMenuOpen(false)
     cancel()
 
     };
@@ -65,7 +66,7 @@ export default function Quotation({current_project,cancel}) {
            }
         
 
-  const onFinishFailed = (errorInfo) => {
+    const onFinishFailed = (errorInfo) => {
     console.log('Failed:', errorInfo);
   };
 
@@ -110,8 +111,9 @@ export default function Quotation({current_project,cancel}) {
            onFinishFailed={onFinishFailed}
           >
           
-
-          {isMenuOpen === false ?   <div>
+      
+          {/* {isMenuOpen === false ?   */}
+           <div style={{display:isMenuOpen === false?'block':'none'}}>
 
             <Row gutter={16}>
       
@@ -151,44 +153,41 @@ export default function Quotation({current_project,cancel}) {
                   rules={[{ required: true, message: 'Please enter Terms & Conditions' }]}
                 >
                   <TextArea   showCount
-    maxLength={600}
-    rows={4}
-    style={{
-      height: 40,
+                  maxLength={600}
+                  rows={4}
+                  style={{
+                  height: 40,
     }}
-    onChange={onChange} />
-                </Form.Item>
-              </Col>
-
-              </Row>
-
+                  onChange={onChange} />
+                  </Form.Item>
+                  </Col>
+                  </Row>
 
 
-              <Row>
 
+                <Row>
+                <Col span={24}>
+                    <Form.Item
+                      name="note"
+                      label="Note"
+                      rules={[{ required: true, message: 'Please enter Note' }]}
+                    >
+                      <TextArea   showCount
+                maxLength={600}
+                rows={4}
+                style={{
+                height: 40,
+                }}
+                onChange={onChange} />
+                    </Form.Item>
+                  </Col>
 
-<Col span={24}>
-    <Form.Item
-      name="note"
-      label="Note"
-      rules={[{ required: true, message: 'Please enter Note' }]}
-    >
-      <TextArea   showCount
-maxLength={600}
-rows={4}
-style={{
-height: 40,
-}}
-onChange={onChange} />
-    </Form.Item>
-  </Col>
-
-  </Row>
+                  </Row>
 
   
 
 
-        <div style={{ display:'flex', justifyContent:'right', alignItems:'right', paddingTop: '20px'}}>
+<div style={{ display:'flex', justifyContent:'right', alignItems:'right', paddingTop: '20px'}}>
 {/* <Button type="primary" htmlType="submit"
 onClick={() => setVisible(false)}
 block style={{ fontSize: '14px', width:'20rem' }}>
@@ -199,11 +198,15 @@ block style={{ fontSize: '14px', width:'20rem' }}>
     >Next</Button>
     </div>
     </div>
-    :<div>
+    {/* : */}
+    <div style={{display:isMenuOpen === true?'block':'none'}}>
 
-<Row gutter={16}>
 
-  <Col span={8}>
+
+
+
+    <Row gutter={16}>
+    <Col span={8}>
         <Form.Item
         label={<p className="  w-36 text-left m-0">Packing & Forwarding</p>}
         name="packing_forwarding"
@@ -240,14 +243,12 @@ block style={{ fontSize: '14px', width:'20rem' }}>
       style={{ borderRadius: "8px" }}
       type="number"
         />
-
-        </Form.Item>
-        
+        </Form.Item>       
         </Col>
 
+
         <Col span={8}>
-        <Form.Item
-        
+        <Form.Item        
         label={<p className="  w-36 text-left m-0">Insurance</p>}
         name="insurance"
         rules={[{ required: true, message: 'Please Input Insurance!' },
@@ -258,16 +259,17 @@ block style={{ fontSize: '14px', width:'20rem' }}>
         style={{ borderRadius: "8px" }}
         type="number"
         prefix={<PercentageOutlined className="site-form-item-icon" />}
-        />
-        
-        </Form.Item>
-        
+        />        
+        </Form.Item>        
       </Col>
-
       </Row>
+
+
+
+      
       <Row gutter={16}>
 
-  <Col span={8}>
+       <Col span={8}>
         <Form.Item
         label={<p className="  w-36 text-left m-0">Electrical Components</p>}
         name="electrical_components"
@@ -328,7 +330,7 @@ loading={loadings[0]}
 </div>
     </div>
     </div>
-    }
+    {/* } */}
           </Form>
 
         

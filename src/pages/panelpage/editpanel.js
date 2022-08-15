@@ -101,7 +101,7 @@ export default function EditPanel({current_panel,}) {
         >
           <Descriptions.Item label="Created Date "> { moment(current_panel?.createdAt).format('DD/MM/YYYY')}</Descriptions.Item>
           <Descriptions.Item label="Panel Name "> {current_panel?.panel_name}</Descriptions.Item>
-          <Descriptions.Item label="Panel Category"> {current_panel?.panel_category}</Descriptions.Item>
+          <Descriptions.Item label="Panel Category"> {current_panel?.panel_category === 'O' ? current_panel?.category_type : current_panel?.panel_category}</Descriptions.Item>
           <Descriptions.Item label="Rated Voltage">{current_panel?.rated_voltage}</Descriptions.Item>
           <Descriptions.Item label="Ambient Temperature ">{current_panel?.ambient_temperature}</Descriptions.Item>
           <Descriptions.Item label="Busbar Material">{current_panel?.busbar_material}</Descriptions.Item>

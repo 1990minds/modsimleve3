@@ -147,7 +147,8 @@ import {
       {
         title: ' Project ID ',
         dataIndex: 'project_id',
-        key: 'project_id',
+        key: 'project_id',      
+    
 
         
       },
@@ -156,6 +157,7 @@ import {
         title: ' Project Name ',
         dataIndex: 'project_name',
         key: 'project_name',
+        ellipsis: true,
         
       },
           
@@ -189,6 +191,7 @@ import {
         title: 'Updated Date',
         dataIndex: 'updatedAt',
         key: 'updatedAt',
+        ellipsis: true,
         render:(updatedAt)=>{
           return <small style={{fontSize:'14px'}} className="my-0 mr-3">{moment(updatedAt).format('DD/MM/YYYY')}</small>
       }
@@ -284,6 +287,7 @@ import {
                
                  <Table
                  loading={loading}
+                 scroll={{ x: true }}
                  pagination={{
                  onChange(current) {
                  setPage(current)
