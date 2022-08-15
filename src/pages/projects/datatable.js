@@ -148,6 +148,8 @@ import {
         title: ' Project ID ',
         dataIndex: 'project_id',
         key: 'project_id',
+        scrollX: true,
+    
         
       },
 
@@ -155,6 +157,7 @@ import {
         title: ' Project Name ',
         dataIndex: 'project_name',
         key: 'project_name',
+        ellipsis: true,
         
       },
           
@@ -162,6 +165,7 @@ import {
         title: ' Project Location',
         dataIndex: 'project_location',
         key: 'project_location',
+        ellipsis: true,
         render:(item)=>{
           return <p class="m-0 ">{item?item:'-'} </p>
         }
@@ -188,6 +192,7 @@ import {
         title: 'Updated Date',
         dataIndex: 'updatedAt',
         key: 'updatedAt',
+        ellipsis: true,
         render:(updatedAt)=>{
           return <small style={{fontSize:'14px'}} className="my-0 mr-3">{moment(updatedAt).format('DD/MM/YYYY')}</small>
       }
@@ -195,7 +200,8 @@ import {
 
       {
             title:'Generate Quotation',
-            key: 'download',      
+            key: 'download',
+            ellipsis: true,      
             render: (project) => (           
             <a href="#" className="" style={{  margin:'0px', padding:'0px', width:'100%'}} onClick={(e) => { 
             e.stopPropagation();      
@@ -282,6 +288,7 @@ import {
                
                  <Table
                  loading={loading}
+                 scroll={{ x: true }}
                  pagination={{
                  onChange(current) {
                  setPage(current)

@@ -528,6 +528,7 @@ width="15" height="15" viewBox="0 0 24 24" stroke-width="3" stroke="#2C3E50" fil
               >
                 <div className="table-responsive" >
                   <Table
+                   scroll={{ x: true }}
                   loading={loading}
                   pagination={{
                     onChange(current) {
