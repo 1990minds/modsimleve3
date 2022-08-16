@@ -34,6 +34,12 @@ export default function EditPanel({cancel,current_panel,project_id,product_id}) 
      
 
          useEffect(()=>{
+          if(current_panel?.panel_category === 'O'){
+            setOthers(true)
+          }
+          else{
+            setOthers(false)
+          }
             form.setFieldsValue({
                 panel_name:current_panel &&  current_panel.panel_name,
                 panel_category:current_panel && current_panel.panel_category,
@@ -49,9 +55,9 @@ export default function EditPanel({cancel,current_panel,project_id,product_id}) 
           const onFinish = (values) => {
             const paneldata = {
 
-                panel_category:values.panel_category,
-                rated_voltage:values.rated_voltage,
-                ambient_temperature:values.ambient_temperature,
+                 panel_category:values.panel_category,
+                 rated_voltage:values.rated_voltage,
+                 ambient_temperature:values.ambient_temperature,
                  panel_name:values.panel_name,
                  busbar_material:values.busbar_material,
                  panel_quntity:values.panel_quntity,
@@ -85,10 +91,9 @@ export default function EditPanel({cancel,current_panel,project_id,product_id}) 
               setOthers(false)
             }
           }
-    
         
 
-  const onFinishFailed = (errorInfo) => {
+    const onFinishFailed = (errorInfo) => {
     console.log('Failed:', errorInfo);
   };
 
@@ -114,7 +119,7 @@ export default function EditPanel({cancel,current_panel,project_id,product_id}) 
            onFinishFailed={onFinishFailed}
           >
             <Row gutter={16}>
-              <Col span={12}>
+           <Col span={12}>
               <Form.Item
           label={<p className="  w-36 text-left m-0"> Panel Name</p>}
           name="panel_name"
@@ -134,7 +139,7 @@ export default function EditPanel({cancel,current_panel,project_id,product_id}) 
                 name="panel_category"
                 rules={[{ required: true, message: 'Please Select Panel category!' }]}
               >
-                              <Select
+                <Select
                 placeholder="Select Panel category"
                 onChange={onChangeOthers}
                 style={{ width: '100%' }}
@@ -148,10 +153,8 @@ export default function EditPanel({cancel,current_panel,project_id,product_id}) 
                 <Option value="Power Factor control Panel">Power Factor control Panel</Option>
                 <Option value="Synchronising Panel">Synchronising Panel</Option>
                 <Option value="O">Others</Option>
-              </Select>
-      
+              </Select>     
               </Form.Item>
-
               </Col>
 
                { Others && <Row xs={2} sm={4} md={6} lg={8} xl={5}>
@@ -171,9 +174,9 @@ export default function EditPanel({cancel,current_panel,project_id,product_id}) 
            
 
             <Row gutter={16}>
-              <Col span={12}>
+            <Col span={12}>
 
-              <Form.Item
+            <Form.Item
           label={<p className="  w-36 text-left m-0">Rated voltage</p>}
           name="rated_voltage"
           rules={[{ required: true, message: 'Please Select Rated Voltage!' }]}
@@ -206,7 +209,6 @@ export default function EditPanel({cancel,current_panel,project_id,product_id}) 
                         <Option value="40°C">40℃</Option>
                         <Option value="45°C">45℃</Option>
                         <Option value="50°C">50℃</Option>
-
         </Select>
 
         </Form.Item>
@@ -220,7 +222,7 @@ export default function EditPanel({cancel,current_panel,project_id,product_id}) 
           name="busbar_material"
           rules={[{ required: true, message: 'Please Input Busbar Material!' }]}
         >
-                              <Select
+          <Select
           placeholder="Select Busbar Material"
           onChange={onChange}
           style={{ width: '100%' }}
@@ -228,9 +230,7 @@ export default function EditPanel({cancel,current_panel,project_id,product_id}) 
         >
           <Option value="Copper">Copper</Option>
           <Option value="Aluminium">Aluminium</Option>
-
         </Select>
-
         </Form.Item>
 
 
@@ -243,7 +243,7 @@ export default function EditPanel({cancel,current_panel,project_id,product_id}) 
             name="panel_quntity"
             rules={[{ required: true, message: 'Please Input Panel Quntity!' }]}
             >
-              <InputNumber min={1} max={25}  onChange={onChange} />
+            <InputNumber min={1} max={25}  onChange={onChange} />
             </Form.Item>
 
               </Col>

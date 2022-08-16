@@ -13,10 +13,9 @@ export default function ExportExcel({data, panel}) {
     const [total, setTotal] = useState(null)
     
 
-console.log({panel})
-console.log({bom});
-
-    useEffect(() => {
+        console.log({panel})
+        console.log({bom});
+        useEffect(() => {
          let bomArray = _.flatten(data?.map(item =>{
             return item.data
         }))
@@ -26,26 +25,26 @@ console.log({bom});
             return previousValue + currentValue.Qty * 200
             },0);
         setTotal(total)
-    }, [data])
+        }, [data])
 
 
-        return (
+            return (
             <TableWrap>
 
                 <div className=' flex  justify-end mx-24'> 
                 <Buttonwrap>
                 <ReactHTMLTableToExcel
-                    id="test-table-xls-button"
-                    className=""
-                    table="table-to-xls"
-                    filename={panel?.project?.project_id.concat(panel?.panel_id)}
-                    sheet="tablexls" 
-                    buttonText="Download"  />
+                 id="test-table-xls-button"
+                 className=""
+                 table="table-to-xls"
+                 filename={panel?.project?.project_id.concat(panel?.panel_id)}
+                 sheet="tablexls" 
+                 buttonText="Download"  />
                     
                     </Buttonwrap>
                 </div>
                         <div className='tableview pb-5 mt-4 w-full flex justify-center' 
-                              style={{overflowY:'auto', height:'60vh', overflowX:'hidden',display:'none' }}> 
+                         style={{overflowY:'auto', height:'60vh', overflowX:'hidden',display:'none' }}> 
 
                         <table id="table-to-xls" style={{width:'90%'}}>
                             <tr className=" text-2xl">
@@ -97,7 +96,7 @@ console.log({bom});
                                 <th>Total Quantity</th>
                             </tr>
                                 {
-                                    bom.map((item, i)=>{
+                                  bom.map((item, i)=>{
                                         return <tr key={i}>
                                             <td>{i+1}</td>
                                             <td className='text'>{item.Ordering_Code}</td>
@@ -113,7 +112,6 @@ console.log({bom});
                                 }
                           
                         </table>
-
                         </div>
  
             </TableWrap>
