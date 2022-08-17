@@ -178,10 +178,10 @@ export default function DuplicatePanel({current_panel,project_id,product_id,canc
           style={{ width: '100%' }}
           allowClear
         >
-                        <Option value="35°C">35℃ </Option>
-                        <Option value="40°C">40℃</Option>
-                        <Option value="45°C">45℃</Option>
-                        <Option value="50°C">50℃</Option>
+        <Option value="35°C">35℃ </Option>
+        <Option value="40°C">40℃</Option>
+        <Option value="45°C">45℃</Option>
+        <Option value="50°C">50℃</Option>
 
         </Select>
 
@@ -207,7 +207,7 @@ export default function DuplicatePanel({current_panel,project_id,product_id,canc
 
         </Select>
 
-</Form.Item>
+        </Form.Item>
 
 
               </Col>
