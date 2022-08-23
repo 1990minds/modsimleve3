@@ -25,7 +25,7 @@ import {
   import { DownloadOutlined  } from '@ant-design/icons';
   import {deleteProduct} from '../../api/product'
   import {authenticateSelector} from '../../api/authSlice';
-  //   import Editproject from './editproject';
+  import Editproject from './editproject';
   import { useHistory} from 'react-router-dom'
   import {deleteproject,deleteManyproject,createQuotationPdf} from '../../api/project'
   import moment from 'moment';
@@ -68,6 +68,13 @@ import {
      const confirm = (e, id) => {
      dispatch(deleteproject(id._id, id.project,user?.company?._id))     
         }
+
+
+        const handleClickEdit = (e, isvisible, id) =>{
+          e.preventDefault()
+          setproject(id)
+          setVisible(true);
+          }
         
      const cancel = (e) =>{
       return null
@@ -219,17 +226,24 @@ import {
               ),
             },
 
-            {
-              title: 'Email',
-              dataIndex: 'email',
-              key: 'email',
-              width: 150,
-              ellipsis: true,
-              render:(item)=>{
-                return <p class="m-0 ">{item?item:'-'} </p>
-              }
+        //     {
+        //       title: 'Email',
+        //       dataIndex: 'email',
+        //       key: 'email',
+        //       width: 150,
+        //       ellipsis: true,
+        //       render:(item)=>{
+        //         return <p class="m-0 ">{item?item:'-'} </p>
+        //       }
           
-        },
+        // },
+
+        {
+          title: 'Project Status',
+          dataIndex: 'project_status',
+          key: 'project_status',
+      
+    },
 
       {
           title: 'Action',
@@ -240,7 +254,7 @@ import {
            }}>                    
            <Space size="middle">    
           <h5 className="text-secondary" >                 
-          {/* <FaRegEdit  onClick={(e)=>handleClickEdit(e, true, id)} className="text-secondary  text-lg mt-2"  />  */}                                          
+          <FaRegEdit  onClick={(e)=>handleClickEdit(e, true, id)} className="text-secondary  text-lg mt-2"  />                                           
            </h5>
             <Tooltip placement="topLeft" title="Delete Project" arrowPointAtCenter>
             <h5 className="text-danger">
@@ -312,9 +326,10 @@ import {
                  </Row>
                  </div>
                  <Drawer
-                  title="Update a existing user" placement="right" onClose={onClose} visible={visible} width={720}
-                  >          
-                 </Drawer>   
+          title="Update an Existing Project" placement="right" onClose={onClose} visible={visible} width={720}
+        >
+          <Editproject current_project={current_project} cancel={onClose}/>
+        </Drawer>  
 
             <ModalForm 
             isVisible={visibleQuotation} 

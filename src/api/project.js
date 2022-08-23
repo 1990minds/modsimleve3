@@ -155,6 +155,28 @@ console.log( {id});
  };
 
 
+
+ export const  editProject = (id, values,company) => async dispatch =>{
+  const key = "project"
+  dispatch(getproject())
+  message.loading({ content: 'loading...', key })
+
+try {
+    const {data} = await axios.put(keyUri.BACKEND_URI +`/project/${id}`, values, config);
+
+    data && message.success({ content: data.msg, key, duration: 2 });
+    dispatch(fetchAllcompanyProject(company));
+
+
+} catch ({response}) {
+console.log(response.data);
+    dispatch(get_project_Failure())
+   
+
+}
+}
+
+
  export const  updateproject = (id, values,company,project_id) => async dispatch =>{
   const key = "project"
   dispatch(getproject())

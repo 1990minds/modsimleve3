@@ -66,12 +66,16 @@ export const broadcastSelector = state => state.broadcast;
 //  };
 
 
- export const fetchAllbroadcastCustomers = () => async dispatch => {
+ export const fetchAllbroadcastUser = (id) => async dispatch => {
   dispatch(getbroadcast())
  
+  console.log("zdgggggggggggggggggggggggggggggggg")
+
+  console.log({id});
   try {
- 
-   const {data} = await axios.get(keyUri.BACKEND_URI +`/broadcast-customers`)
+
+   const {data} = await axios.get(keyUri.BACKEND_URI +`/broadcast-user/${id}`)
+
    console.log(data);
    
    dispatch(getAll_broadcast_success(data));
@@ -98,7 +102,7 @@ export const broadcastSelector = state => state.broadcast;
  
    const {data} = await axios.delete(keyUri.BACKEND_URI +`/broadcast/${id} `, broadcast, config)
   data && message.success({ content: data.msg, key, duration: 2 });
-   dispatch(fetchAllbroadcastCustomers());
+   dispatch(fetchAllbroadcastUser());
     
   } catch (error) {
 
@@ -119,7 +123,7 @@ export const broadcastSelector = state => state.broadcast;
    const {data} = await axios.post(keyUri.BACKEND_URI +`/broadcast`, values, config)
 
    data && message.success({ content: data.msg, key, duration: 2 });
-   dispatch(fetchAllbroadcastCustomers());
+   dispatch(fetchAllbroadcastUser());
 
   } 
   catch ({response}) {

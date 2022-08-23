@@ -36,6 +36,7 @@ export default function CreateProject({cancel}) {
         project_location:values.project_location,
         phone_number:values.phone_number,
         email:values.email,
+        project_status:values.project_status,
         // project_id:values.project_id,
         project_name:values.project_name,
         project_coordiantor:values.project_coordiantor,
@@ -98,7 +99,7 @@ export default function CreateProject({cancel}) {
 
 
 
-            <Row gutter={16}>
+              <Row gutter={16}>
               <Col span={12}>
               <Form.Item
               label={<p className="  w-36 text-left m-0">Customer Name</p>}
@@ -196,8 +197,31 @@ export default function CreateProject({cancel}) {
 
            </Form.Item>
              </Col>
+
+             <Col span={12}>
+
+            <Form.Item 
+            label={<p className="  w-36 text-left m-0">Project Status</p>}
+            name="project_status"
+            rules={[{ required: true, message: 'Please Select Project Status!' }]}
+            >
+                        <Select
+            placeholder="Select Project Status"
+            onChange={onChange}
+            style={{ width: '100%' }}
+            allowClear
+            >
+            <Option value="In-Progress">In-Progress</Option>
+            <Option value="Order Own">Order Own</Option>
+            <Option value="Order Lost">Order Lost</Option>
+            </Select>
+
+            </Form.Item>
+            </Col>
+
             </Row>
  
+            <br/>
             <br/>
             <Divider />
 
