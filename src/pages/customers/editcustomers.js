@@ -250,13 +250,9 @@ export default function EditCustomers({current_customers,cancel}) {
         >
            <Input/>
 
-</Form.Item>
-</Col> 
-
-
-
-
-           </Row>
+         </Form.Item>
+         </Col> 
+         </Row>
 
            
 

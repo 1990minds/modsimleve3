@@ -15,6 +15,7 @@ import Panelpage from './pages/panelpage'
 import Profile from './pages/UserProfile'
 import Ticket from './pages/tickets'
 import TicketView from './pages/tickets/ticketviewer'
+import Broadcast from './pages/broadcast'
 
 function App() {
 
@@ -37,6 +38,8 @@ function App() {
     <Route path="/auth/profile"  component={Profile} exact />
     <Route path="/auth/ticket"  component={Ticket} exact />
     <Route path="/auth/ticketviewer/:id"  component={TicketView} exact />
+    <Route path="/auth/broadcast" component={Broadcast} exact/>
+    
      </main>
     </Router>
   );

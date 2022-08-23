@@ -56,7 +56,7 @@ export default function CreatePanelsettings({current_panel}) {
                 rated_voltage:current_panel?.rated_voltage,
 
                     panel_type: current_panel?.panel_type,
-                    // compliance_with_IEC61439: current_panel?.compliance_with_IEC61439,
+                    compliance_with_IEC61439: current_panel?.compliance_with_IEC61439,
                     ingress_protection: current_panel?.ingress_protection,
                     form_of_construction: current_panel?.form_of_construction,
                     panel_colour: current_panel?.panel_colour,
@@ -111,7 +111,7 @@ export default function CreatePanelsettings({current_panel}) {
                   const panelsettingsdata = {
           
                       panel_type:values.panel_type,
-                      // compliance_with_IEC61439:values.compliance_with_IEC61439,
+                      compliance_with_IEC61439:values.compliance_with_IEC61439,
                       ingress_protection:values.ingress_protection,
                       form_of_construction:values.form_of_construction,
                       panel_colour:values.panel_colour,
@@ -212,7 +212,7 @@ export default function CreatePanelsettings({current_panel}) {
               </Col>
 
 
-              {/* <Col xs={2} sm={4} md={6} lg={8} xl={5}>
+              <Col xs={2} sm={4} md={6} lg={8} xl={5}>
               <Form.Item
               label={<p className=" text-left m-0">Compliance With IEC61439</p>}
               name= "compliance_with_IEC61439"
@@ -229,7 +229,7 @@ export default function CreatePanelsettings({current_panel}) {
         </Select>
 
                   </Form.Item>
-              </Col> */}
+              </Col>
 
          
 
@@ -247,7 +247,7 @@ export default function CreatePanelsettings({current_panel}) {
         >
           <Option value="IP4x/43">IP4x/43</Option>
           <Option value="IP54/55">IP54/55</Option>
-        </Select>
+          </Select>
 
                   </Form.Item>
               </Col>
@@ -507,7 +507,7 @@ export default function CreatePanelsettings({current_panel}) {
             
 
             >
-          <Option value="Z">Aluzn</Option>
+          {/* <Option value="Z">Aluzn</Option> */}
           <Option value="G">GI</Option>
           <Option value="C">CRCA</Option>
 
@@ -547,11 +547,11 @@ export default function CreatePanelsettings({current_panel}) {
 
             <Col>
 
-            <Tooltip  placement="topLeft" title= {(current_panel?.panel_type === null || current_panel?.request !== "null" ) ?'Save Panel Settings to Enable Configure Now':'To Design Panel' }  arrowPointAtCenter>
+            <Tooltip  placement="topLeft" title= {current_panel?.panel_type === null  ?'Save Panel Settings to Enable Configure Now': current_panel?.request == "null" ? "To design The Panel" : "Disabled as Panel has been Submitted" }  arrowPointAtCenter>
             <Button type="primary" htmlType="submit"
             disabled={current_panel?.panel_type === null || current_panel?.request !== "null" }
             block style={{ fontSize: '14px', width:'10rem' , }}>
-            <a  href={`https://modsimcanvas.web.app/panel/${current_panel?._id}`}> Configure Now</a>
+            <a href={`https://modsimcanvas.web.app/panel/${current_panel?._id}`}> Configure Now</a>
             </Button>
             </Tooltip>
 
@@ -559,7 +559,7 @@ export default function CreatePanelsettings({current_panel}) {
             </Col>
 
             </Row>
-          </Col>
+            </Col>
            </div>
               </div>
 

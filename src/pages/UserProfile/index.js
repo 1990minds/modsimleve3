@@ -165,7 +165,7 @@ block style={{ fontSize: '14px' }}>
    <div class="profile-user-page card">
       <div class="img-user-profile">
         <img class="profile-bgHome" src={Bgimage} />
-        <img class="avatar" src={user?.company?.profile_image} alt="jofpin"/>
+        <img class="avatar" src={user?.company?.profile_image} alt="jofpin"  style={{ height: '100px', width:'180px'}}/>
            </div>
            {/* <Link to="/auth/dashboard">
           <button>Back Home</button></Link> */}

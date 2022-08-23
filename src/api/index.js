@@ -6,6 +6,7 @@ import productReducer from './product'
 import panelReducer from './panel'
 import ticketReducer from './tickets';
 import companyReducer from './company'
+import broadcastReducer from './broadcast';
 
 
 export default configureStore({
@@ -16,6 +17,7 @@ export default configureStore({
      customers:customersReducer,
      project:projectReducer,
      product:productReducer,
+     broadcast:broadcastReducer,
      panel:panelReducer,
     tickets:ticketReducer,
     company:companyReducer,
