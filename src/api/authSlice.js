@@ -85,11 +85,20 @@ export const {getlogin, getFilter, getUserProfile, getAuthenticate, isAuthentica
 export const authenticateSelector = state => state.auth
 export default authenticateSlice.reducer
 
-export const logOut = () => async dispatch =>{
+
+
+export const logOut = (id) => async dispatch =>{
     // const key = 'logOut';
 
+
+console.log(id)
+
     try {
-               
+
+      const {data} = await axios.post(keyUri.BACKEND_URI + '/userlogout', id, config)
+      
+      
+
         localStorage.removeItem('token');
         window.location.href='/';
 
@@ -127,6 +136,9 @@ export const fetchlogin = (logindata) => async dispatch =>{
 }
 
 
+
+
+
 export const fetchuserProfile = (token) => async dispatch =>{
 
   const loginConfig  = {
@@ -157,7 +169,7 @@ export const fetchuserProfile = (token) => async dispatch =>{
 
 
 export const fethFilter = (value, filter) => async dispatch =>{
-  let a = []
+let a = []
 console.log(value);
 if(!value ){
  return dispatch(getFilter(a))
@@ -175,6 +187,7 @@ if(!value ){
   }
 
 }
+
 
 
 export const checkAuth = () => async dispatch =>{

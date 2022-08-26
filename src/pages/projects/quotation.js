@@ -9,8 +9,11 @@ import {authenticateSelector} from '../../api/authSlice';
 import {useParams} from 'react-router-dom'
 import Item from 'antd/lib/list/Item';
 import { PercentageOutlined } from '@ant-design/icons';
+import { getCurrencyList } from 'currency-map-country';
 const { TextArea } = Input;
 const { Option } = Select;
+
+
 
 
 export default function Quotation({current_project,cancel}) {
@@ -27,6 +30,10 @@ export default function Quotation({current_project,cancel}) {
   const [validityYear, setYear]=useState(null)
   const [validityMonth, setMonth]=useState(null)
   
+  console.log(getCurrencyList())
+
+
+
 
   console.log(current_project);
 
@@ -45,6 +52,12 @@ export default function Quotation({current_project,cancel}) {
         note:values.note,
         electrical_components:values.electrical_components,
         discount:values.discount,
+
+        // native_currency:values.native_currency,
+        // native_value:values.native_value,
+        customer_currency:values.customer_currency,
+        customer_value:values.customer_value
+
     //  companyId:user?.company?._id,
     //  user:user?._id,
       
@@ -59,6 +72,7 @@ console.log(quotationdata)
     };
 
            const [form] = Form.useForm();
+           const [ country , setCountry ] = useState([])
 
            const onChange = (value)=> {
              console.log(`selected ${value}`)
@@ -68,6 +82,23 @@ console.log(quotationdata)
 
     const onFinishFailed = (errorInfo) => {
     console.log('Failed:', errorInfo);
+  };
+
+
+  useEffect(()=>{
+    setCountry( getCurrencyList() )        
+    }, [])
+
+
+    console.log(country)
+     
+
+//   const onSelectedCurrency = currencyAbbrev => {
+//     console.log(`Selected ${currencyAbbrev}`)
+// }
+
+  const onSearch = (value) => {
+    console.log('search:', value);
   };
 
 
@@ -139,13 +170,70 @@ console.log(quotationdata)
           </Form.Item>
   
                 </Col>
-                </Row>
+                </Row>  
 
-  
 
-       
-      <Row>
+              <Row gutter={16}>
 
+                <Col span={12}>
+
+              <Form.Item label="Customer's Currency & Value">
+              <Input.Group compact>
+              <Form.Item
+                  name='customer_currency'
+                  noStyle
+                  rules={[
+                    {
+                      required: true,
+                      message: 'Customers Currency required',
+                    },
+                  ]}
+                
+                >
+                  <Select
+                    optionFilterProp="children"
+                    onSearch={onSearch}                 
+                    showSearch 
+                    style={{ width: '70%', }}
+                    prefix={<PercentageOutlined className="site-form-item-icon" />}     
+                    placeholder="Select Your Currency">
+                    { 
+                    country?.map( (item, i)=>(
+                    <option key={i} value={item?.name}> { item?.name}</option>
+                      ))
+                  }
+                  </Select> 
+                  </Form.Item>
+
+
+            
+                    <Form.Item
+                      name='customer_value'
+                      noStyle
+                      
+                    
+                      prefix={<PercentageOutlined className="site-form-item-icon" />} 
+                    >
+                      <Tooltip placement="topLeft" title="Mention Currency Value w.r.t 1INR, eg : (1INR = 0.031$)" >
+                      <Input
+                        style={{ width: '30%', padding:'7px'}}
+                        placeholder="Input Value"
+                      />
+                      </Tooltip>
+                    </Form.Item>
+                    
+                    </Input.Group>
+                    </Form.Item>
+                    
+                    </Col>
+
+
+                    </Row>
+
+
+
+
+            <Row>
             <Col span={24}>
                 <Form.Item
                   name="terms_conditions"
@@ -313,21 +401,80 @@ block style={{ fontSize: '14px', width:'20rem' }}>
 
       </Row>
 
+
+{/* <Row gutter={16}>
+
+<Col span={8}>
+         <Form.Item label="Native Currency & value">
+        <Input.Group compact>
+          <Form.Item
+            name='native_currency'
+            noStyle
+            rules={[
+              {
+                required: true,
+                message: 'currency is required',
+              },
+            ]}
+           
+          >
+            <Select
+                  optionFilterProp="children"
+                  onSearch={onSearch}                 
+                  showSearch 
+                  style={{ width: '60%', }}
+                  prefix={<PercentageOutlined className="site-form-item-icon" />}     
+                  placeholder="Select Your Currency">
+                  { 
+                  country?.map( (item, i)=>(
+                  <option key={i} value={item?.abbr}> { item?.name}</option>
+                    ))
+                }
+                  </Select> 
+          </Form.Item>
+
+
+          <Form.Item
+            name='native_value'
+            noStyle
+            rules={[
+              {
+                required: true,
+                message: 'Native Value is Required',
+              },
+            ]}
+            
+          >
+            <Input
+              style={{ width: '40%', }}
+              placeholder="Native Value"
+              
+            />
+          </Form.Item>
+        </Input.Group>
+      </Form.Item>
+      </Col>
+
+          </Row> */}
+
+
+
+
       <div style={{ display:'flex', justifyContent:'space-between', alignItems:'center', paddingTop: '20px'}}>
       <div>
       <Button type="secondary" block style={{ fontSize: '14px', width:'20rem' }}
-    onClick={() => setIsMenuOpen(false)}
-    >Back</Button>
-</div>
-<div>
-<Button type="primary" htmlType="submit"
-onClick={() => {setVisible(false); enterLoading(0);}}
-block style={{ fontSize: '14px', width:'20rem' }}
-loading={loadings[0]} 
->
+      onClick={() => setIsMenuOpen(false)}
+       >Back</Button>
+      </div>
+      <div>
+      <Button type="primary" htmlType="submit"
+      onClick={() => {setVisible(false); enterLoading(0);}}
+      block style={{ fontSize: '14px', width:'20rem' }}
+      loading={loadings[0]} 
+      >
       Download Files
     </Button>
-</div>
+    </div>
     </div>
     </div>
     {/* } */}

@@ -233,7 +233,7 @@ export default function EditProject({current_project,cancel}) {
             allowClear
             >
             <Option value="In-Progress">In-Progress</Option>
-            <Option value="Order Own">Order Own</Option>
+            <Option value="Order Won">Order Won</Option>
             <Option value="Order Lost">Order Lost</Option>
             </Select>
 
