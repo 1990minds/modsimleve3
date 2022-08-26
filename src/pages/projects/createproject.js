@@ -147,8 +147,7 @@ export default function CreateProject({cancel}) {
              name="project_coordiantor"
             //  rules={[{ required: true, message: 'Please select Project Coordinator!' }]}
              >
-             <Input/>
-             
+             <Input/>            
              </Form.Item>
              </Col>
 
@@ -212,7 +211,7 @@ export default function CreateProject({cancel}) {
             allowClear
             >
             <Option value="In-Progress">In-Progress</Option>
-            <Option value="Order Own">Order Own</Option>
+            <Option value="Order Won">Order Won</Option>
             <Option value="Order Lost">Order Lost</Option>
             </Select>
 

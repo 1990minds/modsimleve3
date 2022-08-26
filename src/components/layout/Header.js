@@ -429,7 +429,7 @@ function Header({
           <ButtonContainer>
 
           <Link to="/sign-in"
-          className="btn-sign-in" onClick={()=>{  dispatch(logOut()) }} type="link" danger>
+          className="btn-sign-in" onClick={()=>{  dispatch(logOut(user)) }} type="link" danger>
             {/* {profile} */}
             <span>Sign Out</span>
           </Link>

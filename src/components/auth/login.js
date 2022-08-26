@@ -72,6 +72,7 @@ const profile = [
     ></path>
   </svg>,
 ];
+
 const signup = [
   <svg
     data-v-4ebdc598=""
@@ -91,6 +92,8 @@ const signup = [
     ></path>
   </svg>,
 ];
+
+
 const signin = [
   <svg
     xmlns="http://www.w3.org/2000/svg"
@@ -104,6 +107,9 @@ const signin = [
     />
   </svg>,
 ];
+
+
+
 export default function Login({history}) {
 
     
@@ -112,6 +118,7 @@ export default function Login({history}) {
     
         const onFinish = (values) => {
             console.log('Success:', values);
+   
     
             dispatch(fetchlogin(values))
     
@@ -218,7 +225,7 @@ export default function Login({history}) {
                     <Switch defaultChecked onChange={onChange} />
                     &nbsp;&nbsp;Remember me 
                   </Form.Item> */}
-<br/>
+                 <br/>
                   <Form.Item>
                     <Button
                       type="primary"
