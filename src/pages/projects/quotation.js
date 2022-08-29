@@ -178,23 +178,24 @@ console.log(quotationdata)
                 <Col span={12}>
 
               <Form.Item label="Customer's Currency & Value">
-              <Input.Group compact>
+              <div style={{'display':'flex', 'align-items': 'flex-start' }}>
+              <div style={{width:'100%'}} >
               <Form.Item
-                  name='customer_currency'
-                  noStyle
-                  rules={[
-                    {
-                      required: true,
-                      message: 'Customers Currency required',
-                    },
-                  ]}
+               name='customer_currency'
+               noStyle
+               rules={[
+               {
+               required: true,
+               message: 'Customers Currency required',
+               },
+               ]}
                 
                 >
                   <Select
                     optionFilterProp="children"
                     onSearch={onSearch}                 
                     showSearch 
-                    style={{ width: '70%', }}
+                    style={{ width: '100%', }}
                     prefix={<PercentageOutlined className="site-form-item-icon" />}     
                     placeholder="Select Your Currency">
                     { 
@@ -204,37 +205,33 @@ console.log(quotationdata)
                   }
                   </Select> 
                   </Form.Item>
+                  </div>
 
+                  
 
-            
+                    <Tooltip placement="topLeft" title="Mention Currency Value w.r.t 1INR, eg : (1INR = 0.031$)">
+                    <div style={{width:'60%'}}>
                     <Form.Item
-                      name='customer_value'
-                      noStyle
-                      
-                    
-                      prefix={<PercentageOutlined className="site-form-item-icon" />} 
+                    name='customer_value'
+                    noStyle                      
+                    prefix={<PercentageOutlined className="site-form-item-icon" />} 
                     >
-                      <Tooltip placement="topLeft" title="Mention Currency Value w.r.t 1INR, eg : (1INR = 0.031$)" >
-                      <Input
-                        style={{ width: '30%', padding:'7px'}}
-                        placeholder="Input Value"
-                      />
-                      </Tooltip>
-                    </Form.Item>
-                    
-                    </Input.Group>
-                    </Form.Item>
-                    
+                    <Input
+                    style={{ width: '100%', padding:'7px'}}
+                    placeholder="Input Value"
+                    />                  
+                    </Form.Item>                                     
+                    </div>
+                    </Tooltip> 
+                    </div>
+                    </Form.Item>                   
                     </Col>
-
-
                     </Row>
 
 
 
-
-            <Row>
-            <Col span={24}>
+                <Row>
+                <Col span={24}>
                 <Form.Item
                   name="terms_conditions"
                   label="Terms & Conditions"

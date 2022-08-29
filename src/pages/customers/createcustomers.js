@@ -234,16 +234,16 @@ export default function CreateCustomer({cancel}) {
              name="phone_number"
              >
               <Input prefix={statesnumber} type='number' style={{ padding: '0px 2px 0px 12px', borderRadius: '8px' }} />
-    </Form.Item>
+              </Form.Item>
               </Col>
               <Col span={12}>
               <Form.Item
-          label={<p className="  w-36 text-left m-0">Email</p>}
-          name="email"
-          rules={[{
-            type: 'email',
-            message: 'The input is not valid E-mail!',
-          },
+              label={<p className="  w-36 text-left m-0">Email</p>}
+              name="email"
+              rules={[{
+              type: 'email',
+              message: 'The input is not valid E-mail!',
+              },
           {
             required: true,
             message: 'Please input your E-mail!',

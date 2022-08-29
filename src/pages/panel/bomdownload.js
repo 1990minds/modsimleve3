@@ -15,13 +15,12 @@ export default function ExportExcel({data, panel}) {
 
         console.log({panel})
         console.log({bom});
-        useEffect(() => {
-         let bomArray = _.flatten(data?.map(item =>{
-            return item.data
-        }))
-        setBom(bomArray) 
 
-        const total = bomArray.reduce((previousValue, currentValue) => {
+        useEffect(() => {
+
+        setBom(data) 
+
+        const total = data.reduce((previousValue, currentValue) => {
             return previousValue + currentValue.Qty * 200
             },0);
         setTotal(total)
@@ -102,8 +101,8 @@ export default function ExportExcel({data, panel}) {
                                             <td className='text'>{item.Ordering_Code}</td>
                                             <td className='text'>{item.Item_Description}</td>
                                             <td className='text'>{item.Nature_of_Component}</td>
-                                            <td>{item.Width ? item.Width : 'NA'}</td>
-                                            <td>{item.Height ? item.Height : 'NA'}</td>
+                                            <td>{item.Width ? (item.code ==='TRI' || item.code=='SAK' || item.code == 'SAC') ? 'NA':item.Width : 'NA'}</td>
+                                            <td>{item.Height ? (item.code ==='TRI' || item.code=='SAK' || item.code == 'SAC') ? 'NA':item.Height : 'NA'}</td>
                                             <td>{item.Qty}</td>
                                             <td className='text'>{item.UOM}</td>
                                             <td>{item.Qty*panel?.panel_quntity}</td>

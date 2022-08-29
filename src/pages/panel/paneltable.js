@@ -596,7 +596,7 @@ width="15" height="15" viewBox="0 0 24 24" stroke-width="3" stroke="#2C3E50" fil
                </p>
                <p style={{textAlign:"center"}}>
                <Button type="primary" onClick={()=>setBOMModal(false)} >
-                <ExportExcel data={current_panel?.bom} panel={current_panel}  />
+                <ExportExcel data={current_panel?.detailedBom} panel={current_panel}  />
                 </Button>
                 </p>
               {/* <ExportExcel data={current_panel?.bom} panel={current_panel}  onClick={()=>setBOMModal(false)}/> */}
