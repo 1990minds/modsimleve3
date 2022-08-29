@@ -88,22 +88,13 @@ export default authenticateSlice.reducer
 
 
 export const logOut = (id) => async dispatch =>{
-    // const key = 'logOut';
-
 
 console.log(id)
-
     try {
-
-      const {data} = await axios.post(keyUri.BACKEND_URI + '/userlogout', id, config)
-      
-      
-
+     const {data} = await axios.post(keyUri.BACKEND_URI + '/userlogout', id, config)
         localStorage.removeItem('token');
-        window.location.href='/';
-
+        window.location.href='/'
     } catch (error) {
-
         dispatch(isAuthenticateError())
 
     }
@@ -115,14 +106,9 @@ export const fetchlogin = (logindata) => async dispatch =>{
     dispatch(getlogin())
     message.loading({ content: 'Loading...', key })
 
-    try {
-        
-     
+    try {    
         const {data} = await axios.post(keyUri.BACKEND_URI + '/userAuth', logindata, config)
-       
-
         dispatch(getAuthenticate(data))
-
         localStorage.setItem('token', data.token )
         data &&  message.success({ content: data.msg, key, duration: 2 });
 
@@ -146,26 +132,21 @@ export const fetchuserProfile = (token) => async dispatch =>{
       Authorization: `Bearer ${token}`,
     },
   }
-
   dispatch(getlogin())
- 
-
-
   try {
 
     const {data} = await axios.get(keyUri.BACKEND_URI + '/userProfile',  loginConfig)
-
     dispatch(getUserProfile(data))
 
-  } catch (error) {
-
- 
-          error && message.error('Authentication Failure');
-          dispatch(logOut())
+  } catch (error) { 
+    error && message.error('Authentication Failure');
+    dispatch(logOut())
 
 
   }
 }
+
+
 
 
 export const fethFilter = (value, filter) => async dispatch =>{
@@ -173,16 +154,13 @@ let a = []
 console.log(value);
 if(!value ){
  return dispatch(getFilter(a))
-
 }
 
   try {
       const {data} = await axios.get(keyUri.BACKEND_URI + `/${value}?search=${filter}`, config)
       dispatch(getFilter(data))
 
-
   } catch (error) {
-
       dispatch(isAuthenticateError())
   }
 
@@ -195,7 +173,6 @@ export const checkAuth = () => async dispatch =>{
   console.log('test');
 
   const token = localStorage.getItem('token')
-
   const loginConfig  = {
     headers: {
       Authorization: `Bearer ${token}`,
@@ -205,7 +182,6 @@ export const checkAuth = () => async dispatch =>{
   try {
 
     const {data} = await axios.get(keyUri.BACKEND_URI + '/userProfile',  loginConfig)
-
     dispatch(getUserProfile(data))
 
   } catch (error) {
