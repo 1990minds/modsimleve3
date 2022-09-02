@@ -50,6 +50,18 @@ export default function CreateProject({cancel}) {
        dispatch(createproject(data, user?.company?._id))
       
        };
+
+       useEffect(()=>{
+
+        form.setFieldsValue({
+          project_status:  'New'    });
+  
+       }, [])
+
+
+
+
+
   
        const onFinishFailed = (errorInfo) => {
        console.log('Failed:', errorInfo);
@@ -204,15 +216,17 @@ export default function CreateProject({cancel}) {
             name="project_status"
             rules={[{ required: true, message: 'Please Select Project Status!' }]}
             >
-                        <Select
+            <Select
             placeholder="Select Project Status"
             onChange={onChange}
             style={{ width: '100%' }}
             allowClear
+            defaultValue={"New"}
             >
-            <Option value="In-Progress">In-Progress</Option>
+            <Option value="New " disabled>New</Option> 
+            {/* <Option value="In-Progress">In-Progress</Option>
             <Option value="Order Won">Order Won</Option>
-            <Option value="Order Lost">Order Lost</Option>
+            <Option value="Order Lost">Order Lost</Option> */}
             </Select>
 
             </Form.Item>

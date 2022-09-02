@@ -125,26 +125,26 @@ export const fetchlogin = (logindata) => async dispatch =>{
 
 
 
-export const fetchuserProfile = (token) => async dispatch =>{
+// export const fetchuserProfile = (token) => async dispatch =>{
 
-  const loginConfig  = {
-    headers: {
-      Authorization: `Bearer ${token}`,
-    },
-  }
-  dispatch(getlogin())
-  try {
+//   const loginConfig  = {
+//     headers: {
+//       Authorization: `Bearer ${token}`,
+//     },
+//   }
+//   dispatch(getlogin())
+//   try {
 
-    const {data} = await axios.get(keyUri.BACKEND_URI + '/userProfile',  loginConfig)
-    dispatch(getUserProfile(data))
+//     const {data} = await axios.get(keyUri.BACKEND_URI + '/userProfile',  loginConfig)
+//     dispatch(getUserProfile(data))
 
-  } catch (error) { 
-    error && message.error('Authentication Failure');
-    dispatch(logOut())
+//   } catch (error) { 
+//     error && message.error('Authentication Failure');
+//     // dispatch(logOut())
 
 
-  }
-}
+//   }
+// }
 
 
 

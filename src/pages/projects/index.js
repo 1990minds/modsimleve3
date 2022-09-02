@@ -40,11 +40,6 @@ export default function Project() {
      useEffect(()=>{
      dispatch(fetchAllcompanyProject(user?.company?._id))            
      }, [user]) 
-     const handleCancel = () => {
-       SetProjectAddVisible(false)
-     };
-
-     console.log(filter);
 
 
      useEffect(()=>{
@@ -56,12 +51,9 @@ export default function Project() {
      setLoading(false)
      }, [dispatch, debouncedText])
 
-     console.log(filter);
 
 
-     useEffect(()=>{
-     dispatch(fetchAllcompanyProject())
-      }, [dispatch])
+    
 
 
       useEffect(()=>{     
