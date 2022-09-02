@@ -25,9 +25,12 @@ export default function EditProject({current_project,cancel}) {
     const dispatch = useDispatch();
     const { user } = useSelector(authenticateSelector) 
     console.log(user);
+    const [ status , setStatus ] = useState(null)
+
 
     useEffect(()=>{
-  
+
+        setStatus(current_project?.project_status)
         form.setFieldsValue({
           project_location:current_project &&  current_project. project_location,
           email:current_project && current_project.email,
@@ -232,9 +235,9 @@ export default function EditProject({current_project,cancel}) {
             style={{ width: '100%' }}
             allowClear
             >
-            <Option value="In-Progress">In-Progress</Option>
-            <Option value="Order Won">Order Won</Option>
-            <Option value="Order Lost">Order Lost</Option>
+            {( status === "New" || status === "In-Progress") && <Option value="In-Progress">In-Progress</Option>}
+            {( status === "New" || status === "In-Progress"  ||  status === "Order Won") && <Option value="Order Won">Order Won</Option>}
+            {( status === "New" || status === "In-Progress" || status === "Order Lost") && <Option value="Order Lost">Order Lost</Option>}
             </Select>
 
             </Form.Item>
