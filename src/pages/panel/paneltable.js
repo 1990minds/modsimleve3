@@ -407,7 +407,7 @@ onConfirm={(data)=>confirmRequestdwg(data, id)}
 onCancel={cancelRequest}
 okText="Yes"
 cancelText="No"
-disabled={id?.requestdwg === "send"? false : true}
+disabled={id?.requestdwg === "null"? true : false}
 >
 
 <Tooltip placement="topLeft" title={id?.requestdwg === 'null' ? " Enabled only when Drawing is generated" : id?.requestdwg === 'send' ? " Send Full Drawing request": id?.requestdwg === 'pending' ? "Request Drawing please wait till processed": " Request of Drawing mailed succesfully"}>
@@ -428,12 +428,10 @@ width="15" height="15" viewBox="0 0 24 24" stroke-width="3" stroke="#2C3E50" fil
 </svg>
 </Tooltip>
   </Popconfirm>
-      }
-         
+      }       
+      </Space>
 
-            </Space>
-
-            </a>
+      </a>
         ),
       },
 

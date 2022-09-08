@@ -39,23 +39,26 @@ export default function DuplicatePanel({current_panel,project_id,product_id,canc
   
           const onFinish = (values) => {
             
-            let data = JSON.parse(JSON.stringify(current_panel))
-                data.panel_name=values.repanel_name
-                data.rated_voltage=values.rated_voltage
-                data.ambient_temperature=values.ambient_temperature
-                data.busbar_material=values.busbar_material
-                data.panel_quntity=values.panel_quntity
-                data._id=null
-                data.updatedAt=null
-                data.createdAt=null
-                data.request="null"
-                data.requestdwg="null"
                 
-
-          dispatch(duplicatepanel( data,{id:product_id,project:project_id}))
-          form.resetFields()
-          cancel()
-           };
+            const data = {
+                  panel_name : values.repanel_name,
+                  rated_voltage : values.rated_voltage,
+                  ambient_temperature : values.ambient_temperature,
+                  busbar_material : values.busbar_material,
+                  panel_quntity : values.panel_quntity,
+                  _id : null,
+                  updatedAt : null,
+                  createdAt : null,
+                  request : "null",
+                  requestdwg : "null",
+                  old_PanelId : current_panel._id
+            }
+  
+            dispatch(duplicatepanel( data,{id:product_id,project:project_id}))
+            form.resetFields()
+            cancel()
+            console.log(data);
+             };
 
            const [form] = Form.useForm();
 
