@@ -251,11 +251,11 @@ export default function EditProject({current_project,cancel}) {
 
 
 
-<Button type="primary" htmlType="submit"
-onClick={() => setVisible(false)}
-block style={{ fontSize: '14px' }}>
-      Submit
-    </Button>
+          <Button type="primary" htmlType="submit"
+          onClick={() => setVisible(false)}
+          block style={{ fontSize: '14px' }}>
+          Submit
+          </Button>
           </Form>
         
         

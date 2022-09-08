@@ -205,7 +205,7 @@ export default function CreatePanelsettings({current_panel}) {
                 allowClear
               >
                 <Option value="single front">Single Front</Option>
-                <Option value="double front">Double Front</Option>
+                {/* <Option value="double front">Double Front</Option> */}
               </Select>
 
                   </Form.Item>
@@ -294,7 +294,7 @@ export default function CreatePanelsettings({current_panel}) {
 
         </Select>
 
-                  </Form.Item>
+             </Form.Item>
               </Col>
 
               
