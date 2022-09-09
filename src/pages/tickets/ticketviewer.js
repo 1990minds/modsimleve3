@@ -6,7 +6,6 @@ import {useParams} from 'react-router-dom'
 import { useEffect, useState } from 'react'
 import { Col, Divider, Row, Card , Form , Button, Input , Image} from 'antd';
 import { Comment, Tooltip } from 'antd';
-import moment from 'moment'
 import Closemodel from './confirmclose'
 import { updatetickets } from '../../api/tickets';
 
@@ -37,16 +36,12 @@ const onFinish = (values) => {
   }
        dispatch(updatetickets(current_tickets._id,ticketdata))
        form.resetFields()
-      // console.log(ticketdata);
-      // console.log(current_tickets._id);
       };
 
   const [form] = Form.useForm();
   const {id}= useParams()
   const dispatch = useDispatch();
   const {all_tickets, current_tickets}=useSelector(ticketsSelector)
- 
-  console.log(current_tickets)
 
 
 
@@ -115,44 +110,12 @@ const onFinishFailed = (errorInfo) => {
         </p>
         
       }
-      // datetime={
-      //   <Tooltip title={moment().format('YYYY-MM-DD HH:mm:ss')}>
-      //     <span>{moment().fromNow()}</span>
-      //   </Tooltip>
-      // }
+    
     />
-    {/* <div  justify="space-around" align="end" style={{ paddingLeft:'10%', paddingRight: '10%', paddingTop:'5%', width: '100%' }}>
-    <Form layout="vertical" hideRequiredMark
-            
-            form={form}
-      
-            name="basic"
-            initialValues={{ remember: true }}
-            onFinish={onFinish}
-            onFinishFailed={onFinishFailed}
-          
-          >
-        <Form.Item
-                  name="comment"
-                  label="Submit Your Feedback"
-                  rules={[{ required: true, message: 'Please enter Company name' }]}
-                >
-    <Editor
-            onChange={handleChange}
-            submitting={submitting}
-            value={value}
-          />
-          </Form.Item>
-          </Form>
-          </div> */}
+  
     </Card>
     </Col>
-    {/* <Col flex="0 1 300px" justify="space-around" align="middle">
-    <Button  
-      htmlType="submit" style={{ backgroundColor: 'red', border: '1px solid red', color: 'white' }}>
-        Close Ticket
-      </Button>
-    </Col> */}
+  
     </Row>
 
     </Layout>

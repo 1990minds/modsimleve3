@@ -3,7 +3,6 @@ import React, {useState, useEffect} from 'react';
 import ReactHTMLTableToExcel from 'react-html-table-to-excel';
 import styled from 'styled-components'
 import { Button } from 'antd';
-import { DownloadOutlined  } from '@ant-design/icons';
 import _ from 'lodash'
 import moment from 'moment'
 
@@ -11,10 +10,6 @@ export default function ExportExcel({data, panel}) {
 
     const [bom, setBom] = useState([])
     const [total, setTotal] = useState(null)
-
-    // console.log({data});
-    // console.log({panel});
-    
     
 
     useEffect(() => {
@@ -63,16 +58,12 @@ export default function ExportExcel({data, panel}) {
                             <tr>
                                 <th colspan="2">Project Name</th>
                                 <td colspan="2">{panel?.project?.project_name}</td>
-                                {/* <th colspan="2">Rev No.</th>
-                                <td colspan="1"></td> */}
                                  <th colspan="2">Panel Quantity</th>
                                 <td colspan="1">{panel?.panel_quntity}</td>
                             </tr>
                             <tr>
                                 <th colspan="2">Project ID</th>
-                                <td colspan="2">{panel?.project?.project_id}</td>
-                                {/* <th colspan="2">Panel Quantity</th>
-                                <td colspan="1">{panel?.panel_quntity}</td> */}
+                                <td colspan="2">{panel?.project?.project_id}</td>                              
                                 <th colspan="3" rowSpan="3"></th>
                             </tr>
                             <tr>

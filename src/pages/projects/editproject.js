@@ -1,19 +1,13 @@
 import React, {useState,useEffect} from 'react'
 import {useDispatch, useSelector} from 'react-redux'
 import { Drawer, Form, Button, Col, Row, Input, Select, DatePicker, Space } from 'antd';
-import { PlusOutlined } from '@ant-design/icons';
 import { Divider } from 'antd';
-import { EyeInvisibleOutlined, EyeTwoTone } from '@ant-design/icons';
-import {updateproject, editProject, fetchOneProject, projectSelector,} from '../../api/project'
+import { editProject,} from '../../api/project'
 import { fetchAllcompanycustomers,customersSelector } from '../../api/customers';
 import {authenticateSelector} from '../../api/authSlice';
-import { fetchAllProject } from '../../api/project';
-import {createProject} from '../../api/project'
-import { Upload } from 'antd';
-import { UploadOutlined } from '@ant-design/icons';
 import countries from '../../global/data'
 import 'react-phone-number-input/style.css'
-import PhoneInput from 'react-phone-number-input'
+
 
 const { Option } = Select;
 
@@ -24,7 +18,6 @@ export default function EditProject({current_project,cancel}) {
   const { all_customers} = useSelector(customersSelector)  
     const dispatch = useDispatch();
     const { user } = useSelector(authenticateSelector) 
-    console.log(user);
     const [ status , setStatus ] = useState(null)
 
 
@@ -60,7 +53,7 @@ export default function EditProject({current_project,cancel}) {
         setStates(country.states)
 
         let contnumber = countries?.countries.find( item => item.country === value)
-    setStatesnumber(contnumber.code)
+        setStatesnumber(contnumber.code)
           }
     
               

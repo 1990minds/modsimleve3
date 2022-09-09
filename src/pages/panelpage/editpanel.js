@@ -1,16 +1,9 @@
 import React, {useState,useEffect} from 'react'
-import {useDispatch, useSelector} from 'react-redux'
-import { Drawer, Form, Button, Col, Row, Input, Select, DatePicker, Space,Descriptions } from 'antd';
-import { PlusOutlined } from '@ant-design/icons';
+import {useDispatch, } from 'react-redux'
+import { Form, Select,Descriptions } from 'antd';
 import { Divider } from 'antd';
-import { EyeInvisibleOutlined, EyeTwoTone } from '@ant-design/icons';
-import {updatePanel, fetchOnePanel, panelSelector,} from '../../api/panel'
-import {authenticateSelector} from '../../api/authSlice';
-import { fetchAllPanel } from '../../api/panel';
-import {createPanel} from '../../api/panel'
+import {updatePanel,} from '../../api/panel'
 import moment from 'moment';
-import {FaPanelAlt, FaLock} from 'react-icons/fa'
-import Editpanel from './editpanel';
 import {useParams} from 'react-router-dom'
 import styled from 'styled-components'
 
@@ -18,19 +11,7 @@ const { Option } = Select;
 
 export default function EditPanel({current_panel,}) {
   
-
-  console.log(current_panel)
-
-  const [loading, setLoading] = useState(false)   
-  
-  const { panel } = useSelector(authenticateSelector) 
   const dispatch = useDispatch();
-  const [validityYear, setYear]=useState(null)
-  const [validityMonth, setMonth]=useState(null)
-  
-
-  console.log(current_panel);
-
   const {id} = useParams()
      
 

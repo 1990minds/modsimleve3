@@ -29,20 +29,12 @@ export default function Quotation({current_project,cancel}) {
   const dispatch = useDispatch();
   const [validityYear, setYear]=useState(null)
   const [validityMonth, setMonth]=useState(null)
-  
-  console.log(getCurrencyList())
-
-
-
-
-  console.log(current_project);
-
   const {id} = useParams()
      
 
   const onFinish = (values) => {
     
-    console.log(values);
+   
     const quotationdata = {
         scope_supply:values.scope_supply,
         packing_forwarding:values.packing_forwarding,
@@ -62,7 +54,6 @@ export default function Quotation({current_project,cancel}) {
     //  user:user?._id,
       
    }
-console.log(quotationdata)
 
     dispatch(updateproject(current_project._id ,quotationdata ,current_project.company?._id,current_project.project_id))
     form.resetFields()
@@ -89,13 +80,6 @@ console.log(quotationdata)
     setCountry( getCurrencyList() )        
     }, [])
 
-
-    console.log(country)
-     
-
-//   const onSelectedCurrency = currencyAbbrev => {
-//     console.log(`Selected ${currencyAbbrev}`)
-// }
 
   const onSearch = (value) => {
     console.log('search:', value);
@@ -273,11 +257,7 @@ console.log(quotationdata)
 
 
 <div style={{ display:'flex', justifyContent:'right', alignItems:'right', paddingTop: '20px'}}>
-{/* <Button type="primary" htmlType="submit"
-onClick={() => setVisible(false)}
-block style={{ fontSize: '14px', width:'20rem' }}>
-      Download Files
-    </Button>  */}
+
     <Button type="primary" block style={{ fontSize: '14px', width:'20rem' }}
     onClick={() => setIsMenuOpen(true)}
     >Next</Button>
@@ -397,64 +377,6 @@ block style={{ fontSize: '14px', width:'20rem' }}>
       </Col>
 
       </Row>
-
-
-{/* <Row gutter={16}>
-
-<Col span={8}>
-         <Form.Item label="Native Currency & value">
-        <Input.Group compact>
-          <Form.Item
-            name='native_currency'
-            noStyle
-            rules={[
-              {
-                required: true,
-                message: 'currency is required',
-              },
-            ]}
-           
-          >
-            <Select
-                  optionFilterProp="children"
-                  onSearch={onSearch}                 
-                  showSearch 
-                  style={{ width: '60%', }}
-                  prefix={<PercentageOutlined className="site-form-item-icon" />}     
-                  placeholder="Select Your Currency">
-                  { 
-                  country?.map( (item, i)=>(
-                  <option key={i} value={item?.abbr}> { item?.name}</option>
-                    ))
-                }
-                  </Select> 
-          </Form.Item>
-
-
-          <Form.Item
-            name='native_value'
-            noStyle
-            rules={[
-              {
-                required: true,
-                message: 'Native Value is Required',
-              },
-            ]}
-            
-          >
-            <Input
-              style={{ width: '40%', }}
-              placeholder="Native Value"
-              
-            />
-          </Form.Item>
-        </Input.Group>
-      </Form.Item>
-      </Col>
-
-          </Row> */}
-
-
 
 
       <div style={{ display:'flex', justifyContent:'space-between', alignItems:'center', paddingTop: '20px'}}>

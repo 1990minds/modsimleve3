@@ -1,5 +1,4 @@
 import { FaRegTrashAlt, FaRegEdit } from 'react-icons/fa';
-import ModalForm from '../../global/model'
 import {
     Row,
     Col,
@@ -10,38 +9,18 @@ import {
     Drawer,
   } from "antd";
   import { useState } from "react";
-  import { ToTopOutlined } from "@ant-design/icons";
-  import { Link } from "react-router-dom";
   import Editcustomers from './editcustomers';
-  import { PlusOutlined } from '@ant-design/icons';
   import DeleteConfirm from '../../global/delete'
-//   import Createcustomer from "./createcustomer";
-  import { FileAddOutlined  } from '@ant-design/icons'
-  // Images
-  import face6 from "../../assets/images/face-6.jpeg";
-  import pencil from "../../assets/images/pencil.svg";
   import {useDispatch} from 'react-redux'
   import {deletecustomers} from '../../api/customers'
-  import styled from 'styled-components'
   import moment from 'moment';
 
   
   export default function CustomersTable({data,intialdata,loading}) {
 
-    const [visibleEdit, setEditModal] = useState(false);
+  
     const [current_customers, setcustomers] = useState(null);
-    
-    const [selectionType, setSelectionType] = useState('checkbox');
-
-
-    console.log({loading});
-  
-  
-  const [visibleLicense, setVisibleModal] = useState(false);
-  const [curr_company, setCompany] = useState(null);
-
-  
-
+    const [setModel, setEditModal] = useState(null);
   const dispatch = useDispatch()
 
   const confirm = (e, id) => {
@@ -187,11 +166,7 @@ import {
                 // title="Customer Table"
                 extra={
                   <>
-                    {/* <Createcustomer /> */}
-                    {/* <Radio.Group onChange={onChange} defaultValue="a">
-                      <Radio.Button value="a">All</Radio.Button>
-                      <Radio.Button value="b">ONLINE</Radio.Button>
-                    </Radio.Group> */}
+               
                   </>
                 }
               >
@@ -223,15 +198,3 @@ import {
     );
   }
   
-
-  // <div className="uploadfile pb-15 shadow-none">
-  //                 <Upload {...formProps}>
-  //                   <Button
-  //                     type="dashed"
-  //                     className="ant-full-box"
-  //                     icon={<ToTopOutlined />}
-  //                   >
-  //                     Click to Upload
-  //                   </Button>
-  //                 </Upload>
-  //               </div>

@@ -1,22 +1,19 @@
 import React, {useState,useEffect} from 'react'
 import {useDispatch, useSelector} from 'react-redux'
-import { Drawer, Form, Button, Col, Row, Input, Select, Tooltip , Space } from 'antd';
+import { Drawer, Form, Button, Col, Row, Input, Select, Tooltip , } from 'antd';
 import { PlusOutlined } from '@ant-design/icons';
 import { Divider } from 'antd';
-import {fetchAllproduct, productSelector, } from '../../api/product'
 import { fetchAllcompanycustomers,customersSelector } from '../../api/customers';
 import {authenticateSelector} from '../../api/authSlice';
 import {createproject} from '../../api/project'
-import { Upload } from 'antd';
-import { UploadOutlined } from '@ant-design/icons';
-import {useParams} from 'react-router-dom'
+
 
 const { Option } = Select;
 
  
 export default function CreateProject({cancel}) {
   
-       const [loading, setLoading] = useState(false)
+      
        const { user } = useSelector(authenticateSelector) 
        console.log(user);
        const { all_customers} = useSelector(customersSelector)  
@@ -177,19 +174,6 @@ export default function CreateProject({cancel}) {
 
         
            <Row gutter={16}>
-           {/* <Col span={12}>
-           <Form.Item
-            label={<p className="w-36 text-left m-0">Phone Number</p>}
-            name="phone_number"
-            rules={[{ message: 'required!' },
-            {min: 10},
-            {max:10},
-            {pattern:"[0-9]", message:"Only Numbers"}
-            ]}
-           >
-           <Input/>
-           </Form.Item>
-           </Col> */}
              
               <Col span={12}>
               <Form.Item
@@ -214,7 +198,7 @@ export default function CreateProject({cancel}) {
             <Form.Item 
             label={<p className="  w-36 text-left m-0">Project Status</p>}
             name="project_status"
-            rules={[{ required: true, message: 'Please Select Project Status!' }]}
+          
             >
             <Select
             placeholder="Select Project Status"

@@ -20,9 +20,9 @@ export default function EditCustomers({current_customers,cancel}) {
   
   const [ states , setStates ] = useState([])
   const [ statesnumber , setStatesnumber ] = useState('')
-    const dispatch = useDispatch();
-    const { user } = useSelector(authenticateSelector) 
-    console.log(user);
+  const dispatch = useDispatch();
+  const { user } = useSelector(authenticateSelector) 
+  
 
     useEffect(()=>{
   
@@ -44,7 +44,6 @@ export default function EditCustomers({current_customers,cancel}) {
           });
           }, [current_customers])
                
-          const [value, setValue] = useState()
           const onChange = (value)=> {
             console.log(`selected ${value}`)
         
@@ -220,21 +219,7 @@ export default function EditCustomers({current_customers,cancel}) {
               <Input style={{ padding: '0px 2px 0px 12px', borderRadius: '8px' }} />
     </Form.Item>
               </Col>
-            {/* <Col span={12}>
-              <Form.Item
-          label={<p className="w-36 text-left m-0">Phone Number</p>}
-          name="phone_number"
-          rules={[{ required: true ,message: 'required!' },
-          {pattern:"[0-9]", message:"Only Numbers"}
-          ]}
-        >
-         <PhoneInput
-      
-      value={value}
-      onChange={setValue}/>
-    
-        </Form.Item>
-              </Col> */}
+        
               <Col span={12}>
               <Form.Item
           label={<p className="  w-36 text-left m-0">Email</p>}
@@ -320,18 +305,8 @@ export default function EditCustomers({current_customers,cancel}) {
               
             </Row>
             <Row>
-
-          
-
-              </Row>
-
-
-
-
-
-
-
-        
+            </Row>
+    
             <Divider />
 <Button type="primary" htmlType="submit"
 onClick={() => setVisible(false)}

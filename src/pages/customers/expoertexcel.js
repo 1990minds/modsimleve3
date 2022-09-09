@@ -2,9 +2,7 @@ import { Button } from 'antd';
 import React from 'react'
 import ReactExport from "react-export-excel";
 import { DownloadOutlined  } from '@ant-design/icons';
-import moment from 'moment'
-import { render } from '@testing-library/react';
-import { Tooltip } from 'antd';
+
 
 const ExcelFile = ReactExport.ExcelFile;
 const ExcelSheet = ReactExport.ExcelFile.ExcelSheet;
@@ -12,7 +10,7 @@ const ExcelColumn = ReactExport.ExcelFile.ExcelColumn;
 
 
 export default function ExportExcel({data}) {
-    console.log(data);
+   
 
  
     return (
@@ -27,7 +25,6 @@ export default function ExportExcel({data}) {
         <ExcelSheet data={data} name="Customer" >
 
 
-         {/* <ExcelColumn label="sl_no" value={col => col?.sl_no ? col.sl_no: "null"}/>  */}
             <ExcelColumn label="customers_name" value={col => col?.customers_name ? col.customers_name: "null"}/> 
             <ExcelColumn label="phone_number" value={col => col?.phone_number ? col.phone_number: "null"}/> 
             <ExcelColumn label="address" value={col => col?.address ? col.address: "null"}/> 

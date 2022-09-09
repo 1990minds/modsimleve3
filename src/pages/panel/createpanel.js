@@ -1,25 +1,20 @@
 import React, {useState,useEffect} from 'react'
 import {useDispatch, useSelector} from 'react-redux'
-import { Drawer, Form, Button, Col, Row, Input, Select, Tooltip , Space,InputNumber } from 'antd';
+import { Drawer, Form, Button, Col, Row, Input, Select, Tooltip ,InputNumber } from 'antd';
 import { PlusOutlined } from '@ant-design/icons';
 import { Divider } from 'antd';
-import {fetchAllproduct, productSelector, } from '../../api/product'
 import { fetchAllcompanycustomers,customersSelector } from '../../api/customers';
 import {authenticateSelector} from '../../api/authSlice';
 import {createpanel} from '../../api/panel'
-import { Upload } from 'antd';
-import { UploadOutlined } from '@ant-design/icons';
-import {useParams} from 'react-router-dom'
-import moment from 'moment';
+
 
 const { Option } = Select;
 
 export default function CreatePanel({cancel,project_id,product_id}) {
   
  
-    const [loading, setLoading] = useState(false)
+    
     const { user } = useSelector(authenticateSelector) 
-    console.log(user);
     const { all_customers} = useSelector(customersSelector) 
     const dispatch = useDispatch();
     console.log({K:all_customers});
@@ -32,9 +27,6 @@ export default function CreatePanel({cancel,project_id,product_id}) {
 
       const onFinish = (values) => {
  
-    
-
-      console.log(values);
       const data = {
         panel_category:values.panel_category,
         rated_voltage:values.rated_voltage,
@@ -58,8 +50,6 @@ export default function CreatePanel({cancel,project_id,product_id}) {
           console.log('Failed:', errorInfo);
           setVisible(true);
         };
-        const handleChangeSelect = (value) =>{
-      }
 
       const onChange = (value)=> {
         console.log(`selected ${value}`)
@@ -78,25 +68,20 @@ export default function CreatePanel({cancel,project_id,product_id}) {
 
 
         const [form] = Form.useForm();
-
-        
-
         const { TextArea } = Input;
-
-            const [visible, setVisible] = useState(false);
-
-            const showDrawer = () => {
-              setVisible(true);
-            };
+        const [visible, setVisible] = useState(false);
+        const showDrawer = () => {
+        setVisible(true);
+        };
           
-            const onClose = () => {
-              setVisible(false);
-              form.resetFields()
-            };
+        const onClose = () => {
+        setVisible(false);
+        form.resetFields()
+        };
 
-            const onChange1 = (e) => {
-              console.log('Change:', e.target.value);
-            };
+       const onChange1 = (e) => {
+       console.log('Change:', e.target.value);
+       };
 
     return (
       <>
@@ -126,15 +111,16 @@ export default function CreatePanel({cancel,project_id,product_id}) {
               >
 
 
+
+
               {/* <Input showCount onChange={onChange1} maxLength={15}/>
               </Form.Item> */}
 
 
 
+
               <Input showCount onChange={onChange1} />
             </Form.Item>
-
-
               </Col>
 
 
@@ -145,7 +131,7 @@ export default function CreatePanel({cancel,project_id,product_id}) {
                 name="panel_category"
                 rules={[{ required: true, message: 'Please Select Panel category!' }]}
               >
-                              <Select
+                <Select
                 placeholder="Select Panel category"
                 onChange={onChangeOthers}
                 style={{ width: '100%' }}
@@ -162,30 +148,28 @@ export default function CreatePanel({cancel,project_id,product_id}) {
               </Select>
       
               </Form.Item>
+              </Col>
 
-                    </Col>
 
-                    { Others && <Row xs={2} sm={4} md={6} lg={8} xl={5}>
-          <Form.Item
+
+              { Others && <Row xs={2} sm={4} md={6} lg={8} xl={5}>
+              <Form.Item
                 
                 label={<p  style={{width:'100%',marginLeft:'10px'}}> Panel Category Type</p>}
                 name="category_type"
                 rules={[{ required: true, message: 'required!'}]}
               >
-      <Input style={{width:'330px',marginLeft:'10px'}} />
+              <Input style={{width:'330px',marginLeft:'10px'}} />
 
-          </Form.Item>
-          </Row>}
-
-
-                  </Row>
-
+              </Form.Item>
+              </Row>}
+              </Row>
+ 
                 
 
-                  <Row gutter={16}>
-                    <Col span={12}>
-
-                    <Form.Item 
+              <Row gutter={16}>
+              <Col span={12}>
+              <Form.Item 
                 label={<p className="  w-36 text-left m-0">Rated voltage</p>}
                 name="rated_voltage"
                 rules={[{ required: true, message: 'Please Select Rated Voltage!' }]}
@@ -200,77 +184,79 @@ export default function CreatePanel({cancel,project_id,product_id}) {
                 <Option value="440V">440V</Option>
               </Select>
 
-                      </Form.Item>
-                      </Col>
-                      <Col span={12}>
-                            <Form.Item
-                        label={<p className="w-36 text-left m-0">Ambient Temperature</p>}
-                        name="ambient_temperature"
-                        rules={[{ required: true, message: 'Please Input Ambient Temperature!' }]}
-                      >
-                                        <Select
-                        placeholder="Select Ambient Temperature"
-                        onChange={onChange}
-                        style={{ width: '100%' }}
-                        allowClear
-                      >
-                        <Option value="35°C">35℃ </Option>
-                        <Option value="40°C">40℃</Option>
-                        <Option value="45°C">45℃</Option>
-                        <Option value="50°C">50℃</Option>
+              </Form.Item>
+              </Col>
 
-                      </Select>
 
-                      </Form.Item>
-                            </Col>
-                          </Row>
 
-                          <Row gutter={16}>
-                            <Col span={12}>
-                            <Form.Item
-                        label={<p className="  w-36 text-left m-0">Busbar Material</p>}
-                        name="busbar_material"
-                        rules={[{ required: true, message: 'Please Input Busbar Material!' }]}
-                      >
-                                            <Select
-                        placeholder="Select Busbar Material"
-                        onChange={onChange}
-                        style={{ width: '100%' }}
-                        allowClear
-                      >
-                        <Option value="Copper">Copper</Option>
-                        <Option value="Aluminium">Aluminium</Option>
+              <Col span={12}>
+              <Form.Item
+              label={<p className="w-36 text-left m-0">Ambient Temperature</p>}
+              name="ambient_temperature"
+              rules={[{ required: true, message: 'Please Input Ambient Temperature!' }]}
+               >
+               <Select
+               placeholder="Select Ambient Temperature"
+              onChange={onChange}
+              style={{ width: '100%' }}
+              allowClear
+              >
+              <Option value="35°C">35℃ </Option>
+              <Option value="40°C">40℃</Option>
+              <Option value="45°C">45℃</Option>
+              <Option value="50°C">50℃</Option>
+              </Select>
+              </Form.Item>
+              </Col>
+              </Row>
 
-                      </Select>
 
-                        </Form.Item>
-                            </Col>
-                          </Row>
 
-                          <Row gutter={16}>
-                            <Col span={12}>
-                            <Form.Item
-                        label={<p className="  w-36 text-left m-0">Panel Quantity</p>}
-                        name="panel_quntity"
-                        rules={[{ required: true, message: 'Please Input Panel Quntity!' }]}
-                      >
-                            <InputNumber min={1} max={25} onChange={onChange} />
-                        </Form.Item>
+              <Row gutter={16}>
+              <Col span={12}>
+              <Form.Item
+              label={<p className="  w-36 text-left m-0">Busbar Material</p>}
+              name="busbar_material"
+              rules={[{ required: true, message: 'Please Input Busbar Material!' }]}
+              >
+              <Select
+              placeholder="Select Busbar Material"
+              onChange={onChange}
+              style={{ width: '100%' }}
+              allowClear
+              >
+              <Option value="Copper">Copper</Option>
+              <Option value="Aluminium">Aluminium</Option>
+              </Select>
+              </Form.Item>
+              </Col>
+              </Row>
 
-                            </Col>
-                          </Row>
+
+
+              <Row gutter={16}>
+              <Col span={12}>
+              <Form.Item
+              label={<p className="  w-36 text-left m-0">Panel Quantity</p>}
+              name="panel_quntity"
+              rules={[{ required: true, message: 'Please Input Panel Quntity!' }]}
+              >
+              <InputNumber min={1} max={25} onChange={onChange} />
+              </Form.Item>
+              </Col>
+              </Row>
               
+              <br/>
 
-                            <br/>
-                            <Divider />
-                            <Button type="primary" htmlType="submit"
-                            onClick={() => setVisible(false)}
-                            block style={{ fontSize: '14px' }}>
-                                  Submit
-                                </Button>
-                                      </Form>
-                                    </Drawer>
-                                  </>
-                                );
-                              }
+              <Divider />
+              <Button type="primary" htmlType="submit"
+              onClick={() => setVisible(false)}
+              block style={{ fontSize: '14px' }}>
+              Submit
+              </Button>
+              </Form>
+              </Drawer>
+              </>
+              );
+              }
 

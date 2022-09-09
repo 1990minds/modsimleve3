@@ -1,13 +1,10 @@
 import React, {useState,useEffect} from 'react'
 import {useDispatch, useSelector} from 'react-redux'
-import { Drawer, Form, Button, Col, Row, Input, Select, DatePicker, Space,InputNumber, message, Steps } from 'antd';
-import { PlusOutlined } from '@ant-design/icons';
-import { Divider } from 'antd';
-import { EyeInvisibleOutlined, EyeTwoTone } from '@ant-design/icons';
+import { Form, Col, Row, Input, Select, Steps } from 'antd';
 import {updateproject} from '../../api/project'
 import {authenticateSelector} from '../../api/authSlice';
 import {useParams} from 'react-router-dom'
-import Item from 'antd/lib/list/Item';
+
 
 const { TextArea } = Input;
 const { Option } = Select;
@@ -39,31 +36,18 @@ export default function Quotation({current_project,cancel}) {
   };
 
 
-  console.log(current_project)
-
-  const [loading, setLoading] = useState(false)   
-  
-  const { panel } = useSelector(authenticateSelector) 
   const dispatch = useDispatch();
-  const [validityYear, setYear]=useState(null)
-  const [validityMonth, setMonth]=useState(null)
-  
-
-  console.log(current_project);
-
   const {id} = useParams()
      
 
   const onFinish = (values) => {
-    
-    console.log(values);
     const quotationdata = {
         scope_supply:values.scope_supply,
         packing_forwarding:values.packing_forwarding,
         freight:values.freight,
-     insurance:values.insurance,
-     terms_conditions:values.terms_conditions,
-     note:values.note,
+        insurance:values.insurance,
+        terms_conditions:values.terms_conditions,
+        note:values.note,
     //  companyId:user?.company?._id,
     //  user:user?._id,
       
