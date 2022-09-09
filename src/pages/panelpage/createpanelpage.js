@@ -434,6 +434,11 @@ export default function CreatePanelsettings({current_panel}) {
           {/* <Option value="Z">Aluzn</Option> */}
           <Option value="G">GI</Option>
           {/* <Option value="C">CRCA</Option> */}
+
+
+         
+          
+
           </Select>
           </Form.Item> 
            </Col>
