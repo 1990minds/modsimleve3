@@ -1,7 +1,7 @@
 import React, {useState,useEffect} from 'react'
 import {useDispatch, useSelector} from 'react-redux'
-import { Drawer, Form, Button, Col, Row, Input, Select, DatePicker, Space,InputNumber } from 'antd';
-import {updatePanel, fetchOnePanel, panelSelector, duplicatepanel,} from '../../api/panel'
+import { Form, Button, Col, Row, Input, Select, InputNumber } from 'antd';
+import { duplicatepanel,} from '../../api/panel'
 import {authenticateSelector} from '../../api/authSlice';
 import {useParams} from 'react-router-dom'
 
@@ -10,22 +10,13 @@ const { Option } = Select;
 
 export default function DuplicatePanel({current_panel,project_id,product_id,cancel}) {
   
-
-  console.log(current_panel)
-
-  const [loading, setLoading] = useState(false)    
-  const { panel } = useSelector(authenticateSelector) 
+     
+  const [visible, setVisible]=useState(false)
   const dispatch = useDispatch();
-  const [validityYear, setYear]=useState(null)
-  const [validityMonth, setMonth]=useState(null)
-  
-
-  console.log(current_panel);
-
   const {id} = useParams()
      
 
-         useEffect(()=>{
+            useEffect(()=>{
             form.setFieldsValue({
                 panel_name:current_panel &&  current_panel.panel_name,
                 panel_category:current_panel && current_panel.panel_category,
@@ -34,13 +25,13 @@ export default function DuplicatePanel({current_panel,project_id,product_id,canc
                 rated_voltage:current_panel && current_panel.rated_voltage,
                 panel_quntity:current_panel && current_panel.panel_quntity,
                 });
-          }, [current_panel])
+            }, [current_panel])
                   
   
-          const onFinish = (values) => {
+   const onFinish = (values) => {
             
                 
-            const data = {
+             const data = {
                   panel_name : values.repanel_name,
                   rated_voltage : values.rated_voltage,
                   ambient_temperature : values.ambient_temperature,
@@ -52,12 +43,11 @@ export default function DuplicatePanel({current_panel,project_id,product_id,canc
                   request : "null",
                   requestdwg : "null",
                   old_PanelId : current_panel._id
-            }
+              }
   
             dispatch(duplicatepanel( data,{id:product_id,project:project_id}))
             form.resetFields()
-            cancel()
-            console.log(data);
+            cancel()          
              };
 
            const [form] = Form.useForm();
@@ -68,20 +58,11 @@ export default function DuplicatePanel({current_panel,project_id,product_id,canc
            }
         
 
-  const onFinishFailed = (errorInfo) => {
-    console.log('Failed:', errorInfo);
-  };
+            const onFinishFailed = (errorInfo) => {
+              console.log('Failed:', errorInfo);
+            };
 
 
-    const [visible, setVisible] = useState(false);
-
-    const showDrawer = () => {
-      setVisible(true);
-    };
-  
-    const onClose = () => {
-      setVisible(false);
-    };
 
     return (
       <>

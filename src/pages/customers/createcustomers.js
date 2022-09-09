@@ -1,21 +1,14 @@
 
 import { Drawer, Form, Button, Col, Row, Input, Select , Tooltip } from 'antd';
-import { InputNumber } from 'antd';
 import { PlusOutlined } from '@ant-design/icons';
 import { Divider } from 'antd';
 import {useDispatch, useSelector} from 'react-redux'
-import { EyeInvisibleOutlined, EyeTwoTone } from '@ant-design/icons';
 import {authenticateSelector} from '../../api/authSlice'
-import React, {useState,useEffect} from 'react'
-import { render } from '@testing-library/react';
-import { fetchAllcompanycustomers,customersSelector } from '../../api/customers';
-import Password from 'antd/lib/input/Password';
-import {FaCompanyAlt, FaLock} from 'react-icons/fa'
+import React, {useState,} from 'react'
 import {createcustomers} from '../../api/customers'
 import countries from '../../global/data'
 import 'react-phone-number-input/style.css'
-import PhoneInput from 'react-phone-number-input'
-import FormItem from 'antd/lib/form/FormItem';
+
 
 
 
@@ -29,7 +22,6 @@ const layout = {
 
 export default function CreateCustomer({cancel}) {
   
-  const [loading, setLoading] = useState(false)
     const { user } = useSelector(authenticateSelector) 
     console.log(user);
 
@@ -61,12 +53,7 @@ export default function CreateCustomer({cancel}) {
     let contnumber = countries?.countries.find( item => item.country === value)
     setStatesnumber(contnumber.code)
 
-// form.setFieldsValue({
-//   firstnumber:contnumber.code
-// })
  }
-
-  console.log(statesnumber);
       
       const onSearch = (value) => {
         console.log('search:', value);
@@ -96,7 +83,6 @@ export default function CreateCustomer({cancel}) {
         form.resetFields()
         cancel()
         
-        // console.log(data);
       };
 
    const onFinishFailed = (errorInfo) => {

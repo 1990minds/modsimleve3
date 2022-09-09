@@ -2,23 +2,14 @@ import React, { useEffect, useState } from 'react'
 import {
     Card,
     Form,
-    Row,
-    Button,
-    Col,
-    Divider,
-
-    Upload ,Image,
+  
   } from 'antd';
-import { Link } from 'react-router-dom';
+
 import styled from 'styled-components'
 import Layout from '../../components/layout/Main'
 import { authenticateSelector} from '../../api/authSlice'
-import { AntDesignOutlined } from '@ant-design/icons';
-import Loader from '../../pages/shared/loader';
 import storage from '../../pages/shared/storage'
 import {updateUser} from '../../api/user'
-import { Avatar } from 'antd';
-import {MdClose, MdDelete} from 'react-icons/md'
 import { LoadingOutlined,} from '@ant-design/icons';
 import {useDispatch, useSelector} from 'react-redux'
 import { PlusOutlined } from '@ant-design/icons';
@@ -29,8 +20,8 @@ export default function Edituser() {
     const {user} = useSelector(authenticateSelector)
     const [imgurl, setImgurl] = useState([])
     const [loading1, setLoading1] = useState(false)
-    const [fileList, setFileList] = useState([])
-    console.log(user)
+    
+   
     
 
 
@@ -44,13 +35,12 @@ export default function Edituser() {
           return snapshot.ref.getDownloadURL();
         })
         .then(url => {
-          console.log(url);
           setImgurl([...imgurl, url])
           setLoading1(false)
     
         })
         .catch(error => {
-          console.log(error);
+          
         });
     
       };
@@ -103,61 +93,6 @@ useEffect(() =>{
 
   return (
     <Layout>
-      {/* <Card style={{ width: '100%' }}>
-      <img src={Bgimage} alt="backgroundimage" style={{ height: '30vh', width: '100%'}} /> */}
-
- {/* <Form layout="vertical" hideRequiredMark
-           form={form}
-           name="basic"
-           initialValues={{ remember: false }}
-           onFinish={onFinish}
-           onFinishFailed={onFinishFailed}
-           autoComplete={false}
-           style={{ textAlign: 'center', display: 'flex', justifyContent: 'center' }}
-
-          >
-
-      
-  
-      <div style={{ width: '30%' }}>
-          <h1 style={{ fontSize: '1.5rem', fontWeight: '700'}}> Update Information</h1>
- 
-<Form.Item>
-  <Avatar
-
-
-        alt="example"
-        src={user?.company?.profile_image} 
-        size={{  xxl: 100 }}
-/>
-
-</Form.Item>
-
-
-      <Form.Item label="User Name" name="full_name" >
-        <Input disabled />
-      </Form.Item>
-      <Form.Item label="Email" name="email">
-        <Input disabled />
-      </Form.Item>
-      <Form.Item label="Phone Number" name="phone_number">
-        <Input disabled />
-      </Form.Item>
-      <Form.Item label="Department" name='department'>
-        <Input />
-      </Form.Item>
-    
-      <Form.Item>
-      <Divider />
-<Button type="primary" htmlType="submit"
-block style={{ fontSize: '14px' }}>
-      Update Profile
-    </Button>
-      </Form.Item>
-      </div>
-    
-  
-    </Form> */}
 
 <Card style={{ height: "100%" }}>
 <DatahWrap>
@@ -167,13 +102,10 @@ block style={{ fontSize: '14px' }}>
         <img class="profile-bgHome" src={Bgimage} />
         <img class="avatar" src={user?.company?.profile_image} alt="jofpin"  style={{ height: '100px', width:'180px'}}/>
            </div>
-           {/* <Link to="/auth/dashboard">
-          <button>Back Home</button></Link> */}
+           
           <div class="user-profile-data">
           <strong><h1 style={{ fontSize: '24px', fontWeight: '700', }}>Profile Name : {user?.full_name}</h1><br/></strong>
-            {/* <p style={{ fontSize: '16px', fontWeight: '700', }}>Number : {user?.phone_number}</p>
-            <p style={{ fontSize: '16px', fontWeight: '700', }}>Email ID : {user?.email}</p>
-            <p style={{ fontSize: '16px', fontWeight: '700', }}>Email ID : {user?.email}</p> */}
+         
           </div>
 
           <div class="description-profile">
@@ -185,13 +117,7 @@ block style={{ fontSize: '14px' }}>
           </p>
             
               </div> 
-           {/* <ul class="data-user" >
         
-        <li><a><strong>{user?.phone_number}</strong> <br/><span>Number</span></a></li>
-        <li><a><strong>{user?.email}</strong><br/><span>Email ID</span></a></li>
-        <li><a><strong>{user?.company?.company_name}</strong><br/><span>Company</span></a></li>
-       
-       </ul> */}
       </div>
     </div>
 </DatahWrap>

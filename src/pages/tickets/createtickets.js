@@ -9,7 +9,7 @@ import { LoadingOutlined,} from '@ant-design/icons';
 import {MdClose, MdDelete} from 'react-icons/md'
 import {createtickets} from '../../api/tickets'
 import {authenticateSelector} from '../../api/authSlice';
-import { fetchAlltickets, ticketsSelector} from '../../api/tickets';
+
 import { fetchAllCompany } from '../../api/company';
 
 
@@ -32,18 +32,16 @@ export default function Createtickets({cancel,}) {
     setVisible(false);
   };
 
-  const [loading, setLoading] = useState(false)
   const { user } = useSelector(authenticateSelector) 
   
-console.log(user);
+
 
     const dispatch = useDispatch();
      
   const [imgurl, setImgurl] = useState([])
   const [loading1, setLoading1] = useState(false)
   const [fileList, setFileList] = useState([])
-    const [validityYear, setYear]=useState(null)
-    const [validityMonth, setMonth]=useState(null)
+  
       
     const {id} = useParams()
 
@@ -67,7 +65,7 @@ console.log(user);
 
   
   const onFinish = (values) => {
-  console.log(values);
+  
       const data = {
         tickets:values.tickets,
         title:values.title,
@@ -94,13 +92,13 @@ console.log(user);
           return snapshot.ref.getDownloadURL();
         })
         .then(url => {
-          console.log(url);
+          
           setImgurl([...imgurl, url])
           setLoading1(false)
     
         })
         .catch(error => {
-          console.log(error);
+         
         });
     
       };

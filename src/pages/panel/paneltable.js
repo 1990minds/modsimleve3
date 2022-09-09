@@ -1,5 +1,4 @@
 
-import { Pagination } from 'antd';
 import {
     Row,
     Col,
@@ -21,7 +20,7 @@ import {
     import ModalForm from '../../global/model.js'
     import {authenticateSelector} from '../../api/authSlice';
     import { useHistory} from 'react-router-dom'
-    import {deletepanel,createDrawingPdf,createBomPdf, download,updatePanel } from '../../api/panel'
+    import {deletepanel,createDrawingPdf, } from '../../api/panel'
     import { createbomrequest} from '../../api/bomrequest'
     import  {createdrawingreq} from '../../api/drawingreq'
     import Editpanel from './editpanel';
@@ -35,9 +34,8 @@ import {
     const [confirmLoading, setConfirmLoading] = useState(false);
     const [modalText, setModalText] = useState('Content of the modal');
     const {user} = useSelector(authenticateSelector)
-    console.log(user);
     const showModal = () => {
-      setVisible(true);
+    setVisible(true);
     };
   
     const handleOk = () => {
@@ -48,28 +46,18 @@ import {
         setConfirmLoading(false);
       }, 2000);
     };
-  
-    const handleCancel = () => {
-      console.log('Clicked cancel button');
-      setVisible(false);
-    };
 
 
-    const [visibleEdit, setEditModal] = useState(false);
-    const [current_panel, setpanel] = useState(null);
-    const [ panel, setcurrentpanel] = useState(null);
+    const [current_panel, setpanel] = useState(null);   
     const [visibleDuplicate, setDuplicatetModal] = useState(false);
     const [visibleBOM, setBOMModal] = useState(false);
     const [item,setItem] =useState(null)
     const [downloadLoading,setDownloadLoading] =useState(false)
     const [visibleDrawing, setDrawingModal] = useState(false);
-    const [bomvisible, setBomVisible] = useState(false);
-    const [curr_company, setCompany] = useState(null);
     const [dwgpanel, setdwgpanel] = useState(null);
-    const [selectionType, setSelectionType] = useState('checkbox');
     let history = useHistory()
     
-        console.log(current_panel);
+       
     
             const confirm = (e, id) => {
             dispatch(deletepanel(id._id, {id:product_id,project:project_id}))          
@@ -130,47 +118,9 @@ import {
                     setItem(null)
                 },3000)
 
-              }
-
-              // const downloadExcel= (value)=> {
-  
-              //   setDownloadLoading(true)
-              //   setItem(value._id)
-              //   dispatch(download( value._id))
-                
-              //   setTimeout(()=>{
-              //     setDownloadLoading(false)
-              //       setItem(null)
-              //   },3000)
-
-              // }
-
-
-
-          //       const bomPdf= (value)=> {
-   
-          //         setDownloadLoading(true)
-          //         setItem(value._id)
-          //         dispatch(createBomPdf(value))
-                  
-          //         setTimeout(()=>{
-          //           setDownloadLoading(false)
-          //             setItem(null)
-          //  },3000)                     
-        
-          // }
-
-          // const handleClickBom = (e, isvisible, id) =>{
-          //   e.preventDefault()
-          //   setcurrentpanel(id)
-          //   setBomVisible(true);
-          //   }
-           
-
-        
+              }  
     
       const [page, setPage] = useState(1);
-  
       const [visible, setVisible] = useState(false);
       const confirmRequest = (values, id) => {
       const data={
@@ -188,46 +138,20 @@ import {
         const data={
           panel:id._id
         }
-        dispatch(createdrawingreq(data,{id:product_id,project:project_id}))
-
-       
+        dispatch(createdrawingreq(data,{id:product_id,project:project_id}))       
       }
-  
-
       const cancelRequest = (e) =>{
         return null
       }
   
 
   const dispatch = useDispatch()
-
   const handleMenuClick = e => {
     if (e.key === '3') {
       setVisible(false);
     }
   };
 
-  const handleVisibleChange = flag => {
-    setVisible(flag);
-  };
-
-
-  const onChangeBom = (e, id) => {
-    console.log(id);
-  console.log(`GrDocumentWindows to ${id}`);
-  const data={
-    request:id
-  }
-
-}
-
-  const onChangeDrawing = (e, id) => {
-    console.log(id);
-  console.log(`VscGitPullRequestCreate to ${id}`);
-  const data={
-    requestdwg:id
-  }    
-  };
 
 
   const menu = (
@@ -334,8 +258,6 @@ import {
 
           <Button disabled={id?.request === 'null' ? true : false} type="link" onClick={(e)=>handleClickBOM(e, id)}> 
             BOM
-          {/* <ExportExcel data={id?.bom} panel={id} />  */}
-
          </Button>
         </a>
         </div> 
@@ -471,17 +393,7 @@ width="15" height="15" viewBox="0 0 24 24" stroke-width="3" stroke="#2C3E50" fil
                         </DeleteConfirm>
                     </h5>
                     </Tooltip>
-                    <h5>
-                    {/* <Dropdown overlay={menu} onVisibleChange={handleVisibleChange} visible={visible}>
-                    <a onClick={e => e.preventDefault()}>
-                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-dots-vertical" width="20" height="20" viewBox="0 0 24 24" stroke-width="1.5" stroke="#000000" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                    <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
-                    <circle cx="12" cy="12" r="1" />
-                    <circle cx="12" cy="19" r="1" />
-                    <circle cx="12" cy="5" r="1" />
-                    </svg>
-                    </a>
-                    </Dropdown> */}
+                    <h5>            
                     </h5>
                   </Space>
               </a>
@@ -501,7 +413,6 @@ width="15" height="15" viewBox="0 0 24 24" stroke-width="3" stroke="#2C3E50" fil
       },
       getCheckboxProps: (record) => ({
         disabled: record.name === 'Disabled panel',
-        // Column configuration not to be checked
         name: record.name,
       }),
     };
@@ -514,14 +425,8 @@ width="15" height="15" viewBox="0 0 24 24" stroke-width="3" stroke="#2C3E50" fil
               <Card
                bordered={false}
                className="criclebox tablespace mb-24"
-               // title="Customer Table"
               extra={
                   <>
-                    {/* <Createcustomer /> */}
-                    {/* <Radio.Group onChange={onChange} defaultValue="a">
-                      <Radio.Button value="a">All</Radio.Button>
-                      <Radio.Button value="b">ONLINE</Radio.Button>
-                    </Radio.Group> */}
                   </>
                 }
               >
@@ -541,12 +446,12 @@ width="15" height="15" viewBox="0 0 24 24" stroke-width="3" stroke="#2C3E50" fil
                     className="ant-border-space "
                     style={{ cursor: 'pointer' }}
                     onRow={(record, rowIndex) => {
-                        return {
-                        onClick: event => {  history.push(`/auth/panelpage/${record._id}`) }, // click row
-                        };
-                        }}
+                    return {
+                    onClick: event => {  history.push(`/auth/panelpage/${record._id}`) }, // click row
+                    };
+                    }}
                   >
-                    </Table>
+                  </Table>
 
                     
              </div>
@@ -561,14 +466,6 @@ width="15" height="15" viewBox="0 0 24 24" stroke-width="3" stroke="#2C3E50" fil
 
         
         </Drawer>
-
-        {/* <Modal
-          title="Basic Modal" visible={isModalVisible} onOk={handleOk} onCancel={handleCancel}
-        >
-
-          <Duplicatepanel current_panel={current_panel} cancel={onClose1} project_id ={project_id} product_id={product_id}/>
-        </Modal> */}
-
         <ModalForm 
             isVisible={visibleDuplicate} 
             title="Duplicate Panel"
@@ -588,19 +485,16 @@ width="15" height="15" viewBox="0 0 24 24" stroke-width="3" stroke="#2C3E50" fil
             className=""
             width="20%"
             cancel={()=>setBOMModal(!visibleBOM)}>
-              <div>
-                <p style={{textAlign:"center"}}>
-                Click Here To Download The BOM 
-               </p>
-               <p style={{textAlign:"center"}}>
-               <Button type="primary" onClick={()=>setBOMModal(false)} >
-                <ExportExcel data={current_panel?.detailedBom} panel={current_panel}  />
-                </Button>
-                </p>
-              {/* <ExportExcel data={current_panel?.bom} panel={current_panel}  onClick={()=>setBOMModal(false)}/> */}
-              </div>
-
-              {/* <ExportExcel current_panel={current_panel} cancel={()=>setBOMModal(!visibleBOM)} project_id ={project_id} product_id={product_id} /> */}
+            <div>
+            <p style={{textAlign:"center"}}>
+            Click Here To Download The BOM 
+             </p>
+            <p style={{textAlign:"center"}}>
+            <Button type="primary" onClick={()=>setBOMModal(false)} >
+            <ExportExcel data={current_panel?.detailedBom} panel={current_panel}  />
+            </Button>
+            </p>
+            </div>
             </ModalForm>
         
       </>

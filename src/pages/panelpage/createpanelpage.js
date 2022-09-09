@@ -1,14 +1,8 @@
 import React, {useState,useEffect} from 'react'
-import {useDispatch, useSelector} from 'react-redux'
-import { Drawer, Form, Button, Col, Row, Input, Select, DatePicker ,Descriptions, Tooltip } from 'antd';
-import { PlusOutlined } from '@ant-design/icons';
-import { Divider } from 'antd';
-import { EyeInvisibleOutlined, EyeTwoTone } from '@ant-design/icons';
-import {updatePanel, fetchOnePanel, panelSelector,} from '../../api/panel'
-import {authenticateSelector} from '../../api/authSlice';
-import moment from 'moment';
+import {useDispatch} from 'react-redux'
+import { Form, Button, Col, Row, Input, Select, Tooltip } from 'antd';
+import {updatePanel,} from '../../api/panel'
 import {SiHeadspace} from 'react-icons/si'
-import Editpanel from './editpanel';
 import {useParams} from 'react-router-dom'
 import ExportExcel from './bomdownload';
 import Modal from '../../global/model';
@@ -16,23 +10,12 @@ import Modal from '../../global/model';
 
 const { Option } = Select;
 export default function CreatePanelsettings({current_panel}) {
-  
-
-  console.log(current_panel)
-
-  const [loading, setLoading] = useState(false)   
-  
-  const { panel } = useSelector(authenticateSelector) 
+   
+ 
   const dispatch = useDispatch();
-  const [validityYear, setYear]=useState(null)
-  const [validityMonth, setMonth]=useState(null)
   const [visible, setVisible]=useState(false)
   const [frameMaterial, setframeMaterial] = useState(null);
   const [userColor, setuserColor] = useState(false)
-
-  
-
-  console.log(frameMaterial);
 
 
 
@@ -105,9 +88,7 @@ export default function CreatePanelsettings({current_panel}) {
                   
   
             
-              const onFinish = (values) => {
-                console.log(values.panelsettings);
-          
+              const onFinish = (values) => {                   
                   const panelsettingsdata = {
           
                       panel_type:values.panel_type,
@@ -129,8 +110,6 @@ export default function CreatePanelsettings({current_panel}) {
                       user_define:values.user_define,
                     
                   }
-                  
-                  console.log(current_panel._id)
                 
                   dispatch(updatePanel(current_panel._id, panelsettingsdata))
                   form.resetFields()
@@ -166,15 +145,6 @@ export default function CreatePanelsettings({current_panel}) {
   };
 
 
-    // const [visible, setVisible] = useState(false);
-
-    const showDrawer = () => {
-      setVisible(true);
-    };
-  
-    const onClose = () => {
-      setVisible(false);
-    };
 
     return (
           <> 
@@ -239,7 +209,7 @@ export default function CreatePanelsettings({current_panel}) {
               name="ingress_protection"
               rules={[{ required: true, message: 'required!'}]}
               >
-                     <Select
+              <Select
               placeholder="Select Ingress Protection"
               onChange={onChange}
               style={{ width: '100%' }}

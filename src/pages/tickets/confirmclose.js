@@ -9,7 +9,6 @@ import { Form  } from 'antd';
 const Close = (current_tickets) => {
   const [isModalVisible, setIsModalVisible] = useState(false);
 
-//  console.log(current_tickets.data._id);
 
   const showModal = () => {
     setIsModalVisible(true);
@@ -33,8 +32,7 @@ const ticketdata = {
 }
      dispatch(updatetickets(current_tickets.data._id,ticketdata))
      form.resetFields()
-    // console.log(ticketdata);
-    // console.log(current_tickets.data._id);
+    
     };
 
 const onFinishFailed = (errorInfo) => {
@@ -44,9 +42,7 @@ const onFinishFailed = (errorInfo) => {
 
   return (
     <>
-      {/* <Button style={{ backgroundColor: 'red', border: '1px solid red', color: 'white' }}   onClick={showModal} >
-      Close Ticket
-      </Button> */}
+  
 
       <Modal title="Confirm Ticket Closure "
        visible={isModalVisible}

@@ -27,13 +27,11 @@ export default function Project() {
     const {all_project, loading:load} = useSelector(projectSelector) 
     const [search, setSearch] = useState('')   
     const { user} = useSelector(authenticateSelector)   
-    const [projectAddVisible, SetProjectAddVisible] = useState(false)
-    const [searchvalue, setSearchvalue] = useState('')   
     const [loading, setLoading] = useState(false)
     const [filter,setFilter]=useState([])
     const [debouncedText] = useDebounce(search, 2000);
   
-    console.log(all_project);
+
 
 
 

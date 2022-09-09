@@ -1,14 +1,14 @@
-import React, {useEffect, useState, useLayoutEffect} from 'react'
+import React, {useEffect, useState,} from 'react'
 import Layout  from '../../components/layout/Main'
 import {useDispatch, useSelector} from 'react-redux'
 import CustomersTable from './datatable'
 import ExcelBtn from './expoertexcel'
 import axios from 'axios'
-import {SearchOutlined,SyncOutlined} from '@ant-design/icons'
+import {SearchOutlined,} from '@ant-design/icons'
 import { useDebounce } from "use-debounce";
-import { keyUri, config } from '../../key'
+import { keyUri, } from '../../key'
 import styled from 'styled-components'
-import { Tabs, Breadcrumb, Input,Tooltip } from 'antd';
+import {  Breadcrumb, Input,Tooltip } from 'antd';
 import { Row, Col } from 'antd';
 import './index.css'
 import {fetchAllcompanycustomers,customersSelector} from '../../api/customers'
@@ -37,7 +37,7 @@ const { Search } = Input;
 
      }, [user])
 
-     console.log({loading});
+  
 
 
 

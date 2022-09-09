@@ -17,19 +17,13 @@ import {useParams} from 'react-router-dom'
 const { Option } = Select;
 
 export default function EditPanel({cancel,current_panel,project_id,product_id}) {
-  
-
-  console.log(current_panel)
+ 
   const [loading, setLoading] = useState(false)    
   const { panel } = useSelector(authenticateSelector) 
   const dispatch = useDispatch();
   const [validityYear, setYear]=useState(null)
   const [validityMonth, setMonth]=useState(null)
   const [Others, setOthers] = useState(false)
-  
-
-  console.log(current_panel);
-
   const {id} = useParams()
      
 
@@ -40,7 +34,7 @@ export default function EditPanel({cancel,current_panel,project_id,product_id}) 
           else{
             setOthers(false)
           }
-            form.setFieldsValue({
+          form.setFieldsValue({
                 panel_name:current_panel &&  current_panel.panel_name,
                 panel_category:current_panel && current_panel.panel_category,
                 ambient_temperature:current_panel&& current_panel. ambient_temperature,
@@ -53,7 +47,7 @@ export default function EditPanel({cancel,current_panel,project_id,product_id}) 
                   
   
           const onFinish = (values) => {
-            const paneldata = {
+          const paneldata = {
 
                  panel_category:values.panel_category,
                  rated_voltage:values.rated_voltage,
@@ -65,7 +59,6 @@ export default function EditPanel({cancel,current_panel,project_id,product_id}) 
                 
               }
 
-          console.log(current_panel._id,)
           setOthers('')
           dispatch(updatePanel(current_panel._id, paneldata,{id:product_id,project:project_id}))
           form.resetFields()
@@ -73,14 +66,10 @@ export default function EditPanel({cancel,current_panel,project_id,product_id}) 
            };
 
            const [form] = Form.useForm();
-
            const onChange = (value)=> {
              console.log(`selected ${value}`)
          
            }
-
-
-
            const onChangeOthers = (value)=> {
             console.log(`selected ${value}`)
         
@@ -93,21 +82,24 @@ export default function EditPanel({cancel,current_panel,project_id,product_id}) 
           }
         
 
-    const onFinishFailed = (errorInfo) => {
-    console.log('Failed:', errorInfo);
-  };
+          const onFinishFailed = (errorInfo) => {
+          console.log('Failed:', errorInfo);
+          };
 
 
-    const [visible, setVisible] = useState(false);
+            const [visible, setVisible] = useState(false);
 
-    const showDrawer = () => {
-      setVisible(true);
-    };
-  
-    const onClose = () => {
-      setVisible(false);
-    };
+            const showDrawer = () => {
+              setVisible(true);
+            };
+          
+            const onClose = () => {
+              setVisible(false);
+            };
 
+
+
+            
     return (
       <>
  

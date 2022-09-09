@@ -89,13 +89,6 @@ const columns = [
       
     },
 
-   
-    // {
-    //   title: 'Email ID',
-    //   dataIndex: 'email_id',
-    //   key: 'email_id',
-      
-    // },
 
     {
       title: 'Title',
@@ -106,12 +99,7 @@ const columns = [
     },
     
     
-    // {
-    //   title: 'Description',
-    //   dataIndex: 'description',
-    //   key: 'description',
-    //   width: 200,
-    // },
+
 
   
   ];

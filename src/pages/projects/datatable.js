@@ -13,25 +13,16 @@ import {
     Button,
   } from "antd";
   import { useState, useEffect } from "react";
-  import { FilePdfOutlined } from "@ant-design/icons";
-  import { Link } from "react-router-dom";
-  import { PlusOutlined } from '@ant-design/icons';
   import DeleteConfirm from '../../global/delete'
-  import { FileAddOutlined  } from '@ant-design/icons'
-  import face6 from "../../assets/images/face-6.jpeg";
-  import pencil from "../../assets/images/pencil.svg";
   import {useDispatch, useSelector} from 'react-redux'
   import { FaRegTrashAlt, FaRegEdit } from 'react-icons/fa';
-  import { DownloadOutlined  } from '@ant-design/icons';
-  import {deleteProduct} from '../../api/product'
   import {authenticateSelector} from '../../api/authSlice';
   import Editproject from './editproject';
   import { useHistory} from 'react-router-dom'
-  import {deleteproject,deleteManyproject,createQuotationPdf} from '../../api/project'
+  import {deleteproject,createQuotationPdf} from '../../api/project'
   import moment from 'moment';
   import ModalForm from '../../global/model.js'
   import Quotation from './quotation';
-  // import generateZipFromCloud from './generatezip';
   import { fetchAllpanel, panelSelector } from "../../api/panel";
   
   
@@ -39,20 +30,15 @@ import {
 
    
 
-    const [visibleEdit, setEditModal] = useState(false);
+  
     const [current_project, setproject] = useState(null);
-    const [current_panel, setpanel] = useState(null);
-    const [selectionType, setSelectionType] = useState('checkbox');
     const [page, setPage] = useState(1);
     const { user } = useSelector(authenticateSelector) 
     const [item,setItem] =useState(null)
     const [downloadLoading,setDownloadLoading] =useState(false)
     const [visibleQuotation, setQuotationModal] = useState(false);
-    const [confirmLoading, setConfirmLoading] = useState(false);
-    const [modalText, setModalText] = useState('Content of the modal');
     const {all_panel}=useSelector(panelSelector)
-  
-    console.log(current_project)
+
 
 
      let history = useHistory() 
@@ -216,7 +202,6 @@ import {
             {/* <Tooltip placement="topLeft" title="Generate Quotation" arrowPointAtCenter> */}
             <h5 className="text-danger"  > 
             <Button disabled={(all_panel.filter(item=>{return item.project === project._id && item.request !== "null"})).length>0 ? false:true} type='link' style={{ fontSize:'14px'}}  onClick={(e)=>handleClickQuotation(e, true, project)}> Generate </Button>
-            {/* <Button  onClick={(e)=>generateZipFromCloud(e, true, project)}> Generate </Button> */}
             </h5>
             {/* </Tooltip> */}
             </Space>
@@ -224,18 +209,6 @@ import {
 
               ),
             },
-
-        //     {
-        //       title: 'Email',
-        //       dataIndex: 'email',
-        //       key: 'email',
-        //       width: 150,
-        //       ellipsis: true,
-        //       render:(item)=>{
-        //         return <p class="m-0 ">{item?item:'-'} </p>
-        //       }
-          
-        // },
 
         {
           title: 'Project Status',
