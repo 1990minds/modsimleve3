@@ -78,19 +78,21 @@ export const fetchAllcompanycustomers = (id) => async dispatch => {
 
   
 
- export const deletecustomers = (id, customers,company) => async dispatch => {
-
+ export const deletecustomers = (id, value,company) => async dispatch => {
+console.log("testingggggg")
   dispatch(getcustomers())
   const key = 'create';
   message.loading({ content: 'loading...', key })
   try {
  
-   const {data} = await axios.delete(keyUri.BACKEND_URI +`/customers/${id} `, customers, config)
+   const {data} = await axios.post(keyUri.BACKEND_URI +`/customers-delete/${id} `, value, config)
+   console.log({data})
+
   data && message.success({ content: data.msg, key, duration: 2 });
    dispatch(fetchAllcompanycustomers(company));
     
   } catch (error) {
-
+console.log(error)
  dispatch(get_customers_Failure())
  
   }

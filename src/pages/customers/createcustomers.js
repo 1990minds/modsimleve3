@@ -76,7 +76,8 @@ export default function CreateCustomer({cancel}) {
           customer_tax_number:values.customer_tax_number,
           website:values.website,
           contact_person:values.contact_person,
-          companyId:user?.company?._id
+          companyId:user?.company?._id,
+          user:user?._id,
         }
         setStatesnumber('')
         dispatch(createcustomers(data, user?.company?._id))
@@ -222,6 +223,9 @@ export default function CreateCustomer({cancel}) {
               <Input prefix={statesnumber} type='number' style={{ padding: '0px 2px 0px 12px', borderRadius: '8px' }} />
               </Form.Item>
               </Col>
+
+
+              
               <Col span={12}>
               <Form.Item
               label={<p className="  w-36 text-left m-0">Email</p>}

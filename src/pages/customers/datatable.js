@@ -16,15 +16,16 @@ import {
   import moment from 'moment';
 
   
-  export default function CustomersTable({data,intialdata,loading}) {
+  export default function CustomersTable({data,intialdata,loading, user}) {
 
   
     const [current_customers, setcustomers] = useState(null);
     const [setModel, setEditModal] = useState(null);
   const dispatch = useDispatch()
 
-  const confirm = (e, id) => {
-      dispatch(deletecustomers(id._id, id.customers,id.company?._id))
+  const confirm = (e, id, user) => {
+    const data={user:user._id}
+      dispatch(deletecustomers(id._id, data, id.company?._id))
      
     }
 
@@ -123,7 +124,7 @@ import {
 
            
 
-            <DeleteConfirm confirm={(e)=>confirm(e, id)} title="customers" cancel={cancel} >
+            <DeleteConfirm confirm={(e)=>confirm(e, id, user)} title="customers" cancel={cancel} >
                <Tooltip placement="topLeft" title="Delete existing customer" arrowPointAtCenter>
                 <FaRegTrashAlt style={{cursor:"pointer"}}className="text-secondary mt-2"  />
                  </Tooltip> 

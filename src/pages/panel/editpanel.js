@@ -6,17 +6,17 @@ import { Divider } from 'antd';
 import { EyeInvisibleOutlined, EyeTwoTone } from '@ant-design/icons';
 import {updatePanel, fetchOnePanel, panelSelector,} from '../../api/panel'
 import {authenticateSelector} from '../../api/authSlice';
-import { fetchAllPanel } from '../../api/panel';
-import {createPanel} from '../../api/panel'
-import moment from 'moment';
-import {FaPanelAlt, FaLock} from 'react-icons/fa'
 import Editpanel from './editpanel';
 import {useParams} from 'react-router-dom'
+
 
 
 const { Option } = Select;
 
 export default function EditPanel({cancel,current_panel,project_id,product_id}) {
+
+  const { user } = useSelector(authenticateSelector) 
+  console.log(user);
  
   const [loading, setLoading] = useState(false)    
   const { panel } = useSelector(authenticateSelector) 
@@ -56,7 +56,7 @@ export default function EditPanel({cancel,current_panel,project_id,product_id}) 
                  busbar_material:values.busbar_material,
                  panel_quntity:values.panel_quntity,
                  category_type:values.category_type,
-                
+                 updateUser:user?._id
               }
 
           setOthers('')

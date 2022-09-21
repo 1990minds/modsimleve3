@@ -8,8 +8,7 @@ import {
     Space,
     Drawer,
     Menu,
-    Spin,
-    Model, Dropdown, Button 
+    Button 
     } from "antd";
     
     import { useState } from "react";
@@ -57,10 +56,11 @@ import {
     const [dwgpanel, setdwgpanel] = useState(null);
     let history = useHistory()
     
-       
+       console.log({user})
     
-            const confirm = (e, id) => {
-            dispatch(deletepanel(id._id, {id:product_id,project:project_id}))          
+            const confirm = (e, id,user) => {
+              const data={user:user._id}
+            dispatch(deletepanel(id._id, {id:product_id,project:project_id},data))          
           }
 
 
@@ -388,7 +388,7 @@ width="15" height="15" viewBox="0 0 24 24" stroke-width="3" stroke="#2C3E50" fil
                     
                     <Tooltip placement="topLeft" title="Delete Panel" arrowPointAtCenter>
                     <h5 className="text-danger">
-                        <DeleteConfirm confirm={(e)=>confirm(e, id)} title="panel" cancel={cancel} >
+                        <DeleteConfirm confirm={(e)=>confirm(e, id,user)} title="panel" cancel={cancel} >
                             <FaRegTrashAlt style={{cursor:"pointer"}} className="text-secondary text-lg  mt-2"  />
                         </DeleteConfirm>
                     </h5>

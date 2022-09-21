@@ -1,17 +1,22 @@
 import React, {useState,useEffect} from 'react'
-import {useDispatch} from 'react-redux'
+import {useDispatch, useSelector} from 'react-redux'
 import { Form, Button, Col, Row, Input, Select, Tooltip } from 'antd';
 import {updatePanel,} from '../../api/panel'
 import {SiHeadspace} from 'react-icons/si'
 import {useParams} from 'react-router-dom'
 import ExportExcel from './bomdownload';
 import Modal from '../../global/model';
+import {authenticateSelector} from '../../api/authSlice';
 
 
 const { Option } = Select;
 export default function CreatePanelsettings({current_panel}) {
    
  
+  const { user } = useSelector(authenticateSelector) 
+
+  console.log(user)
+
   const dispatch = useDispatch();
   const [visible, setVisible]=useState(false)
   const [frameMaterial, setframeMaterial] = useState(null);
@@ -38,7 +43,7 @@ export default function CreatePanelsettings({current_panel}) {
                 busbar_material:current_panel?.busbar_material,
                 rated_voltage:current_panel?.rated_voltage,
 
-                    panel_type: current_panel?.panel_type,
+                    panel_type: 'Single Front',
                     compliance_with_IEC61439: current_panel?.compliance_with_IEC61439,
                     ingress_protection: current_panel?.ingress_protection,
                     form_of_construction: current_panel?.form_of_construction,
@@ -108,13 +113,15 @@ export default function CreatePanelsettings({current_panel}) {
                       partition_material:values.partition_material,
                       partition_powdercoating:values.partition_powdercoating,
                       user_define:values.user_define,
-                    
+                      updateUser:user?._id
+
                   }
                 
                   dispatch(updatePanel(current_panel._id, panelsettingsdata))
                   form.resetFields()
             
             };
+
             
 
            const [form] = Form.useForm();
@@ -170,11 +177,12 @@ export default function CreatePanelsettings({current_panel}) {
                   >
                  <Select
                 placeholder="Select Panel Type"
+                disabled={ current_panel?.request !== "null" }
                 onChange={onChange}
                 style={{ width: '100%' }}
                 allowClear
               >
-                <Option value="single front">Single Front</Option>
+                <Option value="Single Front">Single Front</Option>
                 {/* <Option value="double front">Double Front</Option> */}
               </Select>
 
@@ -191,6 +199,7 @@ export default function CreatePanelsettings({current_panel}) {
               <Select
           placeholder="Select Compliance With IEC61439"
           onChange={onChange}
+          disabled={ current_panel?.request !== "null" || current_panel?.duplicate  }
           style={{ width: '100%' }}
           allowClear
         >
@@ -212,6 +221,7 @@ export default function CreatePanelsettings({current_panel}) {
               <Select
               placeholder="Select Ingress Protection"
               onChange={onChange}
+              disabled={ current_panel?.request !== "null" }
               style={{ width: '100%' }}
               allowClear
         >
@@ -232,6 +242,7 @@ export default function CreatePanelsettings({current_panel}) {
                      <Select
                       placeholder="Select Form of Construction"
                       onChange={onChange}
+                      disabled={ current_panel?.request !== "null" }
                       style={{ width: '100%' }}
                       allowClear
                     >
@@ -253,6 +264,7 @@ export default function CreatePanelsettings({current_panel}) {
           placeholder="Select Panel short Circuit Rating"
           onChange={onChange}
           style={{ width: '100%' }}
+          disabled={ current_panel?.request !== "null" }
           allowClear
         >
           <Option value="25kA for 1 Sec">25kA for 1 Sec</Option>
@@ -277,6 +289,7 @@ export default function CreatePanelsettings({current_panel}) {
                      <Select
           placeholder="Select Powder Coating Finish"
           onChange={onChange}
+          disabled={ current_panel?.request !== "null" }
           style={{ width: '100%' }}
           allowClear
         >
@@ -299,6 +312,7 @@ export default function CreatePanelsettings({current_panel}) {
                      <Select
           placeholder="Select Required Busbar Support"
           onChange={onChange}
+          disabled={ current_panel?.request !== "null" }
           style={{ width: '100%' }}
           allowClear
         >
@@ -317,6 +331,7 @@ export default function CreatePanelsettings({current_panel}) {
                      <Select
           placeholder="Select Required Base Plinth"
           onChange={onChange}
+          disabled={ current_panel?.request !== "null" }
           style={{ width: '100%' }}
           allowClear
         >
@@ -341,6 +356,7 @@ export default function CreatePanelsettings({current_panel}) {
           <Select
           placeholder="Select panel color"
           onChange={onChangeColor}
+          disabled={ current_panel?.request !== "null" }
           style={{ width: '100%' }}
           allowClear
         >
@@ -391,6 +407,7 @@ export default function CreatePanelsettings({current_panel}) {
              >
             <Select
               onChange={handleClickFrame}
+              disabled={ current_panel?.request !== "null" }
               placeholder="Frame Material" 
               // defaultValue="Z" 
             >
@@ -411,6 +428,7 @@ export default function CreatePanelsettings({current_panel}) {
             >
             <Select
             placeholder="Frame Powdercoating"
+            disabled={ current_panel?.request !== "null" }
              >
             <Option value={true}>Yes</Option>
             { frameMaterial !=='C' &&  <Option value={false}>No</Option>  }
@@ -429,7 +447,8 @@ export default function CreatePanelsettings({current_panel}) {
                   >
 
             <Select
-            placeholder="Partition Material"           
+            placeholder="Partition Material"  
+            disabled={ current_panel?.request !== "null" }         
         >
           {/* <Option value="Z">Aluzn</Option> */}
           <Option value="G">GI</Option>
@@ -446,6 +465,7 @@ export default function CreatePanelsettings({current_panel}) {
                   >
                   <Select
                    placeholder="Partition Powdercoating"
+                   disabled={ current_panel?.request !== "null" }
                    
           
                   >
@@ -472,6 +492,7 @@ export default function CreatePanelsettings({current_panel}) {
           >
           <Select
            placeholder="Cover Material"
+           disabled={ current_panel?.request !== "null" }
             
 
             >
@@ -519,7 +540,7 @@ export default function CreatePanelsettings({current_panel}) {
             <Button type="primary" htmlType="submit"
             disabled={current_panel?.panel_type === null || current_panel?.request !== "null" }
             block style={{ fontSize: '14px', width:'10rem' , }}>
-            <a href={`https://modsimcanvas.web.app/panel/${current_panel?._id}`}> Configure Now</a>
+            <a href={`https://canvas.modsim.app/panel/${current_panel?._id}`}> Configure Now</a>
             </Button>
             </Tooltip>
 

@@ -81,14 +81,14 @@ export const fetchAllpanel = (id) => async dispatch => {
   }
  };
 
- export const deletepanel = (id, product) => async dispatch => {
+ export const deletepanel = (id, product,value) => async dispatch => {
 
   dispatch(getpanel())
   const key = 'create';
   message.loading({ content: 'loading...', key })
   try {
  
-   const {data} = await axios.delete(keyUri.BACKEND_URI +`/panel/${id} `, config)
+   const {data} = await axios.post(keyUri.BACKEND_URI +`/panel-delete/${id} `,value, config)
   data && message.success({ content: data.msg, key, duration: 2 });
    dispatch(fetchProductPanels(product));
     
