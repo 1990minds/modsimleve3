@@ -147,6 +147,16 @@ import {
       },
 
       {
+        title: 'Project Sequence ID',
+        key: 'createdAt',
+        render:(item)=>{
+          return <p style={{fontSize:'14px', color:'black'}} className="my-0 mr-3">{item.project_serialID?item.project_serialID:null}</p>
+      }
+      },
+
+
+
+      {
         title: ' Project Name ',
         dataIndex: 'project_name',
         key: 'project_name',
@@ -231,9 +241,9 @@ import {
            </h5>
             <Tooltip placement="topLeft" title="Delete Project" arrowPointAtCenter>
             <h5 className="text-danger">
-            <DeleteConfirm confirm={(e)=>confirm(e, id)} title="panel" cancel={cancel} >
+            {/* <DeleteConfirm confirm={(e)=>confirm(e, id)} title="panel" cancel={cancel} >
             <FaRegTrashAlt style={{cursor:"pointer"}} className="text-secondary text-lg  mt-2"  />
-            </DeleteConfirm>
+            </DeleteConfirm> */}
             </h5>
             </Tooltip>
             </Space>

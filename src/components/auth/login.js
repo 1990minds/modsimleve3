@@ -5,7 +5,7 @@ import {useDispatch, useSelector} from 'react-redux'
 import {fetchlogin, authenticateSelector} from '../../api/authSlice'
 import { Link } from "react-router-dom";
 import Logo from '../../assets/MODSIMbeta.png'
-import Backgroundimage from '../../assets/bg.jpg'
+import Backgroundimage from '../../assets/images/user-page.png'
 import {
   Layout,
   Menu,
@@ -154,27 +154,34 @@ export default function Login({history}) {
       <>
         <Layout className="layout-default layout-signin NEWform" >
           <Row  style={{ display: 'flex', justifyContent: 'center', }}>
-          <Col span={16} 
-          style={{ height:'100vh', backgroundImage: `url(${Backgroundimage})`}}
-          >
+          <Col span={12} 
+         style={{  display: 'flex', justifyContent: 'center', alignItems: 'center', height:'100vh' }}
+         >
+           <img src={Backgroundimage} alt='Logo' style={{ width: "auto", height: '45%', display: 'block',}}/>
             </Col>
               <Col
               span={8}
               style={{ marginTop: '10%', }}
               >
                 <img src={Logo} alt='Logo' style={{ width: "auto", height: '80px', display: 'block', marginLeft: 'auto', marginRight: 'auto', }}/>
-                <div style={{ padding: '60px'}}>
+                <div style={{ padding: '40px'}}>
                 {/* <Title className="mb-15">Login</Title> */}
                 {/* <Title className="font-regular text-muted" level={5}>
                   Enter your email and password to sign in
                 </Title> */}
-                <br/>
+               
                 <Form
                   onFinish={onFinish}
                   onFinishFailed={onFinishFailed}
                   layout="vertical"
                   className="row-col"
                 >
+
+
+           <h1 style={{  fontSize:"28px", fontWeight:'bold', marginBottom:'0px' }}>User</h1>
+           <p  style={{  fontSize:"15px", marginBottom:'20px',  }}>Login to continue</p>
+
+
                   <Form.Item
                     
                     label="Email"

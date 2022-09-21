@@ -81,7 +81,8 @@ export default function EditCustomers({current_customers,cancel}) {
               customer_tax_number:values.customer_tax_number,
               website:values.website,
               contact_person:values.contact_person,
-                 
+              user:user?._id,
+ 
               }
               setStatesnumber('')
               dispatch(updatecustomers(current_customers._id, customersdata,user?.company?._id))
@@ -217,7 +218,7 @@ export default function EditCustomers({current_customers,cancel}) {
              name="phone_number"
              >
               <Input style={{ padding: '0px 2px 0px 12px', borderRadius: '8px' }} />
-    </Form.Item>
+             </Form.Item>
               </Col>
         
               <Col span={12}>

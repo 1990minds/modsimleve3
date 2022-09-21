@@ -33,7 +33,7 @@ export default function CreateProject({cancel}) {
         project_location:values.project_location,
         phone_number:values.phone_number,
         email:values.email,
-        project_status:values.project_status,
+        project_status:'New',
         // project_id:values.project_id,
         project_name:values.project_name,
         project_coordiantor:values.project_coordiantor,
@@ -51,7 +51,7 @@ export default function CreateProject({cancel}) {
        useEffect(()=>{
 
         form.setFieldsValue({
-          project_status:  'New'    });
+           project_status: 'New'    });
   
        }, [])
 
@@ -206,8 +206,9 @@ export default function CreateProject({cancel}) {
             style={{ width: '100%' }}
             allowClear
             defaultValue={"New"}
+            disabled={true}
             >
-            <Option value="New " disabled>New</Option> 
+            <Option value="New" >New</Option> 
             {/* <Option value="In-Progress">In-Progress</Option>
             <Option value="Order Won">Order Won</Option>
             <Option value="Order Lost">Order Lost</Option> */}

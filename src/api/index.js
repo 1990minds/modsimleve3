@@ -7,6 +7,7 @@ import panelReducer from './panel'
 import ticketReducer from './tickets';
 import companyReducer from './company'
 import broadcastReducer from './broadcast';
+import logReducer from './log';
 
 
 export default configureStore({
@@ -21,5 +22,6 @@ export default configureStore({
      panel:panelReducer,
     tickets:ticketReducer,
     company:companyReducer,
+    log:logReducer,
   },
 });

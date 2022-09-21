@@ -31,6 +31,8 @@ const { Search } = Input;
   
     const [customersAddVisible, SetCustomersAddVisible] = useState(false)
 
+
+    
     useEffect(()=>{
 
         dispatch(fetchAllcompanycustomers(user?.company?._id))
@@ -100,9 +102,9 @@ placeholder="Search" onChange={onSearch}  />
         </Col>
         <Col  style={{ display: 'flex', justifyContent: 'end' }}>
        <ExcelBtn data={all_customers} />
-      </Col>
-      </Row>
-        <CustomersTable data={(filter?.length > 0) ? filter :all_customers} loading={loading || load}/>
+       </Col>
+       </Row>
+        <CustomersTable data={(filter?.length > 0) ? filter :all_customers} loading={loading || load}  user={user}/>
         
     </Layout>
   )

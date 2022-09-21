@@ -874,6 +874,9 @@ c-0.01-0.42-0.32-0.5-0.66-0.51C-57.1,15.18-57.68,15.19-58.26,15.19z"fill={color}
 
 
 
+
+
+
        
         <Menu.Item key="2">
           <NavLink to="/auth/ticket">
@@ -890,36 +893,21 @@ c-0.01-0.42-0.32-0.5-0.66-0.51C-57.1,15.18-57.68,15.19-58.26,15.19z"fill={color}
         </Menu.Item>
 
 
-        {/* <Menu.Item key="3">
-          <NavLink to="/auth/users"> */}
-            {/* <span
-              className="icon"
-              style={{
-                background: page === "Users" ? color : "",
-              }}
-            >
-              {Users}
-            </span> */}
-           
-            {/* <span className="label">Users</span>
+
+
+        <Menu.Item key="8">
+          <NavLink to="/auth/logbook">
+            <span className="icon">{logs}</span>
+            { collapsed ?<></>:
+            <span className="label">Logs</span>}
           </NavLink>
         </Menu.Item>
 
-        <Menu.Item className="menu-item-header" key="5">
-          Product Settings
-        </Menu.Item>
 
-
-        <Menu.Item key="4">
-          <NavLink to="/auth/products">
-            <span
-              className="icon"
-              style={{
-                background: page === "products" ? color : "",
-              }}
-            >
-              {products}
-            </span> */}
+       
+  
+           
+       
             {/* <span className="label">Products</span>
           </NavLink>
         </Menu.Item>
