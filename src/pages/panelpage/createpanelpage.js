@@ -43,7 +43,7 @@ export default function CreatePanelsettings({current_panel}) {
                 busbar_material:current_panel?.busbar_material,
                 rated_voltage:current_panel?.rated_voltage,
 
-                    panel_type: 'Single Front',
+                    panel_type: 'single front',
                     compliance_with_IEC61439: current_panel?.compliance_with_IEC61439,
                     ingress_protection: current_panel?.ingress_protection,
                     form_of_construction: current_panel?.form_of_construction,
@@ -182,7 +182,7 @@ export default function CreatePanelsettings({current_panel}) {
                 style={{ width: '100%' }}
                 allowClear
               >
-                <Option value="Single Front">Single Front</Option>
+                <Option value="single front">Single Front</Option>
                 {/* <Option value="double front">Double Front</Option> */}
               </Select>
 
@@ -545,7 +545,9 @@ export default function CreatePanelsettings({current_panel}) {
             <Button type="primary" htmlType="submit"
             disabled={current_panel?.panel_type === null || current_panel?.request !== "null" }
             block style={{ fontSize: '14px', width:'10rem' , }}>
-            <a href={`https://canvas.modsim.app/panel/${current_panel?._id}`}> Configure Now</a>
+            {/* <a href={`https://canvas.modsim.app/panel/${current_panel?._id}`}> Configure Now</a> */}
+
+            <a href={`https://modsimcanvas.web.app/panel/${current_panel?._id}`}> Configure Now</a>
             </Button>
             </Tooltip>
 

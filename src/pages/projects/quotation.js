@@ -258,7 +258,7 @@ export default function Quotation({current_project,cancel}) {
 
 <div style={{ display:'flex', justifyContent:'right', alignItems:'right', paddingTop: '20px'}}>
 
-    <Button type="primary" block style={{ fontSize: '14px', width:'20rem' }}
+    <Button type="primary" block style={{ fontSize: '14px', width:'17rem' }}
     onClick={() => setIsMenuOpen(true)}
     >Next</Button>
     </div>
@@ -381,14 +381,14 @@ export default function Quotation({current_project,cancel}) {
 
       <div style={{ display:'flex', justifyContent:'space-between', alignItems:'center', paddingTop: '20px'}}>
       <div>
-      <Button type="secondary" block style={{ fontSize: '14px', width:'20rem' }}
+      <Button type="secondary" block style={{ fontSize: '14px', width:'17rem' }}
       onClick={() => setIsMenuOpen(false)}
        >Back</Button>
       </div>
       <div>
       <Button type="primary" htmlType="submit"
       onClick={() => {setVisible(false); enterLoading(0);}}
-      block style={{ fontSize: '14px', width:'20rem' }}
+      block style={{ fontSize: '14px', width:'17rem' }}
       loading={loadings[0]} 
       >
       Download Files
