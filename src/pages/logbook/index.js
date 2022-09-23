@@ -11,6 +11,8 @@ import { useDebounce } from "use-debounce";
 import { keyUri, config } from '../../key'
 import axios from 'axios'
 import './index.css'
+import {Breadcrumb } from 'antd';
+import { Link } from 'react-router-dom';
 
 
 const { Search } = Input;
@@ -73,6 +75,17 @@ export default function Database() {
 
      return (
        <Layout1>
+
+<Breadcrumb>
+    <Breadcrumb.Item>
+    <Link to="/"> Home </Link>
+    </Breadcrumb.Item>
+    <Breadcrumb.Item>
+    Tickets 
+    </Breadcrumb.Item>
+    </Breadcrumb>
+
+      <h1 style={{ fontSize:'1.5rem', fontWeight: '700' , paddingBottom: '10px' }}>Logbook</h1>
      
 
       <Row   >
