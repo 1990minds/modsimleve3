@@ -19,6 +19,7 @@ import './index.css'
 import { Link } from 'react-router-dom'
 
 
+
 const { Search } = Input;
 
 export default function Project() {
@@ -30,9 +31,6 @@ export default function Project() {
     const [loading, setLoading] = useState(false)
     const [filter,setFilter]=useState([])
     const [debouncedText] = useDebounce(search, 2000);
-  
-
-
 
 
      useEffect(()=>{
@@ -48,10 +46,7 @@ export default function Project() {
      })
      setLoading(false)
      }, [dispatch, debouncedText])
-
-
-
-    
+   
 
 
       useEffect(()=>{     
@@ -86,38 +81,47 @@ export default function Project() {
         </Col>
         <Col flex="0 1 300px" >
         <Tooltip placement="topLeft" title="Search for Project Name, Project ID" arrowPointAtCenter>
-        <SearchWrap>
-
-        <Input value={search}  className="px-4 py-2 focus:outline-none"
-prefix ={  <SearchOutlined  style={{color:'#3e79f7', fontWeight:'bold' ,padding:'0px'}} />
-}
+    
+      <SearchWrap>
+        <Input value={search}  className="px-4 py-2  focus:outline-none"
+        prefix ={  <SearchOutlined  style={{color:'#3e79f7', fontWeight:'bold' ,padding:'0px'}} />
+        }
          placeholder="Search" onChange={onSearch}  />
-         </SearchWrap>
+
+      </SearchWrap>
+        
          </Tooltip>
         </Col>
         <Col className='' style={{ display: 'flex', justifyContent: 'end' }}>
         <ExcelBtn data={all_project} />
         </Col>
         </Row>
-        <ProjectTable data={(filter?.length > 0) ? filter :all_project} loading={loading || load}  />
+
+
+
+           {/* <LodingWrap  >
+
+           {(loading || load) &&  <p className='ring '> M  <sapn></sapn>  </p>   }
+          
+          </LodingWrap> */}
+    
+           <ProjectTable data={(filter?.length > 0) ? filter :all_project}  loading={loading || load}  />
+
+    
         </Layout>
   )
 
 
 }
-
-      const SearchWrap = styled.div`
+const SearchWrap = styled.div`
   
+  .ant-input-affix-wrapper{
+  padding: 0px !important;
+  padding-left: 12px !important;
+  padding-right: 8px !important;
+  border-radius: 10px !important;
+  border-color: transparent !important;
+  box-shadow: 6px 6px 5px #F1F1F1;  
+  }
 
-      .ant-input-affix-wrapper{
-        padding: 0px !important;
-        padding-left: 12px !important;
-        padding-right: 8px !important;
-        border-radius: 10px !important;
-        border-color: transparent !important;
-        box-shadow: 6px 6px 5px #F1F1F1;
-        width: 70% !important  
-        }
-
-  
 `

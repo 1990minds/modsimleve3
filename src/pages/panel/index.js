@@ -34,6 +34,10 @@ export default function Panel() {
     const project =   new URLSearchParams(useLocation().search).get(`project`)
     const {id}= useParams()
 
+
+ console.log(project)
+
+
     const [panelAddVisible, SetPanelAddVisible] = useState(false)
   // const [searchvalue, setSearchvalue] = useState('')
 
@@ -100,12 +104,15 @@ export default function Panel() {
      </Col>
      <Col flex="0 1 300px" >
      <Tooltip placement="topLeft" title="Search for Panel Name, Panel ID" arrowPointAtCenter>
-     <SearchWrap>
+
+<SearchWrap>
      <Input value={search}  className="px-4 py-2 focus:outline-none"
       prefix ={  <SearchOutlined  style={{color:'#3e79f7', fontWeight:'bold' ,padding:'0px'}} />
       }
       placeholder="Search" onChange={onSearch}  />
-      </SearchWrap>
+
+</SearchWrap>
+ 
       </Tooltip>
       </Col>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
       <Col  className='' style={{ display: 'flex', justifyContent: 'end' }}>
@@ -113,9 +120,16 @@ export default function Panel() {
       </Col>
       </Row>
 
-       {(loading || load) && <Spin style={{ position:"absolute", top: "10%", left:'30%',  width: "700px",   height: "500px", }} tip="Please Wait, We are loading panels !"> </Spin>}
+    
+
+      {(loading || load) && <Spin style={{ position:"absolute", top: "10%", left:'30%',  width: "700px",   height: "500px", }} tip="Please Wait, We are loading panels !"> </Spin>}
+
+      
+       
        <PanelTable  data={(filter?.length > 0) ? filter :product_panels} project_id ={project} product_id={id} loading={loading || load}/>
-        
+
+      
+       
       </Layout>
        )
       }
@@ -131,4 +145,83 @@ export default function Panel() {
   border-color: transparent !important;
   box-shadow: 6px 6px 5px #F1F1F1;  
   }
+
+/* 
+
+.ring
+{
+position: absolute;
+top: 50%;
+left: 50%;
+transform: translate(-50%,-50%);
+width: 150px;
+height: 150px;
+background: transparent;
+border: 3px solid #1890ff;
+border-radius: 50%;  
+text-align: center;
+line-height: 150px;
+font-family: Poppins;
+font-size: 60px;
+color: #1890ff;
+text-transform: uppercase;
+text-shadow: 0 0 1px #1890ff
+}
+.ring:before
+{
+content: '';
+position: absolute;
+top: -3px;
+left: -3px;
+width: 100%;
+height: 100%;
+border: 3px solid transparent;
+border-top: 3px solid #1890ff;
+border-right: 3px solid #1890ff;
+border-radius: 50%;
+animation: animateCircle 2s linear infinite;
+}
+span{
+display: block;
+position: absolute;
+top: calc(50% - 2px);
+left: 50%;
+width: 50%;
+height: 4px;
+background: transparent;
+transform-origin: left;
+animation: animate 2s linear infinite;
+}
+span:before{
+content: '';
+position: absolute;
+width: 16px;
+height: 16px;
+border-radius: 50%;
+background: #1890ff;
+top: -6px;
+right: -8px;
+box-shadow: 0 0 20px #1890ff;
+}
+@keyframes animate
+{
+0%
+{
+transform: rotate(0deg);
+}
+100%
+{
+transform: rotate(360deg);
+}
+}
+
+ */
+
+
+
+
+
+
+
+
 `
