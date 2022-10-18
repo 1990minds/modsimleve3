@@ -14,6 +14,7 @@ import {
   import {useDispatch} from 'react-redux'
   import {deletecustomers} from '../../api/customers'
   import moment from 'moment';
+  import Loader from '../shared/tableloader'
 
   
   export default function CustomersTable({data,intialdata,loading, user}) {
@@ -173,7 +174,7 @@ import {
               >
                 <div className="table-responsive">
                   <Table
-                  loading={loading}
+                   loading={{spinning: loading, indicator: <Loader/>}} 
                   pagination={{
                     onChange(current) {
                       setPage(current)

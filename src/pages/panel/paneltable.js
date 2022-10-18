@@ -27,6 +27,7 @@ import {
     import moment from 'moment';
     import { Popconfirm, message } from 'antd';
     import ExportExcel from './bomdownload';
+    import Loader from '../shared/tableloader'
 
     function PanelTable({data,project_id, product_id, loading}) {
 
@@ -435,7 +436,7 @@ width="15" height="15" viewBox="0 0 24 24" stroke-width="3" stroke="#2C3E50" fil
                 
                   <Table
                   scroll={{ x: true }}
-                  // loading={loading }
+                  loading={{spinning: loading, indicator: <Loader/>}} 
                   pagination={{
                   onChange(current) {
                   setPage(current)

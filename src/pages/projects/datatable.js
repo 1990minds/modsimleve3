@@ -24,6 +24,7 @@ import {
   import ModalForm from '../../global/model.js'
   import Quotation from './quotation';
   import { fetchAllpanel, panelSelector } from "../../api/panel";
+  import Loader from '../shared/tableloader'
   
   
    function ProjectTable({data,loading}) {
@@ -283,7 +284,7 @@ import {
                 <div className="table-responsive" >
                
                  <Table
-                 loading={loading}
+                  loading={{spinning: loading, indicator: <Loader/>}} 
                  scroll={{ x: true }}
                  pagination={{
                  onChange(current) {

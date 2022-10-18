@@ -4,6 +4,7 @@ import {useDispatch,useSelector} from 'react-redux'
 import {companySelector} from '../../api/company'
 import styled from 'styled-components'
 import moment from 'moment'
+import Loader from '../shared/tableloader'
 
 import {PlusOutlined} from '@ant-design/icons'
 
@@ -87,7 +88,7 @@ export default function LogTable({data, intialdata, loading}) {
         //   type: selectionType,
         //   ...rowSelection,
         // }}  
-        loading={loading} 
+        loading={{spinning: loading, indicator: <Loader/>}} 
         pagination={{
           onChange(current) {
             setPage(current)

@@ -122,7 +122,7 @@ export default function Panel() {
 
     
 
-      {(loading || load) && <Spin style={{ position:"absolute", top: "10%", left:'30%',  width: "700px",   height: "500px", }} tip="Please Wait, We are loading panels !"> </Spin>}
+      {/* {(loading || load) && <Spin style={{ position:"absolute", top: "10%", left:'30%',  width: "700px",   height: "500px", }} tip="Please Wait, We are loading panels !"> </Spin>} */}
 
       
        

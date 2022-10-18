@@ -22,6 +22,7 @@ import {
   import {useDispatch} from 'react-redux'
   import {deletebroadcast} from '../../api/broadcast'
   import moment from 'moment';
+  import Loader from '../shared/tableloader'
 
   
   function BroadcasteTable({data,loading}) {
@@ -139,7 +140,7 @@ import {
                 <div className="table-responsive">
                   <Table
                   scroll={{ x: true }}
-                  loading={loading}
+                  loading={{spinning: loading, indicator: <Loader/>}} 
                   pagination={{
                   onChange(current) {
                   setPage(current)

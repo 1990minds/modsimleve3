@@ -79,19 +79,19 @@ export default function Project() {
     <Col  flex="1 1 200px">
         <Createproject />
         </Col>
-        <Col flex="0 1 300px" >
-        <Tooltip placement="topLeft" title="Search for Project Name, Project ID" arrowPointAtCenter>
-    
-      <SearchWrap>
-        <Input value={search}  className="px-4 py-2  focus:outline-none"
-        prefix ={  <SearchOutlined  style={{color:'#3e79f7', fontWeight:'bold' ,padding:'0px'}} />
-        }
-         placeholder="Search" onChange={onSearch}  />
-
-      </SearchWrap>
         
-         </Tooltip>
+        <Col flex="0 1 300px" >
+        <SearchWrap >
+       <Tooltip placement="topLeft" title="Search for Name, Email, Phone No" arrowPointAtCenter>
+        <Input value={search}  className="px-4 py-2 focus:outline-none"
+        prefix ={  <SearchOutlined  style={{color:'#3e79f7', fontWeight:'bold',}} />
+        }
+        placeholder="Search" onChange={onSearch}  />
+        </Tooltip>
+        </SearchWrap>
         </Col>
+
+
         <Col className='' style={{ display: 'flex', justifyContent: 'end' }}>
         <ExcelBtn data={all_project} />
         </Col>
@@ -114,14 +114,14 @@ export default function Project() {
 
 }
 const SearchWrap = styled.div`
-  
-  .ant-input-affix-wrapper{
+
+.ant-input-affix-wrapper{
   padding: 0px !important;
   padding-left: 12px !important;
   padding-right: 8px !important;
   border-radius: 10px !important;
   border-color: transparent !important;
-  box-shadow: 6px 6px 5px #F1F1F1;  
+  box-shadow: 6px 6px 5px #F1F1F1;
+  width: 70% !important  
   }
-
 `
