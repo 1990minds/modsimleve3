@@ -10,7 +10,6 @@ import {useParams} from 'react-router-dom'
 import Item from 'antd/lib/list/Item';
 import { PercentageOutlined } from '@ant-design/icons';
 import { getCurrencyList } from 'currency-map-country';
-import ReactQuill from 'react-quill';
 const { TextArea } = Input;
 const { Option } = Select;
 

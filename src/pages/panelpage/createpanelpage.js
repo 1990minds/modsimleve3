@@ -93,7 +93,9 @@ export default function CreatePanelsettings({current_panel}) {
                   
   
             
-              const onFinish = (values) => {                   
+              const onFinish = (values) => {   
+                
+                console.log(values)
                   const panelsettingsdata = {
           
                       panel_type:values.panel_type,
@@ -119,6 +121,8 @@ export default function CreatePanelsettings({current_panel}) {
                 
                   dispatch(updatePanel(current_panel._id, panelsettingsdata))
                   form.resetFields()
+
+                  
             
             };
 
