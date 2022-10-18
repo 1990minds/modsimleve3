@@ -22,9 +22,8 @@ import Img46 from '../../assets/images/helpCenter/new17.png';
 
 import Img51 from '../../assets/images/helpCenter/new23.png';
 
-import Img61 from '../../assets/images/helpCenter/new17.png';
-import Img62 from '../../assets/images/helpCenter/new19.png';
-import Img63 from '../../assets/images/helpCenter/new20.png';
+import Img61 from '../../assets/images/helpCenter/image_DWG1.png';
+import Img62 from '../../assets/images/helpCenter/image_DWG2.png';
 
 import Img71 from '../../assets/images/helpCenter/new33.png';
 import Img72 from '../../assets/images/helpCenter/new34.png';
@@ -43,8 +42,9 @@ import Img111 from '../../assets/images/helpCenter/new40.png';
 import Img112 from '../../assets/images/helpCenter/new26.png';
 import Img113 from '../../assets/images/helpCenter/new27.png';
 
-import Img121 from '../../assets/images/helpCenter/image_DWG1.png';
-import Img122 from '../../assets/images/helpCenter/image_DWG2.png';
+import Img121 from '../../assets/images/helpCenter/img12_1.JPG';
+import Img122 from '../../assets/images/helpCenter/img12_2.JPG';
+import Img123 from '../../assets/images/helpCenter/img12_3.JPG';
 
 
 const data = [
@@ -265,18 +265,41 @@ const data = [
         content:  <div>
                     <p className='helpDesc'><b>Step 1 : </b>Goto Projects -> Products -> Panel Line item -> Click on drawing icon for requesting manufacturing drawing.</p>
                     <div className='helpImg'>
-                        <img src={Img121}  preview={false}  />
+                        <img src={Img61}  preview={false}  />
                         <p></p>
                     </div>
                     <p className='helpDesc'><b>Step 2 : </b>A request will be sent to the admin. Admin will download the manufacturing drawing based on the request and share to the respective mail address.</p>
                     <div className='helpImg'>
-                        <img src={Img122}  preview={false} />
+                        <img src={Img62}  preview={false} />
                         <p></p>
                     </div>
                 </div>
     },
 
-   
+    {
+        id:12,
+        title:"How to raise a Ticket ?",
+        content:  <div>
+                     <p className='helpDesc'><b>Step 1 : </b>Click on the Ticket tab on the side menu.</p> 
+                    <div className='helpImg'>
+                        <img src={Img121}  preview={false}  />
+                        <p></p>
+                    </div>
+
+                    <p className='helpDesc'><b>Step 2 : </b>Click on raise ticket and fill necessary details.</p> 
+                    <div className='helpImg'>
+                        <img src={Img122}  preview={false} />
+                        <p></p>
+                    </div> 
+
+                    <p className='helpDesc'><b>Step 3 : </b>Ticket ID will be generated and shown in a Table. Admin will address the Ticket and respond to you by Mail.</p> 
+                    <div className='helpImg'>
+                        <img src={Img123}  preview={false} />
+                        <p></p>
+                    </div> 
+                </div>
+    },
+
 
 ]
 
