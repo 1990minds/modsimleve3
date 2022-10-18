@@ -19,6 +19,11 @@ function Sidenav({ color }) {
   const { pathname } = useLocation();
   const page = pathname.replace("/", "");
 
+  
+  console.log({pathname});
+  console.log({page});
+
+
   const dashboard = [
     <svg
       width="20"
@@ -766,6 +771,21 @@ c-0.01-0.42-0.32-0.5-0.66-0.51C-57.1,15.18-57.68,15.19-58.26,15.19z"fill={color}
 ,
   ];
 
+
+  const help = [
+    <svg
+      width="20"
+      height="20"
+      viewBox="0 0 20 20"
+      xmlns="http://www.w3.org/2000/svg"
+      key={0}
+    >
+      <path  d="M8.414.968a1.102 1.102 0 1 0 0 2.204h2.204a1.102 1.102 0 1 0 0-2.204H8.414Z"fill={color}></path>
+   <path  fill-rule="evenodd" d="M2.903 4.274A2.204 2.204 0 0 1 5.108 2.07a3.306 3.306 0 0 0 3.306 3.306h2.204a3.307 3.307 0 0 0 3.307-3.306 2.204 2.204 0 0 1 2.204 2.204v12.124a2.204 2.204 0 0 1-2.204 2.204H5.108a2.204 2.204 0 0 1-2.205-2.204V4.274ZM6.21 8.683a1.102 1.102 0 0 0 0 2.204h.01a1.102 1.102 0 0 0 0-2.204h-.01Zm3.306 0a1.102 1.102 0 0 0 0 2.204h3.307a1.102 1.102 0 0 0 0-2.204H9.516ZM6.21 13.092a1.102 1.102 0 1 0 0 2.204h.01a1.102 1.102 0 0 0 0-2.204h-.01Zm3.306 0a1.102 1.102 0 1 0 0 2.204h3.307a1.102 1.102 0 0 0 0-2.204H9.516Z" clip-rule="evenodd"fill={color}></path>
+</svg>
+  ];
+
+
   const signin = [
     <svg
       width="20"
@@ -807,7 +827,7 @@ c-0.01-0.42-0.32-0.5-0.66-0.51C-57.1,15.18-57.68,15.19-58.26,15.19z"fill={color}
   return (
     <>
       <div className="brand" style={{ display: "flex" , justifyContent: "center"}}>
-        <img src={user?.company?.profile_image} alt="" style={{ height: '100px', width:'180px'}} />
+        <img src={user?.company?.profile_image} alt="" style={{ width:'90%',height: '100%', objectFit:'cover' }} />
        
       </div>
       <hr />
@@ -838,7 +858,7 @@ c-0.01-0.42-0.32-0.5-0.66-0.51C-57.1,15.18-57.68,15.19-58.26,15.19z"fill={color}
             <span className="label">Customer</span>
           </NavLink>
         </Menu.Item>
-        <Menu.Item key="2">
+        <Menu.Item key="3">
           <NavLink to="/auth/projects">
             <span
               className="icon"
@@ -856,7 +876,7 @@ c-0.01-0.42-0.32-0.5-0.66-0.51C-57.1,15.18-57.68,15.19-58.26,15.19z"fill={color}
           Support
         </Menu.Item> */}
 
-<Menu.Item key="2">
+<Menu.Item key="4">
           <NavLink to="/auth/broadcast">
             <span
               className="icon"
@@ -878,7 +898,7 @@ c-0.01-0.42-0.32-0.5-0.66-0.51C-57.1,15.18-57.68,15.19-58.26,15.19z"fill={color}
 
 
        
-        <Menu.Item key="2">
+        <Menu.Item key="5">
           <NavLink to="/auth/ticket">
             <span
               className="icon"
@@ -895,7 +915,7 @@ c-0.01-0.42-0.32-0.5-0.66-0.51C-57.1,15.18-57.68,15.19-58.26,15.19z"fill={color}
 
 
 
-        <Menu.Item key="8">
+        <Menu.Item key="6">
           <NavLink to="/auth/logbook">
             <span className="icon">{logs}</span>
             { collapsed ?<></>:
@@ -904,55 +924,22 @@ c-0.01-0.42-0.32-0.5-0.66-0.51C-57.1,15.18-57.68,15.19-58.26,15.19z"fill={color}
         </Menu.Item>
 
 
-       
+        <Menu.Item key="7">
+          <NavLink to="/auth/help-center">
+            <span
+              className="icon"
+              style={{
+                background: page === "help-center" ? color : "",
+              }}
+            >
+              {help}
+            </span>
+            <span className="label">Help Center</span>
+          </NavLink>
+        </Menu.Item>
   
            
        
-            {/* <span className="label">Products</span>
-          </NavLink>
-        </Menu.Item>
-        <Menu.Item key="4">
-          <NavLink to="/auth/parts">
-            <span
-              className="icon"
-              style={{
-                background: page === "parts" ? color : "",
-              }}
-            >
-              {parts}
-            </span>
-            <span className="label">Parts</span>
-          </NavLink>
-        </Menu.Item>
-
-        <Menu.Item className="menu-item-header" key="5">
-          Support
-        </Menu.Item>
-        <Menu.Item key="6">
-          <NavLink to="/auth/broadcast">
-            <span
-              className="icon"
-              style={{
-                background: page === "profile" ? color : "",
-              }}
-            >
-              {profile}
-            </span> */}
-            {/* <span className="label">Broadcast</span>
-          </NavLink>
-        </Menu.Item> */}
-        {/* <Menu.Item key="7">
-          <NavLink to="/auth/chats">
-            <span className="icon">{chats}</span>
-            <span className="label">Chats</span>
-          </NavLink>
-        </Menu.Item>
-        <Menu.Item key="8">
-          <NavLink to="/auth/logs">
-            <span className="icon">{logs}</span>
-            <span className="label">Logs</span>
-          </NavLink>
-        </Menu.Item> */}
       </Menu>
       <div className="aside-footer">
         <div

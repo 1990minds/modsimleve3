@@ -10,6 +10,7 @@ import {useParams} from 'react-router-dom'
 import Item from 'antd/lib/list/Item';
 import { PercentageOutlined } from '@ant-design/icons';
 import { getCurrencyList } from 'currency-map-country';
+import ReactQuill from 'react-quill';
 const { TextArea } = Input;
 const { Option } = Select;
 
@@ -30,7 +31,9 @@ export default function Quotation({current_project,cancel}) {
   const [validityYear, setYear]=useState(null)
   const [validityMonth, setMonth]=useState(null)
   const {id} = useParams()
-     
+  const [terms, setTerms] = useState('');
+  const [notes, setNotes] = useState('');
+
 
   const onFinish = (values) => {
     
@@ -40,6 +43,8 @@ export default function Quotation({current_project,cancel}) {
         packing_forwarding:values.packing_forwarding,
         freight:values.freight,
         insurance:values.insurance,
+        // terms_conditions:terms,
+        // note:notes,
         terms_conditions:values.terms_conditions,
         note:values.note,
         electrical_components:values.electrical_components,
@@ -226,8 +231,10 @@ export default function Quotation({current_project,cancel}) {
                   rows={4}
                   style={{
                   height: 40,
-    }}
+                     }}
                   onChange={onChange} />
+                  {/* <ReactQuill theme="snow"  rows={4} value={terms} onChange={setTerms}/> */}
+
                   </Form.Item>
                   </Col>
                   </Row>
@@ -242,12 +249,14 @@ export default function Quotation({current_project,cancel}) {
                       rules={[{ required: true, message: 'Please enter Note' }]}
                     >
                       <TextArea   showCount
-                maxLength={600}
-                rows={4}
-                style={{
-                height: 40,
-                }}
-                onChange={onChange} />
+                      maxLength={600}
+                      rows={4}
+                      style={{
+                      height: 40,
+                      }}
+                      onChange={onChange} />
+                  {/* <ReactQuill theme="snow"  rows={4} value={notes} onChange={setNotes}/> */}
+
                     </Form.Item>
                   </Col>
 
@@ -258,7 +267,7 @@ export default function Quotation({current_project,cancel}) {
 
 <div style={{ display:'flex', justifyContent:'right', alignItems:'right', paddingTop: '20px'}}>
 
-    <Button type="primary" block style={{ fontSize: '14px', width:'20rem' }}
+    <Button type="primary" block style={{ fontSize: '14px', width:'17rem' }}
     onClick={() => setIsMenuOpen(true)}
     >Next</Button>
     </div>
@@ -381,14 +390,14 @@ export default function Quotation({current_project,cancel}) {
 
       <div style={{ display:'flex', justifyContent:'space-between', alignItems:'center', paddingTop: '20px'}}>
       <div>
-      <Button type="secondary" block style={{ fontSize: '14px', width:'20rem' }}
+      <Button type="secondary" block style={{ fontSize: '14px', width:'17rem' }}
       onClick={() => setIsMenuOpen(false)}
        >Back</Button>
       </div>
       <div>
       <Button type="primary" htmlType="submit"
       onClick={() => {setVisible(false); enterLoading(0);}}
-      block style={{ fontSize: '14px', width:'20rem' }}
+      block style={{ fontSize: '14px', width:'17rem' }}
       loading={loadings[0]} 
       >
       Download Files

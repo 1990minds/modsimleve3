@@ -81,7 +81,7 @@ export default function Database() {
     <Link to="/"> Home </Link>
     </Breadcrumb.Item>
     <Breadcrumb.Item>
-    Tickets 
+    Logbook 
     </Breadcrumb.Item>
     </Breadcrumb>
 
