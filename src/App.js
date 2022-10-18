@@ -17,6 +17,7 @@ import Ticket from './pages/tickets'
 import TicketView from './pages/tickets/ticketviewer'
 import Broadcast from './pages/broadcast'
 import Logbook from './pages/logbook'
+import HelpCenter from './pages/HelpCenter'
 
 function App() {
 
@@ -41,7 +42,8 @@ function App() {
     <Route path="/auth/ticketviewer/:id"  component={TicketView} exact />
     <Route path="/auth/broadcast" component={Broadcast} exact/>
     <Route path="/auth/logbook" component={Logbook} exact/>
-    
+    <Route path="/auth/help-center" component={HelpCenter} exact/>
+
      </main>
     </Router>
   );

@@ -90,3 +90,55 @@
     align-items: center !important;
 }
 
+
+
+
+.ant-collapse-icon-position-right > .ant-collapse-item > .ant-collapse-header {
+    background: #ffffff !important;
+    margin-top: 10px;
+    font-size: 1rem !important;
+    box-shadow: 6px 6px 3px #F1F1F1;
+  }
+  
+  .ant-collapse-ghost
+    > .ant-collapse-item
+    > .ant-collapse-content
+    > .ant-collapse-content-box {
+    background: #f3f3f3 !important;
+    font-family: "Poppins", sans-serif !important;
+    font-size: 0.8rem !important;
+    box-shadow: 6px 6px 3px #F1F1F1;
+    height: 65vh;
+    overflow-y: auto;
+  }
+  
+  .ant-collapse
+    > .ant-collapse-item
+    > .ant-collapse-header
+    .ant-collapse-arrow
+    svg {
+    transition: 1s;
+    font-size: 0.8rem !important;
+    /* color: var(--brandColor) !important; */
+  }
+
+  .helpImg{
+   display: grid;
+   grid-template-columns: 70% 30%;
+   gap: 10px;
+   margin: 10px auto 20px auto;
+  }
+
+  .helpImg p{
+    text-align: justify;
+    }
+    .ql-container{
+        height:80px !important;
+    }
+
+    .helpDesc{
+        font-size: 22px;
+        text-align: justify;
+        margin-bottom: 0px;
+        padding-bottom: 0px;
+    }
