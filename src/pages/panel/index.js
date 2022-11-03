@@ -105,13 +105,12 @@ export default function Panel() {
      <Col flex="0 1 300px" >
      <Tooltip placement="topLeft" title="Search for Panel Name, Panel ID" arrowPointAtCenter>
 
-<SearchWrap>
+   <SearchWrap>
      <Input value={search}  className="px-4 py-2 focus:outline-none"
       prefix ={  <SearchOutlined  style={{color:'#3e79f7', fontWeight:'bold' ,padding:'0px'}} />
       }
       placeholder="Search" onChange={onSearch}  />
-
-</SearchWrap>
+   </SearchWrap>
  
       </Tooltip>
       </Col>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;

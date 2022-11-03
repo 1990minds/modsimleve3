@@ -109,7 +109,7 @@ Our Team will share the details with you to your official Email.
 Thank you for contacting Modutec.
           `
           ,
-        duration: 0,
+       
       }
   );
    dispatch(fetchProductPanels(id));

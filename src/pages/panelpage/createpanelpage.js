@@ -377,7 +377,7 @@ export default function CreatePanelsettings({current_panel}) {
           { userColor && <Col xs={2} sm={4} md={6} lg={8} xl={5}>
           <Form.Item
                 
-                label={<p > User Defined Panel Color</p>}
+                label={<p className=" text-left m-0" > User Defined Panel Color</p>}
                 name="user_define"
                 rules={[{ required: true, message: 'required!'}]}
               >

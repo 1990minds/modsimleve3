@@ -32,6 +32,7 @@ export default function CreateProject({cancel}) {
        const data = {
         project_location:values.project_location,
         phone_number:values.phone_number,
+        designation:values.designation,
         email:values.email,
         project_status:'New',
         // project_id:values.project_id,
@@ -154,13 +155,33 @@ export default function CreateProject({cancel}) {
              <Form.Item
              label={<p className="  w-36 text-left m-0">Project Coordinator</p>}
              name="project_coordiantor"
-            //  rules={[{ required: true, message: 'Please select Project Coordinator!' }]}
+             rules={[{ required: true, message: 'Please select Project Coordinator!' }]}
              >
              <Input/>            
              </Form.Item>
              </Col>
 
+
+
+
              <Col span={12}>
+             <Form.Item
+             label={<p className="  w-36 text-left m-0">Designation</p>}
+             name="designation"
+             rules={[{ required: true, message: 'Please select Designation!' }]}
+             >
+             <Input/>            
+             </Form.Item>
+             </Col>
+
+           
+             </Row>
+
+
+        
+           <Row gutter={16}>
+
+           <Col span={12}>
              <Form.Item
              label={<p className="  w-36 text-left m-0">Project Location</p>}
              name="project_location"
@@ -169,13 +190,27 @@ export default function CreateProject({cancel}) {
              <Input/>
              </Form.Item>
              </Col>
-             </Row>
 
 
-        
+
+             <Col span={12}>
+           <Form.Item
+            label={<p className="w-36 text-left m-0">Phone Number</p>}
+            name="phone_number"
+            rules={[{ message: 'required!' },
+            {min: 10},
+            {max:10},
+            {pattern:"[0-9]", message:"Only Numbers"}
+            ]}
+           >
+           <Input/>
+           </Form.Item>
+           </Col>
+           </Row>
+
            <Row gutter={16}>
              
-              <Col span={12}>
+           <Col span={12}>
               <Form.Item
               label={<p className="  w-36 text-left m-0">Email</p>}
             name="email"
