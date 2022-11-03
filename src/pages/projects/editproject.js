@@ -28,6 +28,7 @@ export default function EditProject({current_project,cancel}) {
           project_location:current_project &&  current_project. project_location,
           email:current_project && current_project.email,
           phone_number:current_project&& current_project.phone_number,
+          designation:current_project&& current_project.designation,
           project_status:current_project&& current_project.project_status,
           project_name:current_project && current_project.project_name,
           project_coordiantor:current_project && current_project.project_coordiantor,
@@ -72,6 +73,7 @@ export default function EditProject({current_project,cancel}) {
                 // project_id:values.project_id,
                 project_name:values.project_name,
                 project_coordiantor:values.project_coordiantor,
+                designation:values.designation,
                 customerId:values.customerId,
                 companyId:user?.company?._id,
                 user:user?._id,
@@ -166,25 +168,46 @@ export default function EditProject({current_project,cancel}) {
              name="project_coordiantor"
             //  rules={[{ required: true, message: 'Please select Project Coordinator!' }]}
              >
-             <Input disabled/>
+             <Input/>
              </Form.Item>
              </Col>
 
+
+
              <Col span={12}>
              <Form.Item 
-             label={<p className="  w-36 text-left m-0">Project Location</p>}
-             name="project_location"
+             label={<p className="  w-36 text-left m-0">Designation</p>}
+             name="designation"
             //  rules={[{ required: true, message: 'Please select Project Location!' }]}
              >
-             <Input disabled/>
+             <Input />
              </Form.Item>
              </Col>
+
+
+
+           
              </Row>
 
 
         
            <Row gutter={16}>
-           {/* <Col span={12}>
+
+           <Col span={12}>
+             <Form.Item 
+             label={<p className="  w-36 text-left m-0">Project Location</p>}
+             name="project_location"
+            //  rules={[{ required: true, message: 'Please select Project Location!' }]}
+             >
+             <Input/>
+             </Form.Item>
+             </Col>
+
+
+
+
+
+           <Col span={12}>
            <Form.Item
             label={<p className="w-36 text-left m-0">Phone Number</p>}
             name="phone_number"
@@ -196,7 +219,11 @@ export default function EditProject({current_project,cancel}) {
            >
            <Input/>
            </Form.Item>
-           </Col> */}
+           </Col>
+           </Row>
+
+
+           <Row gutter={16}>
              
               <Col span={12}>
               <Form.Item
@@ -210,7 +237,7 @@ export default function EditProject({current_project,cancel}) {
               message: 'Please input your E-mail!',
             },]}
            >
-           <Input disabled/>
+           <Input />
 
            </Form.Item>
              </Col>

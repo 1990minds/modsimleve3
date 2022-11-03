@@ -217,7 +217,7 @@ export default function Quotation({current_project,cancel}) {
                   rules={[{ required: true, message: 'Please enter Terms & Conditions' }]}
                 >
                   <TextArea   showCount
-                  maxLength={600}
+                  maxLength={1000}
                   rows={4}
                   style={{
                   height: 40,
@@ -239,7 +239,7 @@ export default function Quotation({current_project,cancel}) {
                       rules={[{ required: true, message: 'Please enter Note' }]}
                     >
                       <TextArea   showCount
-                      maxLength={600}
+                      maxLength={1000}
                       rows={4}
                       style={{
                       height: 40,
