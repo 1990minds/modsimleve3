@@ -1,15 +1,11 @@
 import React, {useState,useEffect} from 'react'
 import {useDispatch, useSelector} from 'react-redux'
-import { Drawer, Form, Button, Col, Row, Input, Select, Tooltip , Space,InputNumber, message, Steps } from 'antd';
-import { PlusOutlined } from '@ant-design/icons';
-import { Divider } from 'antd';
-import { EyeInvisibleOutlined, EyeTwoTone } from '@ant-design/icons';
-import {updateproject} from '../../api/project'
-import {authenticateSelector} from '../../api/authSlice';
-import {useParams} from 'react-router-dom'
-import Item from 'antd/lib/list/Item';
+import { Drawer, Form, Button, Col, Row, Input, Select, Tooltip , Checkbox,InputNumber, message } from 'antd';
 import { PercentageOutlined } from '@ant-design/icons';
 import { getCurrencyList } from 'currency-map-country';
+import {updateproject} from '../../api/project'
+
+
 const { TextArea } = Input;
 const { Option } = Select;
 
@@ -18,121 +14,116 @@ const { Option } = Select;
 
 export default function Quotation({current_project,cancel}) {
   
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [value, setValue] = useState('');
+  const [isMenuOpen, setIsMenuOpen] = useState('first');
+  const [check, setCheck] = useState(true)
 
-  console.log(current_project)
+  const [firstData, setFirstDeta] = useState(null);
+  const [secontData, setSecondDeta] = useState(null);
 
-  const [loading, setLoading] = useState(false)   
-  
-  const { panel } = useSelector(authenticateSelector) 
+
   const dispatch = useDispatch();
-  const [validityYear, setYear]=useState(null)
-  const [validityMonth, setMonth]=useState(null)
-  const {id} = useParams()
-  const [terms, setTerms] = useState('');
-  const [notes, setNotes] = useState('');
+
+  const [form1] = Form.useForm();
+  const [form2] = Form.useForm();
+
+  const [ country , setCountry ] = useState([])
+
+  const onChange = (value)=> {
+    console.log(`selected ${value}`)
+  }
 
 
-  const onFinish = (values) => {
-    
-   
-    const quotationdata = {
-        scope_supply:values.scope_supply,
-        packing_forwarding:values.packing_forwarding,
-        freight:values.freight,
-        insurance:values.insurance,
-        // terms_conditions:terms,
-        // note:notes,
-        terms_conditions:values.terms_conditions,
-        note:values.note,
-        electrical_components:values.electrical_components,
-        discount:values.discount,
+    const onFinishFirst = (values) => {
+        const data = {
+            scope_supply:values.scope_supply,
+            customer_currency:values.customer_currency,
+            customer_value:values.customer_value,
+            terms_conditions:values.terms_conditions,
+            note:values.note,
+          }
+          setFirstDeta(data)
+          setIsMenuOpen('second')
+      };
 
-        // native_currency:values.native_currency,
-        // native_value:values.native_value,
-        customer_currency:values.customer_currency,
-        customer_value:values.customer_value
 
-    //  companyId:user?.company?._id,
-    //  user:user?._id,
+    const onFinishSecond = (values) => {
+        const data = {
+              packing_forwarding:values.packing_forwarding,
+              freight:values.freight,
+              insurance:values.insurance,
+              electrical_components:values.electrical_components,
+              discount:values.discount
+        }
+        setSecondDeta(data)
+        setIsMenuOpen('third')
+      };
+
       
-   }
 
-    dispatch(updateproject(current_project._id ,quotationdata ,current_project.company?._id,current_project.project_id))
-    form.resetFields()
-    setIsMenuOpen(false)
-    cancel()
+    const onFinish = () => {
+   
+        const quotationdata = {
+            scope_supply:firstData.scope_supply,
+            customer_currency:firstData.customer_currency,
+            customer_value:firstData.customer_value,
+            terms_conditions:firstData.terms_conditions,
+            note:firstData.note,
+            packing_forwarding:secontData.packing_forwarding,
+            freight:secontData.freight,
+            insurance:secontData.insurance,
+            electrical_components:secontData.electrical_components,
+            discount:secontData.discount,
+       }
+        console.log({quotationdata});
+        dispatch(updateproject(current_project._id ,quotationdata ,current_project.company?._id,current_project.project_id))
+        form1.resetFields()
+        form2.resetFields()
+        setIsMenuOpen('first')
+        setCheck(true)
+        cancel()
+    
+        };
 
-    };
 
-           const [form] = Form.useForm();
-           const [ country , setCountry ] = useState([])
 
-           const onChange = (value)=> {
-             console.log(`selected ${value}`)
-             setVisible(false);
-           }
+
+
         
 
-    const onFinishFailed = (errorInfo) => {
-    console.log('Failed:', errorInfo);
-  };
+      const onFinishFailed = (errorInfo) => {
+      console.log('Failed:', errorInfo);
+    };
 
 
-  useEffect(()=>{
-    setCountry( getCurrencyList() )        
-    }, [])
+    useEffect(()=>{
+      setCountry( getCurrencyList() )        
+      }, [])
 
 
-  const onSearch = (value) => {
-    console.log('search:', value);
-  };
+    const onSearch = (value) => {
+      console.log('search:', value);
+    };
 
 
-    const [visible, setVisible] = useState(false);
 
-    const showDrawer = () => {
-      setVisible(true);
+    const onChangeCheckBox = (e) => {
+      setCheck(!e.target.checked)
     };
   
-    const onClose = () => {
-      setVisible(false);
-    };
-
-
-    const [loadings, setLoadings] = useState([]);
-
-    const enterLoading = (index) => {
-      setLoadings((prevLoadings) => {
-        const newLoadings = [...prevLoadings];
-        newLoadings[index] = true;
-        return newLoadings;
-      });
-      setTimeout(() => {
-        setLoadings((prevLoadings) => {
-          const newLoadings = [...prevLoadings];
-          newLoadings[index] = false;
-          return newLoadings;
-        });
-      }, 6000);
-    };
-
+  
 
     return (
       <>
+ <div style={{display:isMenuOpen === 'first' ? 'block' : 'none'}}>
  
   <Form layout="vertical" hideRequiredMark
-           form={form}
-           name="basic"
+  form={form1}
+           name="first"
            initialValues={{ remember: false }}
-           onFinish={onFinish}
+           onFinish={onFinishFirst}
            onFinishFailed={onFinishFailed}
           >
           
-      
-          {/* {isMenuOpen === false ?   */}
-           <div style={{display:isMenuOpen === false?'block':'none'}}>
 
             <Row gutter={16}>
       
@@ -188,7 +179,7 @@ export default function Quotation({current_project,cancel}) {
                     placeholder="Select Your Currency">
                     { 
                     country?.map( (item, i)=>(
-                    <option key={i} value={item?.name}> { item?.name}</option>
+                    <option key={i} value={item?.name}> {item?.name}</option>
                       ))
                   }
                   </Select> 
@@ -264,21 +255,31 @@ export default function Quotation({current_project,cancel}) {
   
 
 
-<div style={{ display:'flex', justifyContent:'right', alignItems:'right', paddingTop: '20px'}}>
-
-    <Button type="primary" block style={{ fontSize: '14px', width:'17rem' }}
-    onClick={() => setIsMenuOpen(true)}
-    >Next</Button>
+      <div style={{ display:'flex', justifyContent:'right', alignItems:'right', paddingTop: '20px'}}>
+      <Button type="primary" block style={{ fontSize: '14px', width:'17rem' }}  htmlType="submit">Next</Button>
+      </div>
+          </Form>
     </div>
-    </div>
-    {/* : */}
-    <div style={{display:isMenuOpen === true?'block':'none'}}>
 
 
+{/* ////////22222222////// */}
+
+    <div style={{display:isMenuOpen === 'second'?'block':'none'}}>
+
+      <Form layout="vertical" hideRequiredMark
+        form={form2}
+           name="second"
+           initialValues={{ remember: false }}
+           onFinish={onFinishSecond}
+           onFinishFailed={onFinishFailed}
+          >
+          
+<p style={{marginBottom:'25px'}}> Customer's Currency &nbsp;:&nbsp; <span style={{}}>{firstData?.customer_currency}</span></p>
 
 
 
     <Row gutter={16}>
+
     <Col span={8}>
         <Form.Item
         label={<p className="  w-36 text-left m-0">Packing & Forwarding</p>}
@@ -390,22 +391,109 @@ export default function Quotation({current_project,cancel}) {
       <div style={{ display:'flex', justifyContent:'space-between', alignItems:'center', paddingTop: '20px'}}>
       <div>
       <Button type="secondary" block style={{ fontSize: '14px', width:'17rem' }}
-      onClick={() => setIsMenuOpen(false)}
+      onClick={() => setIsMenuOpen('first')}
        >Back</Button>
       </div>
       <div>
-      <Button type="primary" htmlType="submit"
-      onClick={() => {setVisible(false); enterLoading(0);}}
-      block style={{ fontSize: '14px', width:'17rem' }}
-      loading={loadings[0]} 
-      >
-      Download Files
-    </Button>
-    </div>
-    </div>
-    </div>
-    {/* } */}
+
+    <Button type="primary" block style={{ fontSize: '14px', width:'17rem' }}  htmlType="submit">Next</Button>
+      </div>
+      </div>
+
           </Form>
+
+
+    </div>
+
+
+    
+{/* ////33333333/// */}
+
+    <div style={{display:isMenuOpen === 'third'?'block':'none'}} className="grid y">
+
+
+    <Row gutter={1}>
+      <Col span={8}>
+        <p><b>Scope Of Supply&nbsp;&nbsp;&nbsp;:&nbsp;&nbsp;</b> {firstData?.scope_supply}</p>
+      </Col>
+
+      <Col span={16}>
+        <p><b>Customer's Currency&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;&nbsp;</b> {firstData?.customer_currency} </p>
+      </Col>
+
+      <Col span={8}>
+        <p><b>Currency Value &nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;&nbsp;</b>{firstData?.customer_value}</p>
+      </Col>
+
+
+      <Col span={8}>
+        <p><b>Packing & Forwarding &nbsp;&nbsp;&nbsp;:&nbsp;&nbsp;</b> {secontData?.packing_forwarding}</p>
+      </Col>
+
+      <Col span={8}>
+        <p><b>Freight &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;&nbsp;</b> {secontData?.freight}</p>
+      </Col>
+
+      <Col span={8}>
+        <p><b>Insurance &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;&nbsp;</b> {secontData?.insurance} % </p>
+      </Col>
+
+
+{/* // */}
+      <Col span={8}>
+      <p><b>Electrical Components &nbsp;&nbsp;:&nbsp;&nbsp;</b> {secontData?.electrical_components}</p>
+      </Col>
+
+      <Col span={8}>
+      <p><b>Discount &nbsp;&nbsp;&nbsp;:&nbsp;&nbsp;</b> {secontData?.discount} %</p>
+      </Col>
+
+    </Row>
+
+    <p style={{margin:'5px 0 0 0'}}><b>Terms & Conditions &nbsp;:&nbsp;</b></p>
+    <div style={{ height:'100px', overflowY: 'auto', margin:'0',padding:'3px 5px', border:'0.01rem solid grey', borderRadius:'5px'}}>
+      {
+        firstData?.terms_conditions?.split("\n").map((item,i)=>{
+          return <p key={i} style={{padding:'0px', margin:'0px', fontSize:'12px'}}><>{item}<br/></></p>
+        })
+      }
+    </div>
+
+
+    <p style={{margin:'10px 0 0 0'}}><b>Note &nbsp;:&nbsp;</b></p>
+    <div style={{ height:'100px', overflowY: 'auto', margin:'0',padding:'3px 5px', border:'0.01rem solid grey', borderRadius:'5px'}}>
+      {
+        firstData?.note?.split("\n").map((item,i)=>{
+          return <p key={i} style={{padding:'0px', margin:'0px', fontSize:'12px'}}><>{item}<br/></></p>
+        })
+      }
+    </div>
+    
+
+      <Checkbox onChange={onChangeCheckBox} style={{marginTop:'25px', fontSize:'15px', fontWeight:'bold'}}>I hereby declare that the information provided is true and correct</Checkbox>
+
+      <div style={{ display:'flex', justifyContent:'space-between', alignItems:'center', paddingTop: '20px'}}>
+      <div>
+      <Button type="secondary" block style={{ fontSize: '14px', width:'17rem' }}
+      onClick={() => setIsMenuOpen('second')}
+       >Back</Button>
+      </div>
+
+
+      <div>
+
+      {/* <Tooltip placement="top" title={check?"Download Files":''}> */}
+      <Button type="primary" htmlType="submit" block style={{ fontSize: '14px', width:'17rem' }} disabled={check} onClick={onFinish} >
+      Download Files
+      </Button>
+     {/* </Tooltip> */}
+
+      </div>
+      </div>
+
+    </div>
+
+
 
         
       </>

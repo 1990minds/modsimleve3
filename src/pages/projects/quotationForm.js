@@ -169,7 +169,7 @@ export default function Quotation({current_project,cancel}) {
             <Col span={24}>
                 <Form.Item
                   name="terms_conditions"
-                  label="Terms & Conditions"
+                  label="Terms & Conditions 1"
                   rules={[{ required: true, message: 'Please enter Terms & Conditions' }]}
                 >
                   <TextArea   showCount

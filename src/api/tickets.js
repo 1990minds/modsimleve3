@@ -112,7 +112,9 @@ export const createtickets = ( values,id) => async dispatch => {
               A Support representative will review your request and get in touch with you soon.
               Thank you for contacting Modutec.`
               ,
-           
+
+
+
           }
      );
 
