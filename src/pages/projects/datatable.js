@@ -142,9 +142,7 @@ import {
         title: ' Project ID ',
         dataIndex: 'project_id',
         key: 'project_id',      
-    
 
-        
       },
 
       {

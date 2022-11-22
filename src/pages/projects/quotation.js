@@ -4,6 +4,8 @@ import { Drawer, Form, Button, Col, Row, Input, Select, Tooltip , Checkbox,Input
 import { PercentageOutlined } from '@ant-design/icons';
 import { getCurrencyList } from 'currency-map-country';
 import {updateproject} from '../../api/project'
+import {fetchProjectPanels, panelSelector} from '../../api/panel'
+
 
 
 const { TextArea } = Input;
@@ -14,11 +16,16 @@ const { Option } = Select;
 
 export default function Quotation({current_project,cancel}) {
   
-  const [isMenuOpen, setIsMenuOpen] = useState('first');
+  const {project_panels, loading} = useSelector(panelSelector) 
+
+  const [panels, setPanels] = useState([]);
+
+  const [isMenuOpen, setIsMenuOpen] = useState('zero');
   const [check, setCheck] = useState(true)
 
   const [firstData, setFirstDeta] = useState(null);
   const [secontData, setSecondDeta] = useState(null);
+  const [ country , setCountry ] = useState([])
 
 
   const dispatch = useDispatch();
@@ -26,13 +33,52 @@ export default function Quotation({current_project,cancel}) {
   const [form1] = Form.useForm();
   const [form2] = Form.useForm();
 
-  const [ country , setCountry ] = useState([])
 
   const onChange = (value)=> {
     console.log(`selected ${value}`)
   }
 
 
+  useEffect(()=>{
+    dispatch(fetchProjectPanels(current_project._id))            
+    setCheck(true)
+    setPanels([])  
+    setIsMenuOpen('zero')
+    setFirstDeta(null)
+    setSecondDeta(null)
+  }, [current_project]) 
+
+
+
+
+  console.log({project_panels});
+  console.log({panels});
+  console.log(panels.length);
+  
+
+
+  const onChangePanel = (e, value)=> {
+
+    // const exist = panels.findIndex((item) => item._id === value._id);
+             
+    if(!e.target.checked){
+          const updatedPanals = panels.filter(pan =>  pan._id !== value._id ) 
+          setPanels(updatedPanals)
+     }
+     else if(e.target.checked){
+        setPanels([...panels, value])
+     }
+
+  }
+
+
+
+  const onFinishZero = (values) => {
+
+      setIsMenuOpen('first')
+  };
+
+  
     const onFinishFirst = (values) => {
         const data = {
             scope_supply:values.scope_supply,
@@ -75,29 +121,26 @@ export default function Quotation({current_project,cancel}) {
             discount:secontData.discount,
        }
         console.log({quotationdata});
-        dispatch(updateproject(current_project._id ,quotationdata ,current_project.company?._id,current_project.project_id))
+        dispatch(updateproject(current_project._id ,quotationdata ,panels, current_project.company?._id,current_project.project_id))
         form1.resetFields()
         form2.resetFields()
-        setIsMenuOpen('first')
+        setIsMenuOpen('zero')
         setCheck(true)
+        setPanels([])
         cancel()
     
         };
 
-
-
-
-
-        
+ 
 
       const onFinishFailed = (errorInfo) => {
-      console.log('Failed:', errorInfo);
-    };
+        console.log('Failed:', errorInfo);
+      };
 
 
     useEffect(()=>{
       setCountry( getCurrencyList() )        
-      }, [])
+    }, [])
 
 
     const onSearch = (value) => {
@@ -114,6 +157,43 @@ export default function Quotation({current_project,cancel}) {
 
     return (
       <>
+{/* //////////////////00000000////////////////////////// */}
+
+<div style={{display:isMenuOpen === 'zero' ? 'block' : 'none'}}>
+ 
+          {/* <Form layout="vertical" hideRequiredMark
+          form={form0}
+          name="first"
+          initialValues={{ remember: false }}
+          onFinish={onFinishZero}
+          onFinishFailed={onFinishFailed}
+         > */}
+         <p style={{ fontSize:'16px'}}>Select Panels</p>
+               <Row style={{padding:'0 20px'}}>
+                     {
+                  project_panels?.map((item,i)=>{
+                    const exist = panels.findIndex((it) => it._id === item._id);
+                    console.log({exist});
+
+                    return  <Col span={24}>
+                              <Checkbox onChange={(e)=>onChangePanel(e, item)} checked={exist==-1?false:true} style={{marginBottom:'10px', fontSize:'16px'}}>{item.panel_name}</Checkbox>
+                           </Col>
+                    })
+                  }
+               </Row>
+
+
+     <div style={{ display:'flex', justifyContent:'right', alignItems:'right', paddingTop: '20px'}}>
+     <Button type="primary" disabled={panels.length == 0} block style={{ fontSize: '14px', width:'17rem' }}  onClick={onFinishZero}>Next</Button>
+     </div>
+         {/* </Form> */}
+   </div>
+
+
+
+
+ {/* /////////////////////1111111111111111111/////////////////// */}
+
  <div style={{display:isMenuOpen === 'first' ? 'block' : 'none'}}>
  
   <Form layout="vertical" hideRequiredMark
@@ -139,7 +219,6 @@ export default function Quotation({current_project,cancel}) {
             placeholder="Select Scope Of Supply"
             onChange={onChange}
             style={{ width: '100%' }}
-           
           >
             <Option value="Assembled" >Assembled</Option>
             <Option value="Flat Pack">Flat Pack</Option>
@@ -253,18 +332,25 @@ export default function Quotation({current_project,cancel}) {
                   </Row>
 
   
-
-
-      <div style={{ display:'flex', justifyContent:'right', alignItems:'right', paddingTop: '20px'}}>
-      <Button type="primary" block style={{ fontSize: '14px', width:'17rem' }}  htmlType="submit">Next</Button>
+    <div style={{ display:'flex', justifyContent:'space-between', alignItems:'center', paddingTop: '20px'}}>
+      <div>
+      <Button type="secondary" block style={{ fontSize: '14px', width:'17rem' }}
+      onClick={() => setIsMenuOpen('zero')}
+       >Back</Button>
       </div>
+      <div>
+
+    <Button type="primary" block style={{ fontSize: '14px', width:'17rem' }}  htmlType="submit">Next</Button>
+      </div>
+      </div>
+
           </Form>
     </div>
 
 
-{/* ////////22222222////// */}
+{/* ////////222222222222222222////// */}
 
-    <div style={{display:isMenuOpen === 'second'?'block':'none'}}>
+<div style={{display:isMenuOpen === 'second'?'block':'none'}}>
 
       <Form layout="vertical" hideRequiredMark
         form={form2}
@@ -411,8 +497,11 @@ export default function Quotation({current_project,cancel}) {
 
     <div style={{display:isMenuOpen === 'third'?'block':'none'}} className="grid y">
 
-
     <Row gutter={1}>
+      <Col span={24}>
+        <p><b>Selected panels&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;&nbsp;</b>{panels.map((item,i)=><spam key={i}>{item.panel_name}{panels.length-1 === i? `.`: `,`} </spam>)}</p>
+      </Col>
+
       <Col span={8}>
         <p><b>Scope Of Supply&nbsp;&nbsp;&nbsp;:&nbsp;&nbsp;</b> {firstData?.scope_supply}</p>
       </Col>
@@ -470,7 +559,7 @@ export default function Quotation({current_project,cancel}) {
     </div>
     
 
-      <Checkbox onChange={onChangeCheckBox} style={{marginTop:'25px', fontSize:'15px', fontWeight:'bold'}}>I hereby declare that the information provided is true and correct</Checkbox>
+      <Checkbox onChange={onChangeCheckBox} checked={!check} style={{marginTop:'25px', fontSize:'15px', fontWeight:'bold'}}>I hereby declare that the information provided is true and correct</Checkbox>
 
       <div style={{ display:'flex', justifyContent:'space-between', alignItems:'center', paddingTop: '20px'}}>
       <div>

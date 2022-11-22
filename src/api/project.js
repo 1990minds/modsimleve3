@@ -178,15 +178,14 @@ console.log(response.data);
 
 
 
-
-
- export const  updateproject = (id, values,company,project_id) => async dispatch =>{
+ export const  updateproject = (id, values,panels, company,project_id) => async dispatch =>{
   const key = "project"
   dispatch(getproject())
   message.loading({ content: 'loading...', key })
   const pdfValues={
     _id:id,
-    project_id:project_id
+    project_id:project_id,
+    panels
   }
 
 try {
