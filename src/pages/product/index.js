@@ -104,12 +104,12 @@ console.log(filter);
    <Card
    
     hoverable
-    style={{ width: 300, paddingTop: '30px', marginTop: '20px',  }}
+    style={{ width:'200px', paddingTop: '0px', marginTop: '20px',  }}
     cover={
       <img
         alt="example"
         src={item?.product_image} 
-        style={{height: '20vh'}}
+        style={{height: '200px', objectFit:'cover'}}
       />
     }
    

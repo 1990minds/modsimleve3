@@ -197,10 +197,7 @@ export default function CreateProject({cancel}) {
            <Form.Item
             label={<p className="w-36 text-left m-0">Phone Number</p>}
             name="phone_number"
-            rules={[{ message: 'required!' },
-            {min: 10},
-            {max:10},
-            {pattern:"[0-9]", message:"Only Numbers"}
+            rules={[{  required: true, message: 'Please input your Phone number!' },
             ]}
            >
            <Input/>
