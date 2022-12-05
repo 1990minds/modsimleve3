@@ -142,9 +142,7 @@ import {
         title: ' Project ID ',
         dataIndex: 'project_id',
         key: 'project_id',      
-    
 
-        
       },
 
       {
@@ -321,7 +319,7 @@ import {
             footer={false}
             // onOk={handleQuotationOk}
             className=""
-            width="50%"
+            width="55%"
             cancel={()=>setQuotationModal(!visibleQuotation)}>
                   <Quotation current_project={current_project} cancel={()=>setQuotationModal(!visibleQuotation)} />
             </ModalForm>    

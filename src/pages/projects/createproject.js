@@ -18,7 +18,7 @@ export default function CreateProject({cancel}) {
        console.log(user);
        const { all_customers} = useSelector(customersSelector)  
        const dispatch = useDispatch();
-       console.log({K:all_customers});
+
       
       
        useEffect(()=>{
@@ -49,15 +49,12 @@ export default function CreateProject({cancel}) {
       
        };
 
+
        useEffect(()=>{
-
         form.setFieldsValue({
-           project_status: 'New'    });
-  
+           project_status: 'New' 
+          });
        }, [])
-
-
-
 
 
   
@@ -69,6 +66,7 @@ export default function CreateProject({cancel}) {
         const handleChangeSelect = (value) =>{
        }
  
+
        const [form] = Form.useForm();
 
        const onChange = (value)=> {

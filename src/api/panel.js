@@ -9,6 +9,7 @@ const initialState = {
 
     all_panel:[],
     product_panels:[],
+    project_panels:[],
     loading:false,
     hasError:false,
     current_panel:null,
@@ -39,6 +40,12 @@ export const panelSlice = createSlice({
 
   },
 
+  get_project_panels_success:(state, {payload})  =>{
+
+    state.loading = false
+    state.project_panels = payload.panel
+
+},
 
     getCurrentSuccess: (state, {payload}) =>{
         state.loading = false
@@ -56,7 +63,7 @@ export const panelSlice = createSlice({
 })
 
 
-export const { getpanel ,getAll_panel_success,get_product_panels_success, getCurrentSuccess, get_panel_Failure } = panelSlice.actions;
+export const { getpanel ,getAll_panel_success,get_product_panels_success, get_project_panels_success, getCurrentSuccess, get_panel_Failure } = panelSlice.actions;
 
 
 
@@ -165,20 +172,19 @@ console.log( {id});
   }
  };
 
- export const fetchAllRequestPanels = (values) => async dispatch => {
+
+
+ export const fetchProjectPanels = (id) => async dispatch => {
   dispatch(getpanel())
-  console.log(values);
   try {
- 
-   const {data} = await axios.post(keyUri.BACKEND_URI +`/request-panel`, values, config)
-   console.log(data);
+   const {data} = await axios.get(keyUri.BACKEND_URI +`/project-panels/${id}`, config)
+   console.log({data});
    
-   dispatch(get_product_panels_success(data));
+   dispatch(get_project_panels_success(data));
     
   } catch (error) {
  
  dispatch(get_panel_Failure())
-
   }
  };
 
