@@ -240,7 +240,7 @@ export const createDrawingPdf = (pdfValues) => async dispatch => {
       console.log(res.data);      
       const pdfBlob = new Blob([res.data], 
           { type: 'application/pdf' });
-   saveAs(pdfBlob, `${pdfValues.project?.project_id}${pdfValues.panel_id}.pdf`);      
+   saveAs(pdfBlob, `${pdfValues.project?.project_id}${pdfValues.project?.project_serialID}${pdfValues.panel_id}.pdf`);      
 }   
 )
 }

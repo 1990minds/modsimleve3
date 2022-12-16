@@ -435,7 +435,7 @@ width="15" height="15" viewBox="0 0 24 24" stroke-width="3" stroke="#2C3E50" fil
                   
                 
                   <Table
-                  scroll={{ x: true }}
+                  scroll={{ x  : 1500, y:500, }}
                   loading={{spinning: loading, indicator: <Loader/>}} 
                   pagination={{
                   onChange(current) {

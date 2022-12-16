@@ -1,4 +1,4 @@
-import React, {useState,useEffect} from 'react'
+import React, {useState,useEffect,useLayoutEffect} from 'react'
 import {useDispatch, useSelector} from 'react-redux'
 import { Form, Button, Col, Row, Input, Select, Tooltip } from 'antd';
 import {updatePanel,} from '../../api/panel'
@@ -10,7 +10,7 @@ import {authenticateSelector} from '../../api/authSlice';
 
 
 const { Option } = Select;
-export default function CreatePanelsettings({current_panel}) {
+export default function CreatePanelsettings({current_panel,scroolUp}) {
    
  
   const { user } = useSelector(authenticateSelector) 
@@ -23,6 +23,7 @@ export default function CreatePanelsettings({current_panel}) {
   const [userColor, setuserColor] = useState(false)
 
 
+  
 
   const handleClickFrame = (value) =>{
    form.setFieldsValue({
@@ -31,6 +32,20 @@ export default function CreatePanelsettings({current_panel}) {
     setframeMaterial(value)
     
     }
+
+
+  //   useLayoutEffect(() => {
+  //     window.scrollTo(0, 18)
+  // },[]);
+
+
+  
+
+
+
+
+
+
 
   const {id} = useParams()
      
@@ -121,6 +136,10 @@ export default function CreatePanelsettings({current_panel}) {
                 
                   dispatch(updatePanel(current_panel._id, panelsettingsdata))
                   form.resetFields()
+                  setTimeout(() => {
+                    scroolUp()
+                  }, 500);
+              
 
                   
             
@@ -368,7 +387,7 @@ export default function CreatePanelsettings({current_panel}) {
           <Option value="1"><span  style={{color:'#C5C7C4', paddingRight:'1rem', display:'inline-block', fontSize:'10px' }} >< SiHeadspace/> </span>RAL7035</Option>
           <Option value="2"><span  style={{color:'#DA6E00', paddingRight:'1rem', display:'inline-block', fontSize:'10px' }} >< SiHeadspace/> </span>RAL2000</Option>
           <Option value="3"><span  style={{color:'#ECECE7', paddingRight:'1rem', display:'inline-block', fontSize:'10px' }} >< SiHeadspace/> </span>RAL9003</Option>
-          <Option value="U"><span  style={{color:'transparent',  paddingRight:'1rem', display:'inline-block', fontSize:'10px' }} >< SiHeadspace/> </span>User Defined</Option>
+          <Option value="U"><span  style={{color:'transparent',paddingRight:'1rem', display:'inline-block',fontSize:'10px' }} >< SiHeadspace/> </span>User Defined</Option>
           </Select>
 
               </Form.Item>
@@ -537,7 +556,7 @@ export default function CreatePanelsettings({current_panel}) {
             <Row  gutter={22} id='addlis' style={{ marginTop:'3rem',  }}>
               <Col>
             <Button type="primary" htmlType="submit"
-             onClick={() => setVisible(false)}
+             onClick={()=>{setVisible(false);scroolUp()}}
              block style={{ fontSize: '14px', width:'10rem'  }}>
                Save
              </Button>

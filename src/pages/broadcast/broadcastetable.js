@@ -139,7 +139,8 @@ import {
               >
                 <div className="table-responsive">
                   <Table
-                  scroll={{ x: true }}
+                   scroll={{ x  : 1500, y:500, }}
+
                   loading={{spinning: loading, indicator: <Loader/>}} 
                   pagination={{
                   onChange(current) {

@@ -246,7 +246,7 @@ export default function EditProject({current_project,cancel}) {
             name="project_status"
             rules={[{ required: true, message: 'Please Select Project Status!' }]}
             >
-                        <Select
+            <Select
             placeholder="Select Project Status"
             onChange={onChange}
             style={{ width: '100%' }}
