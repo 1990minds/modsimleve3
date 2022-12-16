@@ -36,7 +36,7 @@ export default function ExportExcel({data, panel}) {
                  id="test-table-xls-button"
                  className=""
                  table="table-to-xls"
-                 filename={panel?.project?.project_id.concat(panel?.panel_id)}
+                 filename={panel?.project?.project_id.concat(panel?.project?.project_serialID).concat(panel?.panel_id)}
                  sheet="tablexls" 
                  buttonText="Download"  />
                     
@@ -64,24 +64,35 @@ export default function ExportExcel({data, panel}) {
                                 <td colspan="2">{panel?.project?.project_name}</td>
                                 {/* <th colspan="2">Rev No.</th>
                                 <td colspan="1"></td> */}
-                                 <th colspan="2">Panel Quantity</th>
-                                <td colspan="1">{panel?.panel_quntity}</td>
+
+                                <th colspan="2">Panel Type</th>
+                                <td colspan="1">{panel?.panel_type}</td> 
+
+
+                             
                             </tr>
                             <tr>
                                 <th colspan="2">Project ID</th>
                                 <td colspan="2">{panel?.project?.project_id}</td>
                                 {/* <th colspan="2">Panel Quantity</th>
                                 <td colspan="1">{panel?.panel_quntity}</td> */}
-                                <th colspan="3" rowSpan="3"></th>
+                                 <th colspan="2">Panel Quantity</th>
+                                <td colspan="1">{panel?.panel_quntity}</td>
+                          
+                            </tr>
+
+                            <tr>
+                                <th colspan="2">Project serialID</th>
+                                <td colspan="2">{panel?.project?.project_serialID}</td>
+                                {/* <th colspan="2">Panel Quantity</th>
+                                <td colspan="1">{panel?.panel_quntity}</td> */}
+                                
                             </tr>
                             <tr>
                                 <th colspan="2">Panel Name</th>
                                 <td colspan="2">{panel?.panel_name}</td>
                             </tr>
-                            <tr>
-                                <th colspan="2">Panel Type</th>
-                                <td colspan="2">{panel?.panel_type}</td>
-                            </tr>
+                         
 
                             <tr>
                                 <th>Sl.No</th>

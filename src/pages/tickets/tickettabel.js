@@ -127,6 +127,7 @@ const columns = [
                      loading={{spinning: loading, indicator: <Loader/>}} 
                       columns={columns}
                       dataSource={data}
+                      scroll={{ x  : 1500, y:500, }}
                       pagination={{
                         onChange(current) {
                           setPage(current)

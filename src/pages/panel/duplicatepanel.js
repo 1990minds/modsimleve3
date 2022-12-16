@@ -93,7 +93,7 @@ export default function DuplicatePanel({current_panel,project_id,product_id,canc
           name="repanel_name"
           rules={[{ required: true, message: 'Please Input Panel Name!' }]}
         >
-          <Input maxLength={15}/>
+          <Input/>
 
         </Form.Item>
                

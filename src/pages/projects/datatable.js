@@ -283,7 +283,9 @@ import {
                
                  <Table
                   loading={{spinning: loading, indicator: <Loader/>}} 
-                 scroll={{ x: true }}
+                 scroll={{ x  : 1500, y:500, }}
+                 
+               
                  pagination={{
                  onChange(current) {
                  setPage(current)
@@ -292,6 +294,7 @@ import {
                   rowKey={record => record._id}
                   columns={columns}
                   dataSource={data} 
+                  
 
                  style={{ cursor: 'pointer' }}
                  onRow={(record, rowIndex) => {
