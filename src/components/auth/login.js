@@ -4,7 +4,7 @@ import {useEffect} from 'react'
 import {useDispatch, useSelector} from 'react-redux'
 import {fetchlogin, authenticateSelector} from '../../api/authSlice'
 import { Link } from "react-router-dom";
-import Logo from '../../assets/MODSIMbeta.png'
+import Logo from '../../assets/company/MODSIM.png'
 import Backgroundimage from '../../assets/images/user-page.png'
 import {
   Layout,
@@ -163,7 +163,7 @@ export default function Login({history}) {
               span={8}
               style={{ marginTop: '10%', }}
               >
-                <img src={Logo} alt='Logo' style={{ width: "auto", height: '80px', display: 'block', marginLeft: 'auto', marginRight: 'auto', }}/>
+                <img src={Logo} alt='Logo' style={{ width: "auto", height: '55px', display: 'block', marginLeft: 'auto', marginRight: 'auto', }}/>
                 <div style={{ padding: '40px'}}>
                 {/* <Title className="mb-15">Login</Title> */}
                 {/* <Title className="font-regular text-muted" level={5}>
