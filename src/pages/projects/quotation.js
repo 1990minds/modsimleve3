@@ -49,7 +49,7 @@ export default function Quotation({current_project,cancel}) {
   }, [current_project]) 
 
 
-
+console.log(current_project)
 
   console.log({project_panels});
   console.log({panels});
@@ -121,7 +121,7 @@ export default function Quotation({current_project,cancel}) {
             discount:secontData.discount,
        }
         console.log({quotationdata});
-        dispatch(updateproject(current_project._id ,quotationdata ,panels, current_project.company?._id,current_project.project_id))
+        dispatch(updateproject(current_project._id ,quotationdata ,panels, current_project.company?._id,current_project.project_id,current_project.project_serialID))
         form1.resetFields()
         form2.resetFields()
         setIsMenuOpen('zero')

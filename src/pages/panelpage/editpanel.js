@@ -1,4 +1,4 @@
-import React, {useState,useEffect} from 'react'
+import React, {useState,useEffect,useLayoutEffect} from 'react'
 import {useDispatch, } from 'react-redux'
 import { Form, Select,Descriptions } from 'antd';
 import { Divider } from 'antd';
@@ -13,6 +13,13 @@ export default function EditPanel({current_panel,}) {
   
   const dispatch = useDispatch();
   const {id} = useParams()
+
+//   useLayoutEffect(() => {
+//     window.scrollTo(0, 18)
+// },[]);
+
+
+
      
 
          useEffect(()=>{
@@ -38,6 +45,7 @@ export default function EditPanel({current_panel,}) {
               }
           dispatch(updatePanel(current_panel._id, paneldata))
           form.resetFields()
+      
            };
 
            const [form] = Form.useForm();
@@ -66,7 +74,7 @@ export default function EditPanel({current_panel,}) {
     return (
       <>
  
-          <Form layout="vertical" hideRequiredMark
+          <Form  hideRequiredMark
            form={form}
            name="basic"
            initialValues={{ remember: false }}

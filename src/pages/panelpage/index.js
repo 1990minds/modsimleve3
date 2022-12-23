@@ -67,6 +67,11 @@ export default function Panel() {
         }
         let history = useHistory();
 
+        const scroolUp = ()=>{
+          window.scrollTo(0, 1000)
+          }
+      
+
   return (
     <Layout>
 
@@ -99,7 +104,7 @@ export default function Panel() {
     <div className='max-w-xl sm:mx-auto lg:max-w-7xl'>
      <b> <h1  style={{marginTop:'3rem', marginBottom:"2rem", fontSize:'20px', fontWeight:'700'}}> Panel Settings  </h1></b>
        {/* <Editpanel all_panel={all_panel} /> */}
-       <CreatePanelpage current_panel={current_panel}/>
+       <CreatePanelpage scroolUp={scroolUp} current_panel={current_panel}/>
        
 
 

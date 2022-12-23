@@ -38,6 +38,8 @@ export default function Panel() {
  console.log(project)
 
 
+ console.log(id)
+
     const [panelAddVisible, SetPanelAddVisible] = useState(false)
   // const [searchvalue, setSearchvalue] = useState('')
 
@@ -89,7 +91,7 @@ export default function Panel() {
     <Link to="/auth/projects"> Projects </Link>
     </Breadcrumb.Item>
     <Breadcrumb.Item>
-    <a onClick={history.goBack}>Products</a>
+     <Link to={`/auth/projects/product/${project}`}> Products </Link> 
     </Breadcrumb.Item>
     <Breadcrumb.Item>
     Panels

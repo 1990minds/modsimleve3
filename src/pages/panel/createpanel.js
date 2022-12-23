@@ -10,7 +10,7 @@ import {createpanel} from '../../api/panel'
 
 const { Option } = Select;
 
-export default function CreatePanel({cancel,project_id,product_id}) {
+export default function CreatePanel({cancel,project_id,project_serialID,product_id}) {
   
  
     
@@ -36,6 +36,7 @@ export default function CreatePanel({cancel,project_id,product_id}) {
         panel_quntity:values.panel_quntity,
         category_type:values.category_type,
         project_id:project_id,
+        project_serialID:project_serialID,
         product_id:product_id,
         user:user?._id,
       }
