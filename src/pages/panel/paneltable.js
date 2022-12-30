@@ -15,6 +15,7 @@ import {
     import DeleteConfirm from '../../global/delete'
     import {useDispatch, useSelector} from 'react-redux'
     import { FaRegTrashAlt, FaRegEdit, } from 'react-icons/fa';
+    import { AiFillEye, AiOutlineEye } from 'react-icons/ai';
     import { FiCopy } from 'react-icons/fi';
     import ModalForm from '../../global/model.js'
     import {authenticateSelector} from '../../api/authSlice';
@@ -299,7 +300,7 @@ width="20" height="20" viewBox="0 0 24 24" stroke-width="1.5" stroke="#2C3E50" f
   {id?.request}
 </svg>
 </Tooltip>
-            </Popconfirm>
+</Popconfirm>
 
 
 { user?.license?.license_type === 'Basic' ? <Tooltip placement="topLeft" title=" Upgrade to Premium" >
@@ -371,6 +372,18 @@ width="15" height="15" viewBox="0 0 24 24" stroke-width="3" stroke="#2C3E50" fil
                     }}>
                        
                     <Space size="middle">
+
+
+                    <Tooltip placement="topLeft" title="View Panel" arrowPointAtCenter>
+                    <h5 className="text-secondary" disabled={true} >
+                   
+                      {/* <a  target="_blank" href={id?.request === 'null' ? '#' :`https://canvas.modsim.app/${id?._id}`} disabled={id?.request === 'null' ? true : false}  style={{color:'black', fontSize:'18px'}}> <AiOutlineEye /> </a> */}
+                      <a target="_blank" href={id?.request === 'null' ? '#' :`https://modsimcanvas.web.app/${id?._id}`} disabled={id?.request === 'null' ? true : false}  style={{color:'black', fontSize:'18px'}}> <AiOutlineEye /> </a>
+
+                    </h5>
+                    </Tooltip>
+
+
                     <Tooltip placement="topLeft" title="Edit Panel" arrowPointAtCenter>
                     <h5 className="text-secondary" >
                    

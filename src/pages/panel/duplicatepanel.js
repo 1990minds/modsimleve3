@@ -274,4 +274,3 @@ export default function DuplicatePanel({current_panel,project_id,product_id,canc
         </>
     );
   }
-
