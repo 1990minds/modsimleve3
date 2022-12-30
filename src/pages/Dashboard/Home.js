@@ -30,7 +30,7 @@ import {fetchAllcompanyProject, projectSelector} from '../../api/project'
 import {fetchAllUserTickets,ticketsSelector} from '../../api/tickets'
 import { fetchAllpanel, panelSelector } from "../../api/panel";
 import { Link } from "react-router-dom";
-
+import { fetchAllcompanyLicense, licenseSelector} from '../../api/license';
 function Home(color) {
 
   const dispatch = useDispatch()
@@ -39,8 +39,11 @@ function Home(color) {
   const {all_project} = useSelector(projectSelector) 
   const {all_tickets}=useSelector(ticketsSelector)
   const {all_panel}=useSelector(panelSelector)
+  // const {current_license} = useSelector(licenseSelector) 
 
 
+  // console.log(current_license)
+  console.log(user)
   const project =   new URLSearchParams(useLocation().search).get(`project`)
   const {id}= useParams()
 
@@ -54,6 +57,8 @@ function Home(color) {
     dispatch(fetchAllcompanyProject(user?.company?._id)) 
     dispatch(fetchAllUserTickets(user?._id)) 
     dispatch(fetchAllpanel(user?.company?._id)) 
+    dispatch(fetchAllcompanyLicense(user?._id))
+
  }, [user])
 
 

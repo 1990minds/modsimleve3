@@ -377,8 +377,8 @@ width="15" height="15" viewBox="0 0 24 24" stroke-width="3" stroke="#2C3E50" fil
                     <Tooltip placement="topLeft" title="View Panel" arrowPointAtCenter>
                     <h5 className="text-secondary" disabled={true} >
                    
-                      {/* <a href={id?.request === 'null' ? '#' :`https://canvas.modsim.app/${id?._id}`} disabled={id?.request === 'null' ? true : false}  style={{color:'black', fontSize:'18px'}}> <AiOutlineEye /> </a> */}
-                      <a href={id?.request === 'null' ? '#' :`https://modsimcanvas.web.app/${id?._id}`} disabled={id?.request === 'null' ? true : false}  style={{color:'black', fontSize:'18px'}}> <AiOutlineEye /> </a>
+                      {/* <a  target="_blank" href={id?.request === 'null' ? '#' :`https://canvas.modsim.app/${id?._id}`} disabled={id?.request === 'null' ? true : false}  style={{color:'black', fontSize:'18px'}}> <AiOutlineEye /> </a> */}
+                      <a target="_blank" href={id?.request === 'null' ? '#' :`https://modsimcanvas.web.app/${id?._id}`} disabled={id?.request === 'null' ? true : false}  style={{color:'black', fontSize:'18px'}}> <AiOutlineEye /> </a>
 
                     </h5>
                     </Tooltip>

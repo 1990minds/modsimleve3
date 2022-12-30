@@ -121,7 +121,7 @@ import {
         title: ' Sl No.',
         dataIndex: 'sl_no',
         key: 'sl_no',
-        width: 100,
+        width: 80,
         render:(t, k, i)=>{
           return <p class="m-0 ">{(page - 1) * 10 + (i+1)}</p>
         }
@@ -146,7 +146,7 @@ import {
       },
 
       {
-        title: 'Project Sequence ID',
+        title: 'Sequence ID',
         key: 'createdAt',
         render:(item)=>{
           return <p style={{fontSize:'14px', color:'black'}} className="my-0 mr-3">{item.project_serialID?item.project_serialID:null}</p>

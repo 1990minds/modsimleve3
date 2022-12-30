@@ -4,8 +4,12 @@ import {useEffect} from 'react'
 import {useDispatch, useSelector} from 'react-redux'
 import {fetchlogin, authenticateSelector} from '../../api/authSlice'
 import { Link } from "react-router-dom";
-import Logo from '../../assets/MODSIMbeta.png'
+import Logo from '../../assets/company/MODSIM.png'
 import Backgroundimage from '../../assets/images/user-page.png'
+import { BiHelpCircle } from 'react-icons/bi';
+
+
+
 import {
   Layout,
   Menu,
@@ -17,11 +21,24 @@ import {
   Input,
   Switch,
   Card,
+  Tooltip,
+  Popconfirm,
+  message
 } from "antd";
+import { toBeDisabled } from "@testing-library/jest-dom/dist/matchers";
 
 function onChange(checked) {
   console.log(`switch to ${checked}`);
 }
+
+
+const confirm = () => {
+  // message.info('Clicked on Yes.');
+};
+
+
+
+
 const { Title } = Typography;
 const { Header, Footer, Content } = Layout;
 const template = [
@@ -163,7 +180,7 @@ export default function Login({history}) {
               span={8}
               style={{ marginTop: '10%', }}
               >
-                <img src={Logo} alt='Logo' style={{ width: "auto", height: '80px', display: 'block', marginLeft: 'auto', marginRight: 'auto', }}/>
+                <img src={Logo} alt='Logo' style={{ width: "auto", height: '55px', display: 'block', marginLeft: 'auto', marginRight: 'auto', }}/>
                 <div style={{ padding: '40px'}}>
                 {/* <Title className="mb-15">Login</Title> */}
                 {/* <Title className="font-regular text-muted" level={5}>
@@ -224,6 +241,11 @@ export default function Login({history}) {
                   </Form.Item>
 
 
+
+
+         
+
+
                   {/* <Form.Item
                     name="remember"
                     className="aligin-center"
@@ -243,6 +265,31 @@ export default function Login({history}) {
                      Log In
                     </Button>
                   </Form.Item>
+
+
+                  <Popconfirm
+                  placement="bottomLeft"
+                  title="Please contact your administrator, if you are facing Login issues."
+                  onConfirm={confirm}
+                  okText="Close"
+                  cancelText={ toBeDisabled }
+                  >
+                 <button style={{ display:'flex' ,   width:'80px',  }}><span style={{ fontSize:'20px', marginLeft:'4px', marginTop:'2px', alignItems:'center' , marginBlock:'auto  '  }}><BiHelpCircle/> </span>  <span style={{ fontSize:'14px', alignItems:'center'  }}> Help </span>   </button>
+                 {/* import { FiCopy } from 'react-icons/fi'; */}
+                </Popconfirm>
+
+            
+
+              
+
+
+
+
+
+
+
+
+
                 </Form>
                 </div>
       </Col>

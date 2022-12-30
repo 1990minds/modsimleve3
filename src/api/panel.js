@@ -205,6 +205,7 @@ console.log( {id});
  };
 
 
+
  export const  updatePanel = (id, values, product) => async dispatch =>{
 
   console.log(id);
@@ -230,6 +231,8 @@ try {
 
 }
 }
+
+
 
 export const createDrawingPdf = (pdfValues) => async dispatch => {
   console.log(pdfValues);

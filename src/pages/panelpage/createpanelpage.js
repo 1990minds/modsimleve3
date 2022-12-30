@@ -1,6 +1,6 @@
 import React, {useState,useEffect,useLayoutEffect} from 'react'
 import {useDispatch, useSelector} from 'react-redux'
-import { Form, Button, Col, Row, Input, Select, Tooltip } from 'antd';
+import { Form, Button, Col, Row, Input, Select, Tooltip, Checkbox } from 'antd';
 import {updatePanel,} from '../../api/panel'
 import {SiHeadspace} from 'react-icons/si'
 import {useParams} from 'react-router-dom'
@@ -10,6 +10,10 @@ import {authenticateSelector} from '../../api/authSlice';
 
 
 const { Option } = Select;
+
+
+
+
 export default function CreatePanelsettings({current_panel,scroolUp}) {
    
  
@@ -22,35 +26,21 @@ export default function CreatePanelsettings({current_panel,scroolUp}) {
   const [frameMaterial, setframeMaterial] = useState(null);
   const [userColor, setuserColor] = useState(false)
 
+  const [saveBtn, setSaveBtn] = useState(true)
 
-  
+  const [check, setCheck] = useState(true)
 
-  const handleClickFrame = (value) =>{
-   form.setFieldsValue({
-    frame_powdercoating:(value==='G' || value=== 'Z') ? false:true
-  });   
-    setframeMaterial(value)
-    
-    }
-
-
-  //   useLayoutEffect(() => {
-  //     window.scrollTo(0, 18)
-  // },[]);
-
-
-  
-
-
-
-
-
-
-
-  const {id} = useParams()
      
+  const onChangeCheckBox = (e) => {
+    setCheck(!e.target.checked)
+  };
 
-                useEffect(()=>{
+
+
+
+
+  useEffect(()=>{
+
                 form.setFieldsValue({
                 panel_name: current_panel?. panel_name,
                 panel_category:current_panel?.panel_category,
@@ -75,9 +65,7 @@ export default function CreatePanelsettings({current_panel,scroolUp}) {
                     // partition_material: current_panel?.partition_material,
                     // partition_powdercoating: current_panel?.partition_powdercoating,
                     user_define:current_panel?.user_define,
-                
-                
-            
+
                 });
 
 
@@ -107,6 +95,7 @@ export default function CreatePanelsettings({current_panel,scroolUp}) {
               }, [current_panel])
                   
   
+
             
               const onFinish = (values) => {   
                 
@@ -130,19 +119,21 @@ export default function CreatePanelsettings({current_panel,scroolUp}) {
                       partition_material:values.partition_material,
                       partition_powdercoating:values.partition_powdercoating,
                       user_define:values.user_define,
-                      updateUser:user?._id
-
+                      updateUser:user?._id,
+                      panel : [],
+                      parts : [],
+                      bom : [],
                   }
                 
                   dispatch(updatePanel(current_panel._id, panelsettingsdata))
                   form.resetFields()
+                  setSaveBtn(true)
+
                   setTimeout(() => {
                     scroolUp()
-                  }, 500);
-              
-
-                  
+                  }, 2000);
             
+                
             };
 
             
@@ -151,22 +142,34 @@ export default function CreatePanelsettings({current_panel,scroolUp}) {
 
            const onChange = (value)=> {
              console.log(`selected ${value}`)
+             setSaveBtn(false)
          
            }
 
 
 
            const onChangeColor = (value)=> {
-            console.log(`selected ${value}`)      
+            console.log(`selected ${value}`)    
+            setSaveBtn(false)  
             if(value === 'U'){
              setuserColor(true)
             }
             else{
               setuserColor(false)
             }
-
-
           }
+
+
+          
+          const handleClickFrame = (value) =>{
+            setSaveBtn(false)
+            form.setFieldsValue({
+            frame_powdercoating:(value==='G' || value=== 'Z') ? false:true
+          });   
+            setframeMaterial(value)
+            
+          }
+ 
 
         
 
@@ -450,6 +453,7 @@ export default function CreatePanelsettings({current_panel,scroolUp}) {
             rules={[{ required: true, message: 'required!'}]}
             >
             <Select
+            onChange={onChange}
             placeholder="Frame Powdercoating"
             disabled={ current_panel?.request !== "null" }
              >
@@ -470,6 +474,7 @@ export default function CreatePanelsettings({current_panel,scroolUp}) {
                   >
 
             <Select
+            onChange={onChange}
             placeholder="Partition Material"  
             disabled={ current_panel?.request !== "null" }         
         >
@@ -492,6 +497,7 @@ export default function CreatePanelsettings({current_panel,scroolUp}) {
                     rules={[{ required: true, message: 'required!'}]}
                   >
                   <Select
+                  onChange={onChange}
                    placeholder="Partition Powdercoating"
                    disabled={ current_panel?.request !== "null" }
                    
@@ -519,6 +525,7 @@ export default function CreatePanelsettings({current_panel,scroolUp}) {
   
           >
           <Select
+          onChange={onChange}
            placeholder="Cover Material"
            disabled={ current_panel?.request !== "null" }
             
@@ -540,8 +547,8 @@ export default function CreatePanelsettings({current_panel,scroolUp}) {
             name= "cover_powdercoating"  
             >
          <Select disabled
+         onChange={onChange}
          placeholder="Cover Powdercoating"
-           
           >
           <Option   value={true}>Yes</Option>
             {/* <Option value={false}>No</Option>   */}
@@ -552,15 +559,21 @@ export default function CreatePanelsettings({current_panel,scroolUp}) {
            </Row>
 
 
+          {!saveBtn && current_panel?.panel.length>0 && <Checkbox style={{ marginTop:'2rem'}} onChange={onChangeCheckBox}><b>Existing Structures will be deleted on saving the new panel setting changes. </b> </Checkbox> }
 
-            <Row  gutter={22} id='addlis' style={{ marginTop:'3rem',  }}>
-              <Col>
-            <Button type="primary" htmlType="submit"
-             onClick={()=>{setVisible(false);scroolUp()}}
-             block style={{ fontSize: '14px', width:'10rem'  }}>
-               Save
-             </Button>
-             </Col>
+
+            <Row  gutter={22} id='addlis' style={{ marginTop:'1rem',  }}>
+
+            <Col>
+              <Button type="primary" htmlType="submit"
+              disabled={(check || saveBtn) && current_panel?.panel.length>0}
+              onClick={()=>{setVisible(true)}}
+              style={{ fontSize: '14px', width:'10rem'  }}>
+                Save
+              </Button>
+            </Col>
+
+
 
             <Col>
 
@@ -609,7 +622,7 @@ export default function CreatePanelsettings({current_panel,scroolUp}) {
     </Form.Item>
     </Form.Item>
 
-
+{/* 
                     <Modal 
                     isVisible={visible} 
                     title="BOM DETAILS"
@@ -618,7 +631,7 @@ export default function CreatePanelsettings({current_panel,scroolUp}) {
                     width="70%"
                     cancel={()=>setVisible(!visible)}>                      
                     <ExportExcel cancel={()=>setVisible(!visible)} data={current_panel?.bom} panel={current_panel} />                      
-                    </Modal>
+                    </Modal> */}
 
 
 </Col>
