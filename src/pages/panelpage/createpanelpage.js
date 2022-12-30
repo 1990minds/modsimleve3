@@ -138,7 +138,7 @@ export default function CreatePanelsettings({current_panel,scroolUp}) {
                   form.resetFields()
                   setTimeout(() => {
                     scroolUp()
-                  }, 500);
+                  }, 2000);
               
 
                   
@@ -556,7 +556,7 @@ export default function CreatePanelsettings({current_panel,scroolUp}) {
             <Row  gutter={22} id='addlis' style={{ marginTop:'3rem',  }}>
               <Col>
             <Button type="primary" htmlType="submit"
-             onClick={()=>{setVisible(false);scroolUp()}}
+             onClick={()=>{setVisible(false)}}
              block style={{ fontSize: '14px', width:'10rem'  }}>
                Save
              </Button>
@@ -569,7 +569,6 @@ export default function CreatePanelsettings({current_panel,scroolUp}) {
             disabled={current_panel?.panel_type === null || current_panel?.request !== "null" }
             block style={{ fontSize: '14px', width:'10rem' , }}>
             {/* <a href={`https://canvas.modsim.app/panel/${current_panel?._id}`}> Configure Now</a> */}
-
             <a href={`https://modsimcanvas.web.app/panel/${current_panel?._id}`}> Configure Now</a>
             </Button>
             </Tooltip>
