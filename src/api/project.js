@@ -216,21 +216,19 @@ export const createQuotationPdf = (pdfValues) => async dispatch => {
       console.log(res.data);      
       const pdfBlob = new Blob([res.data], 
           { type: 'application/pdf' });
-   saveAs(pdfBlob, `${pdfValues.project_id}.pdf`);      
+   saveAs(pdfBlob, `${pdfValues.project_id.concat(pdfValues.project_serialID)}.pdf`);      
 }   
 )
 
 // export const createQuotationPdf = () => async dispatch => {
-
-
 //   axios.post(keyUri.BACKEND_URI + `/create`, config )
-
 // .then((res) => {  
 //   console.log({res});
 //   const zipBlob = new Blob([res.data], 
 //       { type: 'application/zip' });
 //   saveAs(zipBlob, 'download.zip');  
 //   })
+
 }
 
 export default projectSlice.reducer;
