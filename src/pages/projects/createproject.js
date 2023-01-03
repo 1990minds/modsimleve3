@@ -197,11 +197,14 @@ export default function CreateProject({cancel}) {
             name="phone_number"
 
 
+
             // rules={[{ message: 'required!' },
             // {min: 10},
             // {max:10},
             // {pattern:"[0-9]", message:"Only Numbers"}
             // ]}
+
+
 
 
 

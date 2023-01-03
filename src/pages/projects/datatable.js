@@ -121,7 +121,10 @@ import {
         title: ' Sl No.',
         dataIndex: 'sl_no',
         key: 'sl_no',
+
         width: 80,
+
+
         render:(t, k, i)=>{
           return <p class="m-0 ">{(page - 1) * 10 + (i+1)}</p>
         }

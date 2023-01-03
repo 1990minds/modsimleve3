@@ -13,6 +13,8 @@ import EditPanel from './editpanel';
 import './index.css'
 import { Link } from 'react-router-dom'
 import { useHistory } from "react-router-dom";
+import { useLocation} from 'react-router-dom'
+
 
 const { Search } = Input;
 
@@ -24,11 +26,14 @@ export default function Panel() {
     const [filter,setFilter]=useState([]) 
     const {id}= useParams()
     const [search, setSearch] = useState('')
+     const [panelAddVisible, SetPanelAddVisible] = useState(false)
+     const project =   new URLSearchParams(useLocation().search).get(`project`)
 
-  const [panelAddVisible, SetPanelAddVisible] = useState(false)
 
 
+console.log(project)
 
+console.log(current_panel)
   
 
   useEffect(()=>{
@@ -85,7 +90,7 @@ export default function Panel() {
     <Link to="/auth/projects"> Projects </Link>
     </Breadcrumb.Item>
     <Breadcrumb.Item>
-    <a onClick={history.goBack}>Panels</a> 
+    <Link to={`/auth/panel/${current_panel?.product?._id}?project=${current_panel?.project?._id}`}> Panels </Link> 
     </Breadcrumb.Item>
     <Breadcrumb.Item>
     Panel Page

@@ -11,9 +11,6 @@ import {authenticateSelector} from '../../api/authSlice';
 
 const { Option } = Select;
 
-
-
-
 export default function CreatePanelsettings({current_panel,scroolUp}) {
    
  
@@ -28,7 +25,35 @@ export default function CreatePanelsettings({current_panel,scroolUp}) {
 
   const [saveBtn, setSaveBtn] = useState(true)
 
+
   const [check, setCheck] = useState(true)
+
+
+  
+
+  // const handleClickFrame = (value) =>{
+  //  form.setFieldsValue({
+  //   frame_powdercoating:(value==='G' || value=== 'Z') ? false:true
+  // });   
+  //   setframeMaterial(value)
+    
+  //   }
+
+
+  //   useLayoutEffect(() => {
+  //     window.scrollTo(0, 18)
+  // },[]);
+
+
+  
+
+
+
+
+
+
+
+  const {id} = useParams()
 
      
   const onChangeCheckBox = (e) => {
@@ -127,7 +152,11 @@ export default function CreatePanelsettings({current_panel,scroolUp}) {
                 
                   dispatch(updatePanel(current_panel._id, panelsettingsdata))
                   form.resetFields()
+
                   setSaveBtn(true)
+
+              
+
 
                   setTimeout(() => {
                     scroolUp()
@@ -562,17 +591,16 @@ export default function CreatePanelsettings({current_panel,scroolUp}) {
           {!saveBtn && current_panel?.panel.length>0 && <Checkbox style={{ marginTop:'2rem'}} onChange={onChangeCheckBox}><b>Existing Structures will be deleted on saving the new panel setting changes. </b> </Checkbox> }
 
 
-            <Row  gutter={22} id='addlis' style={{ marginTop:'1rem',  }}>
+         
 
-            <Col>
-              <Button type="primary" htmlType="submit"
-              disabled={(check || saveBtn) && current_panel?.panel.length>0}
-              onClick={()=>{setVisible(true)}}
-              style={{ fontSize: '14px', width:'10rem'  }}>
-                Save
-              </Button>
-            </Col>
-
+            <Row  gutter={22} id='addlis' style={{ marginTop:'3rem',  }}>
+              <Col>
+            <Button type="primary" htmlType="submit"
+             onClick={()=>{setVisible(false)}}
+             block style={{ fontSize: '14px', width:'10rem'  }}>
+               Save
+             </Button>
+             </Col>
 
 
             <Col>
@@ -582,7 +610,6 @@ export default function CreatePanelsettings({current_panel,scroolUp}) {
             disabled={current_panel?.panel_type === null || current_panel?.request !== "null" }
             block style={{ fontSize: '14px', width:'10rem' , }}>
             {/* <a href={`https://canvas.modsim.app/panel/${current_panel?._id}`}> Configure Now</a> */}
-
             <a href={`https://modsimcanvas.web.app/panel/${current_panel?._id}`}> Configure Now</a>
             </Button>
             </Tooltip>
