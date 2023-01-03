@@ -211,6 +211,7 @@ export default function EditProject({current_project,cancel}) {
            <Form.Item
             label={<p className="w-36 text-left m-0">Phone Number</p>}
             name="phone_number"
+
            >
            <Input/>
            </Form.Item>

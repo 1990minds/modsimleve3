@@ -32,6 +32,7 @@ export default function CreatePanelsettings({current_panel,scroolUp}) {
 
   
 
+
   const handleClickFrame = (value) =>{
    form.setFieldsValue({
     frame_powdercoating:(value==='G' || value=== 'Z') ? false:true
@@ -39,6 +40,7 @@ export default function CreatePanelsettings({current_panel,scroolUp}) {
     setframeMaterial(value)
     
     }
+
 
 
   //   useLayoutEffect(() => {
@@ -153,7 +155,9 @@ export default function CreatePanelsettings({current_panel,scroolUp}) {
                 
                   dispatch(updatePanel(current_panel._id, panelsettingsdata))
                   form.resetFields()
+
                   setSaveBtn(true)
+
 
 
                   setTimeout(() => {
@@ -589,17 +593,16 @@ export default function CreatePanelsettings({current_panel,scroolUp}) {
           {!saveBtn && current_panel?.panel.length>0 && <Checkbox style={{ marginTop:'2rem'}} onChange={onChangeCheckBox}><b>Existing Structures will be deleted on saving the new panel setting changes. </b> </Checkbox> }
 
 
-            <Row  gutter={22} id='addlis' style={{ marginTop:'1rem',  }}>
+         
 
-            <Col>
-              <Button type="primary" htmlType="submit"
-              disabled={(check || saveBtn) && current_panel?.panel.length>0}
-              onClick={()=>{setVisible(true)}}
-              style={{ fontSize: '14px', width:'10rem'  }}>
-                Save
-              </Button>
-            </Col>
-
+            <Row  gutter={22} id='addlis' style={{ marginTop:'3rem',  }}>
+              <Col>
+            <Button type="primary" htmlType="submit"
+             onClick={()=>{setVisible(false)}}
+             block style={{ fontSize: '14px', width:'10rem'  }}>
+               Save
+             </Button>
+             </Col>
 
 
 
