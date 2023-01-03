@@ -11,6 +11,7 @@ import {authenticateSelector} from '../../api/authSlice';
 
 const { Option } = Select;
 
+
 export default function CreatePanelsettings({current_panel,scroolUp}) {
    
  
@@ -31,13 +32,15 @@ export default function CreatePanelsettings({current_panel,scroolUp}) {
 
   
 
-  // const handleClickFrame = (value) =>{
-  //  form.setFieldsValue({
-  //   frame_powdercoating:(value==='G' || value=== 'Z') ? false:true
-  // });   
-  //   setframeMaterial(value)
+
+  const handleClickFrame = (value) =>{
+   form.setFieldsValue({
+    frame_powdercoating:(value==='G' || value=== 'Z') ? false:true
+  });   
+    setframeMaterial(value)
     
-  //   }
+    }
+
 
 
   //   useLayoutEffect(() => {
@@ -155,7 +158,6 @@ export default function CreatePanelsettings({current_panel,scroolUp}) {
 
                   setSaveBtn(true)
 
-              
 
 
                   setTimeout(() => {
@@ -592,6 +594,17 @@ export default function CreatePanelsettings({current_panel,scroolUp}) {
 
 
          
+
+            <Row  gutter={22} id='addlis' style={{ marginTop:'3rem',  }}>
+              <Col>
+            <Button type="primary" htmlType="submit"
+             onClick={()=>{setVisible(false)}}
+             block style={{ fontSize: '14px', width:'10rem'  }}>
+               Save
+             </Button>
+             </Col>
+
+
 
             <Row  gutter={22} id='addlis' style={{ marginTop:'3rem',  }}>
               <Col>
