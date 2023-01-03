@@ -92,6 +92,7 @@ console.log(current_panel)
     <Link to={`/auth/panel/${current_panel?.product?._id}?project=${current_panel?.project?._id}`}> Panels </Link> 
 
 
+  
     </Breadcrumb.Item>
     <Breadcrumb.Item>
     Panel Page

@@ -281,11 +281,11 @@ import {
                   </>
                  }
                  >
-                <div className="table-responsive" >
+                <div className="table-responsive" style={{}} >
                
                  <Table
                   loading={{spinning: loading, indicator: <Loader/>}} 
-                 scroll={{ x  : 1500, y:500, }}
+                 scroll={{ x  : 1500, y:'calc(100vh - 30em)' }}
                  
                
                  pagination={{
@@ -334,9 +334,5 @@ import {
   
   export default ProjectTable;
   
-  const SearchWrap = styled.div`
 
-  .ant-table-row ant-table-row-level-0{
-    cursor: pointer !important;
-  }
-  `
+  

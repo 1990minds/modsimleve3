@@ -139,7 +139,7 @@ import {
               >
                 <div className="table-responsive">
                   <Table
-                   scroll={{ x  : 1500, y:500, }}
+                   scroll={{ x  : 1500, y:'calc(100vh - 30em)' }}
 
                   loading={{spinning: loading, indicator: <Loader/>}} 
                   pagination={{
