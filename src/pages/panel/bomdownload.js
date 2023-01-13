@@ -14,7 +14,7 @@ export default function ExportExcel({data, panel}) {
     
 
         console.log({panel})
-        console.log({bom});
+        console.log({data});
 
         useEffect(() => {
 

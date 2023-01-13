@@ -28,6 +28,7 @@ import {
     import moment from 'moment';
     import { Popconfirm, message } from 'antd';
     import ExportExcel from './bomdownload';
+    import Anttable from './antTable';
     import Loader from '../shared/tableloader'
 
     function PanelTable({data,project_id, product_id, loading}) {
@@ -215,6 +216,7 @@ import {
         
         title: ' Panel Category',
         key: 'panel_category',
+        ellipsis: true,
         render:(item)=>{
           return <small style={{fontSize:'14px'}} className="my-0 mr-3">{item.panel_category === 'O' ? item.category_type : item.panel_category}</small>
       }
@@ -448,7 +450,7 @@ width="15" height="15" viewBox="0 0 24 24" stroke-width="3" stroke="#2C3E50" fil
                   
                 
                   <Table
-                  scroll={{ x  : 1500, y:'calc(100vh - 30em)' }}
+                  scroll={{ x  : 1000, y:'calc(100vh - 30em)' }}
                   loading={{spinning: loading, indicator: <Loader/>}} 
                   pagination={{
                   onChange(current) {
@@ -500,12 +502,14 @@ width="15" height="15" viewBox="0 0 24 24" stroke-width="3" stroke="#2C3E50" fil
             width="20%"
             cancel={()=>setBOMModal(!visibleBOM)}>
             <div>
-            <p style={{textAlign:"center"}}>
+            {/* <p style={{textAlign:"center"}}>
             Click Here To Download The BOM 
-             </p>
+             </p> */}
             <p style={{textAlign:"center"}}>
             <Button type="primary" onClick={()=>setBOMModal(false)} >
-            <ExportExcel data={current_panel?.detailedBom} panel={current_panel}  />
+            {/* <ExportExcel data={current_panel?.detailedBom} panel={current_panel}  /> */}
+            <Anttable data={current_panel?.detailedBom} panel={current_panel} />
+           
             </Button>
             </p>
             </div>
@@ -516,5 +520,8 @@ width="15" height="15" viewBox="0 0 24 24" stroke-width="3" stroke="#2C3E50" fil
   }
   
   export default PanelTable;
+
+
+  
   
  

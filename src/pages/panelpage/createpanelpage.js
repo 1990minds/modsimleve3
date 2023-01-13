@@ -7,6 +7,7 @@ import {useParams} from 'react-router-dom'
 import ExportExcel from './bomdownload';
 import Modal from '../../global/model';
 import {authenticateSelector} from '../../api/authSlice';
+import Anttable from '../panel/antTable';
 
 
 const { Option } = Select;
@@ -30,6 +31,7 @@ export default function CreatePanelsettings({current_panel,scroolUp}) {
   const [check, setCheck] = useState(true)
 
 
+
   
 
 
@@ -51,6 +53,7 @@ export default function CreatePanelsettings({current_panel,scroolUp}) {
 
 
   
+
 
 
 
@@ -606,6 +609,11 @@ export default function CreatePanelsettings({current_panel,scroolUp}) {
              </Col>
 
 
+
+
+    
+
+
             <Col>
 
             <Tooltip  placement="topLeft" title= {current_panel?.panel_type === null  ?'Save Panel Settings to Enable Configure Now': current_panel?.request == "null" ? "To design The Panel" : "Disabled as Panel has been Submitted" }  arrowPointAtCenter>
@@ -633,7 +641,7 @@ export default function CreatePanelsettings({current_panel,scroolUp}) {
 
 
 
-
+  {/* <Anttable data={current_panel?.detailedBom} panel={current_panel} /> */}
 
     {/* <Button type="primary" 
     block style={{ fontSize: '14px', width:'10rem' , }}
