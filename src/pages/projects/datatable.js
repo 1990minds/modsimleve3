@@ -186,6 +186,7 @@ import {
         title: 'Created Date',
         dataIndex: 'createdAt',
         key: 'createdAt',
+        ellipsis: true,
         render:(createdAt)=>{
           return <small style={{fontSize:'14px'}} className="my-0 mr-3">{moment(createdAt).format('DD/MM/YYYY')}</small>
       }

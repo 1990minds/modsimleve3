@@ -34,6 +34,7 @@ export default function LogTable({data, intialdata, loading}) {
           dataIndex: 'event',
           key: 'event',
           width: 200,
+          ellipsis: true,
           render: (item) => {
             return <p className="m-0 capitalize">{item}</p>
              }
@@ -89,7 +90,7 @@ export default function LogTable({data, intialdata, loading}) {
         //   ...rowSelection,
         // }}  
         loading={{spinning: loading, indicator: <Loader/>}} 
-        scroll={{ x : 1500,  y:'calc(100vh - 35em)' }}
+        scroll={{ x : 800,  y:'calc(100vh - 35em)' }}
 
         pagination={{
           onChange(current) {

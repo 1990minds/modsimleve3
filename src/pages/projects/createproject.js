@@ -26,8 +26,7 @@ export default function CreateProject({cancel}) {
        }, [user])
         
   
-       const onFinish = (values) => {
-    
+       const onFinish = (values) => {    
        console.log(values);
        const data = {
         project_location:values.project_location,
@@ -43,8 +42,6 @@ export default function CreateProject({cancel}) {
         user:user?._id,
          
       }
-
-
        dispatch(createproject(data, user?.company?._id))
       
        };
@@ -195,6 +192,7 @@ export default function CreateProject({cancel}) {
            <Form.Item
             label={<p className="w-36 text-left m-0">Phone Number</p>}
             name="phone_number"
+
 
            >
            <Input/>

@@ -7,6 +7,7 @@ import {useParams} from 'react-router-dom'
 import ExportExcel from './bomdownload';
 import Modal from '../../global/model';
 import {authenticateSelector} from '../../api/authSlice';
+import Anttable from '../panel/antTable';
 
 
 const { Option } = Select;
@@ -28,29 +29,6 @@ export default function CreatePanelsettings({current_panel,scroolUp}) {
 
 
   const [check, setCheck] = useState(true)
-
-
-  
-
-  // const handleClickFrame = (value) =>{
-  //  form.setFieldsValue({
-  //   frame_powdercoating:(value==='G' || value=== 'Z') ? false:true
-  // });   
-  //   setframeMaterial(value)
-    
-  //   }
-
-
-  //   useLayoutEffect(() => {
-  //     window.scrollTo(0, 18)
-  // },[]);
-
-
-  
-
-
-
-
 
 
 
@@ -153,7 +131,9 @@ export default function CreatePanelsettings({current_panel,scroolUp}) {
                 
                   dispatch(updatePanel(current_panel._id, panelsettingsdata))
                   form.resetFields()
+
                   setSaveBtn(true)
+
 
 
                   setTimeout(() => {
@@ -589,8 +569,8 @@ export default function CreatePanelsettings({current_panel,scroolUp}) {
           {!saveBtn && current_panel?.panel.length>0 && <Checkbox style={{ marginTop:'2rem'}} onChange={onChangeCheckBox}><b>Existing Structures will be deleted on saving the new panel setting changes. </b> </Checkbox> }
 
 
-       
 
+         
 
             <Row  gutter={22} id='addlis' style={{ marginTop:'3rem',  }}>
               <Col>
@@ -600,6 +580,11 @@ export default function CreatePanelsettings({current_panel,scroolUp}) {
                Save
              </Button>
              </Col>
+
+
+
+
+    
 
 
             <Col>
@@ -629,7 +614,7 @@ export default function CreatePanelsettings({current_panel,scroolUp}) {
 
 
 
-
+  {/* <Anttable data={current_panel?.detailedBom} panel={current_panel} /> */}
 
     {/* <Button type="primary" 
     block style={{ fontSize: '14px', width:'10rem' , }}
