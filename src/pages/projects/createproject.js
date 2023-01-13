@@ -26,8 +26,7 @@ export default function CreateProject({cancel}) {
        }, [user])
         
   
-       const onFinish = (values) => {
-    
+       const onFinish = (values) => {    
        console.log(values);
        const data = {
         project_location:values.project_location,
@@ -43,8 +42,6 @@ export default function CreateProject({cancel}) {
         user:user?._id,
          
       }
-
-
        dispatch(createproject(data, user?.company?._id))
       
        };

@@ -2,6 +2,7 @@
 import React, { useState, useLayoutEffect} from 'react'
 import Layout from '../../components/layout/Main'
 import PanelTable from './paneltable'
+import AntTable from './antTable'
 import {fetchProductPanels,panelSelector} from '../../api/panel'
 import {useDispatch, useSelector} from 'react-redux'
 import { useEffect } from 'react'
@@ -128,7 +129,7 @@ export default function Panel() {
       
        
        <PanelTable  data={(filter?.length > 0) ? filter :product_panels} project_id ={project} product_id={id} loading={loading || load}/>
-
+       {/* <AntTable data={(filter?.length > 0) ? filter :product_panels} project_id ={project} product_id={id} loading={loading || load}/> */}
       
        
       </Layout>

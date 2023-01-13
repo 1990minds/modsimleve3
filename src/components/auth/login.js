@@ -274,7 +274,7 @@ export default function Login({history}) {
                   okText="Close"
                   cancelText={ toBeDisabled }
                   >
-                 <button style={{ display:'flex' ,   width:'80px',  }}><span style={{ fontSize:'20px', marginLeft:'4px', marginTop:'2px', alignItems:'center' , marginBlock:'auto  '  }}><BiHelpCircle/> </span>  <span style={{ fontSize:'14px', alignItems:'center'  }}> Help </span>   </button>
+                 <button style={{ display:'flex' ,   width:'80px',  }}><span style={{ fontSize:'20px', marginLeft:'2px', marginTop:'6px', alignItems:'center' , marginBlock:'auto  '  }}><BiHelpCircle/> </span>  <span style={{ fontSize:'14px', alignItems:'center' ,marginTop:'6px',marginLeft:'8px', }}> Help </span>   </button>
                  {/* import { FiCopy } from 'react-icons/fi'; */}
                 </Popconfirm>
 

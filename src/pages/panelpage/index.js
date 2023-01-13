@@ -97,7 +97,7 @@ console.log(current_panel)
     <Breadcrumb.Item>
     Panel Page
     </Breadcrumb.Item>
-    </Breadcrumb>
+</Breadcrumb>
 
 <h1 style={{ fontSize:'1.5rem', fontWeight: '700' , paddingBottom: '10px' }}>Panel Details</h1>
 <Row>
