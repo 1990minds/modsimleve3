@@ -137,9 +137,9 @@ import {
                   </>
                 }
               >
-                <div className="table-responsive">
-                  <Table
-                   scroll={{ x  : 800, y:'calc(100vh - 30em)' }}
+                 <div className="table-responsive">
+                 <Table
+                  scroll={{ x  : 800, y:'calc(100vh - 30em)' }}
 
                   loading={{spinning: loading, indicator: <Loader/>}} 
                   pagination={{
@@ -147,20 +147,20 @@ import {
                   setPage(current)
                     }
                   }}
-                    columns={columns}
-                    dataSource={data}
-                    className="ant-border-space"
+                  columns={columns}
+                  dataSource={data}
+                  className="ant-border-space"
                   />
                 </div>
-              </Card>
-            </Col>
-          </Row>
-        </div>
-                   <Drawer
-          title="Update Broadcaste" placement="right" onClose={onClose} visible={visible} width={720}
-        >
-          {/* <Editbroadcaste current_broadcaste={current_broadcaste} cancel={onClose}/> */}
-        </Drawer>
+                </Card>
+                </Col>
+                </Row>
+                </div>
+                <Drawer
+                 title="Update Broadcaste" placement="right" onClose={onClose} visible={visible} width={720}
+                 >
+                {/* <Editbroadcaste current_broadcaste={current_broadcaste} cancel={onClose}/> */}
+                </Drawer>
       </>
     );
   }
