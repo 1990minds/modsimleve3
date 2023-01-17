@@ -33,7 +33,6 @@ const columns = [
   title:  `${panel?.company?.company_name}`,
   width: 250,
   fixed: "center",
-
   children: [
 
 
@@ -47,25 +46,20 @@ const columns = [
     {    
         title: "Customer Name",
         width: 100,
-        fixed: "center",
-        
-  
+        fixed: "center", 
         children: [
       
         {
       
         title: "Project Name",
         dataIndex: 'project_name',
-        key:'project_name',
-        
-          
+        key:'project_name',         
         children: [  
         {
 
         title: "Panel Name",
         width: 100,
-        fixed: "left",
-    
+        fixed: "left",    
         children: [
 
         {
@@ -211,21 +205,16 @@ const columns = [
           children: [       
             {
         
-               title: `${panel?.project?.project_id}`,
-                width: 100,
-                fixed: "center",
-           
-            
-            children: [
+          title: `${panel?.project?.project_id}`,
+          width: 100,
+          fixed: "center",           
+          children: [
         
               {
             
             title: `${panel?.panel_id}`,
             width: 100,
             fixed: "center",
-
-        
-
                 children: [
 
                 {
@@ -384,9 +373,9 @@ const columns = [
             .addSheet('test')
             .addColumns(columns)
             .addDataSource(datanew)
-            .saveAs('BoM.xlsx')
+            .saveAs(`${panel?.project?.project_id.concat(panel?.project?.project_serialID).concat(panel?.panel_id)}.xlsx`)
             excel.setTHeadStyle({
-            background: 'ADD8E6',
+            background: '85bdf0',
             });
            
         }}
