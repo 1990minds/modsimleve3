@@ -123,7 +123,7 @@ const columns = [
             children: [
               {
               title: "Catalogue Description",
-              width: 140,
+              width: 200,
               fixed: "center", 
               key:'Item_Description',
               dataIndex:'Item_Description'
@@ -433,6 +433,11 @@ tr:nth-child(odd){
 .table_btn
 {
     margin:0 !important;
+}
+
+.ant-table-row {
+  font-size: 20px;
+  height: 45px;
 }
 
 

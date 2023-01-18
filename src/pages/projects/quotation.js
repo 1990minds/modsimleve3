@@ -380,7 +380,8 @@ console.log(current_project)
         <path d="M17 9v-2a2 2 0 0 0 -2 -2h-10a2 2 0 0 0 -2 2v6a2 2 0 0 0 2 2h2" />
       </svg> }
       style={{ borderRadius: "8px" }}
-      type="number"
+      type="number" id="tentacles" name="tentacles"
+       min="0" 
         />
 
         </Form.Item>
@@ -401,7 +402,8 @@ console.log(current_project)
         <path d="M17 9v-2a2 2 0 0 0 -2 -2h-10a2 2 0 0 0 -2 2v6a2 2 0 0 0 2 2h2" />
       </svg> }
       style={{ borderRadius: "8px" }}
-      type="number"
+      type="number" id="tentacles" name="tentacles"
+       min="0" 
         />
         </Form.Item>       
         </Col>
@@ -417,7 +419,8 @@ console.log(current_project)
         >
         <Input
         style={{ borderRadius: "8px" }}
-        type="number"
+        type="number" id="tentacles" name="tentacles"
+       min="0" 
         prefix={<PercentageOutlined className="site-form-item-icon" />}
         />        
         </Form.Item>        
@@ -444,7 +447,8 @@ console.log(current_project)
         <path d="M17 9v-2a2 2 0 0 0 -2 -2h-10a2 2 0 0 0 -2 2v6a2 2 0 0 0 2 2h2" />
       </svg> }
       style={{ borderRadius: "8px" }}
-      type="number"
+      type="number" id="tentacles" name="tentacles"
+       min="0" 
         />
 
         </Form.Item>
@@ -463,7 +467,8 @@ console.log(current_project)
         >
         <Input
         style={{ borderRadius: "8px" }}
-        type="number"
+        type="number" id="tentacles" name="tentacles"
+       min="0" 
         prefix={<PercentageOutlined className="site-form-item-icon" />}
         />
         

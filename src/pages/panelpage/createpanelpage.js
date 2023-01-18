@@ -225,7 +225,7 @@ export default function CreatePanelsettings({current_panel,scroolUp}) {
 
               <Col xs={2} sm={4} md={6} lg={8} xl={5}>
               <Form.Item
-              label={<p className=" text-left m-0">Compliance With IEC61439</p>}
+              label={<p className=" text-left m-0">Standard Design</p>}
               name= "compliance_with_IEC61439"
               rules={[{ required: true, message: 'required!'}]}
               >
