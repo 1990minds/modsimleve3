@@ -384,9 +384,9 @@ const columns = [
             .addSheet('test')
             .addColumns(columns)
             .addDataSource(datanew)
-            .saveAs('BoM.xlsx')
+            .saveAs(`${panel?.project?.project_id.concat(panel?.project?.project_serialID).concat(panel?.panel_id)}.xlsx`)
             excel.setTHeadStyle({
-            background: 'ADD8E6',
+            background: '85bdf0',
             });
            
         }}
