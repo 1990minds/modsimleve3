@@ -33,7 +33,6 @@ const columns = [
   title:  `${panel?.company?.company_name}`,
   width: 250,
   fixed: "center",
-
   children: [
 
 
@@ -47,25 +46,20 @@ const columns = [
     {    
         title: "Customer Name",
         width: 100,
-        fixed: "center",
-        
-  
+        fixed: "center", 
         children: [
       
         {
       
         title: "Project Name",
         dataIndex: 'project_name',
-        key:'project_name',
-        
-          
+        key:'project_name',         
         children: [  
         {
 
         title: "Panel Name",
         width: 100,
-        fixed: "left",
-    
+        fixed: "left",    
         children: [
 
         {
@@ -129,7 +123,7 @@ const columns = [
             children: [
               {
               title: "Catalogue Description",
-              width: 140,
+              width: 200,
               fixed: "center", 
               key:'Item_Description',
               dataIndex:'Item_Description'
@@ -211,21 +205,16 @@ const columns = [
           children: [       
             {
         
-               title: `${panel?.project?.project_id}`,
-                width: 100,
-                fixed: "center",
-           
-            
-            children: [
+          title: `${panel?.project?.project_id}`,
+          width: 100,
+          fixed: "center",           
+          children: [
         
               {
             
             title: `${panel?.panel_id}`,
             width: 100,
             fixed: "center",
-
-        
-
                 children: [
 
                 {
@@ -444,6 +433,11 @@ tr:nth-child(odd){
 .table_btn
 {
     margin:0 !important;
+}
+
+.ant-table-row {
+  font-size: 20px;
+  height: 45px;
 }
 
 

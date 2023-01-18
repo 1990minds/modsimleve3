@@ -317,8 +317,7 @@ import {
           title="Update an Existing Project" placement="right" onClose={onClose} visible={visible} width={720}
         >
           <Editproject current_project={current_project} cancel={onClose}/>
-        </Drawer>  
-
+            </Drawer>  
             <ModalForm 
             isVisible={visibleQuotation} 
             title="Quotation Details"
@@ -327,9 +326,9 @@ import {
             className=""
             width="55%"
             cancel={()=>setQuotationModal(!visibleQuotation)}>
-                  <Quotation current_project={current_project} cancel={()=>setQuotationModal(!visibleQuotation)} />
+            <Quotation current_project={current_project} cancel={()=>setQuotationModal(!visibleQuotation)} />
             </ModalForm>    
-                 </>
+            </>
     );
   }
   
