@@ -76,6 +76,24 @@ export const fetchAllcompanycustomers = (id) => async dispatch => {
  };
 
 
+ export const fetchAllcustomers = (id) => async dispatch => {
+  dispatch(getcustomers())
+ console.log({id});
+  try {
+ 
+   const {data} = await axios.get(keyUri.BACKEND_URI +`/customers/${id}`)
+   console.log(data);
+   
+   dispatch(getAll_customers_success(data));
+    
+  } catch (error) {
+ 
+ dispatch(get_customers_Failure())
+
+  }
+ };
+
+
   
 
  export const deletecustomers = (id, value,company) => async dispatch => {

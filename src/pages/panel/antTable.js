@@ -123,7 +123,7 @@ const columns = [
             children: [
               {
               title: "Catalogue Description",
-              width: 200,
+              width: 220,
               fixed: "center", 
               key:'Item_Description',
               dataIndex:'Item_Description'
@@ -132,7 +132,7 @@ const columns = [
 
               {
               title: "Nature of component.",
-              width: 140,
+              width: 160,
               fixed: "center",
               key:'Nature_of_Component',
               dataIndex:'Nature_of_Component' ,
