@@ -14,22 +14,21 @@ import {
   Timeline,
   Radio,
 } from "antd";
-import {
-  ToTopOutlined,
-  MenuUnfoldOutlined,
-  RightOutlined,
-} from "@ant-design/icons";
+
 import Paragraph from "antd/lib/typography/Paragraph";
 import {useDispatch, useSelector} from 'react-redux'
-import Echart from "../../components/chart/EChart";
-import LineChart from "../../components/chart/LineChart";
+import YearOrderGraph from './yearOrderGraph'
+
 import {useParams,  useLocation} from 'react-router-dom'
-import {fetchAllcompanycustomers,customersSelector} from '../../api/customers'
+import customers, {fetchAllcompanycustomers,customersSelector, fetchAllcustomers} from '../../api/customers'
 import {authenticateSelector} from '../../api/authSlice'
 import {fetchAllcompanyProject, projectSelector} from '../../api/project'
 import {fetchAllUserTickets,ticketsSelector} from '../../api/tickets'
 import { fetchAllpanel, panelSelector } from "../../api/panel";
 import { Link } from "react-router-dom";
+import styled from 'styled-components'
+import axios from 'axios'
+import {keyUri} from '../../key'
 import { fetchAllcompanyLicense, licenseSelector} from '../../api/license';
 function Home(color) {
 
@@ -46,6 +45,7 @@ function Home(color) {
   console.log(user)
   const project =   new URLSearchParams(useLocation().search).get(`project`)
   const {id}= useParams()
+  const [yearChart, setYearChartData] = useState([])
 
   console.log(user?.company?._id)
 
@@ -60,6 +60,22 @@ function Home(color) {
     dispatch(fetchAllcompanyLicense(user?._id))
 
  }, [user])
+
+
+
+
+ useEffect(() => {
+ dispatch(fetchAllcustomers(user?.company?._id))
+
+  axios.get(keyUri.BACKEND_URI + `/fetch-yearchart/${user?.company?._id}`).then((data=>{
+      setYearChartData(data.data)
+  })) 
+
+}, [dispatch])
+
+
+
+
 
 
 
@@ -347,21 +363,50 @@ c-0.01-0.42-0.32-0.5-0.66-0.51C-57.1,15.18-57.68,15.19-58.26,15.19z"fill={color}
           ))}
         </Row>
 
-        {/* <Row gutter={[24, 0]}>
-          <Col xs={24} sm={24} md={12} lg={12} xl={10} className="mb-24">
-            <Card bordered={false} className="criclebox h-full">
-              <Echart />
-            </Card>
-          </Col>
-          <Col xs={24} sm={24} md={12} lg={12} xl={14} className="mb-24">
-            <Card bordered={false} className="criclebox h-full">
-              <LineChart />
-            </Card>
-          </Col>
-        </Row> */}
-
        
       </div>
+
+
+
+
+
+      <div className="col-sm-6">
+
+<div className="mr-2 w-100  graph">
+    <h3>Year Orders</h3>
+    <YearOrderGraph data={yearChart} />
+    </div>
+    <div className="ml-5">
+
+    {/* <ExportYearExcel data={yearChart}/> */}
+
+    </div>
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     </>
   );
 }
