@@ -6,28 +6,23 @@ import {
   Col,
   Row,
   Typography,
-  Tooltip,
-  Progress,
-  Upload,
-  message,
-  Button,
-  Timeline,
-  Radio,
+
 } from "antd";
 
-import Paragraph from "antd/lib/typography/Paragraph";
-import {useDispatch, useSelector} from 'react-redux'
-import YearOrderGraph from './yearOrderGraph'
 
+import {useDispatch, useSelector} from 'react-redux'
+import YearCustomerGraph from './yearCustomerGraph'
+import YearProjectGraph from './yearprojectGraph'
 import {useParams,  useLocation} from 'react-router-dom'
 import customers, {fetchAllcompanycustomers,customersSelector, fetchAllcustomers} from '../../api/customers'
 import {authenticateSelector} from '../../api/authSlice'
-import {fetchAllcompanyProject, projectSelector} from '../../api/project'
+import {fetchAllcompanyProject, fetchAllproject, projectSelector} from '../../api/project'
 import {fetchAllUserTickets,ticketsSelector} from '../../api/tickets'
 import { fetchAllpanel, panelSelector } from "../../api/panel";
 import { Link } from "react-router-dom";
 import styled from 'styled-components'
 import axios from 'axios'
+import ExportYearExcel from './yearExcel'
 import {keyUri} from '../../key'
 import { fetchAllcompanyLicense, licenseSelector} from '../../api/license';
 function Home(color) {
@@ -46,11 +41,12 @@ function Home(color) {
   const project =   new URLSearchParams(useLocation().search).get(`project`)
   const {id}= useParams()
   const [yearChart, setYearChartData] = useState([])
+  const [projectChart, setProjectChartData] = useState([])
 
   console.log(user?.company?._id)
 
 
-
+console.log(projectChart)
 
   useEffect(()=>{
     dispatch(fetchAllcompanycustomers(user?.company?._id))
@@ -69,11 +65,23 @@ function Home(color) {
 
   axios.get(keyUri.BACKEND_URI + `/fetch-yearchart/${user?.company?._id}`).then((data=>{
       setYearChartData(data.data)
+
   })) 
+
 
 }, [dispatch])
 
 
+useEffect(() => {
+  dispatch(fetchAllproject(user?.company?._id))
+ 
+
+ axios.get(keyUri.BACKEND_URI + `/fetch-projectchart/${user?.company?._id}`).then((data=>{
+  setProjectChartData(data.data)
+ 
+ })) 
+ 
+ }, [dispatch])
 
 
 
@@ -367,26 +375,34 @@ c-0.01-0.42-0.32-0.5-0.66-0.51C-57.1,15.18-57.68,15.19-58.26,15.19z"fill={color}
       </div>
 
 
+<div style={{display:'flex' , marginTop:'60px' }}>
+
+
+    <div  style={{width:'250rem'}}>
+    <div className="mr-2 w-100  graph">
+    <h3>Year Customers</h3>
+    <YearCustomerGraph data={yearChart} />
+    </div>
+    <div  style={{  marginLeft:'10px', display:'flex', justify:'end' }}>
+    <ExportYearExcel data={yearChart}/>
+    </div>
+    </div>
 
 
 
-      <div className="col-sm-6">
 
-<div className="mr-2 w-100  graph">
-    <h3>Year Orders</h3>
-    <YearOrderGraph data={yearChart} />
+
+    <div style={{width:'250rem'}}>
+    <div className="mr-2 w-100  graph">
+    <h3>Year Projects</h3>
+    <YearProjectGraph data={projectChart} />
     </div>
     <div className="ml-5">
-
-    {/* <ExportYearExcel data={yearChart}/> */}
-
     </div>
     </div>
 
 
-
-
-
+    </div>
 
 
 

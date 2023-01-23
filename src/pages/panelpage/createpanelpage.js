@@ -36,11 +36,7 @@ export default function CreatePanelsettings({current_panel,scroolUp}) {
 
 
 
-  const handleClickFrame = (value) =>{
-   form.setFieldsValue({
-    frame_powdercoating:(value==='G' || value=== 'Z') ? false:true
-  });   
-    setframeMaterial(value)
+
 
     
 
