@@ -38,7 +38,7 @@ function Home(color) {
 
 
   // console.log(current_license)
-  console.log(user)
+  console.log(all_panel)
   const project =   new URLSearchParams(useLocation().search).get(`project`)
   const {id}= useParams()
   const [yearChart, setYearChartData] = useState([])
@@ -62,10 +62,10 @@ console.log(projectChart)
 
 
  useEffect(() => {
- dispatch(fetchAllcustomers(user?.company?._id))
+ dispatch(fetchAllcompanycustomers(user?.company?._id))
 
   axios.get(keyUri.BACKEND_URI + `/fetch-yearchart/${user?.company?._id}`).then((data=>{
-      setYearChartData(data.data)
+      setYearChartData(data?.data)
 
   })) 
 
@@ -74,7 +74,7 @@ console.log(projectChart)
 
 
 useEffect(() => {
-  dispatch(fetchAllproject(user?.company?._id))
+  dispatch(fetchAllcompanyProject(user?.company?._id))
  
 
  axios.get(keyUri.BACKEND_URI + `/fetch-projectchart/${user?.company?._id}`).then((data=>{
@@ -353,19 +353,19 @@ c-0.01-0.42-0.32-0.5-0.66-0.51C-57.1,15.18-57.68,15.19-58.26,15.19z"fill={color}
             >
               <Link to ={c.link}>
               <Card bordered={false} className="criclebox ">
-                <div className="number">
-                  <Row align="middle" gutter={[24, 0]}>
-                    <Col xs={18}>
-                      <span>{c.today}</span>
-                      <Title level={3}>
-                        {c.title} <small className={c.bnb}>{c.persent}</small>
-                      </Title>
-                    </Col>
-                    <Col xs={6}>
-                      <div className="icon-box" style={{fill:"white"}}>{c.icon}</div>
-                    </Col>
-                  </Row>
-                </div>
+              <div className="number">
+              <Row align="middle" gutter={[24, 0]}>
+              <Col xs={18}>
+              <span>{c.today}</span>
+              <Title level={3}>
+              {c.title} <small className={c.bnb}>{c.persent}</small>
+              </Title>
+              </Col>
+              <Col xs={6}>
+              <div className="icon-box" style={{fill:"white"}}>{c.icon}</div>
+              </Col>
+              </Row>
+              </div>
               </Card>
               </Link>
             </Col>
@@ -381,12 +381,12 @@ c-0.01-0.42-0.32-0.5-0.66-0.51C-57.1,15.18-57.68,15.19-58.26,15.19z"fill={color}
 
     <div  style={{width:'250rem'}}>
     <div className="mr-2 w-100  graph">
-    <h3>Customers Details</h3>
+    <h3>Customer Details</h3>
     <YearCustomerGraph data={yearChart} />
     </div>
-    <div  style={{  marginLeft:'10px', display:'flex', justify:'end' }}>
-    <ExportYearExcel data={yearChart}/>
-    </div>
+    
+    <ExportYearExcel data={yearChart} style={{display:'flex', justify:'end', alignItems:'end'}}/>
+ 
     </div>
 
 
@@ -395,32 +395,14 @@ c-0.01-0.42-0.32-0.5-0.66-0.51C-57.1,15.18-57.68,15.19-58.26,15.19z"fill={color}
 
     <div style={{width:'250rem'}}>
     <div className="mr-2 w-100  graph">
-    <h3>Projects Details</h3>
+    <h3>Project Details</h3>
     <YearProjectGraph data={projectChart} />
     </div>
-    <div  style={{  marginLeft:'10px', display:'flex', justify:'end' }}>
-    <ExportProjectExcel data={projectChart}/>
-    </div>
+    <ExportProjectExcel data={projectChart}/>  
     </div>
 
 
     </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

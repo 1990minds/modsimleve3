@@ -42,7 +42,7 @@ export default function Graph(data) {
           <YAxis />
           <Tooltip  />
           <Legend />
-          <Bar dataKey="project" barSize={40} fill="#1890FF" activeBar={{ r: 3 }} />
+          <Bar dataKey="project" barSize={40} fill="#1890FF"  />
           <Bar dataKey="status"  barSize={40} fill="#82ca9d" />
         </BarChart>
         </ResponsiveContainer>
