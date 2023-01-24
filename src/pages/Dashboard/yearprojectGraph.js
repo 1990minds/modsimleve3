@@ -30,7 +30,7 @@ export default function Graph(data) {
 
     return (
         <GraphWrap width="50%" style={{height:'40vh'}}> 
-        <ResponsiveContainer width="40%" height={320}>
+        <ResponsiveContainer width="80%" height={320}>
         <BarChart
           data={data?.data}
           margin={{
@@ -42,8 +42,8 @@ export default function Graph(data) {
           <YAxis />
           <Tooltip  />
           <Legend />
-          <Bar dataKey="project" barSize={40} fill="#8884d8" />
-          {/* <Bar dataKey="orders" fill="#82ca9d" /> */}
+          <Bar dataKey="project" barSize={40} fill="#1890FF" activeBar={{ r: 3 }} />
+          <Bar dataKey="status"  barSize={40} fill="#82ca9d" />
         </BarChart>
         </ResponsiveContainer>
         </GraphWrap>

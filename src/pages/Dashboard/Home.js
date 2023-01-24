@@ -23,6 +23,7 @@ import { Link } from "react-router-dom";
 import styled from 'styled-components'
 import axios from 'axios'
 import ExportYearExcel from './yearExcel'
+import ExportProjectExcel from './projectExcel'
 import {keyUri} from '../../key'
 import { fetchAllcompanyLicense, licenseSelector} from '../../api/license';
 function Home(color) {
@@ -69,7 +70,7 @@ console.log(projectChart)
   })) 
 
 
-}, [dispatch])
+}, [user])
 
 
 useEffect(() => {
@@ -81,7 +82,7 @@ useEffect(() => {
  
  })) 
  
- }, [dispatch])
+ }, [user])
 
 
 
@@ -299,7 +300,7 @@ c-0.01-0.42-0.32-0.5-0.66-0.51C-57.1,15.18-57.68,15.19-58.26,15.19z"fill={color}
   const count = [
     {
       today: "Total Customers",
-      title: [all_customers?.length ],
+      title: [all_customers?.length],
       // persent: "+30%",
       icon: dollor,
       bnb: "bnb2",
@@ -380,7 +381,7 @@ c-0.01-0.42-0.32-0.5-0.66-0.51C-57.1,15.18-57.68,15.19-58.26,15.19z"fill={color}
 
     <div  style={{width:'250rem'}}>
     <div className="mr-2 w-100  graph">
-    <h3>Year Customers</h3>
+    <h3>Customers Details</h3>
     <YearCustomerGraph data={yearChart} />
     </div>
     <div  style={{  marginLeft:'10px', display:'flex', justify:'end' }}>
@@ -394,10 +395,11 @@ c-0.01-0.42-0.32-0.5-0.66-0.51C-57.1,15.18-57.68,15.19-58.26,15.19z"fill={color}
 
     <div style={{width:'250rem'}}>
     <div className="mr-2 w-100  graph">
-    <h3>Year Projects</h3>
+    <h3>Projects Details</h3>
     <YearProjectGraph data={projectChart} />
     </div>
-    <div className="ml-5">
+    <div  style={{  marginLeft:'10px', display:'flex', justify:'end' }}>
+    <ExportProjectExcel data={projectChart}/>
     </div>
     </div>
 
