@@ -124,7 +124,7 @@ export default function CreateProject({cancel}) {
                     {
               all_customers.map((item, i)=>{     
                                                 
-              return <option key={i} value={item._id} >{item.customers_name}</option>
+              return <option key={i} value={item._id} >{item?.customers_name}</option>
               })
                     }                           
               </Select>       
