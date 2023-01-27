@@ -43,7 +43,7 @@ export default function Graph(data) {
           <Tooltip  />
           <Legend />
           <Bar dataKey="project" barSize={40} fill="#1890FF"  />
-          <Bar dataKey="status"  barSize={40} fill="#82ca9d" />
+          <Bar dataKey="wonproject"  barSize={40} fill="#82ca9d" />
         </BarChart>
         </ResponsiveContainer>
         </GraphWrap>

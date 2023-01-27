@@ -18,7 +18,7 @@ import customers, {fetchAllcompanycustomers,customersSelector, fetchAllcustomers
 import {authenticateSelector} from '../../api/authSlice'
 import {fetchAllcompanyProject, fetchAllproject, projectSelector} from '../../api/project'
 import {fetchAllUserTickets,ticketsSelector} from '../../api/tickets'
-import { fetchAllpanel, panelSelector } from "../../api/panel";
+import { fetchAllpanel, panelSelector, fetchAllwonPanel } from "../../api/panel";
 import { Link } from "react-router-dom";
 import styled from 'styled-components'
 import axios from 'axios'
@@ -34,11 +34,12 @@ function Home(color) {
   const {all_project} = useSelector(projectSelector) 
   const {all_tickets}=useSelector(ticketsSelector)
   const {all_panel}=useSelector(panelSelector)
+  // const {won_panel}=useSelector(panelSelector)
   // const {current_license} = useSelector(licenseSelector) 
 
 
   // console.log(current_license)
-  console.log(all_panel)
+  // console.log(won_panel)
   const project =   new URLSearchParams(useLocation().search).get(`project`)
   const {id}= useParams()
   const [yearChart, setYearChartData] = useState([])
@@ -55,6 +56,7 @@ console.log(projectChart)
     dispatch(fetchAllUserTickets(user?._id)) 
     dispatch(fetchAllpanel(user?.company?._id)) 
     dispatch(fetchAllcompanyLicense(user?._id))
+    // dispatch(fetchAllwonPanel(user?.company?._id)) 
 
  }, [user])
 
