@@ -10,6 +10,7 @@ const initialState = {
     all_panel:[],
     product_panels:[],
     project_panels:[],
+    won_panel:[],
     loading:false,
     hasError:false,
     current_panel:null,
@@ -39,6 +40,13 @@ export const panelSlice = createSlice({
       state.product_panels = payload.panel
 
   },
+
+  get_won_panels_success: (state, {payload})  =>{
+
+    state.loading = false
+    state.won_panel = payload.panel
+
+},
 
   get_project_panels_success:(state, {payload})  =>{
 
@@ -261,6 +269,43 @@ export const createBomPdf = (pdfValues) => async dispatch => {
 }   
 )
 }
+
+
+
+
+// export const fetchAllwonPanel = (id) => async dispatch => {
+
+//   console.log(id)
+
+//   dispatch(getpanel())
+//   try {
+//    const {data} = await axios.get(keyUri.BACKEND_URI +`/wonpanel/${id}`, config)
+//    console.log({data});
+   
+//    dispatch(get_project_panels_success(data));
+    
+//   } catch (error) {
+ 
+//  dispatch(get_panel_Failure())
+//   }
+//  };
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 // export const download = (id) => async dispatch => {
