@@ -19,7 +19,7 @@ export default function DuplicatePanel({current_panel,project_id,product_id,canc
   const {all_project} = useSelector(projectSelector) 
 
 
-  console.log(all_project)
+  console.log(current_panel)
 
   useEffect(()=>{
     dispatch(fetchAllcompanyProject(user.company?._id))            
@@ -35,6 +35,8 @@ export default function DuplicatePanel({current_panel,project_id,product_id,canc
                 busbar_material:current_panel && current_panel.busbar_material,
                 rated_voltage:current_panel && current_panel.rated_voltage,
                 panel_quntity:current_panel && current_panel.panel_quntity,
+                newproject_id:current_panel && current_panel.project._id
+
                 });
             }, [current_panel])
                   
@@ -63,7 +65,7 @@ export default function DuplicatePanel({current_panel,project_id,product_id,canc
                   
               }
 
-              
+        console.log(data)      
   
               dispatch(duplicatepanel( data,{id:product_id,project:project_id}))
               form.resetFields()
@@ -235,12 +237,14 @@ export default function DuplicatePanel({current_panel,project_id,product_id,canc
        autoComplete="flase"
        name="newproject_id"
        label="Project ID"
+      
        rules={[{ required: true, message: 'Please enter Project ID' }]}
        >
        <Select 
         showSearch
         placeholder="Project ID"  
         optionFilterProp="children"
+        // defaultValue={current_panel?.project?._id}
         filterOption={(input, option) =>
         option.children.toLowerCase().indexOf(input.toLowerCase()) >= 0
         }
