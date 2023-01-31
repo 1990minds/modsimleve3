@@ -35,24 +35,7 @@ export default function CreatePanelsettings({current_panel,scroolUp}) {
   
 
 
-
-
-
-    
-
-
-
-
-  //   useLayoutEffect(() => {
-  //     window.scrollTo(0, 18)
-  // },[]);
-
-
-  
-
-
-
-
+console.log(current_panel)
 
 
 
@@ -61,6 +44,7 @@ export default function CreatePanelsettings({current_panel,scroolUp}) {
 
      
   const onChangeCheckBox = (e) => {
+    // console.log(e.target.checked)
     setCheck(!e.target.checked)
   };
 
@@ -582,22 +566,23 @@ export default function CreatePanelsettings({current_panel,scroolUp}) {
          onChange={onChange}
          placeholder="Cover Powdercoating"
           >
-          <Option   value={true}>Yes</Option>
-            {/* <Option value={false}>No</Option>   */}
+          <Option  value={true}>Yes</Option>
+        {/* <Option value={false}>No</Option>   */}
           </Select>
           </Form.Item>
 
            </Col>
            </Row>
 
+          
+          {!saveBtn  && current_panel?.panel.length > 0 && <Checkbox style={{ marginTop:'2rem'}} onChange={onChangeCheckBox}><b>Existing Structures will be deleted on saving the new panel setting changes. </b> </Checkbox> }
 
-          {!saveBtn && current_panel?.panel.length>0 && <Checkbox style={{ marginTop:'2rem'}} onChange={onChangeCheckBox}><b>Existing Structures will be deleted on saving the new panel setting changes. </b> </Checkbox> }
+     
 
-
-
-            <Row  gutter={22} id='addlis' style={{ marginTop:'3rem',  }}>
-              <Col>
+            <Row  gutter={22} id='addlis' style={{ marginTop:'3rem', }}>
+            <Col>
             <Button type="primary" htmlType="submit"
+             disabled={ current_panel?.duplicate === true && check == true ? true :false }
              onClick={()=>{setVisible(false)}}
              block style={{ fontSize: '14px', width:'10rem'  }}>
                Save
