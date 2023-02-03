@@ -373,15 +373,12 @@ const columns = [
             .addSheet('test')
             .addColumns(columns)
             .addDataSource(datanew)
-            .saveAs(`${panel?.project?.project_id.concat(panel?.project?.project_serialID).concat(panel?.panel_id)}.xlsx`)
+            .saveAs(`${panel?.project?.project_id.concat(panel?.panel_id).concat(panel?.project?.project_serialID)}.xlsx`)
             excel.setTHeadStyle({
             background: '85bdf0',
             });
            
         }}
-
-
-
 
 
       >
