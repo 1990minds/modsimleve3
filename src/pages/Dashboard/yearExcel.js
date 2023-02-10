@@ -9,7 +9,9 @@ export default function ExportExcel({data}) {
 
  
     return (
+
         <ExcelFile element={<div style={{paddingLeft:'50px'}}><Button  type="primary"> Export </Button></div>}>
+
         <ExcelSheet data={data} name="Total Year Customers" >          
         <ExcelColumn label="Month" value="_id"/>
         <ExcelColumn label="customers" value="customers"/>
