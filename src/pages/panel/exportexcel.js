@@ -18,7 +18,7 @@ export default function ExportExcel({data}) {
     return (
 
        
-        <ExcelFile filename="Panel" element={<Button icon={<DownloadOutlined  style={{transform:"translateY(2px)",fontWeight: "700",  fontSize: '20px' }}/>} className="mx-2" type="primary" style={{fontSize: '14px'}}>Download List</Button>}>
+        <ExcelFile filename="Panel" element={<Button icon={<DownloadOutlined  style={{transform:"translateY(2px)",fontWeight: "700",  fontSize: '20px' }}/>} className="mx-2" type="primary" style={{fontSize: '14px'}}>Download</Button>}>
                 
         <ExcelSheet data={data} name="Panel" >
 

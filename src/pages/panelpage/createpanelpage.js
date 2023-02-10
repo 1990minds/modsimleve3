@@ -601,8 +601,8 @@ console.log(current_panel)
             <Button type="primary" htmlType="submit"
             disabled={current_panel?.panel_type === null || current_panel?.request !== "null" }
             block style={{ fontSize: '14px', width:'10rem' , }}>
-            {/* <a href={`https://canvas.modsim.app/panel/${current_panel?._id}`}> Configure Now</a> */}
-            <a href={`https://modsimcanvas.web.app/panel/${current_panel?._id}`}> Configure Now</a>
+            <a href={`https://canvas.modsim.app/panel/${current_panel?._id}`}> Configure Now</a>
+            {/* <a href={`https://modsimcanvas.web.app/panel/${current_panel?._id}`}> Configure Now</a> */}
             </Button>
             </Tooltip>
 
